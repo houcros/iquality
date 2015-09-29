@@ -104,7 +104,7 @@ public class BaseController {
 	}
 	
 	@RequestMapping(value = "/lk_met_pla_ctrl_pase/{id_ejecucion}", method = RequestMethod.GET)
-	public String welcomeName(@PathVariable int id_ejecucion, ModelMap model) {
+	public String show_lk_met_pla_ctrl_pase(@PathVariable int id_ejecucion, ModelMap model) {
 
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -114,12 +114,12 @@ public class BaseController {
 		LK_MET_PLA_CTRL_PASEDAO lk_met_pla_ctrl_paseDAO = ctx.getBean("lk_met_pla_ctrl_paseDAOJDBCTemplate", LK_MET_PLA_CTRL_PASEDAO.class);
 		
 		//Read
-		
+		logger.debug("[show_lk_met_pla_ctrl_pase] counter : {}, ready to getById", ++counter);
 		LK_MET_PLA_CTRL_PASE lk_met_pla_ctrl_pase;
 		try {
 			lk_met_pla_ctrl_pase = lk_met_pla_ctrl_paseDAO.getById(id_ejecucion);
 			
-			System.out.println("LK_MET_PLA_CTRL_PASE Retrieved::"+lk_met_pla_ctrl_pase);
+			logger.debug("[show_lk_met_pla_ctrl_pase] counter : LK_MET_PLA_CTRL_PASE Retrieved::{}", lk_met_pla_ctrl_pase);
 			
 			model.addAttribute("id_sistema", lk_met_pla_ctrl_pase.getId_sistema());
 			model.addAttribute("id_ejecucion", lk_met_pla_ctrl_pase.getId_ejecucion());
