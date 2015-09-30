@@ -16,6 +16,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="lk_met_pla_ctrl_pase_jobDAOJDBCTemplate" class="com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAOJDBCTemplateImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />

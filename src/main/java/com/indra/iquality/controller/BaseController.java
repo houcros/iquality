@@ -15,6 +15,8 @@ import com.indra.iquality.dao.EmployeeDAO;
 import com.indra.iquality.model.Employee;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASEDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE;
+import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
+import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 
 @Controller
 public class BaseController {
@@ -22,6 +24,7 @@ public class BaseController {
 	private static int counter = 0;
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
+	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -109,7 +112,7 @@ public class BaseController {
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		
-		//Get the EmployeeDAO Bean
+		//Get the lk_met_pla_ctrl_paseDAO Bean
 		//To use JdbcTemplate
 		LK_MET_PLA_CTRL_PASEDAO lk_met_pla_ctrl_paseDAO = ctx.getBean("lk_met_pla_ctrl_paseDAOJDBCTemplate", LK_MET_PLA_CTRL_PASEDAO.class);
 		
@@ -144,10 +147,53 @@ public class BaseController {
 		
 		//Close Spring Context
 		ctx.close();
-		System.out.println("DONE");
+		logger.info("[lk_met_pla_ctrl_pase] -> DONE");
 		
-		logger.debug("[welcomeName] counter : {}", ++counter);
+		logger.debug("[lk_met_pla_ctrl_pase] counter : {}", ++counter);
 		return VIEW_LK_MET_PLA_CTRL_PASE;
+
+	}
+	
+	@RequestMapping(value = "/lk_met_pla_ctrl_pase_job/{id_ejecucion}/{id_job}", method = RequestMethod.GET)
+	public String show_lk_met_pla_ctrl_pase_job(@PathVariable int id_ejecucion, @PathVariable String id_job, ModelMap model) {
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		
+		//Get the lk_met_pla_ctrl_pase_jobDAO Bean
+		//To use JdbcTemplate
+		LK_MET_PLA_CTRL_PASE_JOBDAO lk_met_pla_ctrl_pase_jobDAO = ctx.getBean("lk_met_pla_ctrl_pase_jobDAOJDBCTemplate", LK_MET_PLA_CTRL_PASE_JOBDAO.class);
+		
+		//Read
+		logger.debug("[show_lk_met_pla_ctrl_pase_job] counter : {}, ready to getById", ++counter);
+		LK_MET_PLA_CTRL_PASE_JOB lk_met_pla_ctrl_pase_job = lk_met_pla_ctrl_pase_jobDAO.getById(id_ejecucion, id_job);
+		
+		if(lk_met_pla_ctrl_pase_job != null) {
+			
+			logger.debug("[show_lk_met_pla_ctrl_pase_job] counter : LK_MET_PLA_CTRL_PASE_JOB Retrieved::{}", lk_met_pla_ctrl_pase_job);
+			
+			model.addAttribute("id_sistema", lk_met_pla_ctrl_pase_job.getId_sistema());
+			model.addAttribute("id_ejecucion", lk_met_pla_ctrl_pase_job.getId_ejecucion());
+			model.addAttribute("id_software", lk_met_pla_ctrl_pase_job.getId_software());
+			model.addAttribute("id_pase", lk_met_pla_ctrl_pase_job.getId_pase());
+			model.addAttribute("id_pid", lk_met_pla_ctrl_pase_job.getId_pid());
+			model.addAttribute("id_fecha_inicio", lk_met_pla_ctrl_pase_job.getId_fecha_inicio());
+			model.addAttribute("id_fecha_fin", lk_met_pla_ctrl_pase_job.getId_fecha_fin());
+			model.addAttribute("id_estado", lk_met_pla_ctrl_pase_job.getId_estado());
+			model.addAttribute("id_fecha_creacion", lk_met_pla_ctrl_pase_job.getId_fecha_creacion());
+			model.addAttribute("id_fecha_modificacion", lk_met_pla_ctrl_pase_job.getId_fecha_modificacion());
+			model.addAttribute("id_sn_punto_control", lk_met_pla_ctrl_pase_job.getId_sn_punto_control());
+			model.addAttribute("id_fecha_ok_punto_control", lk_met_pla_ctrl_pase_job.getId_fecha_ok_punto_control());
+		} else {
+			model.addAttribute("id_sistema", "NO lk_met_pla_ctrl_pase_job FOUND WITH id_ejecucion = " + String.valueOf(id_ejecucion) + " and id_job = " + id_job);
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[lk_met_pla_ctrl_pase_job] -> DONE");
+		
+		logger.debug("[lk_met_pla_ctrl_pase_job] counter : {}", ++counter);
+		return VIEW_LK_MET_PLA_CTRL_PASE_JOB;
 
 	}
 
