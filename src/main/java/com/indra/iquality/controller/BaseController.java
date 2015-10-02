@@ -22,6 +22,7 @@ import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 public class BaseController {
 
 	private static int counter = 0;
+	private static final String VIEW_MY_INDEX = "my_index";
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_NOT_FOUND = "404";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
@@ -31,7 +32,7 @@ public class BaseController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(ModelMap model) {
 
-		model.addAttribute("message", "Welcome");
+//		model.addAttribute("message", "Welcome");
 		model.addAttribute("counter", ++counter);
 		logger.debug("[welcome] counter : {}", counter);
 
@@ -46,7 +47,7 @@ public class BaseController {
 		model.addAttribute("message", "Welcome " + name);
 		model.addAttribute("counter", ++counter);
 		logger.debug("[welcomeName] counter : {}", counter);
-		return VIEW_INDEX;
+		return VIEW_MY_INDEX;
 
 	}
 	
@@ -103,7 +104,7 @@ public class BaseController {
 		logger.debug("[welcome] counter : {}", counter);
 
 		// Spring uses InternalResourceViewResolver and return back index.jsp
-		return VIEW_INDEX;
+		return VIEW_MY_INDEX;
 
 	}
 	
@@ -207,6 +208,18 @@ public class BaseController {
 
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_NOT_FOUND;
+
+	}
+	
+	@RequestMapping(value = "/my-old-index", method = RequestMethod.GET)
+	public String myOldIndex(ModelMap model) {
+
+		model.addAttribute("message", "Welcome");
+		model.addAttribute("counter", ++counter);
+		logger.debug("[myOldIndex] counter : {}", counter);
+
+		// Spring uses InternalResourceViewResolver and return back index.jsp
+		return VIEW_MY_INDEX;
 
 	}
 
