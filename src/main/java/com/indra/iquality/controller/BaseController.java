@@ -23,6 +23,7 @@ public class BaseController {
 
 	private static int counter = 0;
 	private static final String VIEW_INDEX = "index";
+	private static final String VIEW_NOT_FOUND = "404";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -194,6 +195,18 @@ public class BaseController {
 		
 		logger.debug("[lk_met_pla_ctrl_pase_job] counter : {}", ++counter);
 		return VIEW_LK_MET_PLA_CTRL_PASE_JOB;
+
+	}
+	
+	@RequestMapping(value = "/404", method = RequestMethod.GET)
+	public String notFound(ModelMap model) {
+
+		model.addAttribute("test", "You found \"not found\"");
+		model.addAttribute("counter", ++counter);
+		logger.debug("[welcome] counter : {}", counter);
+
+		// Spring uses InternalResourceViewResolver and return back index.jsp
+		return VIEW_NOT_FOUND;
 
 	}
 
