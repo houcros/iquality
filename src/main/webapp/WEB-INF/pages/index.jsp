@@ -42,7 +42,7 @@
 <div class="brand">
 
     <a href="index.html" class="logo">
-        <img src="${pageContext.servletContext.contextPath}/resources/images/logo.png" alt="">
+        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/vida-caixa.jpg" alt="">
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
