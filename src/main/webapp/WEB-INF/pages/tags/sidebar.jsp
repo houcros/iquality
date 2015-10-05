@@ -1,6 +1,4 @@
 <!--sidebar start-->
-<!DOCTYPE html>
-<html lang="en">
 <aside>
     <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
