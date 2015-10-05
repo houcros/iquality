@@ -9,7 +9,7 @@
     <meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE9”>
     <meta http-equiv=”X-UA-Compatible” content=”IE=9”>
 
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" type="image/x-icon">
     <title>iQuality</title>
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 <div class="brand">
 
     <a href="index.html" class="logo">
-        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/vida-caixa.jpg" alt="">
+        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/logo.jpg" alt="">
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -276,7 +276,7 @@
                         <span>Diccionario de conceptos</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="boxed_page.html">Diccionario</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/diccionario">Diccionario</a></li>
                         <li><a href="horizontal_menu.html">Gesti�n de certificaciones</a></li>
                         <li><a href="language_switch.html">Gesti�n de dimensiones</a></li>
                     </ul>
