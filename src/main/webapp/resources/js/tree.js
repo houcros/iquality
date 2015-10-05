@@ -36,8 +36,9 @@ var TreeView = function () {
 
             var treeDataSource2 = new DataSourceTree({
                 data: [
-                    { name: 'Test tree 1 <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F11' } },
-                    { name: 'Test tree 2 <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F12' } },
+                    { name: 'Secci&oacute;n Base <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F11' } },
+                    { name: 'Secci&oacute;n de Motores de C&aacute;lculo <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F11' } },
+                    { name: 'Secci&oacute;n de Reporting <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F12' } },
                     { name: '<i class="fa fa-bell-o"></i> Notification', type: 'item', additionalParameters: { id: 'I11' } },
                     { name: '<i class="fa fa-bar-chart-o"></i> Assignment', type: 'item', additionalParameters: { id: 'I12' } }
                 ],
