@@ -9,20 +9,40 @@ var TreeView = function () {
                 this._delay = options.delay;
             };
 
+// Funcion original para popular el arbol
+//
+//            DataSourceTree.prototype = {
+//
+//                data: function (options, callback) {
+//                    var self = this;
+//
+//                    setTimeout(function () {
+//                        var data = $.extend(true, [], self._data);
+//
+//                        callback({ data: data });
+//
+//                    }, this._delay)
+//                }
+//            };
+
             DataSourceTree.prototype = {
-
-                data: function (options, callback) {
-                    var self = this;
-
-                    setTimeout(function () {
-                        var data = $.extend(true, [], self._data);
-
-                        callback({ data: data });
-
-                    }, this._delay)
-                }
-            };
-
+            		data: function (options, callback) {
+            			callback({ data: options.data || this._data });
+            		}
+            	};
+            
+//            DataSourceTree.prototype = {
+//
+//                    data: function (options, callback) {
+//
+//                        setTimeout(function () {
+//                        	
+//                             callback({ data: options.data || this._data });
+//                             
+//                        }, this._delay)
+//                   }
+//            };
+            
             // INITIALIZING TREE
             var treeDataSource = new DataSourceTree({
                 data: [
@@ -33,10 +53,35 @@ var TreeView = function () {
                 ],
                 delay: 400
             });
-
+            
+            
             var treeDataSource2 = new DataSourceTree({
                 data: [
-                    { name: 'Secci&oacute;n Base <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F11' } },
+                    { name: 'Secci&oacute;n Base <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F-1' },
+                    	data: [
+                    	    { name: 'Modelo Contable <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F-1.1' },
+	                    	    data: [
+	                           	    { name: 'Entidad Contable <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F-1.1.1' },
+			                    	    data: [
+				                           	    { name: 'Dimensi&oacute;n Aplicaci&oacute;n Contable <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F-1.1.1.1' },
+						                    	    data: [
+							                           	    { name: 'Aplicaci&oacute;n Contable <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F-1.1.1.1.1' },
+									                    	    data: [
+										                           	    { name: '<i class="fa  fa-certificate "></i> Aplicaci&oacute;n Contable <div class="tree-actions"></div>', type: 'item', additionalParameters: { id: 'I-1.1.1.1.1.1' }},
+										                           	]
+							                           	    },
+							                           	]
+				                           	    },
+				                           	]
+	                           	    },
+	                           	]
+                    	    },
+                    	    { name: 'Modelo de Cuadre de Contabilidad vs. Gesti&oacute;n <div class="tree-actions"></div>', type: 'folder', data: [], additionalParameters: { id: 'F-1.2' }},
+                    	    { name: 'Modelo de Flujos y Curvas <div class="tree-actions"></div>', type: 'folder', data: [], additionalParameters: { id: 'F-1.3' }},
+                    	    { name: 'Modelo de Gesti&oacute;n de Activos <div class="tree-actions"></div>', type: 'folder', data: [], additionalParameters: { id: 'F-1.4' }},
+                    	    { name: 'Modelo de Gesti&oacute;n del Pasivo <div class="tree-actions"></div>', type: 'folder', data: [], additionalParameters: { id: 'F-1.5' }},
+                    	]
+                    },
                     { name: 'Secci&oacute;n de Motores de C&aacute;lculo <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F11' } },
                     { name: 'Secci&oacute;n de Reporting <div class="tree-actions"></div>', type: 'folder', additionalParameters: { id: 'F12' } },
                     { name: '<i class="fa fa-bell-o"></i> Notification', type: 'item', additionalParameters: { id: 'I11' } },
@@ -94,11 +139,11 @@ var TreeView = function () {
                 loadingHTML: '<img src="resources/images/input-spinner.gif"/>',
             });
 
-            $('#FlatTree2').tree({
-                selectable: false,
-                dataSource: treeDataSource4,
-                loadingHTML: '<img src="resources/images/input-spinner.gif"/>',
-            });
+//            $('#FlatTree2').tree({
+//                selectable: false,
+//                dataSource: treeDataSource4,
+//                loadingHTML: '<img src="resources/images/input-spinner.gif"/>',
+//            });
 
 
         }
