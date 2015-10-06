@@ -29,7 +29,7 @@
                     <ul class="sub">
                         <li><a href="general.html">Carga de ficheros</a></li>
                         <li><a href="buttons.html">Consulta resultados certificaciones</a></li>
-                        <li><a href="widget.html">Consola control ejecución</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Consola control ejecución</a></li>
                         <li><a href="slider.html">Gestión planificaciones de carga</a></li>
                         <li><a href="tree_view.html">Parametrización de certificaciones</a></li>
                     </ul>
