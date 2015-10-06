@@ -53,7 +53,7 @@
 
          <!-- BEGIN PAGE CONTENT-->
          <div class="column">
-             <div class="col-xs-4">
+             <div class="col-md-4">
                  <div class="panel">
                      <div class="panel-heading">
                          Explorador de indicadores
