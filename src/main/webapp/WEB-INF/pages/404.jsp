@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keyword" content="">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 
     <title>404</title>
 
@@ -43,7 +43,7 @@
           <h1><img src="${pageContext.servletContext.contextPath}/resources/images/404.png" alt=""></h1>
           <div class="error-desk">
               <h2>page not found</h2>
-              <p class="nrml-txt">We Couldn€'t Find This Page</p>
+              <p class="nrml-txt">We Couldn't Find This Page</p>
               <p class="nrml-txt">${test}</p>
               <h5>Counter : ${counter}</h5>
           </div>

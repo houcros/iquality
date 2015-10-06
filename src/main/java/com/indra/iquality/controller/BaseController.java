@@ -52,10 +52,10 @@ public class BaseController {
 
 	}
 	
-	// Ahora uso este modelo, pero despues tendría que usar los específicos
+	// Ahora uso este modelo, pero despues tendria que usar los especificos
 	// de la capa de datos???
 	
-	// Por qué return string? Puedo retornar algo mejor o no?
+	// Por que return string? Puedo retornar algo mejor o no?
 	@RequestMapping(value = "/iquality", method = RequestMethod.GET)
 	public String iquality(ModelMap model) {
 
