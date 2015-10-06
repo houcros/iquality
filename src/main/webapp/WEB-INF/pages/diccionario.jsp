@@ -60,11 +60,10 @@
                       <span class="tools pull-right">
                              <a class="fa fa-chevron-down" href="javascript:;"></a>
                              <a class="fa fa-cog" href="javascript:;"></a>
-                             <a class="fa fa-times" href="javascript:;"></a>
                          </span>
                      </div>
                      <div class="panel-body">
-                         <div id="FlatTree2" class="tree">
+                         <div id="FlatTree1" class="tree tree-solid-line">
                              <div class = "tree-folder" style="display:none;">
                                  <div class="tree-folder-header">
                                      <i class="fa fa-folder"></i>
@@ -95,7 +94,7 @@
                          </span>
                      </div>
                      <div class="panel-body">
-                         <div id="FlatTree4" class="tree tree-solid-line">
+                         <div id="FlatTree2" class="tree tree-solid-line">
                              <div class = "tree-folder" style="display:none;">
                                  <div class="tree-folder-header">
                                      <i class="fa fa-folder"></i>
@@ -128,7 +127,7 @@
 <!--Core js-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/bs3/js/bootstrap.min.js"></script>
-<script class="${pageContext.servletContext.contextPath}/resources/include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+<script class="include" type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.scrollTo.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
