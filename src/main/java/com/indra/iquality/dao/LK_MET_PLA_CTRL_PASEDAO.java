@@ -16,5 +16,5 @@ public interface LK_MET_PLA_CTRL_PASEDAO {
 	//Delete
 	public void deleteById(int id_ejecucion);
 	//Get All
-	public List<LK_MET_PLA_CTRL_PASE> getAll();
+	public List<LK_MET_PLA_CTRL_PASE> getAll ()  throws Exception;
 }

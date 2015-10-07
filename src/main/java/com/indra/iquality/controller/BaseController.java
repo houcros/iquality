@@ -239,8 +239,30 @@ public class BaseController {
 	@RequestMapping(value = "/consola-control-ejecucion", method = RequestMethod.GET)
 	public String consolaControlEjecucion(ModelMap model) {
 
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+				
+		//Get the lk_met_pla_ctrl_paseDAO Bean
+		//To use JdbcTemplate
+		LK_MET_PLA_CTRL_PASEDAO lk_met_pla_ctrl_paseDAO = ctx.getBean("lk_met_pla_ctrl_paseDAOJDBCTemplate", LK_MET_PLA_CTRL_PASEDAO.class);
+				
+		//Read
+		List<LK_MET_PLA_CTRL_PASE> all_lk_met_pla_ctrl_pase;
+		
+		try {
+			all_lk_met_pla_ctrl_pase = lk_met_pla_ctrl_paseDAO.getAll();
+			model.addAttribute("allTableItems", all_lk_met_pla_ctrl_pase);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[consola-control-ejecucion] -> DONE");
+		
 		logger.debug("[consola-control-ejecucion] counter : {}", counter);
-
+		
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_CONSOLACONTROLEJECUCION;
 

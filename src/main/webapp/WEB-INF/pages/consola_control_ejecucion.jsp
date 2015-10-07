@@ -57,7 +57,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        DataTables hidden row details example
+                        Ejemplo con tabla LK_MET_PLA_CTRL_PASE
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -69,19 +69,37 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                     <thead>
                     <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th class="hidden-phone">Platform(s)</th>
-                        <th class="hidden-phone">Engine version</th>
-                        <th class="hidden-phone">CSS grade</th>
+                        <th>id_sistema</th>
+                        <th>id_ejecucion</th>
+                        <th class="hidden-phone">id_software</th>
+                        <th class="hidden-phone">id_pase</th>
+                        <th class="hidden-phone">de_pase</th>
+                        <th>id_fecha_inicio_real</th>
+                        <th class="hidden-phone">id_fecha_fin_real</th>
+                        <th class="hidden-phone">id_estado</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${allTableItems}" var="item">
+					    <tr class="gradeX">      
+					        <td class="center hidden-phone">${item.id_sistema}</td>
+					        <td class="center hidden-phone">${item.id_ejecucion}</td>
+					        <td class="center hidden-phone">${item.id_software}</td>
+					        <td class="center hidden-phone">${item.id_pase}</td>
+					        <td class="center hidden-phone">${item.de_pase}</td>
+					        <td class="center hidden-phone">${item.id_fecha_inicio_real}</td>  
+					        <td class="center hidden-phone">${item.id_fecha_fin_real}</td>  
+					        <td class="center hidden-phone">${item.id_estado}</td>  
+					    </tr>
+					</c:forEach>
                     <tr class="gradeX">
                         <td>Trident</td>
                         <td>Internet
                             Explorer 4.0</td>
                         <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
+						<td class="hidden-phone">Win 95+</td>
                         <td class="center hidden-phone">4</td>
                         <td class="center hidden-phone">X</td>
                     </tr>
@@ -92,6 +110,9 @@
                         <td class="hidden-phone">Win 95+</td>
                         <td class="center hidden-phone">5</td>
                         <td class="center hidden-phone">C</td>
+						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Trident</td>
@@ -100,6 +121,9 @@
                         <td class="hidden-phone">Win 95+</td>
                         <td class="center hidden-phone">5.5</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Trident</td>
@@ -108,6 +132,9 @@
                         <td class="hidden-phone">Win 98+</td>
                         <td class="center hidden-phone">6</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Trident</td>
@@ -115,6 +142,9 @@
                         <td class="hidden-phone">Win XP SP2+</td>
                         <td class="center hidden-phone">7</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Trident</td>
@@ -122,6 +152,9 @@
                         <td class="hidden-phone">Win XP</td>
                         <td class="center hidden-phone">6</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -129,6 +162,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.2+</td>
                         <td class="center hidden-phone">1.7</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -136,6 +172,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.2+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -143,6 +182,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.2+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -150,6 +192,9 @@
                         <td class="hidden-phone">Win 2k+ / OSX.3+</td>
                         <td class="center hidden-phone">1.9</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -157,6 +202,9 @@
                         <td class="hidden-phone">OSX.2+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -164,6 +212,9 @@
                         <td class="hidden-phone">OSX.3+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -171,6 +222,9 @@
                         <td class="hidden-phone">Win 95+ / Mac OS 8.6-9.2</td>
                         <td class="center hidden-phone">1.7</td>
                         <td class="center hidden-phone">A</td>
+                        <td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -178,6 +232,9 @@
                         <td class="hidden-phone">Win 98SE+</td>
                         <td class="center hidden-phone">1.7</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -185,6 +242,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.2+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -192,6 +252,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -199,6 +262,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1.1</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -206,6 +272,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1.2</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -213,6 +282,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1.3</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -220,6 +292,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1.4</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -227,6 +302,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1.5</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -234,6 +312,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">1.6</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -241,6 +322,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.1+</td>
                         <td class="center hidden-phone">1.7</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -248,6 +332,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.1+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -255,6 +342,9 @@
                         <td class="hidden-phone">Win 98+ / OSX.2+</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Gecko</td>
@@ -262,6 +352,9 @@
                         <td class="hidden-phone">Gnome</td>
                         <td class="center hidden-phone">1.8</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -269,6 +362,9 @@
                         <td class="hidden-phone">OSX.3</td>
                         <td class="center hidden-phone">125.5</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -276,6 +372,9 @@
                         <td class="hidden-phone">OSX.3</td>
                         <td class="center hidden-phone">312.8</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -283,6 +382,9 @@
                         <td class="hidden-phone">OSX.4+</td>
                         <td class="center hidden-phone">419.3</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -290,6 +392,9 @@
                         <td class="hidden-phone">OSX.4+</td>
                         <td class="center hidden-phone">522.1</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -297,6 +402,9 @@
                         <td class="hidden-phone">OSX.4+</td>
                         <td class="center hidden-phone">420</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -304,6 +412,9 @@
                         <td class="hidden-phone">iPod</td>
                         <td class="center hidden-phone">420.1</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Webkit</td>
@@ -311,6 +422,9 @@
                         <td class="hidden-phone">S60</td>
                         <td class="center hidden-phone">413</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -318,6 +432,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.1+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -325,6 +442,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.2+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -332,6 +452,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.2+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -339,6 +462,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.2+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -346,6 +472,9 @@
                         <td class="hidden-phone">Win 95+ / OSX.3+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -353,6 +482,9 @@
                         <td class="hidden-phone">Win 88+ / OSX.3+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -360,6 +492,9 @@
                         <td class="hidden-phone">Win 88+ / OSX.3+</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -367,6 +502,9 @@
                         <td class="hidden-phone">Wii</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -374,6 +512,9 @@
                         <td class="hidden-phone">N800</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Presto</td>
@@ -381,6 +522,9 @@
                         <td class="hidden-phone">Nintendo DS</td>
                         <td class="center hidden-phone">8.5</td>
                         <td class="center hidden-phone">C/A<sup>1</sup></td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeC">
                         <td>KHTML</td>
@@ -388,6 +532,9 @@
                         <td class="hidden-phone">KDE 3.1</td>
                         <td class="center hidden-phone">3.1</td>
                         <td class="center hidden-phone">C</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>KHTML</td>
@@ -395,6 +542,9 @@
                         <td class="hidden-phone">KDE 3.3</td>
                         <td class="center hidden-phone">3.3</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>KHTML</td>
@@ -402,12 +552,18 @@
                         <td class="hidden-phone">KDE 3.5</td>
                         <td class="center hidden-phone">3.5</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeX">
                         <td>Tasman</td>
                         <td>Internet Explorer 4.5</td>
                         <td class="hidden-phone">Mac OS 8-9</td>
                         <td class="center hidden-phone">-</td>
+                        <td class="center hidden-phone">X</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
                         <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeC">
@@ -416,6 +572,9 @@
                         <td class="hidden-phone">Mac OS 7.6-9</td>
                         <td class="center hidden-phone">1</td>
                         <td class="center hidden-phone">C</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeC">
                         <td>Tasman</td>
@@ -423,6 +582,9 @@
                         <td class="hidden-phone">Mac OS 8-X</td>
                         <td class="center hidden-phone">1</td>
                         <td class="center hidden-phone">C</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Misc</td>
@@ -430,6 +592,9 @@
                         <td>Embedded devices</td>
                         <td class="center">-</td>
                         <td class="center">C</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeA">
                         <td>Misc</td>
@@ -437,12 +602,18 @@
                         <td class="hidden-phone">Embedded devices</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">A</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeX">
                         <td>Misc</td>
                         <td>Dillo 0.8</td>
                         <td class="hidden-phone">Embedded devices</td>
                         <td class="center hidden-phone">-</td>
+                        <td class="center hidden-phone">X</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
                         <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeX">
@@ -451,12 +622,18 @@
                         <td class="hidden-phone">Text only</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">X</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeX">
                         <td>Misc</td>
                         <td>Lynx</td>
                         <td class="hidden-phone">Text only</td>
                         <td class="center hidden-phone">-</td>
+                        <td class="center hidden-phone">X</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
                         <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeC">
@@ -465,6 +642,9 @@
                         <td class="hidden-phone">Windows Mobile 6</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">C</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeC">
                         <td>Misc</td>
@@ -472,6 +652,9 @@
                         <td class="hidden-phone">PSP</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">C</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     <tr class="gradeU">
                         <td>Other browsers</td>
@@ -479,6 +662,9 @@
                         <td class="hidden-phone">-</td>
                         <td class="center hidden-phone">-</td>
                         <td class="center hidden-phone">U</td>
+                        						<td class="hidden-phone">Win 95+</td>
+                        <td class="center hidden-phone">4</td>
+                        <td class="center hidden-phone">X</td>
                     </tr>
                     </tbody>
                     </table>
