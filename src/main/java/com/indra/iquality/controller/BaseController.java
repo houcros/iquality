@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.indra.iquality.dao.EmployeeDAO;
 import com.indra.iquality.model.Employee;
@@ -19,6 +20,7 @@ import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 
 @Controller
+//@RequestMapping("/algun/path/que/englobe/varios")
 public class BaseController {
 
 	private static int counter = 0;
@@ -157,6 +159,30 @@ public class BaseController {
 		logger.debug("[lk_met_pla_ctrl_pase] counter : {}", ++counter);
 		return VIEW_LK_MET_PLA_CTRL_PASE;
 
+	}
+	
+	@RequestMapping(value = "/lk_met_pla_ctrl_pase/api/{id_ejecucion}", method = RequestMethod.GET)
+	public @ResponseBody LK_MET_PLA_CTRL_PASE get_lk_met_pla_ctrl_pase_API(@PathVariable int id_ejecucion) {
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		
+		//Get the lk_met_pla_ctrl_paseDAO Bean
+		//To use JdbcTemplate
+		LK_MET_PLA_CTRL_PASEDAO lk_met_pla_ctrl_paseDAO = ctx.getBean("lk_met_pla_ctrl_paseDAOJDBCTemplate", LK_MET_PLA_CTRL_PASEDAO.class);
+		
+		//Read
+		logger.debug("[show_lk_met_pla_ctrl_pase] counter : {}, ready to getById", ++counter);
+		LK_MET_PLA_CTRL_PASE lk_met_pla_ctrl_pase;
+		lk_met_pla_ctrl_pase = lk_met_pla_ctrl_paseDAO.getById(id_ejecucion);
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[lk_met_pla_ctrl_pase] -> DONE");
+		
+		logger.debug("[lk_met_pla_ctrl_pase] counter : {}", ++counter);
+		
+		return lk_met_pla_ctrl_pase;
 	}
 	
 	@RequestMapping(value = "/lk_met_pla_ctrl_pase_job/{id_ejecucion}/{id_job}", method = RequestMethod.GET)
