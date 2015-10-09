@@ -173,7 +173,7 @@ public class LK_MET_PLA_CTRL_PASEDAOJDBCTemplateImpl implements LK_MET_PLA_CTRL_
 			
 			if (lk_met_pla_ctrl_paseRow.get("de_pase") != null)
 				lk_met_pla_ctrl_pase.setDe_pase(String.valueOf(lk_met_pla_ctrl_paseRow.get("de_pase")));
-			lk_met_pla_ctrl_pase.setDe_pase(DEFAULT_NULL_STRING);
+			else lk_met_pla_ctrl_pase.setDe_pase(DEFAULT_NULL_STRING);
 			
 			logger.info("\n\n" + "id_fecha_inicio " + String.valueOf(contadorDebugger) + ": " + String.valueOf(lk_met_pla_ctrl_paseRow.get("id_fecha_inicio")));
 			if (lk_met_pla_ctrl_paseRow.get("id_fecha_inicio") != null)
