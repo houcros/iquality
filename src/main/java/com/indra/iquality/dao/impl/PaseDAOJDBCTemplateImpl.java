@@ -1,12 +1,6 @@
 package com.indra.iquality.dao.impl;
 
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.controller.BaseController;
 import com.indra.iquality.dao.PaseDAO;
+import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Pase;
 
 public class PaseDAOJDBCTemplateImpl implements PaseDAO {
@@ -28,6 +23,8 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 	// Debugging
 //	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 //	private int contadorDebugger = 0;
+	
+	private final CustomHelper helper = new CustomHelper();
 	
 	private final static String DEFAULT_NULL_STRING = "";
 	private final static int DEFAULT_NULL_INT = -1;
@@ -148,15 +145,15 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 			else pase.setEscenario(DEFAULT_NULL_STRING);
 			
 			if (paseRow.get("id_fecha_inicio_real") != null)
-				pase.setFechaInicio(auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
+				pase.setFechaInicio(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
 			else pase.setFechaInicio(DEFAULT_NULL_DATE);
 			
 			if (paseRow.get("id_fecha_fin_real") != null)
-				pase.setFechaFin(auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
+				pase.setFechaFin(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
 			else pase.setFechaFin(DEFAULT_NULL_DATE);
 			
 			if (paseRow.get("id_fecha_inicio") != null)
-				pase.setFechaPlanificada(auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
+				pase.setFechaPlanificada(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
 			else pase.setFechaPlanificada(DEFAULT_NULL_DATE);
 			
 			if (paseRow.get("de_software") != null)
@@ -170,18 +167,6 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 			paseList.add(pase);
 		}
 		return paseList;
-	}
-	
-	// Método Auxiliar
-	// TODO Ponerlo en una clase auxiliar
-	private Date auxStringToSqlDate(String tmstmp) throws ParseException{
-		
-		DateFormat dateFormat = new SimpleDateFormat ("yyyyMMdd");
-		Timestamp timestamp = Timestamp.valueOf(tmstmp);
-		java.util.Date util_date = dateFormat.parse(dateFormat.format(timestamp));
-		Date sql_date = new Date(util_date.getTime());
-		
-		return sql_date;
 	}
 	
 }
