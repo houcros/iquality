@@ -7,7 +7,7 @@ public class Pase {
 	private int idEjecucion; /* Primary key*/
 	private String pase;
 	private String estado;
-	private Date fechaDatos;
+	private String fechaDatos;
 	private String escenario;
 	private Date fechaInicio;
 	private Date fechaFin;
@@ -34,10 +34,10 @@ public class Pase {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Date getFechaDatos() {
+	public String getFechaDatos() {
 		return fechaDatos;
 	}
-	public void setFechaDatos(Date fechaDatos) {
+	public void setFechaDatos(String fechaDatos) {
 		this.fechaDatos = fechaDatos;
 	}
 	public String getEscenario() {

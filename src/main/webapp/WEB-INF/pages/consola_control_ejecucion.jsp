@@ -57,7 +57,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Ejemplo con tabla LK_MET_PLA_CTRL_PASE
+                        Registro de ejecuciones
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -69,14 +69,16 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                     <thead>
                     <tr>
-                        <th>id_sistema</th>
-                        <th>id_ejecucion</th>
-                        <th class="hidden-phone">id_software</th>
-                        <th class="hidden-phone">id_pase</th>
-                        <th class="hidden-phone">de_pase</th>
-                        <th>id_fecha_inicio_real</th>
-                        <th class="hidden-phone">id_fecha_fin_real</th>
-                        <th class="hidden-phone">id_estado</th>
+                        <th>Ejecuci&oacute;n</th>
+                        <th>Pase</th>
+                        <th class="hidden-phone">Estado</th>
+                        <th class="hidden-phone">Fecha datos</th>
+                        <th class="hidden-phone">Escenario</th>
+                        <th>Fecha inicio</th>
+                        <th class="hidden-phone">Fecha finalización</th>
+                        <th class="hidden-phone">Fecha planificada</th>
+                        <th class="hidden-phone">Software</th>
+                        <th class="hidden-phone">Duraci&oacute;n</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -85,29 +87,31 @@
 <!-- 					    <tr class="gradeX">       -->
 <!-- 					    <tr class="gradeC">       -->
 <!-- 					    <tr class="gradeU">       -->
-					        <td class="center hidden-phone">${item.id_sistema}</td>
-					        <td class="center hidden-phone">${item.id_ejecucion}</td>
-					        <td class="center hidden-phone">${item.id_software}</td>
-					        <td class="center hidden-phone">${item.id_pase}</td>
-					        <td class="center hidden-phone">${item.de_pase}</td>
-					        <td class="center hidden-phone">${item.id_fecha_inicio_real}</td>  
-					        <td class="center hidden-phone">${item.id_fecha_fin_real}</td>  
-					        <td class="center hidden-phone">
+					        <td class="center hidden-phone">${item.idEjecucion}</td>
+					        <td class="center hidden-phone">${item.pase}</td>
+					        					        <td class="center hidden-phone">
 					        	<c:choose>
-								    <c:when test="${item.id_estado=='OK'}">
-										<span class="label label-success label-mini">${item.id_estado}</span>
+								    <c:when test="${item.estado=='OK'}">
+										<span class="label label-success label-mini">${item.estado}</span>
 								    </c:when>
-								    <c:when test="${item.id_estado=='KO'}">
-										<span class="label label-danger label-mini">${item.id_estado}</span>
+								    <c:when test="${item.estado=='KO'}">
+										<span class="label label-danger label-mini">${item.estado}</span>
 								    </c:when>     
-								    <c:when test="${item.id_estado=='PDTE'}">
-										<span class="label label-warning label-mini">${item.id_estado}</span>
+								    <c:when test="${item.estado=='PDTE'}">
+										<span class="label label-warning label-mini">${item.estado}</span>
 								    </c:when>   
 								    <c:otherwise>
-										<span class="label label-inverse label-mini">${item.id_estado}</span>
+										<span class="label label-inverse label-mini">${item.estado}</span>
 								    </c:otherwise>
 								</c:choose>
-					        </td>  
+					        </td>
+					        <td class="center hidden-phone">${item.fechaDatos}</td>
+					        <td class="center hidden-phone">${item.escenario}</td>
+					        <td class="center hidden-phone">${item.fechaInicio}</td>  
+					        <td class="center hidden-phone">${item.fechaFin}</td>
+					        <td class="center hidden-phone">${item.fechaPlanificada}</td>
+					        <td class="center hidden-phone">${item.software}</td>  
+					        <td class="center hidden-phone">${item.duracion}</td>   
 					    </tr>
 					</c:forEach>
                     </tbody>

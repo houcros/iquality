@@ -17,7 +17,9 @@ import com.indra.iquality.model.Employee;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASEDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
+import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
+import com.indra.iquality.model.Pase;
 
 @Controller
 //@RequestMapping("/algun/path/que/englobe/varios")
@@ -270,14 +272,14 @@ public class BaseController {
 				
 		//Get the lk_met_pla_ctrl_paseDAO Bean
 		//To use JdbcTemplate
-		LK_MET_PLA_CTRL_PASEDAO lk_met_pla_ctrl_paseDAO = ctx.getBean("lk_met_pla_ctrl_paseDAOJDBCTemplate", LK_MET_PLA_CTRL_PASEDAO.class);
+		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
 				
 		//Read
-		List<LK_MET_PLA_CTRL_PASE> all_lk_met_pla_ctrl_pase;
+		List<Pase> allPase;
 		
 		try {
-			all_lk_met_pla_ctrl_pase = lk_met_pla_ctrl_paseDAO.getAll();
-			model.addAttribute("allTableItems", all_lk_met_pla_ctrl_pase);
+			allPase = paseDAO.getAll();
+			model.addAttribute("allTableItems", allPase);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
