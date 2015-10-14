@@ -20,11 +20,14 @@ import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
 import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 import com.indra.iquality.model.Pase;
+import com.indra.iquality.singleton.Sistema;
 
 @Controller
-//@RequestMapping("/algun/path/que/englobe/varios")
+//TODO @RequestMapping("/algun/path/que/englobe/varios")
 public class BaseController {
 
+//	private Sistema sistema = Sistema.getInstance();
+	
 	private static int counter = 0;
 	private static final String VIEW_MY_INDEX = "my_index";
 	private static final String VIEW_INDEX = "index";
