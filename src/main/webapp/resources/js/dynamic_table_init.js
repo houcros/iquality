@@ -16,8 +16,10 @@ function fnFormatDetailsCustom ( oTable, nTr )
     var aData = oTable.fnGetData( nTr );
 	var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
 	
+//	alert(aData[2]);
+	
 	$.ajax({
-		  url: "lk_met_pla_ctrl_pase/api/"+aData[2],
+		  url: "lk_met_pla_ctrl_pase/api/"+aData[1],
 		  async: false,
 		  success: function( data ) {
 				
