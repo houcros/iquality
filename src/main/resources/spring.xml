@@ -28,6 +28,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="dictionaryOfConceptsDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DictionaryOfConceptsDAOJDBCTemplateImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
