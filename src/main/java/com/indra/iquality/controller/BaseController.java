@@ -1,8 +1,10 @@
 package com.indra.iquality.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.EmployeeDAO;
+import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.Employee;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASEDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE;
@@ -21,6 +25,7 @@ import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 import com.indra.iquality.model.Pase;
 import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.tree.GenericTreeNode;
 
 @Controller
 //TODO @RequestMapping("/algun/path/que/englobe/varios")
@@ -296,6 +301,40 @@ public class BaseController {
 		
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_CONSOLACONTROLEJECUCION;
+
+	}
+	
+	@RequestMapping(value = "/test-diccionario", method = RequestMethod.GET)
+	public String testDictionary(ModelMap model) {
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		
+		//Get the dictionaryOfConceptsDAO Bean
+		//To use JdbcTemplate
+		DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate", DictionaryOfConceptsDAO.class);
+		
+		//Read
+		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
+		
+		try {
+			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
+//			model.addAttribute("allTableItems", allDictionaryConceptsNodes);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int conceptCounter = 0;
+		
+		allDictionaryConceptNodes.forEach(dictionaryConceptNode->
+			logger.info("testDictionary -> concept #" + conceptCounter + ": " + dictionaryConceptNode.getData()));
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[testDictionary] -> DONE");
+		
+		return VIEW_INDEX;
 
 	}
 }
