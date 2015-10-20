@@ -5,8 +5,24 @@ public class DictionaryConcept {
 	private String concept;
 	private int level;
 	private int status;
-	private String tipo;
+	private ConceptTypeEnum tipo;
 	
+	
+	public DictionaryConcept() {
+		super();
+	}
+
+	public DictionaryConcept(String concept) {
+		this.concept = concept;
+	}
+	
+	public DictionaryConcept(String concept, int level, int status, ConceptTypeEnum tipo) {
+		this.concept = concept;
+		this.level = level;
+		this.status = status;
+		this.tipo = tipo;
+	}
+
 	public String getConcept() {
 		return concept;
 	}
@@ -25,10 +41,10 @@ public class DictionaryConcept {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public String getTipo() {
+	public ConceptTypeEnum getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(ConceptTypeEnum tipo) {
 		this.tipo = tipo;
 	}
 	@Override

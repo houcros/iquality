@@ -1,5 +1,8 @@
 package com.indra.iquality.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,7 +28,10 @@ import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 import com.indra.iquality.model.Pase;
 import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.translator.ConceptsToTreeTranslator;
 import com.indra.iquality.tree.GenericTreeNode;
+
+import com.google.common.io.Files;
 
 @Controller
 //TODO @RequestMapping("/algun/path/que/englobe/varios")
@@ -42,6 +48,8 @@ public class BaseController {
 	
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
+	
+	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/iQuality/resultadoQueryDiccionario.txt";
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -325,10 +333,46 @@ public class BaseController {
 			e.printStackTrace();
 		}
 		
-		int conceptCounter = 0;
+
+		// IMPORTANTE
+		// Sólo saco los 3 primeros porque no van en el árbol
+		// TODO Sería aún mejor si la query no me los deuelve, para empezar, y lo mato de raíz
+		allDictionaryConceptNodes.remove(0);
+		allDictionaryConceptNodes.remove(0);
+		allDictionaryConceptNodes.remove(0);
 		
-		allDictionaryConceptNodes.forEach(dictionaryConceptNode->
-			logger.info("testDictionary -> concept #" + conceptCounter + ": " + dictionaryConceptNode.getData()));
+		// Escribo el resultado de la query en un fichero
+		// Esto será la caché más adelante
+		// TODO Crear el fichero sólo si no existe y la caché está al día
+		String conceptsForFile = new String();
+		for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes){
+			conceptsForFile += dictionaryConceptNode.getData().getLevel() + " " 
+							+ dictionaryConceptNode.getData().getStatus() + " "
+							+ dictionaryConceptNode.getData().getTipo() + " "
+							+ dictionaryConceptNode.getData().getConcept() + "\n";
+		}
+		// TODO Path harcodeado, sería mejor parametrizado
+		File destination = new File(DICTIONARY_CACHE_FILE);
+		System.out.println(destination.getAbsolutePath());
+		try {
+		    Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
+		} catch (IOException e) {
+		    // Useful error handling here
+		}
+			
+		
+		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
+		GenericTreeNode<DictionaryConcept> tree;
+		try {
+			tree = translator.createTreeFromFile(DICTIONARY_CACHE_FILE);
+			
+			tree.myPrintTree(0);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Excepción en BaseController.testDictionary al intentar crear el árbol.");
+			e.printStackTrace();
+		}
 		
 		//Close Spring Context
 		ctx.close();

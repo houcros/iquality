@@ -69,11 +69,11 @@ var TreeView = function () {
 									                    	    data: [
 										                           	    { name: '<i class="fa  fa-certificate "></i> Aplicaci&oacute;n Contable <div class="tree-actions"></div>', type: 'item', additionalParameters: { id: 'I-1.1.1.1.1.1' }},
 										                           	]
-							                           	    },
+							                           	    }
 							                           	]
-				                           	    },
+				                           	    }
 				                           	]
-	                           	    },
+	                           	    }
 	                           	]
                     	    },
                     	    { name: 'Modelo de Cuadre de Contabilidad vs. Gesti&oacute;n <div class="tree-actions"></div>', type: 'folder', data: [], additionalParameters: { id: 'F-1.2' }},

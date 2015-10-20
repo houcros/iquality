@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
+import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.tree.GenericTreeNode;
 
@@ -18,6 +19,8 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 	private DataSource dataSource;
 	// Debugging
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(DictionaryOfConceptsDAOJDBCTemplateImpl.class);
+	
+	private final static CustomHelper helper = new CustomHelper();
 	
 	private final static String DEFAULT_NULL_STRING = "";
 	private final static int DEFAULT_NULL_INT = -1;
@@ -105,9 +108,9 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 				dictionaryConcept.setConcept((String.valueOf(dictionaryConceptNodeRow.get("title"))));
 			else dictionaryConcept.setConcept(DEFAULT_NULL_STRING);
 			
-			if (dictionaryConceptNodeRow.get("tipo") != null)
-				dictionaryConcept.setTipo((String.valueOf(dictionaryConceptNodeRow.get("tipo"))));
-			else dictionaryConcept.setTipo(DEFAULT_NULL_STRING);
+//			if (dictionaryConceptNodeRow.get("tipo") != null)
+			dictionaryConcept.setTipo((helper.conceptTypeStringToEnum(String.valueOf(dictionaryConceptNodeRow.get("tipo")))));
+//			else dictionaryConcept.setTipo(DEFAULT_NULL_STRING);
 			
 			logger.info("[dictionaryConcept] -> " + dictionaryConcept);
 			
