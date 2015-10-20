@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.indra.iquality.model.DictionaryConcept;
+
 public class GenericTreeNode<T> {
 
     private T data;
@@ -127,6 +129,21 @@ public class GenericTreeNode<T> {
         stringRepresentation += "]";
 
         return stringRepresentation;
+    }
+    
+    // Sólo funciona si T es del tipo DictionaryConcept
+    // TODO raise exception si no lo es
+    public void myPrintTree(int level){
+    	
+    	for (int i = 0; i < level; ++i){
+    		System.out.print("## ");
+    	}
+    		
+    	System.out.println("level " + level + " -> [" + ((DictionaryConcept) getData()).getTipo() + "] "+ ((DictionaryConcept) getData()).getConcept());
+    	
+    	for (GenericTreeNode<T> node : getChildren()) {
+    		node.myPrintTree(level + 1);
+    	}
     }
 }
 
