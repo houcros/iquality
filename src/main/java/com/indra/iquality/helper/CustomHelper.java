@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import com.indra.iquality.model.ConceptTypeEnum;
+
 public class CustomHelper {
 
 	/*
@@ -19,5 +21,41 @@ public class CustomHelper {
 		Date sql_date = new Date(util_date.getTime());
 		
 		return sql_date;
+	}
+	
+	public ConceptTypeEnum conceptTypeStringToEnum(String type) throws Exception{
+		
+		switch(type){
+			case "SEC":
+			case "SECCION":
+				return ConceptTypeEnum.SECCION;
+			case "SUB":
+			case "MODELO":
+				return ConceptTypeEnum.MODELO;
+			case "TAB":
+			case "ENTIDAD":
+				return ConceptTypeEnum.ENTIDAD;
+			case "D":
+			case "DIMENSION":
+				return ConceptTypeEnum.DIMENSION;
+			case "J":
+			case "JERARQUIA":
+				return ConceptTypeEnum.JERARQUIA;
+			case "S":
+			case "ATRIBUTO_MAESTRO":
+				return ConceptTypeEnum.ATRIBUTO_MAESTRO;
+			case "A":
+			case "ATRIBUTO":
+				return ConceptTypeEnum.ATRIBUTO;
+			case "I":
+			case "LINEA":
+				return ConceptTypeEnum.LINEA;
+			case "L":
+			case "INDICADOR":
+				return ConceptTypeEnum.INDICADOR;
+			default:
+				return ConceptTypeEnum.UNKNOWN;
+//				throw new Exception("El tipo pasado no es ninguno de los aceptados: SEC, SUB, TAB, D, J, S, A");
+		}
 	}
 }
