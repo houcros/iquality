@@ -53,7 +53,7 @@
 
          <!-- BEGIN PAGE CONTENT-->
          <div class="column">
-             <div class="col-md-4">
+             <div class="col-md-6">
                  <div class="panel">
                      <div class="panel-heading">
                          Explorador de indicadores
@@ -83,7 +83,7 @@
 
          </div>
          <div class="column">
-             <div class="col-md-8">
+             <div class="col-md-6">
                  <div class="panel">
                      <div class="panel-heading">
                          Informaci&oacute;n de inter&eacute;s
