@@ -33,24 +33,25 @@ public class ConceptsToTreeTranslator {
 		
 		while (index < list.size()){
 			
-			System.out.println("index = " + index +
-					" list level = " + list.get(index).getLevel() +
-					" top stack level = " + list.get(S.peek()).getLevel());
+//			System.out.println("index = " + index +
+//					" list level = " + list.get(index).getLevel() +
+//					" top stack level = " + list.get(S.peek()).getLevel());
 			
 			if(list.get(index).getLevel() > list.get(S.peek()).getLevel()){
 				currentNode.addChild(list.get(index).getNodo());
-				System.out.println("currentNode tiene " + currentNode.getNumberOfChildren() + " hijos");
+//				System.out.println("currentNode tiene " + currentNode.getNumberOfChildren() + " hijos");
+				
 				// La línea de abajo es equivalente a
 				// currentNode = list.get(position).getNodo() [???]
 				currentNode = currentNode.getChildAt(currentNode.getNumberOfChildren() - 1);
-				System.out.println("Ahora currentNode es " + currentNode);
+//				System.out.println("Ahora currentNode es " + currentNode);
 				S.push(Integer.valueOf(index));
 				
 				++index;
 			}
 			else{
 				while(!S.isEmpty() && list.get(index).getLevel() <= list.get(S.peek()).getLevel()){
-					System.out.println("popped out " + list.get(S.peek()).getLevel());
+//					System.out.println("popped out " + list.get(S.peek()).getLevel());
 					S.pop();
 					currentNode = currentNode.getParent();
 				}
@@ -81,24 +82,25 @@ public class ConceptsToTreeTranslator {
 		
 		while (index < list.size()){
 			
-			System.out.println("index = " + index +
-					" list level = " + list.get(index).getLevel() +
-					" top stack level = " + list.get(S.peek()).getLevel());
+//			System.out.println("index = " + index +
+//					" list level = " + list.get(index).getLevel() +
+//					" top stack level = " + list.get(S.peek()).getLevel());
 			
 			if(list.get(index).getLevel() > list.get(S.peek()).getLevel()){
 				currentNode.addChild(list.get(index).getNodo());
-				System.out.println("currentNode tiene " + currentNode.getNumberOfChildren() + " hijos");
+//				System.out.println("currentNode tiene " + currentNode.getNumberOfChildren() + " hijos");
+				
 				// La línea de abajo es equivalente a
 				// currentNode = list.get(position).getNodo() [???]
 				currentNode = currentNode.getChildAt(currentNode.getNumberOfChildren() - 1);
-				System.out.println("Ahora currentNode es " + currentNode);
+//				System.out.println("Ahora currentNode es " + currentNode);
 				S.push(Integer.valueOf(index));
 				
 				++index;
 			}
 			else{
 				while(!S.isEmpty() && list.get(index).getLevel() <= list.get(S.peek()).getLevel()){
-					System.out.println("popped out " + list.get(S.peek()).getLevel());
+//					System.out.println("popped out " + list.get(S.peek()).getLevel());
 					S.pop();
 					currentNode = currentNode.getParent();
 				}
