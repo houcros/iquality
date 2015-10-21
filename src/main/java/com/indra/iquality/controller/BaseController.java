@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.json.simple.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -50,8 +51,9 @@ public class BaseController {
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
 	
-	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/iQuality/resultadoQueryDiccionario.txt";
-	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/iQuality/jsonTree.txt";
+	// TODO Hacer os paths relativos al root del servlet para que funcionen en cualquier máquina
+	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/resultadoQueryDiccionario.txt";
+	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.txt";
 	private static boolean VALID_DICTIONARY_CACHE = true;
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -396,12 +398,104 @@ public class BaseController {
 		    // Useful error handling here
 		}
 
+		// Para visualizar (y quizás trampear la comunicación con el JS?)
+		model.addAttribute("jsonTree", jsonTree);
 		
 		//Close Spring Context
 		ctx.close();
 		logger.info("[testDictionary] -> DONE");
 		
-		return VIEW_INDEX;
+		return VIEW_DICCIONARIO;
 
+	}
+	
+	@RequestMapping(value = "/api/jsonTree", method = RequestMethod.GET)
+	public @ResponseBody JSONObject getJSONTree() {
+		
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+
+		//Get the dictionaryOfConceptsDAO Bean
+		//To use JdbcTemplate
+		DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate", DictionaryOfConceptsDAO.class);
+
+		//Read
+		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
+
+		// Hago la query sólo si la cache no es válida
+		if (!VALID_DICTIONARY_CACHE) {
+			// QUERY de todos los nodos
+			try {
+				allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
+				//			model.addAttribute("allTableItems", allDictionaryConceptsNodes);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// IMPORTANTE
+			// Sólo saco los 3 primeros porque no van en el árbol
+			// TODO Sería aún mejor si la query no me los deuelve, para empezar, y lo mato de raíz
+			allDictionaryConceptNodes.remove(0);
+			allDictionaryConceptNodes.remove(0);
+			allDictionaryConceptNodes.remove(0);
+			// Escribo el resultado de la query en un fichero
+			// Esto será la caché más adelante
+			// TODO Crear el fichero sólo si no existe y la caché está al día
+			String conceptsForFile = new String();
+			for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes) {
+				conceptsForFile += dictionaryConceptNode.getData().getLevel() + " "
+						+ dictionaryConceptNode.getData().getStatus() + " " + dictionaryConceptNode.getData().getTipo()
+						+ " " + dictionaryConceptNode.getData().getConcept() + "\n";
+			}
+			// Guardo las filas de la query en un fichero
+			// TODO Path harcodeado, sería mejor parametrizado
+			File destination = new File(DICTIONARY_CACHE_FILE);
+			System.out.println(destination.getAbsolutePath());
+			try {
+				Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
+				System.out.println("Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
+			} catch (IOException e) {
+				// Useful error handling here
+			}
+		}
+				
+				
+		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
+		// También se puede hacer directamente desde el array allDictionaryConceptNodes
+		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
+		GenericTreeNode<DictionaryConcept> tree = new GenericTreeNode<DictionaryConcept>();
+		
+		try {
+			tree = translator.createTreeFromFile(DICTIONARY_CACHE_FILE);
+//			tree.myPrintTree(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Excepción en BaseController.getJSONTree al intentar crear el árbol.");
+			e.printStackTrace();
+		}
+
+		
+		// Traduzco el tree JSON
+		// NO PRETTY! (se puede si se quiere con jsonTranslator.createPrettyJSONStringFromTree
+		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
+		JSONObject jsonTree = jsonTranslator.createJSONFromTree(tree);
+
+		// Y guardo el JSON en un fichero caché
+		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE);
+		try {
+			Files.write(jsonTree.toString(), jsonTreeFile, Charset.forName("UTF-8"));
+			System.out.println("Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE);
+			//					System.out.println(prettyJsonString);
+		} catch (IOException e) {
+			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE + "\n" + e.getMessage());
+		}
+		
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[getJSONTree] -> DONE");
+		
+		
+		return jsonTree;
 	}
 }
