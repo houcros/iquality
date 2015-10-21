@@ -29,6 +29,7 @@ import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 import com.indra.iquality.model.Pase;
 import com.indra.iquality.singleton.Sistema;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
+import com.indra.iquality.translator.TreeToJSONTranslator;
 import com.indra.iquality.tree.GenericTreeNode;
 
 import com.google.common.io.Files;
@@ -50,6 +51,9 @@ public class BaseController {
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
 	
 	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/iQuality/resultadoQueryDiccionario.txt";
+	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/iQuality/jsonTree.txt";
+	private static boolean VALID_DICTIONARY_CACHE = true;
+	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -325,44 +329,48 @@ public class BaseController {
 		//Read
 		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
 		
-		try {
-			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
-//			model.addAttribute("allTableItems", allDictionaryConceptsNodes);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// Hago la query sólo si la cache no es válida
+		if (!VALID_DICTIONARY_CACHE) {
+			// QUERY de todos los nodos
+			try {
+				allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
+				//			model.addAttribute("allTableItems", allDictionaryConceptsNodes);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// IMPORTANTE
+			// Sólo saco los 3 primeros porque no van en el árbol
+			// TODO Sería aún mejor si la query no me los deuelve, para empezar, y lo mato de raíz
+			allDictionaryConceptNodes.remove(0);
+			allDictionaryConceptNodes.remove(0);
+			allDictionaryConceptNodes.remove(0);
+			// Escribo el resultado de la query en un fichero
+			// Esto será la caché más adelante
+			// TODO Crear el fichero sólo si no existe y la caché está al día
+			String conceptsForFile = new String();
+			for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes) {
+				conceptsForFile += dictionaryConceptNode.getData().getLevel() + " "
+						+ dictionaryConceptNode.getData().getStatus() + " " + dictionaryConceptNode.getData().getTipo()
+						+ " " + dictionaryConceptNode.getData().getConcept() + "\n";
+			}
+			// Guardo las filas de la query en un fichero
+			// TODO Path harcodeado, sería mejor parametrizado
+			File destination = new File(DICTIONARY_CACHE_FILE);
+			System.out.println(destination.getAbsolutePath());
+			try {
+				Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
+				System.out.println("Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
+			} catch (IOException e) {
+				// Useful error handling here
+			}
 		}
 		
-
-		// IMPORTANTE
-		// Sólo saco los 3 primeros porque no van en el árbol
-		// TODO Sería aún mejor si la query no me los deuelve, para empezar, y lo mato de raíz
-		allDictionaryConceptNodes.remove(0);
-		allDictionaryConceptNodes.remove(0);
-		allDictionaryConceptNodes.remove(0);
 		
-		// Escribo el resultado de la query en un fichero
-		// Esto será la caché más adelante
-		// TODO Crear el fichero sólo si no existe y la caché está al día
-		String conceptsForFile = new String();
-		for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes){
-			conceptsForFile += dictionaryConceptNode.getData().getLevel() + " " 
-							+ dictionaryConceptNode.getData().getStatus() + " "
-							+ dictionaryConceptNode.getData().getTipo() + " "
-							+ dictionaryConceptNode.getData().getConcept() + "\n";
-		}
-		// TODO Path harcodeado, sería mejor parametrizado
-		File destination = new File(DICTIONARY_CACHE_FILE);
-		System.out.println(destination.getAbsolutePath());
-		try {
-		    Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
-		} catch (IOException e) {
-		    // Useful error handling here
-		}
-			
-		
+		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
+		// También se puede hacer directamente desde el array allDictionaryConceptNodes
 		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
-		GenericTreeNode<DictionaryConcept> tree;
+		GenericTreeNode<DictionaryConcept> tree = new GenericTreeNode<DictionaryConcept>();
 		try {
 			tree = translator.createTreeFromFile(DICTIONARY_CACHE_FILE);
 			
@@ -373,6 +381,21 @@ public class BaseController {
 			System.out.println("Excepción en BaseController.testDictionary al intentar crear el árbol.");
 			e.printStackTrace();
 		}
+		
+		// Traduzco el tree a un pretty string JSON
+		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
+		String jsonTree = jsonTranslator.createPrettyJSONStringFromTree(tree);
+		
+		// Y guardo el JSON en un fichero caché
+		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE);
+		try {
+		    Files.write(jsonTree, jsonTreeFile, Charset.forName("UTF-8"));
+		    System.out.println("Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE);
+//			System.out.println(prettyJsonString);
+		} catch (IOException e) {
+		    // Useful error handling here
+		}
+
 		
 		//Close Spring Context
 		ctx.close();
