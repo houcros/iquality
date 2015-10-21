@@ -112,6 +112,12 @@
                  </div>
              </div>
          </div>
+		<!-- Mi JSON tree oculto -->
+         <div class="column">
+         	<div class="col-md-12">
+         		<p>${jsonTree}</p>
+         	</div>
+         </div>
          <!-- END PAGE CONTENT-->
      </section>
  </section>

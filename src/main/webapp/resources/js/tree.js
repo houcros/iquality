@@ -32511,6 +32511,19 @@ var TreeView = function () {
                 delay: 400
             });
             
+//            var treeDataSourceDictWithAjax = null
+            
+            $.ajax({
+      		  url: "api/jsonTree",
+      		  async: false,
+      		  success: function( data ) {
+                $('#FlatTree1').tree({
+                    dataSource: new DataSourceTree(data),
+                    loadingHTML: '<img src="resources/images/input-spinner.gif"/>',
+                });
+      		  }
+            });
+            
             var treeDataSource5 = new DataSourceTree({
                 data: [
                     { name: 'Dashboard<div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'folder', additionalParameters: { id: 'F11' } },
@@ -32533,12 +32546,13 @@ var TreeView = function () {
                 delay: 400
             });
 
-            
+  /*          
             $('#FlatTree1').tree({
 //            	dataSource: treeDataSource2,
-                dataSource: treeDataSourceDictionary,
+            	dataSource: treeDataSourceDictionary,
                 loadingHTML: '<img src="resources/images/input-spinner.gif"/>',
             });
+           */
 
 //            $('#FlatTree2').tree({
 //                selectable: false,
