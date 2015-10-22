@@ -413,56 +413,8 @@ public class BaseController {
 	@RequestMapping(value = "/api/jsonTree", method = RequestMethod.GET)
 	public @ResponseBody JSONObject getJSONTree() {
 		
-		//Get the Spring Context
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-
-		//Get the dictionaryOfConceptsDAO Bean
-		//To use JdbcTemplate
-		DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate", DictionaryOfConceptsDAO.class);
-
-		//Read
-		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
-
-		// Hago la query sólo si la cache no es válida
-		if (!VALID_DICTIONARY_CACHE) {
-			// QUERY de todos los nodos
-			try {
-				allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
-				//			model.addAttribute("allTableItems", allDictionaryConceptsNodes);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// IMPORTANTE
-			// Sólo saco los 3 primeros porque no van en el árbol
-			// TODO Sería aún mejor si la query no me los devuelve, para empezar, y lo mato de raíz
-			allDictionaryConceptNodes.remove(0);
-			allDictionaryConceptNodes.remove(0);
-			allDictionaryConceptNodes.remove(0);
-			// Escribo el resultado de la query en un fichero
-			// Esto será la caché más adelante
-			// TODO Crear el fichero sólo si no existe y la caché está al día
-			// TODO Quizás (?) sería mejor guardar un .json en vez de un .txt (mejor estructura)
-			// Pero para eso tendría que crear otro método del translator que sea createTreeFromJSONFile
-			// en vez del que uso ahora (createTreeFromTxtFile)
-			String conceptsForFile = new String();
-			for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes) {
-				conceptsForFile += dictionaryConceptNode.getData().getLevel() + " "
-						+ dictionaryConceptNode.getData().getStatus() + " " + dictionaryConceptNode.getData().getTipo()
-						+ " " + dictionaryConceptNode.getData().getConcept() + "\n";
-			}
-			// Guardo las filas de la query en un fichero
-			// TODO Path harcodeado, sería mejor parametrizado
-			File destination = new File(DICTIONARY_CACHE_FILE);
-			System.out.println(destination.getAbsolutePath());
-			try {
-				Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
-				logger.info("[getJSONTree] : Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
-			} catch (IOException e) {
-				// Useful error handling here
-			}
-		}
-				
+		// Si la cache no es válida la actualizo
+		if(!VALID_DICTIONARY_CACHE) auxiliaryUpdateDictionaryCache();
 				
 		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
 		// También se puede hacer directamente desde el array allDictionaryConceptNodes
@@ -496,11 +448,77 @@ public class BaseController {
 		}
 		
 		
+		logger.info("[getJSONTree] -> DONE");
+		return jsonTree;
+	}
+	
+	@RequestMapping(value = "/api/updateDictionaryCache", method = RequestMethod.GET)
+	public String updateDictionaryCache(ModelMap model) {
+		
+		auxiliaryUpdateDictionaryCache();
+		return VIEW_INDEX;
+	}
+	
+	private boolean auxiliaryUpdateDictionaryCache(){
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+
+		//Get the dictionaryOfConceptsDAO Bean
+		//To use JdbcTemplate
+		DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate", DictionaryOfConceptsDAO.class);
+
+		//Read
+		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
+
+		// QUERY de todos los nodos
+		try {
+			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
+			//			model.addAttribute("allTableItems", allDictionaryConceptsNodes);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// IMPORTANTE
+		// Sólo saco los 3 primeros porque no van en el árbol
+		// TODO Sería aún mejor si la query no me los devuelve, para empezar, y lo mato de raíz
+		allDictionaryConceptNodes.remove(0);
+		allDictionaryConceptNodes.remove(0);
+		allDictionaryConceptNodes.remove(0);
+
+		// Escribo el resultado de la query en un fichero
+		// Esto será la caché más adelante
+		// TODO Crear el fichero sólo si no existe y la caché está al día
+		// TODO Quizás (?) sería mejor guardar un .json en vez de un .txt (mejor estructura)
+		// Pero para eso tendría que crear otro método del translator que sea createTreeFromJSONFile
+		// en vez del que uso ahora (createTreeFromTxtFile)
+		String conceptsForFile = new String();
+		for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes) {
+			conceptsForFile += dictionaryConceptNode.getData().getLevel() + " "
+					+ dictionaryConceptNode.getData().getStatus() + " " + dictionaryConceptNode.getData().getTipo()
+					+ " " + dictionaryConceptNode.getData().getConcept() + "\n";
+		}
+
+		// Guardo las filas de la query en un fichero
+		// TODO Path harcodeado, sería mejor parametrizado
+		File destination = new File(DICTIONARY_CACHE_FILE);
+		logger.info("[auxiliaryUpdateDictionaryCache] : destination path -> " + destination.getAbsolutePath());
+		try {
+			Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
+			logger.info("[auxiliaryUpdateDictionaryCache] : Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
+		} catch (IOException e) {
+			// Useful error handling here
+		}
+
+
+
+
 		//Close Spring Context
 		ctx.close();
-		logger.info("[getJSONTree] -> DONE");
 		
-		
-		return jsonTree;
+		logger.info("[auxiliaryUpdateDictionaryCache] -> DONE");
+		return true;
+
 	}
 }
