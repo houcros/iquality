@@ -1,6 +1,8 @@
 package com.indra.iquality.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -9,6 +11,8 @@ import java.util.Random;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -32,7 +36,8 @@ import com.indra.iquality.singleton.Sistema;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
 import com.indra.iquality.translator.TreeToJSONTranslator;
 import com.indra.iquality.tree.GenericTreeNode;
-
+import com.google.common.base.Charsets;
+import com.google.common.base.Utf8;
 import com.google.common.io.Files;
 
 @Controller
@@ -415,40 +420,43 @@ public class BaseController {
 		
 		// Si la cache no es válida la actualizo
 		if(!VALID_DICTIONARY_CACHE) auxiliaryUpdateDictionaryCache();
-				
-		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
-		// También se puede hacer directamente desde el array allDictionaryConceptNodes
-		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
-		GenericTreeNode<DictionaryConcept> dictionaryTree = new GenericTreeNode<DictionaryConcept>();
-		
+			
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Opción 1 para leer el fichero json a un JSONObject
+		// Creo que es más lenta que la opción 2 porque parsea el json
+		JSONParser parser = new JSONParser();
+		JSONObject jsonTree = new JSONObject();
 		try {
-			dictionaryTree = translator.createTreeFromTxtFile(DICTIONARY_CACHE_FILE);
-			logger.info("[getJSONTree] : Generado tree a partir de fichero json.");
-//			tree.myPrintTree(0);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("Excepción en BaseController.getJSONTree al intentar crear el árbol.");
-			e.printStackTrace();
-		}
-
-		
-		// Traduzco el tree JSON
-		// NO PRETTY! (se puede si se quiere con jsonTranslator.createPrettyJSONStringFromTree
-		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
-		JSONObject jsonTree = jsonTranslator.createJSONFromTree(dictionaryTree);
-
-		// Y guardo el JSON en un fichero caché
-		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE);
-		try {
-			Files.write(jsonTree.toString(), jsonTreeFile, Charset.forName("UTF-8"));
-			logger.info("[getJSONTree] : Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE);
-//								System.out.println(prettyJsonString);
+			jsonTree = (JSONObject) parser.parse(new FileReader(DICTIONARY_JSON_CACHE_FILE));
+		} catch (FileNotFoundException e) {
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		} catch (IOException e) {
-			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE + "\n" + e.getMessage());
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+		} catch (ParseException e) {
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		}
 		
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Opción 2 para leer el fichero json a un JSONObject
+		// Creo que es más rápida que la opción 1 porque obtiene el String directamente
+		// Aunque qiuzás el overhead aquí esté al transformar el String a un JSONObject
+		/*
+		File sourceFile = new File(DICTIONARY_JSON_CACHE_FILE);
+		// Tengo que usar esta dependencia en el pom -> org.json.JSONObject
+		// O hacerlo con GSON -> JsonObject obj = new JsonParser().parse(jsonString).getAsJsonObject();
+		org.json.JSONObject jsonTree;
+		try {
+			String jsonTreeString = Files.toString(sourceFile, Charsets.UTF_8);
+			jsonTree = new JSONObject(jsonTreeString);
+		} catch (IOException e) {
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			jsonTree = new JSONObject();
+		}
+		*/
 		
+//		logger.debug(jsonTree.toJSONString());
 		logger.info("[getJSONTree] -> DONE");
+		
 		return jsonTree;
 	}
 	
@@ -470,7 +478,8 @@ public class BaseController {
 
 		//Read
 		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
-
+		
+		///////////////////////////////////////////////////////////////////////////////////////
 		// QUERY de todos los nodos
 		try {
 			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
@@ -487,6 +496,7 @@ public class BaseController {
 		allDictionaryConceptNodes.remove(0);
 		allDictionaryConceptNodes.remove(0);
 
+		///////////////////////////////////////////////////////////////////////////////////////
 		// Escribo el resultado de la query en un fichero
 		// Esto será la caché más adelante
 		// TODO Crear el fichero sólo si no existe y la caché está al día
@@ -512,11 +522,45 @@ public class BaseController {
 		}
 
 
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
+		// También se puede hacer directamente desde el array allDictionaryConceptNodes
+		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
+		GenericTreeNode<DictionaryConcept> dictionaryTree = new GenericTreeNode<DictionaryConcept>();
+
+		try {
+			dictionaryTree = translator.createTreeFromTxtFile(DICTIONARY_CACHE_FILE);
+			logger.info("[getJSONTree] : Generado tree a partir de fichero json.");
+			//					tree.myPrintTree(0);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Excepción en BaseController.getJSONTree al intentar crear el árbol.");
+			e.printStackTrace();
+		}
+
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Traduzco el tree JSON
+		// NO PRETTY! (se puede si se quiere con jsonTranslator.createPrettyJSONStringFromTree
+		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
+		JSONObject jsonTree = jsonTranslator.createJSONFromTree(dictionaryTree);
+
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Y guardo el JSON en un fichero caché
+		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE);
+		try {
+			Files.write(jsonTree.toString(), jsonTreeFile, Charset.forName("UTF-8"));
+			logger.info("[getJSONTree] : Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE);
+			//										System.out.println(prettyJsonString);
+		} catch (IOException e) {
+			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE + "\n" + e.getMessage());
+		}
 
 
+		///////////////////////////////////////////////////////////////////////////////////////
 		//Close Spring Context
 		ctx.close();
-		
+
 		logger.info("[auxiliaryUpdateDictionaryCache] -> DONE");
 		return true;
 
