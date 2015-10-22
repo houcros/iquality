@@ -61,7 +61,7 @@ public class ConceptsToTreeTranslator {
 		return root;
 	}
 
-	public GenericTreeNode<DictionaryConcept> createTreeFromFile(String pathToSourceFile) throws NumberFormatException, Exception{
+	public GenericTreeNode<DictionaryConcept> createTreeFromTxtFile(String pathToSourceFile) throws NumberFormatException, Exception{
 		
 		// Esta línea puede lanzar un error de getDictionaryConceptsFromFile
 		// por culpa de helper.conceptTypeStringToEnum
