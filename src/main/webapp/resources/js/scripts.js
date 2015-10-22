@@ -288,3 +288,16 @@
 
 
 })(jQuery);
+
+
+$('#update-dictionary-button').click(function(){
+	alert( "Recargando el diccionario de conceptos." +
+			"\nPor favor, espere." );
+	$.ajax({
+		url: "api/updateDictionaryCache",
+//		async: false,
+		success: function() {
+			alert( "Diccionario de conceptos recargado." );
+		}
+	});
+});
