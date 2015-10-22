@@ -53,11 +53,8 @@ public class BaseController {
 	
 	// TODO Hacer os paths relativos al root del servlet para que funcionen en cualquier máquina
 	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/resultadoQueryDiccionario.txt";
-	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.txt";
-	// TODO Considerar usar un fichero json en vez de txt
-	// Prácticamente no cambia la implementación, pero quizás tiene más sentido conceptualmente
-	// y es más correcto
-//	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.json";
+//	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.txt";
+	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.json";
 	private static boolean VALID_DICTIONARY_CACHE = true;
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
