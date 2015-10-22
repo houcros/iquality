@@ -416,7 +416,10 @@ public class BaseController {
 	}
 	
 	@RequestMapping(value = "/api/jsonTree", method = RequestMethod.GET)
+	// Descomentar para la opción 1
 	public @ResponseBody JSONObject getJSONTree() {
+	// Descomentar para la opción 3
+//	public @ResponseBody String getJSONTree() {
 		
 		// Si la cache no es válida la actualizo
 		if(!VALID_DICTIONARY_CACHE) auxiliaryUpdateDictionaryCache();
@@ -454,10 +457,30 @@ public class BaseController {
 		}
 		*/
 		
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Opción 3 para leer el fichero json a un JSONObject
+		// Qué tal si leo el string del fichero y retorno directamente un String
+		// en vez de parsearlo a un JSON?
+		// No funciona pero no descarto que se pueda apañar
+		/*
+		File sourceFile = new File(DICTIONARY_JSON_CACHE_FILE);
+		String jsonTreeString;
+		try {
+			jsonTreeString = Files.toString(sourceFile, Charsets.UTF_8);
+		} catch (IOException e) {
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			jsonTreeString = new String();
+		}
+		*/
+		
+		
 //		logger.debug(jsonTree.toJSONString());
 		logger.info("[getJSONTree] -> DONE");
 		
+		// Descomentar para la opción 1
 		return jsonTree;
+		// Descomentar para la opción 3
+//		return jsonTreeString;
 	}
 	
 	@RequestMapping(value = "/api/updateDictionaryCache", method = RequestMethod.GET)
