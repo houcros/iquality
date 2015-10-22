@@ -153,7 +153,7 @@ var TreeView = function () {
             
             $.ajax({
         		  url: "api/jsonTree",
-        		  async: false,
+//        		  async: false,
         		  success: function( data ) {
                   $('#FlatTree1').tree({
                       dataSource: new DataSourceTree(data),
