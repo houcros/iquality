@@ -163,7 +163,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
 
 <!-- Mi script personal -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-pases.js"></script>
 
 </body>
 </html>

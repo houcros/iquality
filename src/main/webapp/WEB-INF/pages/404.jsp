@@ -45,10 +45,9 @@
           <div class="error-desk">
               <h2>page not found</h2>
               <p class="nrml-txt">We Couldn't Find This Page</p>
-              <p class="nrml-txt">${test}</p>
-              <h5>Counter : ${counter}</h5>
           </div>
-          <a href="index.html" class="back-btn"><i class="fa fa-home"></i> Back To Home</a>
+<%--           <a href="${pageContext.servletContext.contextPath}/index.html" class="back-btn"><i class="fa fa-home"></i> Back To Home</a> --%>
+          <a href="${pageContext.servletContext.contextPath}" class="back-btn"><i class="fa fa-home"></i> Back To Home</a>
       </section>
 
     </div>
