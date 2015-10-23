@@ -35,6 +35,10 @@ $(document).ready(function() {
     $(document).on('click','#hidden-table-jobs tbody td img',function () {
         var nTr = $(this).parents('tr')[0];
         var aData = oTable.fnGetData( nTr );
-        window.location = "jobs/" + aData[1] + "/registro-de-actividad";
+        
+//        var pathnameParts = window.location.pathname.split('/');
+        //pathnameParts = ["", "iQuality", "pases", "373", "jobs"]
+//        window.location = "pases/" + pathnameParts[3] + "/jobs/" + aData[1] + "/registro-de-operaciones";
+        window.location = "jobs/" + aData[1] + "/registro-de-operaciones";
     } );
 } );

@@ -32,8 +32,10 @@ import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASEDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
 import com.indra.iquality.dao.PaseDAO;
+import com.indra.iquality.dao.RegistroDeOperacionDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 import com.indra.iquality.model.Pase;
+import com.indra.iquality.model.RegistroDeOperacion;
 import com.indra.iquality.singleton.Sistema;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
 import com.indra.iquality.translator.TreeToJSONTranslator;
@@ -55,6 +57,7 @@ public class BaseController {
 	private static final String VIEW_DICCIONARIO = "diccionario";
 	private static final String VIEW_CONSOLACONTROLEJECUCION = "consola_control_ejecucion";
 	private static final String VIEW_JOBS_DE_PASE = "jobs";
+	private static final String VIEW_REGISTRO_DE_JOB = "registro-de-operaciones";
 	
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
@@ -592,8 +595,8 @@ public class BaseController {
 
 	}
 	
-	@RequestMapping(value = "/pases/{id}/jobs", method = RequestMethod.GET)
-	public String getJobsdePase(@PathVariable int id, ModelMap model) {
+	@RequestMapping(value = "/pases/{idEjecucion}/jobs", method = RequestMethod.GET)
+	public String getJobsdePase(@PathVariable int idEjecucion, ModelMap model) {
 
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -606,9 +609,9 @@ public class BaseController {
 		List<Job> allJobs;
 		
 		try {
-			allJobs = jobDAO.getAll(id);
+			allJobs = jobDAO.getAll(idEjecucion);
 			model.addAttribute("allTableItems", allJobs);
-			model.addAttribute("idEjecucion", id);
+			model.addAttribute("idEjecucion", idEjecucion);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -620,6 +623,38 @@ public class BaseController {
 		
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_JOBS_DE_PASE;
+
+	}
+	
+	@RequestMapping(value = "/pases/{idEjecucion}/jobs/{idJob}/registro-de-operaciones", method = RequestMethod.GET)
+	public String getRegistrosDeJob(@PathVariable int idEjecucion, @PathVariable String idJob, ModelMap model) {
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+				
+		//Get the lk_met_pla_ctrl_paseDAO Bean
+		//To use JdbcTemplate
+		RegistroDeOperacionDAO registroDeOperacionDAO = ctx.getBean("registroDeOperacionDAOJDBCTemplate", RegistroDeOperacionDAO.class);
+				
+		//Read
+		List<RegistroDeOperacion> allRegistroDeOperacion;
+		
+		try {
+			allRegistroDeOperacion = registroDeOperacionDAO.getAll(idEjecucion, idJob);
+			model.addAttribute("allTableItems", allRegistroDeOperacion);
+			model.addAttribute("idEjecucion", idEjecucion);
+			model.addAttribute("idJob", idJob);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[getRegistrosDeJob] -> DONE");
+		
+		// Spring uses InternalResourceViewResolver and return back index.jsp
+		return VIEW_REGISTRO_DE_JOB;
 
 	}
 }
