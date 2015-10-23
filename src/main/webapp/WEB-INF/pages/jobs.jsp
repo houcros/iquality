@@ -152,6 +152,9 @@
 <!--common script init for all pages-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
+<!-- Mi script personal -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-jobs.js"></script>
+
 <!--dynamic table initialization -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
 
