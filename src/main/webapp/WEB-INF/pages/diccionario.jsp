@@ -129,7 +129,7 @@
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="panel panel-primary">
-																			<div class="panel-heading">
+																			<div class="panel-heading tarjeta">
 																				Nombre <span class="tools pull-right"> <a
 																					class="fa fa-chevron-down" href="javascript:;"></a>
 																				</span>
