@@ -49,40 +49,8 @@ function fnFormatDetailsCustom ( oTable, nTr )
 		  }
 		});
 	
-//	var res = $.getJSON( "lk_met_pla_ctrl_pase/api/437" ).done(function( data ) {
-//		
-//		  alert( "Data Loaded: " + data.id_sistema + data.id_ejecucion + data.id_software +
-//				  data.id_pase + data.de_pase + data.id_fecha_inicio + data.id_fecha_inicio_real +
-//				  data.id_fecha_fin_real + data.id_estado + data.id_sn_habilitado + data.id_anyo + data.id_mes +
-//				  data.id_escenario + data.id_fecha_creacion + data.id_fecha_modificacion + data.id_pid);
-//
-//		  sOut += '<tr><td>id_ejecucion:</td><td>'+'Test ejecucion'+'</td></tr>';
-//		
-//		  sOut += '<tr><td>id_sistema:</td><td>'+data.id_sistema+'</td></tr>';
-//		  sOut += '<tr><td>id_ejecucion:</td><td>'+data.id_ejecucion+'</td></tr>';
-//		  sOut += '<tr><td>id_software:</td><td>'+data.id_software+'</td></tr>';
-//		  sOut += '<tr><td>id_pase:</td><td>'+data.id_pase+'</td></tr>';
-//		  sOut += '<tr><td>de_pase:</td><td>'+data.de_pase+'</td></tr>';
-//		  sOut += '<tr><td>id_fecha_inicio:</td><td>'+data.id_fecha_inicio+'</td></tr>';
-//		  sOut += '<tr><td>id_fecha_inicio_real:</td><td>'+data.id_fecha_inicio_real+'</td></tr>';
-//		  sOut += '<tr><td>id_fecha_fin_real:</td><td>'+data.id_fecha_fin_real+'</td></tr>';
-//		  sOut += '<tr><td>id_estado:</td><td>'+data.id_estado+'</td></tr>';
-//		  sOut += '<tr><td>id_sn_habilitado:</td><td>'+data.id_sn_habilitado+'</td></tr>';
-//		  sOut += '<tr><td>id_anyo:</td><td>'+data.id_anyo+'</td></tr>';
-//		  sOut += '<tr><td>id_mes:</td><td>'+data.id_mes+'</td></tr>';
-//		  sOut += '<tr><td>id_escenario:</td><td>'+data.id_escenario+'</td></tr>';
-//		  sOut += '<tr><td>id_fecha_creacion:</td><td>'+data.id_fecha_creacion+'</td></tr>';
-//		  sOut += '<tr><td>id_fecha_modificacion:</td><td>'+data.id_fecha_modificacion+'</td></tr>';
-//		  sOut += '<tr><td>id_pid:</td><td>'+data.id_pid+'</td></tr>';
-//
-//	});
-	
-//	console.log(res);
-//	console.log(res.responseJSON.responseText);
 	
 	sOut += '<tr><td>id_sistema:</td><td>'+ 'TEST' +'</td></tr>';
-//	sOut += '<tr><td>id_ejecucion:</td><td>'+res.id_ejecucion+'</td></tr>';
-	
 	sOut += '</table>';
 	
     return sOut;

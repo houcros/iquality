@@ -10,7 +10,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.png">
 
-    <title>Dynamic Table</title>
+    <title>Jobs del pase ${id}</title>
 
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Registro de ejecuciones
+                        Registro de jobs del pase ${idEjecucion}
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                             <a href="javascript:;" class="fa fa-cog"></a>
@@ -66,19 +66,15 @@
                     </header>
                     <div class="panel-body">
                     <div class="adv-table">
-<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-pases">
+                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-jobs">
                     <thead>
                     <tr>
-                        <th>Ejecuci&oacute;n</th>
-                        <th>Pase</th>
+                        <th>Job</th>
                         <th class="hidden-phone">Estado</th>
-                        <th class="hidden-phone">Fecha datos</th>
-                        <th class="hidden-phone">Escenario</th>
-                        <th>Fecha inicio</th>
-                        <th class="hidden-phone">Fecha finalización</th>
-                        <th class="hidden-phone">Fecha planificada</th>
-                        <th class="hidden-phone">Software</th>
+                        <th class="hidden-phone">Fecha inicio</th>
+                        <th class="hidden-phone">Fecha fin</th>
+                        <th>Punto de control</th>
+                        <th class="hidden-phone">Fecha OK punto de control</th>
                         <th class="hidden-phone">Duraci&oacute;n</th>
                     </tr>
                     </thead>
@@ -88,9 +84,8 @@
 <!-- 					    <tr class="gradeX">       -->
 <!-- 					    <tr class="gradeC">       -->
 <!-- 					    <tr class="gradeU">       -->
-					        <td class="center hidden-phone">${item.idEjecucion}</td>
-					        <td class="center hidden-phone">${item.pase}</td>
-					        					        <td class="center hidden-phone">
+					        <td class="center hidden-phone">${item.idJob}</td>
+					        <td class="center hidden-phone">
 					        	<c:choose>
 								    <c:when test="${item.estado=='OK'}">
 										<span class="label label-success label-mini">${item.estado}</span>
@@ -106,12 +101,10 @@
 								    </c:otherwise>
 								</c:choose>
 					        </td>
-					        <td class="center hidden-phone">${item.fechaDatos}</td>
-					        <td class="center hidden-phone">${item.escenario}</td>
-					        <td class="center hidden-phone">${item.fechaInicio}</td>  
+					        <td class="center hidden-phone">${item.fechaInicio}</td>
 					        <td class="center hidden-phone">${item.fechaFin}</td>
-					        <td class="center hidden-phone">${item.fechaPlanificada}</td>
-					        <td class="center hidden-phone">${item.software}</td>  
+					        <td class="center hidden-phone">${item.puntoDeControl}</td>
+					        <td class="center hidden-phone">${item.fechaOKPuntoDeControl}</td>
 					        <td class="center hidden-phone">${item.duracion}</td>   
 					    </tr>
 					</c:forEach>
@@ -162,8 +155,7 @@
 <!--dynamic table initialization -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
 
-<!-- Mi script personal -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts.js"></script>
+
 
 </body>
 </html>

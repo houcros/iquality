@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.EmployeeDAO;
+import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.Employee;
+import com.indra.iquality.model.Job;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASEDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
@@ -52,6 +54,7 @@ public class BaseController {
 	private static final String VIEW_NOT_FOUND = "404";
 	private static final String VIEW_DICCIONARIO = "diccionario";
 	private static final String VIEW_CONSOLACONTROLEJECUCION = "consola_control_ejecucion";
+	private static final String VIEW_JOBS_DE_PASE = "jobs";
 	
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE = "show_lk_met_pla_ctrl_pase";
 	private static final String VIEW_LK_MET_PLA_CTRL_PASE_JOB = "show_lk_met_pla_ctrl_pase_job";
@@ -586,6 +589,37 @@ public class BaseController {
 
 		logger.info("[auxiliaryUpdateDictionaryCache] -> DONE");
 		return true;
+
+	}
+	
+	@RequestMapping(value = "/pases/{id}/jobs", method = RequestMethod.GET)
+	public String getJobsdePase(@PathVariable int id, ModelMap model) {
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+				
+		//Get the lk_met_pla_ctrl_paseDAO Bean
+		//To use JdbcTemplate
+		JobDAO jobDAO = ctx.getBean("jobDAOJDBCTemplate", JobDAO.class);
+				
+		//Read
+		List<Job> allJobs;
+		
+		try {
+			allJobs = jobDAO.getAll(id);
+			model.addAttribute("allTableItems", allJobs);
+			model.addAttribute("idEjecucion", id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[getJobsdePase] -> DONE");
+		
+		// Spring uses InternalResourceViewResolver and return back index.jsp
+		return VIEW_JOBS_DE_PASE;
 
 	}
 }

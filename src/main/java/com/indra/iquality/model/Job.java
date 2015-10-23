@@ -9,8 +9,8 @@ public class Job {
 	private String idEjecucion;
 	
 	private String estado;
-	private Date FechaInicio;
-	private Date FechaFin;
+	private Date fechaInicio;
+	private Date fechaFin;
 	private String puntoDeControl;
 	private Date fechaOKPuntoDeControl;
 	private String duracion;
@@ -50,22 +50,22 @@ public class Job {
 
 
 	public Date getFechaInicio() {
-		return FechaInicio;
+		return fechaInicio;
 	}
 
 
 	public void setFechaInicio(Date fechaInicio) {
-		FechaInicio = fechaInicio;
+		this.fechaInicio = fechaInicio;
 	}
 
 
 	public Date getFechaFin() {
-		return FechaFin;
+		return fechaFin;
 	}
 
 
 	public void setFechaFin(Date fechaFin) {
-		FechaFin = fechaFin;
+		this.fechaFin = fechaFin;
 	}
 
 
@@ -120,7 +120,7 @@ public class Job {
 
 	@Override
 	public String toString() {
-		return "Job [id=" + idJob + ", estado=" + estado + ", FechaInicio=" + FechaInicio + ", FechaFin=" + FechaFin
+		return "Job [id=" + idJob + ", estado=" + estado + ", FechaInicio=" + fechaInicio + ", FechaFin=" + fechaFin
 				+ ", puntoDeControl=" + puntoDeControl + ", fechaOKPuntoDeControl=" + fechaOKPuntoDeControl
 				+ ", duracion=" + duracion + "]";
 	}
