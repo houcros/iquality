@@ -86,28 +86,38 @@
              <div class="col-md-6">
                  <div class="panel">
                      <div class="panel-heading">
-                         Informaci&oacute;n de inter&eacute;s
+                         Ficha de definici&oacute;n
                        <span class="tools pull-right">
                              <a class="fa fa-chevron-down" href="javascript:;"></a>
-                             <a class="fa fa-cog" href="javascript:;"></a>
-                             <a class="fa fa-times" href="javascript:;"></a>
                          </span>
                      </div>
                      <div class="panel-body">
-                         <div id="FlatTree2" class="tree tree-solid-line">
-                             <div class = "tree-folder" style="display:none;">
-                                 <div class="tree-folder-header">
-                                     <i class="fa fa-folder"></i>
-                                     <div class="tree-folder-name"></div>
-                                 </div>
-                                 <div class="tree-folder-content"></div>
-                                 <div class="tree-loader" style="display:none"></div>
-                             </div>
-                             <div class="tree-item" style="display:none;">
-                                 <i class="tree-dot"></i>
-                                 <div class="tree-item-name"></div>
-                             </div>
-                         </div>
+                     <!--tab nav start-->
+            <section class="panel">
+                <header class="panel-heading tab-bg-dark-navy-blue ">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tab-datos-basicos">Datos b&aacute;sicos</a>
+                        </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#tab-datos-entidad">Datos de entidad</a>
+                        </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#tab-reglas-certificacion">Reglas de certificaci&oacute;n</a>
+                        </li>
+                    </ul>
+                </header>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div id="tab-datos-basicos" class="tab-pane active">
+                            HomeHomeHomeHomeHomeHomeHomeHomeHomeHome HomeHomeHomeHomeHome HomeHomeHomeHomeHomeHome
+                        </div>
+                        <div id="tab-datos-entidad" class="tab-pane">AboutAboutAboutAboutAboutAboutAboutAboutAboutAbout</div>
+                        <div id="tab-reglas-certificacion" class="tab-pane">ProfileProfileProfileProfileProfileProfileProfileProfile</div>
+                    </div>
+                </div>
+            </section>
+            <!--tab nav end-->
                      </div>
                  </div>
              </div>
