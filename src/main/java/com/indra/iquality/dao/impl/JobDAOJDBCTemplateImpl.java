@@ -65,8 +65,13 @@ public class JobDAOJDBCTemplateImpl implements JobDAO {
 		return null;
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see com.indra.iquality.dao.JobDAO#getAll(int)
+	 * Obtiene todos los jobs de un pase identificado por @Param idEjecucion
+	 */
 	@Override
-	public List<Job> getAll(int id_ejecucion) throws Exception {
+	public List<Job> getAll(int idEjecucion) throws Exception {
 		
 		/* 
 		 * Es la query tal como la saqué del APEX
@@ -99,7 +104,7 @@ public class JobDAOJDBCTemplateImpl implements JobDAO {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Job> jobList = new ArrayList<Job>();
 
-		List<Map<String,Object>> jobRows = jdbcTemplate.queryForList(query, new Object[]{id_ejecucion, sistema.getIdSoftware(), sistema.getIdSistema()});
+		List<Map<String,Object>> jobRows = jdbcTemplate.queryForList(query, new Object[]{idEjecucion, sistema.getIdSoftware(), sistema.getIdSistema()});
 		
 		for(Map<String,Object> jobRow : jobRows){
 			
@@ -128,8 +133,8 @@ public class JobDAOJDBCTemplateImpl implements JobDAO {
 			else job.setFechaFin(DEFAULT_NULL_DATE);
 			
 			if (jobRow.get("id_sn_punto_control") != null)
-				job.setEstado((String.valueOf(jobRow.get("id_sd_punto_control"))));
-			else job.setEstado(DEFAULT_NULL_STRING);
+				job.setPuntoDeControl((String.valueOf(jobRow.get("id_sn_punto_control"))));
+			else job.setPuntoDeControl(DEFAULT_NULL_STRING);
 			
 			if (jobRow.get("id_fecha_ok_punto_control") != null)
 				job.setFechaOKPuntoDeControl((helper.auxStringToSqlDate(String.valueOf(jobRow.get("id_fecha_ok_punto_control")))));
