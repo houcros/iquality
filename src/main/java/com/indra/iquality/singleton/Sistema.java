@@ -6,6 +6,12 @@ public class Sistema {
 
 	private static Sistema instance;
 
+	// Parámetros por defecto para sustituir por null en las queries
+	// Comunes para todas las queries del sistema por consistencia
+	private final static String DEFAULT_NULL_STRING = "";
+	private final static int DEFAULT_NULL_INT = -1;
+	private final static Date DEFAULT_NULL_DATE = new Date(1);
+	
 	private int idSoftware;
 	private String idSistema;
 	private String descripcionSoftware;
