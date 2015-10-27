@@ -71,12 +71,17 @@
                     <tr>
                         <th>Id Operaci&oacute;n</th>
                         <th class="hidden-phone">Fecha inicio</th>
-                        <th class="hidden-phone">Duraci&oacute;n</th>
+                        <th class="hidden-phone">Duraci&oacute;n (s)</th>
                         <th class="hidden-phone">Fecha datos</th>
                         <th>Operaci&oacute;n</th>
                         <th>Tipo de operaci&oacute;n</th>
                         <th class="hidden-phone">Estado</th>
                         <th class="hidden-phone">Escenario</th>
+                        <th class="hidden-phone">Filas Actualizadas</th>
+                        <th class="hidden-phone">Filas Cargadas</th>
+                        <th class="hidden-phone">Filas le&iacute;das</th>
+                        <th class="hidden-phone">Filas Rechazadas</th>
+                        <th class="hidden-phone">Filas Descartadas</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -87,9 +92,9 @@
 <!-- 					    <tr class="gradeU">       -->
 					        <td class="center hidden-phone">${item.idOperacion}</td>
 					        <td class="center hidden-phone">${item.fechaInicio}</td>
-					        <td class="center hidden-phone">${item.duracion}</td>
+					        <td class="center hidden-phone">${item.fcDuracion}</td>
 					        <td class="center hidden-phone">${item.fechaDatos}</td>
-					        <td class="center hidden-phone">${item.operacion}</td>
+					        <td class="center hidden-phone">${item.idOperacion}</td>
 					        <td class="center hidden-phone">${item.tipoDeOperacion}</td>
 					        <td class="center hidden-phone">
 					        	<c:choose>
@@ -107,7 +112,12 @@
 								    </c:otherwise>
 								</c:choose>
 					        </td>
-					        <td class="center hidden-phone">${item.escenario}</td>   
+					        <td class="center hidden-phone">${item.descripcionEscenario}</td>   
+					        <td class="center hidden-phone">${item.fcFilasCargadas}</td>   
+					        <td class="center hidden-phone">${item.fcFilasActualizadas}</td>   
+					        <td class="center hidden-phone">${item.fcFilasLeidas}</td>   
+					        <td class="center hidden-phone">${item.fcFilasRechazadas}</td>   
+					        <td class="center hidden-phone">${item.fcFilasDescartadas}</td>   
 					    </tr>
 					</c:forEach>
                     </tbody>

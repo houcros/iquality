@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.RegistroDeOperacionDAO;
@@ -27,7 +28,7 @@ public class RegistroDeOperacionDAOJDBCTemplateImpl implements RegistroDeOperaci
 	private Sistema sistema = Sistema.getInstance();
 	
 	// Debugging
-//	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(RegistroDeOperacionDAOJDBCTemplateImpl.class);
 //	private int contadorDebugger = 0;
 	
 	private final CustomHelper helper = new CustomHelper();
@@ -42,7 +43,13 @@ public class RegistroDeOperacionDAOJDBCTemplateImpl implements RegistroDeOperaci
 	
 	@Override
 	public List<RegistroDeOperacion> getAll(int idEjecucion, String idJob) throws Exception {
-
+		
+		System.out.println("[getAll] -> Inicio llamada a método");
+		logger.info("[getAll] -> Inicio llamada a método");
+		
+		// SELECT (A.ID_FECHA_FIN-A.ID_FECHA_INICIO) as duracion,
+		// duracion no se usa para nada por lo que parece
+		// y hay otra duración, así que no la incluyo
 		String query = "SELECT (A.ID_FECHA_FIN-A.ID_FECHA_INICIO) as duracion, "
 				+ "A.ROWID AS OP_ROWID, A.ROWID AS FINAL_ROWID, A.ID_OPERACION, "
 				+ "A.ID_SISTEMA,A.ID_SOFTWARE,B.DE_BLOQUE,A.ID_JOB,ESC.DE_ESCENARIO, "
@@ -70,25 +77,28 @@ public class RegistroDeOperacionDAOJDBCTemplateImpl implements RegistroDeOperaci
 				+ "(A.ID_SISTEMA = S.ID_SISTEMA AND "
 				+ "A.ID_SOFTWARE = S.ID_SOFTWARE) "
 				+ "WHERE " 
-				+ "NVL(A.ID_EJECUCION,0) LIKE NVL(?,'%') AND "
-				+ "NVL(A.ID_JOB,'%') LIKE NVL(?,'%') AND "
-				+ "A.ID_SOFTWARE LIKE NVL(?,'%') AND "
-				+ "A.ID_SISTEMA LIKE NVL(?,'%')";
+				+ "A.ID_EJECUCION = ? AND " 
+				+ "A.ID_JOB = ? AND " 
+				+ "A.ID_SISTEMA = ? AND "
+				+ "A.ID_SOFTWARE = ? ";
 
 		
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<RegistroDeOperacion> registroList = new ArrayList<RegistroDeOperacion>();
 
-		List<Map<String,Object>> registrosRows = jdbcTemplate.queryForList(query, new Object[]{idEjecucion, idJob, sistema.getIdSoftware(), sistema.getIdSistema()});
+		List<Map<String,Object>> registrosRows = jdbcTemplate.queryForList(query, new Object[]{ idEjecucion, idJob, sistema.getIdSistema(), sistema.getIdSoftware() });
 		
+		System.out.println("[getAll] -> registroRows.size() = " + registrosRows.size());
+		logger.info("[getAll] -> registroRows.size() = " + registrosRows.size());
+
 		for(Map<String,Object> registroRow : registrosRows){
 			
 			RegistroDeOperacion registro = new RegistroDeOperacion();
 			
-			if (registroRow.get("duracion") != null)
-				registro.setDuracion((helper.auxStringToSqlDate(String.valueOf(registroRow.get("duracion")))));
-			else registro.setDuracion(DEFAULT_NULL_DATE);
+//			if (registroRow.get("duracion") != null)
+//				registro.setDuracion((helper.auxStringToSqlDate(String.valueOf(registroRow.get("duracion")))));
+//			else registro.setDuracion(DEFAULT_NULL_DATE);
 			
 			if (registroRow.get("op_rowid") != null)
 				registro.setOpRowId((String.valueOf(registroRow.get("op_rowid"))));
@@ -175,9 +185,10 @@ public class RegistroDeOperacionDAOJDBCTemplateImpl implements RegistroDeOperaci
 			else registro.setEstado(DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("fecha") != null)
-				registro.setFecha((helper.auxStringToSqlDate(String.valueOf(registroRow.get("fecha")))));
-			else registro.setFecha(DEFAULT_NULL_DATE);
+				registro.setFechaDatos((String.valueOf(registroRow.get("fecha"))));
+			else registro.setFechaDatos(DEFAULT_NULL_STRING);
 			
+			System.out.println("[getAll] -> " + registro.toString());
 			registroList.add(registro);
 		}
 		

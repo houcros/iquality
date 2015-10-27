@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class RegistroDeOperacion {
 
-	private Date duracion;
+//	private Date duracion;
 	private String opRowId;
 	private String finalRowId;
 	private int idOperacion;
@@ -26,14 +26,14 @@ public class RegistroDeOperacion {
 	private String descripcionSoftware;
 	private String descripcionOperacion;
 	private String estado;
-	private Date fecha;
+	private String fechaDatos;
 	
-	public Date getDuracion() {
-		return duracion;
-	}
-	public void setDuracion(Date duracion) {
-		this.duracion = duracion;
-	}
+//	public Date getDuracion() {
+//		return duracion;
+//	}
+//	public void setDuracion(Date duracion) {
+//		this.duracion = duracion;
+//	}
 	public String getOpRowId() {
 		return opRowId;
 	}
@@ -160,15 +160,15 @@ public class RegistroDeOperacion {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Date getFecha() {
-		return fecha;
+	public String getFechaDatos() {
+		return fechaDatos;
 	}
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFechaDatos(String fechaDatos) {
+		this.fechaDatos = fechaDatos;
 	}
 	@Override
 	public String toString() {
-		return "RegistroDeOperacion [duracion=" + duracion + ", rowID=" + opRowId + ", finalRowID=" + finalRowId
+		return "RegistroDeOperacion [rowID=" + opRowId + ", finalRowID=" + finalRowId
 				+ ", idOperacion=" + idOperacion + ", sistema=" + sistema + ", software=" + software
 				+ ", descripcionBloque=" + descripcionBloque + ", idJob=" + idJob + ", descripcionEscenario="
 				+ descripcionEscenario + ", idEjecucion=" + idEjecucion + ", fechaInicio=" + fechaInicio + ", fechaFin="
@@ -176,7 +176,7 @@ public class RegistroDeOperacion {
 				+ ", fcFilasCargadas=" + fcFilasCargadas + ", fcFilasActualizadas=" + fcFilasActualizadas
 				+ ", fcFilasLeidas=" + fcFilasLeidas + ", fcFilasRechazadas=" + fcFilasRechazadas
 				+ ", fcFilasDescartadas=" + fcFilasDescartadas + ", descripcionSoftware=" + descripcionSoftware
-				+ ", descripcionOperacion=" + descripcionOperacion + ", estado=" + estado + ", fecha=" + fecha + "]";
+				+ ", descripcionOperacion=" + descripcionOperacion + ", estado=" + estado + ", fecha=" + fechaDatos + "]";
 	}
 	
 }
