@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -33,9 +34,11 @@ import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE;
 import com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAO;
 import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.dao.RegistroDeOperacionDAO;
+import com.indra.iquality.dao.TrazaDeRegistroDAO;
 import com.indra.iquality.model.LK_MET_PLA_CTRL_PASE_JOB;
 import com.indra.iquality.model.Pase;
 import com.indra.iquality.model.RegistroDeOperacion;
+import com.indra.iquality.model.TrazaDeRegistro;
 import com.indra.iquality.singleton.Sistema;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
 import com.indra.iquality.translator.TreeToJSONTranslator;
@@ -43,6 +46,11 @@ import com.indra.iquality.tree.GenericTreeNode;
 import com.google.common.base.Charsets;
 import com.google.common.base.Utf8;
 import com.google.common.io.Files;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 @Controller
 //TODO @RequestMapping("/algun/path/que/englobe/varios")
@@ -632,11 +640,11 @@ public class BaseController {
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 				
-		//Get the lk_met_pla_ctrl_paseDAO Bean
+		//Get the registroDeOperacionDAO Bean
 		//To use JdbcTemplate
 		RegistroDeOperacionDAO registroDeOperacionDAO = ctx.getBean("registroDeOperacionDAOJDBCTemplate", RegistroDeOperacionDAO.class);
 				
-		//Read
+		//Read registros de operación
 		List<RegistroDeOperacion> allRegistroDeOperacion;
 		
 		try {
@@ -657,4 +665,49 @@ public class BaseController {
 		return VIEW_REGISTRO_DE_JOB;
 
 	}
+	
+	@RequestMapping(value = "/api/traza-de-operacion/{idOperacion}", method = RequestMethod.GET)
+	public @ResponseBody JSONArray getTrazaDeOperacion(@PathVariable int idOperacion, ModelMap model) {
+		
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		
+		
+		//Get the trazaDeRegistroDAO Bean
+		//To use JdbcTemplate
+		TrazaDeRegistroDAO trazaDeRegistroDAO = ctx.getBean("trazaDeRegistroDAOJDBCTemplate", TrazaDeRegistroDAO.class);
+		
+		//Read trazas
+		List<TrazaDeRegistro> allTrazaDeRegistro = null;
+		
+		try {
+			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion);
+			model.addAttribute("allTableItems", allTrazaDeRegistro);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		
+		// TODO Quizás esto lo puedo encapsular luego en otro método auxiliar privado o en el helper
+		// O en el translator (?)
+		
+//		JsonElement element = new Gson().toJsonTree(allTrazaDeRegistro, new TypeToken<List<TrazaDeRegistro>>() {}.getType());
+//		JsonArray jsonArray = element.getAsJsonArray();
+		
+		JSONArray jsonArray = new JSONArray();
+		for (TrazaDeRegistro trazaDeRegistro : allTrazaDeRegistro){
+		
+			logger.debug("[getTrazaDeOperacion] -> " + trazaDeRegistro.toString());			
+			jsonArray.add(trazaDeRegistro);
+			
+		}
+		
+		logger.info("[getTrazaDeOperacion] -> DONE");
+		return jsonArray;
+		
+	}
+	
 }
