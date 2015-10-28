@@ -25,6 +25,9 @@
 	href="${pageContext.servletContext.contextPath}/resources/font-awesome/css/font-awesome.css"
 	rel="stylesheet" />
 
+<!-- switch -->
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-switch.css" />
+
 <!--external css-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.servletContext.contextPath}/resources/js/fuelux/css/tree-style.css" />
@@ -73,7 +76,7 @@
 								<span class="tools pull-right">
 									<button id="update-dictionary-button" type="button" class="btn btn-info">
 										<i class="fa fa-refresh"></i>
-										" Recargar diccionario"
+										Recargar diccionario
 									</button>
 									<a class="fa fa-chevron-down" href="javascript:;"></a>
 									<a class="fa fa-cog" href="javascript:;"></a>
@@ -220,7 +223,104 @@
 													</div>
 												</div>
 											</div>
-											<div id="tab-datos-entidad" class="tab-pane">AboutAboutAboutAboutAboutAboutAboutAboutAboutAbout</div>
+											<div id="tab-datos-entidad" class="tab-pane">
+												<div class="m-bot20">
+                            						<input type="checkbox" checked class="switch-large">
+                            					</div>
+                            					<div class="row">
+													<div class="col-sm-12">
+														<div class="row-fluid" id="draggable_portlets">
+															<div class="col-md-6 column sortable">
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-primary">
+																			<div class="panel-heading tarjeta">
+																				Hit&oacute;rico <span class="tools pull-right"> <a
+																					class="fa fa-chevron-down" href="javascript:;"></a>
+																				</span>
+																			</div>
+																			<div class="panel-body">5 años + año en curso</div>
+																		</div>
+
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading">
+																				Responsable <span class="tools pull-right"> <a
+																					class="fa fa-chevron-down" href="javascript:;"></a>
+																				</span>
+																			</div>
+																			<div class="panel-body">Contabilidad</div>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+															<div class="col-md-6 column sortable">
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading">
+																				Origen <span class="tools pull-right">
+																					<a class="fa fa-chevron-down" href="javascript:;"></a>
+																				</span>
+																			</div>
+																			<div class="panel-body">
+																				<p>Sistema origen: GTC</p>
+																				<p>Tipo origen: Corporativo</p>
+																			</div>
+																		</div>
+
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading">
+																				Formato <span class="tools pull-right"> <a
+																					class="fa fa-chevron-down" href="javascript:;"></a>
+																				</span>
+																			</div>
+																			<div class="panel-body">Alfanumérico</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row-fluid" id="draggable_portlets">
+															<div class="col-md-12 column sortable">
+															<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading">
+																				Comentarios <span class="tools pull-right"> <a
+																					class="fa fa-chevron-down" href="javascript:;"></a>
+																				</span>
+																			</div>
+																			<div class="panel-body">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis.
+                                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis.</div>
+																		</div>
+
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
 											<div id="tab-reglas-certificacion" class="tab-pane">ProfileProfileProfileProfileProfileProfileProfileProfile</div>
 										</div>
 									</div>
@@ -228,12 +328,6 @@
 								<!--tab nav end-->
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- Mi JSON tree oculto -->
-				<div class="column">
-					<div class="col-md-12">
-						<p>${jsonTree}</p>
 					</div>
 				</div>
 				<!-- END PAGE CONTENT-->
@@ -277,6 +371,9 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
+	<!-- switch -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-bootstrap-switch.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
 
 	<!--tree-->
 	<script
