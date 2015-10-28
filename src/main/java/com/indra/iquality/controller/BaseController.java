@@ -58,6 +58,11 @@ public class BaseController {
 
 //	private Sistema sistema = Sistema.getInstance();
 	
+	/*
+	 * Esto puede ser útil en algún momento
+	 *      <p>The context path is: ${pageContext.request.contextPath}.</p>
+            <p>The context path is: ${pageContext.servletContext.contextPath}.</p>
+	 */
 	private static int counter = 0;
 	private static final String VIEW_MY_INDEX = "my_index";
 	private static final String VIEW_INDEX = "index";

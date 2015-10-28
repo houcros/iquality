@@ -16,7 +16,7 @@ public class RegistroDeOperacion {
 	private int idEjecucion;
 	private Date fechaInicio;
 	private Date fechaFin;
-	private int fcDuracion;
+	private double fcDuracion;
 	private String tipoDeOperacion;
 	private int fcFilasCargadas;
 	private int fcFilasActualizadas;
@@ -100,10 +100,10 @@ public class RegistroDeOperacion {
 	public void setFechaFin(Date fechaFin) {
 		this.fechaFin = fechaFin;
 	}
-	public int getFcDuracion() {
+	public double getFcDuracion() {
 		return fcDuracion;
 	}
-	public void setFcDuracion(int fcDuracion) {
+	public void setFcDuracion(double fcDuracion) {
 		this.fcDuracion = fcDuracion;
 	}
 	public String getTipoDeOperacion() {

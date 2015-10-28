@@ -10,6 +10,7 @@ public class Sistema {
 	// Comunes para todas las queries del sistema por consistencia
 	public final static String DEFAULT_NULL_STRING = "";
 	public final static int DEFAULT_NULL_INT = -1;
+	public final static double DEFAULT_NULL_FLOAT = -1.0;
 	public final static Date DEFAULT_NULL_DATE = new Date(1);
 	
 	private int idSoftware;

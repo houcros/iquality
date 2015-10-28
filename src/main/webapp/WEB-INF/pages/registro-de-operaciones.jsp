@@ -142,10 +142,7 @@
                             <a href="javascript:;" class="fa fa-times"></a>
                          </span>
                     </header>
-                    <div class="panel-body">
-                    
-                    
-                    
+                    <div class="panel-body" id="panel-traza">
                     
                     
                     </div>
@@ -191,7 +188,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 <!-- Mi script personal -->
-<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-jobs.js"></script> --%>
+<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-registro-de-ops.js"></script>
 
 <!--dynamic table initialization -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
