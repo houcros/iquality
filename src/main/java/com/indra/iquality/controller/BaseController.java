@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.indra.iquality.dao.DependenciaDeJobDAO;
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.EmployeeDAO;
 import com.indra.iquality.dao.JobDAO;
+import com.indra.iquality.model.DependenciaDeJob;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.Employee;
 import com.indra.iquality.model.Job;
@@ -687,7 +689,6 @@ public class BaseController {
 		
 		try {
 			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion);
-			model.addAttribute("allTableItems", allTrazaDeRegistro);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -713,6 +714,45 @@ public class BaseController {
 		logger.info("[getTrazaDeOperacion] -> DONE");
 		return jsonArray;
 		
+	}
+	
+	@RequestMapping(value = "api/pases/{idEjecucion}/jobs/{idJob}/dependencias", method = RequestMethod.GET)
+	public @ResponseBody JSONArray getDependenciasDeJob(@PathVariable int idEjecucion, @PathVariable String idJob, ModelMap model) {
+		
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		
+		
+		//Get the trazaDeRegistroDAO Bean
+		//To use JdbcTemplate
+		DependenciaDeJobDAO dependenciaDeJobDAO = ctx.getBean("dependenciaDeJobDAOJDBCTemplate", DependenciaDeJobDAO.class);
+		
+		//Read trazas
+		List<DependenciaDeJob> allDependencias = null;
+		
+		try {
+			allDependencias = dependenciaDeJobDAO.getAll(idEjecucion, idJob);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		
+		// TODO Quizás esto lo puedo encapsular luego en otro método auxiliar privado o en el helper
+		// O en el translator (?)
+		
+		JSONArray jsonArray = new JSONArray();
+		for (DependenciaDeJob dependencia : allDependencias){
+		
+			logger.debug("[getDependenciasDeJob] -> " + dependencia.getIdPase() + " | " + dependencia.getEstado());			
+			jsonArray.add(dependencia);
+			
+		}
+		
+		logger.info("[getDependenciasDeJob] -> DONE");
+		return jsonArray;
 	}
 	
 }
