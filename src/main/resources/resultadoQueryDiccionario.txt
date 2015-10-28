@@ -5525,6 +5525,7 @@
 4 0 INDICADOR % Capital Share
 4 0 INDICADOR % Used Consolidated Accounts 
 4 0 INDICADOR % Voting Rights 
+4 0 INDICADOR Accouting Standard
 4 0 INDICADOR Category 
 4 0 INDICADOR Country 
 4 0 INDICADOR Fecha Inclusion Grupo 

@@ -69,9 +69,11 @@
 					<div class="col-md-6">
 						<div class="panel">
 							<div class="panel-heading">
-								Explorador de indicadores <span class="tools pull-right">
-									<a class="fa fa-chevron-down" href="javascript:;"></a> <a
-									class="fa fa-cog" href="javascript:;"></a>
+								Explorador de indicadores 
+								<span class="tools pull-right">
+									<button id="update-dictionary-button" type="button" class="btn btn-warning">Recargar diccionario</button>
+									<a class="fa fa-chevron-down" href="javascript:;"></a>
+									<a class="fa fa-cog" href="javascript:;"></a>
 								</span>
 							</div>
 							<div class="panel-body">
@@ -286,6 +288,9 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script>
 
+	<!-- Mi script personal -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario.js"></script>
+	
 	<script>
 		jQuery(document).ready(function() {
 			TreeView.init();

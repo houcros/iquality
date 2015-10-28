@@ -13,7 +13,6 @@
 <!--logo end-->
 
 <div class="nav notify-row" id="top_menu">
-	<button id="update-dictionary-button" type="button" class="btn btn-warning">Recargar diccionario</button>
     <!--  notification start -->
 <!--     <ul class="nav top-menu"> -->
 <!--         settings start -->
