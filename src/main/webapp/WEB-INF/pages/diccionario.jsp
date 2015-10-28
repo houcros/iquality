@@ -71,7 +71,10 @@
 							<div class="panel-heading">
 								Explorador de indicadores 
 								<span class="tools pull-right">
-									<button id="update-dictionary-button" type="button" class="btn btn-warning">Recargar diccionario</button>
+									<button id="update-dictionary-button" type="button" class="btn btn-info">
+										<i class="fa fa-refresh"></i>
+										" Recargar diccionario"
+									</button>
 									<a class="fa fa-chevron-down" href="javascript:;"></a>
 									<a class="fa fa-cog" href="javascript:;"></a>
 								</span>
