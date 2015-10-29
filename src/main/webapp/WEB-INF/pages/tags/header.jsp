@@ -4,7 +4,7 @@
 <div class="brand">
 
     <a href="index.html" class="logo">
-        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/logo.jpg" alt="">
+        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/logo.png" alt="">
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
