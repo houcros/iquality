@@ -443,7 +443,10 @@ public class BaseController {
 //	public @ResponseBody String getJSONTree() {
 		
 		// Si la cache no es válida la actualizo
-		if(!VALID_DICTIONARY_CACHE) auxiliaryUpdateDictionaryCache();
+		if(!VALID_DICTIONARY_CACHE){
+			auxiliaryUpdateDictionaryCache();
+			VALID_DICTIONARY_CACHE = true;
+		}
 			
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Opción 1 para leer el fichero json a un JSONObject
@@ -508,6 +511,7 @@ public class BaseController {
 	public String updateDictionaryCache(ModelMap model) {
 		
 		auxiliaryUpdateDictionaryCache();
+		VALID_DICTIONARY_CACHE = false;
 		return VIEW_INDEX;
 	}
 	
