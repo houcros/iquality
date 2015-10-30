@@ -7,7 +7,7 @@
                 <li>
                     <a href="${pageContext.servletContext.contextPath}">
                         <i class="fa fa-terminal"></i>
-                        <span>Dashboard [Counter : ${counter}]</span>
+                        <span>Inicio</span>
                     </a>
                 </li>
                 <li class="sub-menu">
@@ -17,8 +17,8 @@
                     </a>
                     <ul class="sub">
                         <li><a href="${pageContext.servletContext.contextPath}/diccionario">Diccionario</a></li>
-                        <li><a href="horizontal_menu.html">Gestión de certificaciones</a></li>
-                        <li><a href="language_switch.html">Gestión de dimensiones</a></li>
+                        <li><a href="horizontal_menu.html">Gestionar certificaciones</a></li>
+                        <li><a href="language_switch.html">Gestionar dimensiones</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -27,11 +27,11 @@
                         <span>Control procesos de carga</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="general.html">Carga de ficheros</a></li>
-                        <li><a href="buttons.html">Consulta resultados certificaciones</a></li>
-                        <li><a href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Consola control ejecución</a></li>
-                        <li><a href="slider.html">Gestión planificaciones de carga</a></li>
-                        <li><a href="tree_view.html">Parametrización de certificaciones</a></li>
+                        <li><a href="general.html">Cargar ficheros</a></li>
+                        <li><a href="buttons.html">Consultar certificaciones</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Control de ejecución</a></li>
+                        <li><a href="slider.html">Planificar cargas</a></li>
+                        <li><a href="tree_view.html">Parametrizar certificaciones</a></li>
                     </ul>
                 </li>
                 <li>
@@ -46,8 +46,8 @@
                         <span>Gestión de usuarios</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="basic_table.html">Gestión de usuarios</a></li>
-                        <li><a href="responsive_table.html">Gestión de perfiles</a></li>
+                        <li><a href="basic_table.html">Gestionar usuarios</a></li>
+                        <li><a href="responsive_table.html">Gestionar perfiles</a></li>
                     </ul>
                 </li>
                 <li>

@@ -69,6 +69,7 @@ public class BaseController {
 	private static final String VIEW_MY_INDEX = "my_index";
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_NOT_FOUND = "404";
+	private static final String VIEW_LOGIN = "login";
 	private static final String VIEW_DICCIONARIO = "diccionario";
 	private static final String VIEW_CONSOLACONTROLEJECUCION = "consola_control_ejecucion";
 	private static final String VIEW_JOBS_DE_PASE = "jobs";
@@ -288,6 +289,16 @@ public class BaseController {
 
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_NOT_FOUND;
+
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(ModelMap model) {
+
+		logger.debug("[login] counter : {}", counter);
+
+		// Spring uses InternalResourceViewResolver and return back index.jsp
+		return VIEW_LOGIN;
 
 	}
 	
