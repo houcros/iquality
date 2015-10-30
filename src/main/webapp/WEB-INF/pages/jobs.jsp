@@ -155,6 +155,12 @@
 <!-- Mi script personal -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-jobs.js"></script>
 
+<!-- Cookies -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+
 <!--dynamic table initialization -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
 

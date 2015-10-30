@@ -44,7 +44,7 @@
 <c:import url="/WEB-INF/pages/tags/header.jsp"/>
 
 <!-- <header class="header fixed-top clearfix"> -->
-<!-- <!--logo start--> -->
+<!-- <!--logo start-->
 <!-- <div class="brand"> -->
 
 <!--     <a href="index.html" class="logo"> -->
@@ -54,7 +54,7 @@
 <!--         <div class="fa fa-bars"></div> -->
 <!--     </div> -->
 <!-- </div> -->
-<!-- <!--logo end--> -->
+<!-- <!--logo end-->
 
 <!-- <div class="nav notify-row" id="top_menu"> -->
 <!--      notification start -->
@@ -263,11 +263,11 @@
 <!--     search & user info end -->
 <!-- </div> -->
 <!-- </header> -->
-<!-- <!--header end--> -->
+<!-- <!--header end-->
 
 <c:import url="/WEB-INF/pages/tags/sidebar.jsp"/>
 
-<!-- <!--sidebar start --> -->
+<!-- <!--sidebar start -->
 <!-- <aside> -->
 <!--     <div id="sidebar" class="nav-collapse"> -->
 <!--         sidebar menu start -->
@@ -329,7 +329,7 @@
 <!--         sidebar menu end -->
 <!--     </div> -->
 <!-- </aside> -->
-<!-- <!--sidebar end--> -->
+<!-- <!--sidebar end-->
 <!--main content start-->
 <section id="main-content">
 <section class="wrapper">
@@ -1295,5 +1295,13 @@
 <!--common script init for all pages-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 <!--script for this page-->
+	
+<!-- Cookies -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+
+
 </body>
 </html>
