@@ -24,7 +24,7 @@
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-tachometer"></i>
-                        <span>Control procesos de carga</span>
+                        <span>Control de procesos</span>
                     </a>
                     <ul class="sub">
                         <li><a href="general.html">Cargar ficheros</a></li>

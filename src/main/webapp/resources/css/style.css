@@ -10,11 +10,18 @@ html {
 }
 body {
     color:#767676;
-    background:#f1f2f7;
+/*     background:#f1f2f7; */
+	/*pink*/
+/*     background:#FFE3CC; */
+/*     background:#FFCDA5; */
+	/*blue*/
+/*     background:#B5E2E0; */
+    background:#E1F6F5;
+/*     background:#FDFFFF; */
     font-family:'Open Sans',sans-serif;
     padding:0px !important;
     margin:0px !important;
-    font-size:13px;
+    font-size:125%;
     text-rendering:optimizeLegibility;
 }
 ul, .list-unstyled {
@@ -5759,4 +5766,40 @@ right: -1px;
 
 .sortable{
     min-height: 400px;;
+}
+
+/*==== Mis custom ====*/
+
+ul.sidebar-menu li a{
+	font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+	font-size: 110%;
+}
+
+#dict-ficha-definicion{
+	background-color: transparent;
+	box-shadow: 4px 4px 10px #777777;
+}
+
+#dict-explorador-indicadores{
+	box-shadow: 4px 4px 10px #777777;
+}
+
+#dict-ficha-definicion > .panel-heading, #dict-explorador-indicadores > .panel-heading{
+/*     background:#FFE3CC; */
+    background:#FFA900;
+/*     background:#FFC148; */
+color: white;
+text-align:center;
+font-family:Verdana, Geneva, sans-serif;
+font-size:110%;
+padding:0.7em;
+}
+
+#dict-ficha-definicion section.panel{
+	box-shadow: -7px 7px 10px #777777;
+}
+
+#update-dictionary-button{
+	display: inline-block;
+	padding: 4px 8px;
 }

@@ -70,16 +70,14 @@
 				<!-- BEGIN PAGE CONTENT-->
 				<div class="column">
 					<div class="col-md-6">
-						<div class="panel">
+						<div class="panel" id="dict-explorador-indicadores">
 							<div class="panel-heading">
 								Explorador de indicadores 
-								<span class="tools pull-right">
+								<span class="pull-right">
 									<button id="update-dictionary-button" type="button" class="btn btn-info">
 										<i class="fa fa-refresh"></i>
-										Recargar diccionario
+										Recargar
 									</button>
-									<a class="fa fa-chevron-down" href="javascript:;"></a>
-									<a class="fa fa-cog" href="javascript:;"></a>
 								</span>
 							</div>
 							<div class="panel-body">
@@ -104,7 +102,7 @@
 				</div>
 				<div class="column">
 					<div class="col-md-6">
-						<div class="panel">
+						<div class="panel" id="dict-ficha-definicion">
 							<div class="panel-heading">
 								Ficha de definici&oacute;n <span class="tools pull-right">
 									<a class="fa fa-chevron-down" href="javascript:;"></a>
