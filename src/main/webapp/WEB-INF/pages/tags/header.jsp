@@ -3,8 +3,8 @@
 <!--logo start-->
 <div class="brand">
 
-    <a href="index.html" class="logo">
-        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/logo.png" alt="">
+    <a href="${pageContext.servletContext.contextPath}/" class="logo">
+        <img id="logo" src="${pageContext.servletContext.contextPath}/resources/images/logo.png" alt="iQuality">
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>

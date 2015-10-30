@@ -352,6 +352,11 @@ a.logo {
 #logo{
 	max-width:100%;
 	max-height:100%;
+	display: inline-block;
+	padding-top:12px;
+	padding-bottom: 12px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 a.logo:hover,a.logo:focus {
     text-decoration:none;
