@@ -71,6 +71,7 @@ public class BaseController {
 	private static final String VIEW_NOT_FOUND = "404";
 	private static final String VIEW_LOGIN = "login";
 	private static final String VIEW_DICCIONARIO = "diccionario";
+	private static final String VIEW_DICCIONARIO_2 = "diccionario2";
 	private static final String VIEW_CONSOLACONTROLEJECUCION = "consola_control_ejecucion";
 	private static final String VIEW_JOBS_DE_PASE = "jobs";
 	private static final String VIEW_REGISTRO_DE_JOB = "registro-de-operaciones";
@@ -768,6 +769,12 @@ public class BaseController {
 		
 		logger.info("[getDependenciasDeJob] -> DONE");
 		return jsonArray;
+	}
+	
+	@RequestMapping(value = "/diccionario-2", method = RequestMethod.GET)
+	public String dict2(ModelMap model){
+		logger.debug("[diccionario-2] counter : {}", counter);
+		return VIEW_DICCIONARIO_2;
 	}
 	
 }

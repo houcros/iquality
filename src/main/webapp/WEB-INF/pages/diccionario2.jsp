@@ -40,6 +40,10 @@
 	href="${pageContext.servletContext.contextPath}/resources/css/style-responsive.css"
 	rel="stylesheet" />
 
+<!-- jsTree themes -->
+<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/jstree/default/style.min.css" />
+
+
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -72,7 +76,10 @@
 					<div class="col-md-6">
 						<div class="panel" id="dict-explorador-indicadores">
 							<div class="panel-heading">
-								Explorador de indicadores 
+								Explorador de indicadores
+								<span>
+								<input id="plugins4_q" type="text" class="form-control search" placeholder=" Search">
+								</span>
 								<span class="pull-right">
 									<button id="update-dictionary-button" type="button" class="btn btn-info">
 										<i class="fa fa-refresh"></i>
@@ -81,19 +88,16 @@
 								</span>
 							</div>
 							<div class="panel-body">
-								<div id="FlatTree1" class="tree tree-solid-line">
-									<div class="tree-folder" style="display: none;">
-										<div class="tree-folder-header">
-											<i class="fa fa-folder"></i>
-											<div class="tree-folder-name"></div>
-										</div>
-										<div class="tree-folder-content"></div>
-										<div class="tree-loader" style="display: none"></div>
-									</div>
-									<div class="tree-item" style="display: none;">
-										<i class="tree-dot"></i>
-										<div class="tree-item-name"></div>
-									</div>
+								<div id="jstree" class="">
+									<ul>
+										<li>Root node 1
+											<ul>
+												<li id="child_node_1">Child node 1</li>
+												<li>Child node 2</li>
+											</ul>
+										</li>
+										<li>Root node 2</li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -387,13 +391,16 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script>
 
 	<!-- Mi script personal -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario-2.js"></script>
 	
 <!-- Cookies -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+
+<!-- jsTree -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/jstree/jstree.js"></script>
 
 	<script>
 		jQuery(document).ready(function() {
