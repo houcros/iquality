@@ -2944,7 +2944,10 @@ ul.amounts li {
     padding:20px 15px !important;
 }
 .tab-bg-dark-navy-blue {
-    background:#e0e1e7 !important;
+    background:#1FB5AD !important;
+    color: white;
+/*     font-weight:bold; */
+	font-size:100%;
     border-radius:5px 5px 0 0;
     -webkit-border-radius:5px 5px 0 0;
     border-bottom:none;
@@ -2952,15 +2955,18 @@ ul.amounts li {
 
 .tab-bg-dark-navy-blue li a:hover, .tab-bg-dark-navy-blue li.active a {
     border-radius: 0 !important;
-    background: #fff !important;
-    color: #1FB5AD !important;
+    border-style: groove;
+    background: #FFFAFA !important;
+    color: #000 !important;
 }
 .panel-heading .nav>li>a,.panel-heading .nav>li.active>a,.panel-heading .nav>li.active>a:hover,.panel-heading .nav>li.active>a:focus {
-    border-width:0;
+    border-width:0.15em;
     border-radius:0;
 }
 .panel-heading .nav>li>a {
-    color:#898989;
+/*     color:#898989; */
+color:white;
+font-family:Verdana, Geneva, sans-serif;
 }
 .panel-heading .nav>li.active>a,.panel-heading .nav>li>a:hover {
     color:#1fb5ad;
@@ -5768,15 +5774,18 @@ right: -1px;
     min-height: 400px;;
 }
 
+
+
+
 /*==== Mis custom ====*/
 
 ul.sidebar-menu li a{
 	font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
-	font-size: 110%;
+	font-size: 115%;
 }
 
 #dict-ficha-definicion{
-	background-color: transparent;
+	background-color: white;
 	box-shadow: 4px 4px 10px #777777;
 }
 
@@ -5790,16 +5799,34 @@ ul.sidebar-menu li a{
 /*     background:#FFC148; */
 color: white;
 text-align:center;
+font-weight:bold;
 font-family:Verdana, Geneva, sans-serif;
+/* font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif; */
 font-size:110%;
 padding:0.7em;
 }
 
 #dict-ficha-definicion section.panel{
-	box-shadow: -7px 7px 10px #777777;
+	box-shadow: -1px -1px 6px #666666;
 }
 
 #update-dictionary-button{
 	display: inline-block;
 	padding: 4px 8px;
+}
+
+#content-tabs-dicha-definicion{
+	background-color: #FFFAFA;
+}
+
+#jstree{
+	font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+	font-size:100%;
+	max-width: 290px;
+}
+
+#jstree a{
+	white-space: normal !important;
+    height: auto;
+    padding: 1px 2px;
 }

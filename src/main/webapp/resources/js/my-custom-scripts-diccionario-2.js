@@ -24,11 +24,12 @@ $(document).ready(function () {
 	$(function () {
 		$.ajax({
 			url: "api/jsonTree-para-jsTree",
-			async: false,
+//			async: false,
 			success: function( data ) {
-				console.log(data);
 				$('#jstree').jstree({ 'core': {
-					'data': data.children
+					'data': data.children,
+//					'themes' : 'default,'
+					'animation': 10
 				},
 				"plugins" : [
 				             "search"
@@ -48,11 +49,11 @@ $(document).ready(function () {
 					console.log(data.selected);
 				});
 				// 8 interact with the tree - either way is OK
-				$('button').on('click', function () {
-					$('#jstree').jstree(true).select_node('child_node_1');
-					$('#jstree').jstree('select_node', 'child_node_1');
-					$.jstree.reference('#jstree').select_node('child_node_1');
-				});
+//				$('button').on('click', function () {
+//					$('#jstree').jstree(true).select_node('child_node_1');
+//					$('#jstree').jstree('select_node', 'child_node_1');
+//					$.jstree.reference('#jstree').select_node('child_node_1');
+//				});
 			}
 		});
 	});

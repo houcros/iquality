@@ -73,7 +73,7 @@
 
 				<!-- BEGIN PAGE CONTENT-->
 				<div class="column">
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="panel" id="dict-explorador-indicadores">
 							<div class="panel-heading">
 								Explorador de indicadores
@@ -105,7 +105,7 @@
 
 				</div>
 				<div class="column">
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<div class="panel" id="dict-ficha-definicion">
 							<div class="panel-heading">
 								Ficha de definici&oacute;n <span class="tools pull-right">
@@ -126,7 +126,7 @@
 													certificaci&oacute;n</a></li>
 										</ul>
 									</header>
-									<div class="panel-body">
+									<div id = "content-tabs-dicha-definicion" class="panel-body">
 										<div class="tab-content">
 											<div id="tab-datos-basicos" class="tab-pane active">
 												<!-- page start-->
