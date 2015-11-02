@@ -5412,9 +5412,19 @@
 4 0 INDICADOR Derivatives buyer
 4 0 INDICADOR ID Code
 4 0 INDICADOR ID code Buyer
+4 0 INDICADOR ID code of instrument
 4 0 INDICADOR ID code Seller 
 4 0 INDICADOR ID Code Type
+4 0 INDICADOR ID code type of the Asset/Liability underlying the derivative
+4 0 INDICADOR ID code type of the instrument
+4 0 INDICADOR ID code type of the investor/buyer
+4 0 INDICADOR ID code type of the issuer/seller
+4 0 INDICADOR ID of intragroup transaction
+4 0 INDICADOR Identification code of investor/buyer
+4 0 INDICADOR Identification code of the issuer/seller
+4 0 INDICADOR Investor/ Buyer
 4 0 INDICADOR Investor/Buyer/Payer name
+4 0 INDICADOR Issuer/ Seller name
 4 0 INDICADOR Issuer/ Seller/ Receiver name
 4 0 INDICADOR Maturity date
 4 0 INDICADOR Trade date
@@ -5431,6 +5441,7 @@
 4 0 LINEA Swap received currency 
 4 0 LINEA Swap received interest 
 4 0 LINEA S2 Collateral reporting date 
+4 0 LINEA Value of collateral
 3 -1 ENTIDAD Entidad QRT Intragrupo Internal Cost
 4 0 INDICADOR Currency (ISO code)
 4 0 INDICADOR Effective Date

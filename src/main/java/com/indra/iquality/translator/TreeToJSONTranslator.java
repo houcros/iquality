@@ -52,12 +52,42 @@ public class TreeToJSONTranslator {
 		return jsonTree;
 	}
 	
+	public JSONObject createJSONFromTreeForjsTree(GenericTreeNode<DictionaryConcept> root){
+		
+		JSONObject jsonTree = new JSONObject();
+		
+		jsonTree.put("text", HtmlUtils.htmlEscape(root.getData().getConcept()));
+		
+		JSONArray children = new JSONArray();
+
+		for (GenericTreeNode<DictionaryConcept> child : root.getChildren()){
+			children.add(createJSONFromTreeForjsTree(child));
+		}
+
+		jsonTree.put("children", children);
+		
+		return jsonTree;
+		
+	}
+	
 	public String createPrettyJSONStringFromTree(GenericTreeNode<DictionaryConcept> root){
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 //		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 		JsonParser jp = new JsonParser();
 		JsonElement je = jp.parse(createJSONFromTree(root).toString());
+		String prettyJsonString = gson.toJson(je);
+		
+		return prettyJsonString;
+		
+	}
+	
+	public String createPrettyJSONStringFromTreeForjsTree(GenericTreeNode<DictionaryConcept> root){
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//		Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+		JsonParser jp = new JsonParser();
+		JsonElement je = jp.parse(createJSONFromTreeForjsTree(root).toString());
 		String prettyJsonString = gson.toJson(je);
 		
 		return prettyJsonString;
