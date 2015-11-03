@@ -11,21 +11,21 @@ $(document).ready(function() {
     var nCloneTd = document.createElement( 'td' );
     // TODO path harcodeado, tiene que haber una manera mejor de hacer esto 
     // Montar mi API que me devuelva el path ???
-    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/details_open.png">';
+    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/lines-icon.png" style="cursor:pointer;">';
     nCloneTd.className = "center";
 
-    $('#hidden-table-jobs thead tr').each( function () {
+    $('#hidden-table-regops thead tr').each( function () {
         this.insertBefore( nCloneTh, this.childNodes[0] );
     } );
 
-    $('#hidden-table-jobs tbody tr').each( function () {
+    $('#hidden-table-regops tbody tr').each( function () {
         this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
     } );
 
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
-    var oTable = $('#hidden-table-jobs').dataTable( {
+    var oTable = $('#hidden-table-regops').dataTable( {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] }
         ],
@@ -52,18 +52,18 @@ $(document).ready(function() {
     	return sOut;
     }
     
-    $(document).on('click','#hidden-table-jobs tbody td img',function () {
+    $(document).on('click','#hidden-table-regops tbody td img',function () {
         var nTr = $(this).parents('tr')[0];
         if ( oTable.fnIsOpen(nTr) )
         {
             /* This row is already open - close it */
-            this.src = "/iQuality/resources/images/details_open.png";
+            this.src = "/iQuality/resources/images/lines-icon.png";
             oTable.fnClose( nTr );
         }
         else
         {
             /* Open this row */
-            this.src = "/iQuality/resources/images/details_close.png";
+            this.src = "/iQuality/resources/images/vertical-lines-icon.png";
             oTable.fnOpen( nTr, fnFormatDetailsCustom(oTable, nTr), 'details' );
         }
     });

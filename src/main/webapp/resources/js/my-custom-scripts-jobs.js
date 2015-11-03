@@ -11,7 +11,7 @@ $(document).ready(function() {
     var nCloneTd = document.createElement( 'td' );
     // TODO path harcodeado, tiene que haber una manera mejor de hacer esto 
 //    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/details_open.png">';
-    nCloneTd.innerHTML = '<span><img src="/iQuality/resources/images/details_open.png"><a href="javascript:;" id="toggle-dependencias" class="fa fa-archive"></a></span>';
+    nCloneTd.innerHTML = '<span><img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;float:left;" class="show-regops"><img src="/iQuality/resources/images/lines-icon.png" style="cursor:pointer;float:right;" class="toggle-dependencias"></span>';
     nCloneTd.className = "center";
 
     $('#hidden-table-jobs thead tr').each( function () {
@@ -66,7 +66,7 @@ $(document).ready(function() {
         return sOut;
     }
     
-    $(document).on('click','#hidden-table-jobs tbody td img',function () {
+    $(document).on('click','.show-regops',function () {
         var nTr = $(this).parents('tr')[0];
         var aData = oTable.fnGetData( nTr );
         
@@ -77,18 +77,18 @@ $(document).ready(function() {
     } );
     
     
-    $(document).on('click','#toggle-dependencias',function () {
+    $(document).on('click','.toggle-dependencias',function () {
         var nTr = $(this).parents('tr')[0];
         if ( oTable.fnIsOpen(nTr) )
         {
             /* This row is already open - close it */
-            this.src = "/iQuality/resources/images/details_open.png";
+            this.src = "/iQuality/resources/images/lines-icon.png";
             oTable.fnClose( nTr );
         }
         else
         {
             /* Open this row */
-            this.src = "/iQuality/resources/images/details_close.png";
+            this.src = "/iQuality/resources/images/vertical-lines-icon.png";
             oTable.fnOpen( nTr, fnFormatDetailsCustom(oTable, nTr), 'details' );
         }
     } );
