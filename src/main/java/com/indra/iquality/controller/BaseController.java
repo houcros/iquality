@@ -592,11 +592,10 @@ public class BaseController {
 		
 		new Thread(new Runnable(){
 			public void run(){
-				System.out.println(Thread.currentThread().getName());
 				auxiliaryUpdateDictionaryCache();
 				VALID_DICTIONARY_CACHE = false;
 			}
-		}, "updateDictCacheThread");
+		}, "updateDictCacheThread").start();
 
 		return VIEW_INDEX;
 	}
@@ -651,7 +650,6 @@ public class BaseController {
 		try {
 			Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
 			logger.info("[auxiliaryUpdateDictionaryCache] : Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
-			System.out.println("[auxiliaryUpdateDictionaryCache] [System] : Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
 		} catch (IOException e) {
 			// Useful error handling here
 		}

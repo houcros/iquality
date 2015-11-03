@@ -77,17 +77,11 @@
 						<div class="panel" id="dict-explorador-indicadores">
 							<div class="panel-heading">
 								Explorador de indicadores
-								<span>
-								<input id="plugins4_q" type="text" class="form-control search" placeholder=" Search">
-								</span>
-								<span class="pull-right">
-									<button id="update-dictionary-button" type="button" class="btn btn-info">
-										<i class="fa fa-refresh"></i>
-										Recargar
-									</button>
-								</span>
 							</div>
 							<div class="panel-body">
+								<div class="mi-search-bar">
+									<input id="plugins4_q" type="text" class="form-control search" placeholder=" Search">
+								</div>
 								<div id="jstree" class="">
 <!-- 									<ul> -->
 <!-- 										<li>Root node 1 -->
