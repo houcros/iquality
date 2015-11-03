@@ -56,13 +56,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
-                    <header class="panel-heading">
+                    <header class="panel-heading mi-panel-heading">
                         Registro de operaciones del job ${idJob} del pase ${idEjecucion}
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
                     </header>
                     <div class="panel-body">
                     <div class="adv-table">
@@ -131,24 +126,24 @@
         <!-- page end-->
         
                 <!-- traza start-->
-        <div class="row">
-            <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Traza
-                        <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                    </header>
-                    <div class="panel-body" id="panel-traza">
+<!--         <div class="row"> -->
+<!--             <div class="col-sm-12"> -->
+<!--                 <section class="panel"> -->
+<!--                     <header class="panel-heading"> -->
+<!--                         Traza -->
+<!--                         <span class="tools pull-right"> -->
+<!--                             <a href="javascript:;" class="fa fa-chevron-down"></a> -->
+<!--                             <a href="javascript:;" class="fa fa-cog"></a> -->
+<!--                             <a href="javascript:;" class="fa fa-times"></a> -->
+<!--                          </span> -->
+<!--                     </header> -->
+<!--                     <div class="panel-body" id="panel-traza"> -->
                     
                     
-                    </div>
-                </section>
-            </div>
-         </div>
+<!--                     </div> -->
+<!--                 </section> -->
+<!--             </div> -->
+<!--          </div> -->
          <!-- traza end-->   
          
          
@@ -171,15 +166,6 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.scrollTo.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
-<!--Easy Pie Chart-->
-<script src="${pageContext.servletContext.contextPath}/resources/js/easypiechart/jquery.easypiechart.js"></script>
-<!--Sparkline Chart-->
-<script src="${pageContext.servletContext.contextPath}/resources/js/sparkline/jquery.sparkline.js"></script>
-<!--jQuery Flot Chart-->
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.resize.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
 <!--dynamic table-->
 <script type="text/javascript" language="javascript" src="${pageContext.servletContext.contextPath}/resources/js/advanced-datatable/js/jquery.dataTables.js"></script>

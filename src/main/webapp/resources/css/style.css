@@ -5793,7 +5793,7 @@ ul.sidebar-menu li a{
 	box-shadow: 4px 4px 10px #777777;
 }
 
-#dict-ficha-definicion > .panel-heading, #dict-explorador-indicadores > .panel-heading{
+.mi-panel-heading{
 /*     background:#FFE3CC; */
     background:#FFA900;
 /*     background:#FFC148; */

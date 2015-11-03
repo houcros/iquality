@@ -77,7 +77,7 @@
 				<div class="column">
 					<div class="col-md-4">
 						<div class="panel" id="dict-explorador-indicadores">
-							<div class="panel-heading">Explorador de indicadores</div>
+							<div class="panel-heading mi-panel-heading">Explorador de indicadores</div>
 							<div class="panel-body">
 								<div class="mi-search-bar">
 									<input id="plugins4_q" type="text" class="form-control search"
@@ -102,7 +102,7 @@
 				<div class="column">
 					<div class="col-md-8">
 						<div class="panel" id="dict-ficha-definicion">
-							<div class="panel-heading">
+							<div class="panel-heading mi-panel-heading">
 								Ficha de definici&oacute;n <span class="tools pull-right">
 									<a class="fa fa-chevron-down" href="javascript:;"
 									style="color: white"></a>
