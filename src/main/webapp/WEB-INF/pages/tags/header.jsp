@@ -199,8 +199,8 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="${pageContext.servletContext.contextPath}/resources/images/avatar1_small.jpg">
-                <span class="username">John Doe</span>
+                <img alt="" src="${pageContext.servletContext.contextPath}/resources/images/person-icon.png">
+                <span class="username">An&oacute;nimo</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
