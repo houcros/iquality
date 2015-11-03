@@ -57,19 +57,19 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading mi-panel-heading">
-                        Registro de operaciones del job ${idJob} del pase ${idEjecucion}
+                        Registro de operaciones del job <span style="color:#24A29D">${idJob}</span> del pase <span style="color:#24A29D">${idEjecucion}</span>
                     </header>
                     <div class="panel-body">
                     <div class="adv-table">
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-regops">
                     <thead>
                     <tr>
-                        <th>Id Operaci&oacute;n</th>
-                        <th class="hidden-phone">Fecha inicio</th>
+                        <th>ID</th>
+                        <th class="hidden-phone">Inicio</th>
                         <th class="hidden-phone">Duraci&oacute;n (s)</th>
                         <th class="hidden-phone">Fecha datos</th>
                         <th>Operaci&oacute;n</th>
-                        <th>Tipo de operaci&oacute;n</th>
+                        <th>Tipo</th>
                         <th class="hidden-phone">Estado</th>
                         <th class="hidden-phone">Escenario</th>
                         <th class="hidden-phone">Filas Actualizadas</th>

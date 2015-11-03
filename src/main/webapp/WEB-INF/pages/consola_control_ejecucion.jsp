@@ -69,11 +69,11 @@
                         <th>Pase</th>
                         <th class="hidden-phone">Estado</th>
                         <th class="hidden-phone">Fecha datos</th>
-                        <th class="hidden-phone">Escenario</th>
+<!--                         <th class="hidden-phone">Escenario</th> -->
                         <th>Fecha inicio</th>
                         <th class="hidden-phone">Fecha finalización</th>
                         <th class="hidden-phone">Fecha planificada</th>
-                        <th class="hidden-phone">Software</th>
+<!--                         <th class="hidden-phone">Software</th> -->
                         <th class="hidden-phone">Duraci&oacute;n</th>
                     </tr>
                     </thead>
@@ -102,11 +102,11 @@
 								</c:choose>
 					        </td>
 					        <td class="center hidden-phone">${item.fechaDatos}</td>
-					        <td class="center hidden-phone">${item.escenario}</td>
+<%-- 					        <td class="center hidden-phone">${item.escenario}</td> --%>
 					        <td class="center hidden-phone">${item.fechaInicio}</td>  
 					        <td class="center hidden-phone">${item.fechaFin}</td>
 					        <td class="center hidden-phone">${item.fechaPlanificada}</td>
-					        <td class="center hidden-phone">${item.software}</td>  
+<%-- 					        <td class="center hidden-phone">${item.software}</td>   --%>
 					        <td class="center hidden-phone">${item.duracion}</td>   
 					    </tr>
 					</c:forEach>

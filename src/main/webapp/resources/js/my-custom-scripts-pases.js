@@ -9,7 +9,7 @@ $(document).ready(function() {
      */
     var nCloneTh = document.createElement( 'th' );
     var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="resources/images/details_open.png">';
+    nCloneTd.innerHTML = '<img src="resources/images/details_open.png" style="cursor:pointer;">';
     nCloneTd.className = "center";
 
     $('#hidden-table-pases thead tr').each( function () {
@@ -35,4 +35,9 @@ $(document).ready(function() {
         var aData = oTable.fnGetData( nTr );
         window.location = "pases/" + aData[1] + "/jobs";
     } );
+    
+    
+    $('<div><label>Escenario&nbsp;<select class="form-control"><option value="1" selected="selected">1</option></select></label></div>').insertAfter($('#hidden-table-pases_length'));
+    $('<div><label>Software&nbsp;<select class="form-control"><option value="Versi&oacute;n inicial" selected="selected">Versi&oacute;n inicial</option></select></label></div>').insertAfter($('#hidden-table-pases_length'));
+    
 } );

@@ -57,7 +57,7 @@
             <div class="col-sm-12">
                 <section class="panel">
                     <header class="panel-heading mi-panel-heading">
-                        Registro de jobs del pase ${idEjecucion}
+                        Registro de jobs del pase <span style="color:#24A29D">${idEjecucion}</span>
                     </header>
                     <div class="panel-body">
                     <div class="adv-table">
