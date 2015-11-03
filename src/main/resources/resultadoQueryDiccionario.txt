@@ -5384,13 +5384,22 @@
 4 0 LINEA Duración pasivo, No Vida
 4 0 LINEA Duración pasivo, Vida
 3 -1 ENTIDAD Entidad QRT Intragrupo Debtasset 
+4 0 INDICADOR Amount of dividends/interests/coupon and other payments made during reporting period
 4 0 INDICADOR Currency (ISO code)
+4 0 INDICADOR Currency of transaction
 4 0 INDICADOR ID Code
 4 0 INDICADOR ID code Buyer
 4 0 INDICADOR ID code Seller 
 4 0 INDICADOR ID Code Type
+4 0 INDICADOR ID code type of the investor/lender
+4 0 INDICADOR ID code type of the issuer/borrower
+4 0 INDICADOR ID of intragroup transaction
+4 0 INDICADOR Identification code for investor/lender
+4 0 INDICADOR Identification code for issuer/borrower
 4 0 INDICADOR Investor/Buyer/Payer name
+4 0 INDICADOR Investor/lender name
 4 0 INDICADOR Issuer/ Seller/ Receiver name
+4 0 INDICADOR Issuer/Borrower name
 4 0 INDICADOR Maturity date
 4 0 INDICADOR Transaction Date 
 4 0 INDICADOR Transaction type
@@ -5405,6 +5414,7 @@
 4 0 LINEA Contractual Transaction
 4 0 LINEA Coupon Interest 
 4 0 LINEA S2 Collateral Reporting Date
+4 0 LINEA Value of collateral
 3 -1 ENTIDAD Entidad QRT Intragrupo Derivates
 4 0 INDICADOR Counterparty name 
 4 0 INDICADOR Currency (ISO code)

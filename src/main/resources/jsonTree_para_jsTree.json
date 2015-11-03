@@ -23356,7 +23356,15 @@
               "children": [
                 {
                   "children": [],
+                  "text": "Amount of dividends/interests/coupon and other payments made during reporting period"
+                },
+                {
+                  "children": [],
                   "text": "Currency (ISO code)"
+                },
+                {
+                  "children": [],
+                  "text": "Currency of transaction"
                 },
                 {
                   "children": [],
@@ -23376,11 +23384,39 @@
                 },
                 {
                   "children": [],
+                  "text": "ID code type of the investor/lender"
+                },
+                {
+                  "children": [],
+                  "text": "ID code type of the issuer/borrower"
+                },
+                {
+                  "children": [],
+                  "text": "ID of intragroup transaction"
+                },
+                {
+                  "children": [],
+                  "text": "Identification code for investor/lender"
+                },
+                {
+                  "children": [],
+                  "text": "Identification code for issuer/borrower"
+                },
+                {
+                  "children": [],
                   "text": "Investor/Buyer/Payer name"
                 },
                 {
                   "children": [],
+                  "text": "Investor/lender name"
+                },
+                {
+                  "children": [],
                   "text": "Issuer/ Seller/ Receiver name"
+                },
+                {
+                  "children": [],
+                  "text": "Issuer/Borrower name"
                 },
                 {
                   "children": [],
@@ -23441,6 +23477,10 @@
                 {
                   "children": [],
                   "text": "S2 Collateral Reporting Date"
+                },
+                {
+                  "children": [],
+                  "text": "Value of collateral"
                 }
               ],
               "text": "Entidad QRT Intragrupo Debtasset "
