@@ -5840,3 +5840,16 @@ padding:0.7em;
 	margin-left:auto; margin-right:0;
 	color:black;
 }
+
+.tarjetita-heading{
+	font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+	font-size:94%;
+	padding:4px;
+}
+
+.tarjetita-body{
+	padding:10px;
+	text-align:justify;
+	border-width: 1px 0px 1px 0px;
+	border-style:solid;
+}
