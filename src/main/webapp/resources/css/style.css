@@ -5853,3 +5853,15 @@ padding:0.7em;
 	border-width: 1px 0px 1px 0px;
 	border-style:solid;
 }
+
+#hidden-table-pases_length, #hidden-table-pases_software, #hidden-table-pases_escenario{
+	width: 15%;
+}
+
+/* #hidden-table-pases_software label select{ */
+/* 	width:100px; */
+/* } */
+
+#hidden-table-jobs thead tr th div, #hidden-table-regops thead tr th div{
+	text-align:center;
+}

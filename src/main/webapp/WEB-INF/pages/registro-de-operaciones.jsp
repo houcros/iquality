@@ -65,18 +65,18 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th class="hidden-phone">Inicio</th>
-                        <th class="hidden-phone">Duraci&oacute;n (s)</th>
-                        <th class="hidden-phone">Fecha datos</th>
-                        <th>Operaci&oacute;n</th>
-                        <th>Tipo</th>
-                        <th class="hidden-phone">Estado</th>
-                        <th class="hidden-phone">Escenario</th>
-                        <th class="hidden-phone">Filas Actualizadas</th>
-                        <th class="hidden-phone">Filas Cargadas</th>
-                        <th class="hidden-phone">Filas le&iacute;das</th>
-                        <th class="hidden-phone">Filas Rechazadas</th>
-                        <th class="hidden-phone">Filas Descartadas</th>
+                        <th><div style="width:70px;">Inicio</div></th>
+                        <th><div style="width:80px;">Duraci&oacute;n (s)</div></th>
+                        <th><div style="width:80px;">Fecha datos</div></th>
+                        <th><div>Operaci&oacute;n</th>
+                        <th><div>Tipo</th>
+                        <th><div>Estado</div></th>
+<!--                         <th class="hidden-phone">Escenario</th> -->
+                        <th><div>Filas Actualizadas</div></th>
+                        <th><div>Filas Cargadas</div></th>
+                        <th><div>Filas le&iacute;das</div></th>
+                        <th><div>Filas Rechazadas</div></th>
+                        <th><div>Filas Descartadas</div></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -107,7 +107,7 @@
 								    </c:otherwise>
 								</c:choose>
 					        </td>
-					        <td class="center hidden-phone">${item.descripcionEscenario}</td>   
+<%-- 					        <td class="center hidden-phone">${item.descripcionEscenario}</td>    --%>
 					        <td class="center hidden-phone">${item.fcFilasCargadas}</td>   
 					        <td class="center hidden-phone">${item.fcFilasActualizadas}</td>   
 					        <td class="center hidden-phone">${item.fcFilasLeidas}</td>   

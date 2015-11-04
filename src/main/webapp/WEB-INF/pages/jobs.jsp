@@ -64,13 +64,13 @@
                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-jobs">
                     <thead>
                     <tr>
-                        <th>Job</th>
-                        <th class="hidden-phone">Estado</th>
-                        <th class="hidden-phone">Fecha inicio</th>
-                        <th class="hidden-phone">Fecha fin</th>
-                        <th>Punto de control</th>
-                        <th class="hidden-phone">Fecha OK punto de control</th>
-                        <th class="hidden-phone">Duraci&oacute;n</th>
+                        <th><div>Job</div></th>
+                        <th><div>Estado</div></th>
+                        <th><div>Fecha inicio</div></th>
+                        <th><div>Fecha fin</div></th>
+                        <th><div>Punto de control</div></th>
+                        <th><div>Fecha OK punto de control</div></th>
+                        <th><div>Duraci&oacute;n</div></th>
                     </tr>
                     </thead>
                     <tbody>

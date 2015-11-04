@@ -37,7 +37,23 @@ $(document).ready(function() {
     } );
     
     
-    $('<div><label>Escenario&nbsp;<select class="form-control"><option value="1" selected="selected">1</option></select></label></div>').insertAfter($('#hidden-table-pases_length'));
-    $('<div><label>Software&nbsp;<select class="form-control"><option value="Versi&oacute;n inicial" selected="selected">Versi&oacute;n inicial</option></select></label></div>').insertAfter($('#hidden-table-pases_length'));
+    $('<div class="span6"><div id="hidden-table-pases_escenario" class="dataTables_length"><label><select class="form-control"><option value="1" selected="selected">1</option></select>&nbsp;Escenario</label></div></div>').insertAfter($('#hidden-table-pases_length').parent());
+    $('<div class="span6"><div id="hidden-table-pases_software" class="dataTables_length"><label><select class="form-control"><option value="Versi&oacute;n inicial" selected="selected">Inicial</option></select>&nbsp;Software</label></div></div>').insertAfter($('#hidden-table-pases_length').parent());
+//	$( '#hidden-table-pases_filter:first-child' ).find( 'input' ).first().val( '373' );
+    
+    var url = window.location.href;
+    var search = new URI(url).query();
+    var searchParam = search.split('=')[1];
+    if(searchParam !== ""){
+    	$( '#hidden-table-pases_filter:first-child' ).find( 'input' ).first().val( searchParam );
+    	$( '#hidden-table-pases_filter:first-child' ).find( 'input' ).first().attr('id', 'mi-search-input')
+//    	$( '#hidden-table-pases_filter:first-child' ).find( 'input' ).first().trigger($.Event('keypress', {which : 13}));
+        $( '#mi-search-input' ).focus();
+//    	$( '#mi-search-input' ).trigger($.Event('keypress', {which : 13}));
+    	var e = $.Event("keypress");
+    	e.which = 13; //choose the one you want
+//    	e.keyCode = 13;
+    	$( '#mi-search-input' ).trigger(e);
+    }
     
 } );

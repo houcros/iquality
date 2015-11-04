@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
-    <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.png">
+    <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico">
 
     <title>Dynamic Table</title>
 
@@ -67,10 +67,10 @@
                     <tr>
                         <th>Ejecuci&oacute;n</th>
                         <th>Pase</th>
-                        <th class="hidden-phone">Estado</th>
-                        <th class="hidden-phone">Fecha datos</th>
+                        <th class="hidden-phone"><div style="width:50px;">Estado</div></th>
+                        <th class="hidden-phone"><div style="width:90px;">Fecha datos</div></th>
 <!--                         <th class="hidden-phone">Escenario</th> -->
-                        <th>Fecha inicio</th>
+                        <th><div style="width:90px;">Fecha inicio</div></th>
                         <th class="hidden-phone">Fecha finalización</th>
                         <th class="hidden-phone">Fecha planificada</th>
 <!--                         <th class="hidden-phone">Software</th> -->
@@ -165,6 +165,9 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+
+<!-- URL utility -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/URI.js-gh-pages/src/URI.min.js"></script>
 
 </body>
 </html>
