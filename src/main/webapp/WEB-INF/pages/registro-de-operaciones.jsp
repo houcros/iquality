@@ -56,71 +56,83 @@
         <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
-                    <header class="panel-heading mi-panel-heading">
-                        Registro de operaciones del job <span style="color:#24A29D">${idJob}</span> del pase <span style="color:#24A29D">${idEjecucion}</span>
-                    </header>
-                    <div class="panel-body">
-                    <div class="adv-table">
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-regops">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th><div style="width:70px;">Inicio</div></th>
-                        <th><div style="width:80px;">Duraci&oacute;n (s)</div></th>
-                        <th><div style="width:80px;">Fecha datos</div></th>
-                        <th><div>Operaci&oacute;n</th>
-                        <th><div>Tipo</th>
-                        <th><div>Estado</div></th>
-<!--                         <th class="hidden-phone">Escenario</th> -->
-                        <th><div>Filas Actualizadas</div></th>
-                        <th><div>Filas Cargadas</div></th>
-                        <th><div>Filas le&iacute;das</div></th>
-                        <th><div>Filas Rechazadas</div></th>
-                        <th><div>Filas Descartadas</div></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${allTableItems}" var="item">
-					    <tr class="gradeA">      
-<!-- 					    <tr class="gradeX">       -->
-<!-- 					    <tr class="gradeC">       -->
-<!-- 					    <tr class="gradeU">       -->
-					        <td class="center hidden-phone">${item.idOperacion}</td>
-					        <td class="center hidden-phone">${item.fechaInicio}</td>
-					        <td class="center hidden-phone">${item.fcDuracion}</td>
-					        <td class="center hidden-phone">${item.fechaDatos}</td>
-					        <td class="center hidden-phone">${item.idOperacion}</td>
-					        <td class="center hidden-phone">${item.tipoDeOperacion}</td>
-					        <td class="center hidden-phone">
-					        	<c:choose>
-								    <c:when test="${item.estado=='OK'}">
-										<span class="label label-success label-mini">${item.estado}</span>
-								    </c:when>
-								    <c:when test="${item.estado=='KO'}">
-										<span class="label label-danger label-mini">${item.estado}</span>
-								    </c:when>     
-								    <c:when test="${item.estado=='PDTE'}">
-										<span class="label label-warning label-mini">${item.estado}</span>
-								    </c:when>   
-								    <c:otherwise>
-										<span class="label label-inverse label-mini">${item.estado}</span>
-								    </c:otherwise>
-								</c:choose>
-					        </td>
-<%-- 					        <td class="center hidden-phone">${item.descripcionEscenario}</td>    --%>
-					        <td class="center hidden-phone">${item.fcFilasCargadas}</td>   
-					        <td class="center hidden-phone">${item.fcFilasActualizadas}</td>   
-					        <td class="center hidden-phone">${item.fcFilasLeidas}</td>   
-					        <td class="center hidden-phone">${item.fcFilasRechazadas}</td>   
-					        <td class="center hidden-phone">${item.fcFilasDescartadas}</td>   
-					    </tr>
-					</c:forEach>
-                    </tbody>
-                    </table>
+							<header class="panel-heading mi-panel-heading">
+								<div class="row">
+									<div class="col-md-8">
+<%-- 										Registro de operaciones del job <span style="color: #24A29D">${idJob}</span> --%>
+<%-- 										del pase <span style="color: #24A29D">${idEjecucion}</span> --%>
+										Registro de operaciones
+									</div>
+									<div class="col-md-4">
+										<ul class="breadcrumb mi-breadcrumb">
+											<li><a href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}">Pase ${idEjecucion}</a></li>
+											<li><a href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}/jobs">Job ${idJob}</a></li>
+											<li><a href="#">Regops</a></li>
+										</ul>
+									</div>
+								</div>
+							</header>
+							<div class="panel-body">
+								<div class="adv-table">
+									<table cellpadding="0" cellspacing="0" border="0"
+										class="display table table-bordered" id="hidden-table-regops">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th><div style="width: 70px;">Inicio</div></th>
+												<th><div style="width: 80px;">Duraci&oacute;n (s)</div></th>
+												<th><div style="width: 80px;">Fecha datos</div></th>
+												<th><div>Operaci&oacute;n</th>
+												<th><div>Tipo</th>
+												<th><div>Estado</div></th>
+												<!--                         <th class="hidden-phone">Escenario</th> -->
+												<th><div>Filas Actualizadas</div></th>
+												<th><div>Filas Cargadas</div></th>
+												<th><div>Filas le&iacute;das</div></th>
+												<th><div>Filas Rechazadas</div></th>
+												<th><div>Filas Descartadas</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${allTableItems}" var="item">
+												<tr class="gradeA">
+													<!-- 					    <tr class="gradeX">       -->
+													<!-- 					    <tr class="gradeC">       -->
+													<!-- 					    <tr class="gradeU">       -->
+													<td class="center hidden-phone">${item.idOperacion}</td>
+													<td class="center hidden-phone">${item.fechaInicio}</td>
+													<td class="center hidden-phone">${item.fcDuracion}</td>
+													<td class="center hidden-phone">${item.fechaDatos}</td>
+													<td class="center hidden-phone">${item.idOperacion}</td>
+													<td class="center hidden-phone">${item.tipoDeOperacion}</td>
+													<td class="center hidden-phone"><c:choose>
+															<c:when test="${item.estado=='OK'}">
+																<span class="label label-success label-mini">${item.estado}</span>
+															</c:when>
+															<c:when test="${item.estado=='KO'}">
+																<span class="label label-danger label-mini">${item.estado}</span>
+															</c:when>
+															<c:when test="${item.estado=='PDTE'}">
+																<span class="label label-warning label-mini">${item.estado}</span>
+															</c:when>
+															<c:otherwise>
+																<span class="label label-inverse label-mini">${item.estado}</span>
+															</c:otherwise>
+														</c:choose></td>
+													<%-- 					        <td class="center hidden-phone">${item.descripcionEscenario}</td>    --%>
+													<td class="center hidden-phone">${item.fcFilasCargadas}</td>
+													<td class="center hidden-phone">${item.fcFilasActualizadas}</td>
+													<td class="center hidden-phone">${item.fcFilasLeidas}</td>
+													<td class="center hidden-phone">${item.fcFilasRechazadas}</td>
+													<td class="center hidden-phone">${item.fcFilasDescartadas}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 
-                    </div>
-                    </div>
-                </section>
+								</div>
+							</div>
+						</section>
             </div>
         </div>
         <!-- page end-->

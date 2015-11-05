@@ -357,6 +357,39 @@ public class BaseController {
 
 	}
 	
+	@RequestMapping(value = "/pases/{idEjecucion}", method = RequestMethod.GET)
+	public String showPase(@PathVariable int idEjecucion, ModelMap model) {
+
+		//Get the Spring Context
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+				
+		//Get the lk_met_pla_ctrl_paseDAO Bean
+		//To use JdbcTemplate
+		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
+				
+		//Read
+		List<Pase> unPase = new ArrayList<Pase>();
+		
+		try {
+			unPase.add(paseDAO.getById(idEjecucion));
+			logger.info(paseDAO.getById(idEjecucion).toString());
+			model.addAttribute("allTableItems", unPase);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Close Spring Context
+		ctx.close();
+		logger.info("[consola-control-ejecucion] -> DONE");
+		
+		logger.debug("[consola-control-ejecucion] counter : {}", counter);
+		
+		// Spring uses InternalResourceViewResolver and return back index.jsp
+		return VIEW_CONSOLACONTROLEJECUCION;
+
+	}
+	
 	@RequestMapping(value = "/test-diccionario", method = RequestMethod.GET)
 	public String testDictionary(ModelMap model) {
 

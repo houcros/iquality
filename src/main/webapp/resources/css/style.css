@@ -5798,7 +5798,9 @@ ul.sidebar-menu li a{
     background:#FFA900;
 /*     background:#FFC148; */
 color: white;
-text-align:center;
+/* text-align:center; */
+text-align:left;
+/* vertical-align:middle; */
 font-weight:bold;
 font-family:Verdana, Geneva, sans-serif;
 /* font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif; */
@@ -5864,4 +5866,14 @@ padding:0.7em;
 
 #hidden-table-jobs thead tr th div, #hidden-table-regops thead tr th div{
 	text-align:center;
+}
+
+.mi-breadcrumb{
+       font-size:80%;
+}
+
+ul.breadcrumb.mi-breadcrumb{
+       margin-bottom: 0;
+       text-align:center;
+       float:right;
 }

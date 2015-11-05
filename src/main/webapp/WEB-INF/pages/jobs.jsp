@@ -56,59 +56,72 @@
         <div class="row">
             <div class="col-sm-12">
                 <section class="panel">
-                    <header class="panel-heading mi-panel-heading">
-                        Registro de jobs del pase <span style="color:#24A29D">${idEjecucion}</span>
-                    </header>
-                    <div class="panel-body">
-                    <div class="adv-table">
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-jobs">
-                    <thead>
-                    <tr>
-                        <th><div>Job</div></th>
-                        <th><div>Estado</div></th>
-                        <th><div>Fecha inicio</div></th>
-                        <th><div>Fecha fin</div></th>
-                        <th><div>Punto de control</div></th>
-                        <th><div>Fecha OK punto de control</div></th>
-                        <th><div>Duraci&oacute;n</div></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${allTableItems}" var="item">
-					    <tr class="gradeA">      
-<!-- 					    <tr class="gradeX">       -->
-<!-- 					    <tr class="gradeC">       -->
-<!-- 					    <tr class="gradeU">       -->
-					        <td class="center hidden-phone">${item.idJob}</td>
-					        <td class="center hidden-phone">
-					        	<c:choose>
-								    <c:when test="${item.estado=='OK'}">
-										<span class="label label-success label-mini">${item.estado}</span>
-								    </c:when>
-								    <c:when test="${item.estado=='KO'}">
-										<span class="label label-danger label-mini">${item.estado}</span>
-								    </c:when>     
-								    <c:when test="${item.estado=='PDTE'}">
-										<span class="label label-warning label-mini">${item.estado}</span>
-								    </c:when>   
-								    <c:otherwise>
-										<span class="label label-inverse label-mini">${item.estado}</span>
-								    </c:otherwise>
-								</c:choose>
-					        </td>
-					        <td class="center hidden-phone">${item.fechaInicio}</td>
-					        <td class="center hidden-phone">${item.fechaFin}</td>
-					        <td class="center hidden-phone">${item.puntoDeControl}</td>
-					        <td class="center hidden-phone">${item.fechaOKPuntoDeControl}</td>
-					        <td class="center hidden-phone">${item.duracion}</td>   
-					    </tr>
-					</c:forEach>
-                    </tbody>
-                    </table>
+							<header class="panel-heading mi-panel-heading">
+								<div class="row">
+									<div class="col-md-9">
+<%-- 										Registro de jobs del pase <span style="color: #24A29D">${idEjecucion}</span> --%>
+										Registro de jobs
+									</div>
+									<div class="col-md-3">
+										<ul class="breadcrumb mi-breadcrumb">
+											<li><a
+												href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}">Pase
+													${idEjecucion}</a></li>
+											<li><a
+												href="#">Jobs</a></li>
+										</ul>
+									</div>
+								</div>
+							</header>
+							<div class="panel-body">
+								<div class="adv-table">
+									<table cellpadding="0" cellspacing="0" border="0"
+										class="display table table-bordered" id="hidden-table-jobs">
+										<thead>
+											<tr>
+												<th><div>Job</div></th>
+												<th><div>Estado</div></th>
+												<th><div>Fecha inicio</div></th>
+												<th><div>Fecha fin</div></th>
+												<th><div>Punto de control</div></th>
+												<th><div>Fecha OK punto de control</div></th>
+												<th><div>Duraci&oacute;n</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${allTableItems}" var="item">
+												<tr class="gradeA">
+													<!-- 					    <tr class="gradeX">       -->
+													<!-- 					    <tr class="gradeC">       -->
+													<!-- 					    <tr class="gradeU">       -->
+													<td class="center hidden-phone">${item.idJob}</td>
+													<td class="center hidden-phone"><c:choose>
+															<c:when test="${item.estado=='OK'}">
+																<span class="label label-success label-mini">${item.estado}</span>
+															</c:when>
+															<c:when test="${item.estado=='KO'}">
+																<span class="label label-danger label-mini">${item.estado}</span>
+															</c:when>
+															<c:when test="${item.estado=='PDTE'}">
+																<span class="label label-warning label-mini">${item.estado}</span>
+															</c:when>
+															<c:otherwise>
+																<span class="label label-inverse label-mini">${item.estado}</span>
+															</c:otherwise>
+														</c:choose></td>
+													<td class="center hidden-phone">${item.fechaInicio}</td>
+													<td class="center hidden-phone">${item.fechaFin}</td>
+													<td class="center hidden-phone">${item.puntoDeControl}</td>
+													<td class="center hidden-phone">${item.fechaOKPuntoDeControl}</td>
+													<td class="center hidden-phone">${item.duracion}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 
-                    </div>
-                    </div>
-                </section>
+								</div>
+							</div>
+						</section>
             </div>
         </div>
         <!-- page end-->

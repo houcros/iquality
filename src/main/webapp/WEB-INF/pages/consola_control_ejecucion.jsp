@@ -55,68 +55,76 @@
         
         <div class="row">
             <div class="col-sm-12">
-                <section class="panel">
-                    <header class="panel-heading mi-panel-heading">
-                        Registro de ejecuciones
-                    </header>
-                    <div class="panel-body">
-                    <div class="adv-table">
-<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
-                    <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-pases">
-                    <thead>
-                    <tr>
-                        <th>Ejecuci&oacute;n</th>
-                        <th>Pase</th>
-                        <th class="hidden-phone"><div style="width:50px;">Estado</div></th>
-                        <th class="hidden-phone"><div style="width:90px;">Fecha datos</div></th>
-<!--                         <th class="hidden-phone">Escenario</th> -->
-                        <th><div style="width:90px;">Fecha inicio</div></th>
-                        <th class="hidden-phone">Fecha finalización</th>
-                        <th class="hidden-phone">Fecha planificada</th>
-<!--                         <th class="hidden-phone">Software</th> -->
-                        <th class="hidden-phone">Duraci&oacute;n</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${allTableItems}" var="item">
-					    <tr class="gradeA">      
-<!-- 					    <tr class="gradeX">       -->
-<!-- 					    <tr class="gradeC">       -->
-<!-- 					    <tr class="gradeU">       -->
-					        <td class="center hidden-phone">${item.idEjecucion}</td>
-					        <td class="center hidden-phone">${item.pase}</td>
-					        					        <td class="center hidden-phone">
-					        	<c:choose>
-								    <c:when test="${item.estado=='OK'}">
-										<span class="label label-success label-mini">${item.estado}</span>
-								    </c:when>
-								    <c:when test="${item.estado=='KO'}">
-										<span class="label label-danger label-mini">${item.estado}</span>
-								    </c:when>     
-								    <c:when test="${item.estado=='PDTE'}">
-										<span class="label label-warning label-mini">${item.estado}</span>
-								    </c:when>   
-								    <c:otherwise>
-										<span class="label label-inverse label-mini">${item.estado}</span>
-								    </c:otherwise>
-								</c:choose>
-					        </td>
-					        <td class="center hidden-phone">${item.fechaDatos}</td>
-<%-- 					        <td class="center hidden-phone">${item.escenario}</td> --%>
-					        <td class="center hidden-phone">${item.fechaInicio}</td>  
-					        <td class="center hidden-phone">${item.fechaFin}</td>
-					        <td class="center hidden-phone">${item.fechaPlanificada}</td>
-<%-- 					        <td class="center hidden-phone">${item.software}</td>   --%>
-					        <td class="center hidden-phone">${item.duracion}</td>   
-					    </tr>
-					</c:forEach>
-                    </tbody>
-                    </table>
+						<section class="panel">
+							<header class="panel-heading mi-panel-heading">
+								<div class="row">
+									<div class="col-md-9">Registro de ejecuciones</div>
+									<div class="col-md-3">
+										<ul class="breadcrumb mi-breadcrumb">
+											<li><a
+												href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Pases</a></li>
+										</ul>
+									</div>
+								</div>
+							</header>
+							<div class="panel-body">
+								<div class="adv-table">
+									<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
+									<table cellpadding="0" cellspacing="0" border="0"
+										class="display table table-bordered" id="hidden-table-pases">
+										<thead>
+											<tr>
+												<th>Ejecuci&oacute;n</th>
+												<th>Pase</th>
+												<th class="hidden-phone"><div style="width: 50px;">Estado</div></th>
+												<th class="hidden-phone"><div style="width: 90px;">Fecha
+														datos</div></th>
+												<!--                         <th class="hidden-phone">Escenario</th> -->
+												<th><div style="width: 90px;">Fecha inicio</div></th>
+												<th class="hidden-phone">Fecha finalización</th>
+												<th class="hidden-phone">Fecha planificada</th>
+												<!--                         <th class="hidden-phone">Software</th> -->
+												<th class="hidden-phone">Duraci&oacute;n</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${allTableItems}" var="item">
+												<tr class="gradeA">
+													<!-- 					    <tr class="gradeX">       -->
+													<!-- 					    <tr class="gradeC">       -->
+													<!-- 					    <tr class="gradeU">       -->
+													<td class="center hidden-phone">${item.idEjecucion}</td>
+													<td class="center hidden-phone">${item.pase}</td>
+													<td class="center hidden-phone"><c:choose>
+															<c:when test="${item.estado=='OK'}">
+																<span class="label label-success label-mini">${item.estado}</span>
+															</c:when>
+															<c:when test="${item.estado=='KO'}">
+																<span class="label label-danger label-mini">${item.estado}</span>
+															</c:when>
+															<c:when test="${item.estado=='PDTE'}">
+																<span class="label label-warning label-mini">${item.estado}</span>
+															</c:when>
+															<c:otherwise>
+																<span class="label label-inverse label-mini">${item.estado}</span>
+															</c:otherwise>
+														</c:choose></td>
+													<td class="center hidden-phone">${item.fechaDatos}</td>
+													<%-- 					        <td class="center hidden-phone">${item.escenario}</td> --%>
+													<td class="center hidden-phone">${item.fechaInicio}</td>
+													<td class="center hidden-phone">${item.fechaFin}</td>
+													<td class="center hidden-phone">${item.fechaPlanificada}</td>
+													<%-- 					        <td class="center hidden-phone">${item.software}</td>   --%>
+													<td class="center hidden-phone">${item.duracion}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 
-                    </div>
-                    </div>
-                </section>
-            </div>
+								</div>
+							</div>
+						</section>
+					</div>
         </div>
         <!-- page end-->
         </section>

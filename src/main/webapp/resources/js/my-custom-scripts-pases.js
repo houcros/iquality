@@ -9,7 +9,7 @@ $(document).ready(function() {
      */
     var nCloneTh = document.createElement( 'th' );
     var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="resources/images/details_open.png" style="cursor:pointer;">';
+    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;">';
     nCloneTd.className = "center";
 
     $('#hidden-table-pases thead tr').each( function () {
