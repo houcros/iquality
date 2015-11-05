@@ -65,6 +65,8 @@ public class TreeToJSONTranslator {
 		}
 
 		jsonTree.put("children", children);
+//		jsonTree.put("tipo", "test");
+		jsonTree.put("type", root.getData().getTipo());
 		
 		return jsonTree;
 		

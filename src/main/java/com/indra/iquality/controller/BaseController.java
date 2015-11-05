@@ -83,6 +83,7 @@ public class BaseController {
 	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/resultadoQueryDiccionario.txt";
 //	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.txt";
 	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.json";
+	private static final String DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree_para_jsTree.json";
 	private static boolean VALID_DICTIONARY_CACHE = true;
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -488,10 +489,10 @@ public class BaseController {
 //	public @ResponseBody String getJSONTree() {
 		
 		// Si la cache no es válida la actualizo
-		if(!VALID_DICTIONARY_CACHE){
-			auxiliaryUpdateDictionaryCache();
-			VALID_DICTIONARY_CACHE = true;
-		}
+//		if(!VALID_DICTIONARY_CACHE){
+//			auxiliaryUpdateDictionaryCache();
+//			VALID_DICTIONARY_CACHE = true;
+//		}
 			
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Opción 1 para leer el fichero json a un JSONObject
@@ -501,11 +502,11 @@ public class BaseController {
 		try {
 			jsonTree = (JSONObject) parser.parse(new FileReader(DICTIONARY_JSON_CACHE_FILE));
 		} catch (FileNotFoundException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + "FileNotFoundException, " + e.getCause() + ": " + e.getMessage());
 		} catch (IOException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + "IOException, " + e.getCause() + ": " + e.getMessage());
 		} catch (ParseException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + "ParseException, " + e.getCause() + ": " + e.getMessage());
 		}
 		
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -556,10 +557,10 @@ public class BaseController {
 	public @ResponseBody JSONObject getJSONTreeParajsTree() {
 
 		// Si la cache no es válida la actualizo
-		if(!VALID_DICTIONARY_CACHE){
-			auxiliaryUpdateDictionaryCache();
-			VALID_DICTIONARY_CACHE = true;
-		}
+//		if(!VALID_DICTIONARY_CACHE){
+//			auxiliaryUpdateDictionaryCache();
+//			VALID_DICTIONARY_CACHE = true;
+//		}
 			
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Opción 1 para leer el fichero json a un JSONObject
@@ -567,13 +568,13 @@ public class BaseController {
 		JSONParser parser = new JSONParser();
 		JSONObject jsonTree = new JSONObject();
 		try {
-			jsonTree = (JSONObject) parser.parse(new FileReader("C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree_para_jsTree.json"));
+			jsonTree = (JSONObject) parser.parse(new FileReader(DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE));
 		} catch (FileNotFoundException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		} catch (IOException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		} catch (ParseException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
+			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		}
 		
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -626,7 +627,7 @@ public class BaseController {
 		new Thread(new Runnable(){
 			public void run(){
 				auxiliaryUpdateDictionaryCache();
-				VALID_DICTIONARY_CACHE = false;
+//				VALID_DICTIONARY_CACHE = false;
 			}
 		}, "updateDictCacheThread").start();
 
@@ -696,30 +697,31 @@ public class BaseController {
 
 		try {
 			dictionaryTree = translator.createTreeFromTxtFile(DICTIONARY_CACHE_FILE);
-			logger.info("[getJSONTree] : Generado tree a partir de fichero json.");
+			logger.info("[auxiliaryUpdateDictionaryCache] : Generado tree a partir de fichero json.");
 			//					tree.myPrintTree(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Excepción en BaseController.getJSONTree al intentar crear el árbol.");
+			logger.info("[auxiliaryUpdateDictionaryCache] : Excepción en BaseController.getJSONTree al intentar crear el árbol.");
 			e.printStackTrace();
 		}
 
+		
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Traduzco el tree JSON
 		// NO PRETTY! (se puede si se quiere con jsonTranslator.createPrettyJSONStringFromTree
 		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
-		JSONObject jsonTree = jsonTranslator.createJSONFromTree(dictionaryTree);
+		String jsonTree = jsonTranslator.createPrettyJSONStringFromTreeForjsTree(dictionaryTree);
 
 		
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Y guardo el JSON en un fichero caché
-		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE);
+		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE);
 		try {
-			Files.write(jsonTree.toString(), jsonTreeFile, Charset.forName("UTF-8"));
-			logger.info("[getJSONTree] : Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE);
+			Files.write(jsonTree, jsonTreeFile, Charset.forName("UTF-8"));
+			logger.info("[diccionario-2] : Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE);
 			//										System.out.println(prettyJsonString);
 		} catch (IOException e) {
-			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE + "\n" + e.getMessage());
+			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE + "\n" + e.getMessage());
 		}
 
 
@@ -879,9 +881,15 @@ public class BaseController {
 	
 	@RequestMapping(value = "/diccionario-2", method = RequestMethod.GET)
 	public String dict2(ModelMap model){
-		logger.debug("[diccionario-2] counter : {}", counter);
+		logger.debug("[diccionario-2] : Called route");
 		
+//		try {
+//		    Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//		    e.printStackTrace();
+//		}
 		
+		/*
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
 		// También se puede hacer directamente desde el array allDictionaryConceptNodes
@@ -894,7 +902,7 @@ public class BaseController {
 			//					tree.myPrintTree(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Excepción en BaseController.getJSONTree al intentar crear el árbol.");
+			logger.info("[diccionario-2] : Excepción en BaseController.getJSONTree al intentar crear el árbol.");
 			e.printStackTrace();
 		}
 		
@@ -907,14 +915,15 @@ public class BaseController {
 		
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Y guardo el JSON en un fichero caché
-		File jsonTreeFile = new File("C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree_para_jsTree.json");
+		File jsonTreeFile = new File(DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE);
 		try {
 			Files.write(jsonTree.toString(), jsonTreeFile, Charset.forName("UTF-8"));
-			logger.info("[diccionario-2] : Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE);
+			logger.info("[diccionario-2] : Succesfully wrote to file " + DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE);
 			//										System.out.println(prettyJsonString);
 		} catch (IOException e) {
-			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE + "\n" + e.getMessage());
+			System.out.println("ERROR al intentar escribir en " + DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE + "\n" + e.getMessage());
 		}
+		*/
 		
 		return VIEW_DICCIONARIO_2;
 	}

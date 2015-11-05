@@ -370,8 +370,8 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 	<!--script for this page-->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script> --%>
 
 	<!-- Mi script personal -->
 	<script
@@ -391,11 +391,11 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jstree/jstree.js"></script>
 
-	<script>
-		jQuery(document).ready(function() {
-			TreeView.init();
-		});
-	</script>
+<!-- 	<script> -->
+<!--  		jQuery(document).ready(function() { -->
+<!--  			TreeView.init(); -->
+<!--  		}); -->
+<!-- 	</script> -->
 
 
 

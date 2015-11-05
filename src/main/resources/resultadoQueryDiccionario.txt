@@ -5454,15 +5454,29 @@
 4 0 LINEA Value of collateral
 3 -1 ENTIDAD Entidad QRT Intragrupo Internal Cost
 4 0 INDICADOR Currency (ISO code)
+4 0 INDICADOR Currency of transaction
+4 0 INDICADOR Effective Agreement Date
 4 0 INDICADOR Effective Date
 4 0 INDICADOR Expiry Date
 4 0 INDICADOR ID code Buyer
 4 0 INDICADOR ID code Seller 
+4 0 INDICADOR ID code type of the Investor/Buyer/Beneficiary
+4 0 INDICADOR ID code type of the Issuer/Seller/Provider
+4 0 INDICADOR ID of intragroup transaction
+4 0 INDICADOR Identification code of the Investor/ Buyer/ Beneficiary
+4 0 INDICADOR Identification code of the Issuer/ Seller/ Provider
+4 0 INDICADOR Investor/ Buyer/ Beneficiary name
 4 0 INDICADOR Investor/Buyer/Payer name
+4 0 INDICADOR Issuer/ Seller/ Provider name
 4 0 INDICADOR Issuer/ Seller/ Receiver name
+4 0 INDICADOR Maximum possible value of contingent liabilities
+4 0 INDICADOR Maximum value of letters of credit/guarantees
 4 0 INDICADOR Transaction Date 
+4 0 INDICADOR Transaction Issue Date 
 4 0 INDICADOR Transaction type
 4 0 INDICADOR Trigger Event 
+4 0 INDICADOR Value of guaranteed assets
+4 0 INDICADOR Value of transaction/ collateral
 4 -1 DIMENSION Dimensión Tiempo
 5 -1 JERARQUIA Tiempo
 6 -1 ATRIBUTO_MAESTRO Año
@@ -5470,16 +5484,30 @@
 8 0 ATRIBUTO Mes
 4 0 LINEA Max Contingent Liabilities 
 4 0 LINEA Max Contingent Liabilities NOT S2
+4 0 LINEA Maximum possible value of contingent liabilities not included in Solvency II  Balance
 4 0 LINEA S2 Transaction Reporting Date
 3 -1 ENTIDAD Entidad QRT Intragrupo Internal Reins
 4 0 INDICADOR Currency (ISO code)
+4 0 INDICADOR Currency of contract/treaty
+4 0 INDICADOR Description of Line of Business
 4 0 INDICADOR Fecha Fin 
 4 0 INDICADOR Fecha inicio
+4 0 INDICADOR ID code type of the cedent
+4 0 INDICADOR ID code type of the reinsurer
+4 0 INDICADOR ID of intragroup transaction
 4 0 INDICADOR ID Reinsured Entity 
 4 0 INDICADOR ID Reinsurer 
+4 0 INDICADOR Identificador del codigo de cedent
+4 0 INDICADOR Identification code of reinsurer
 4 0 INDICADOR Legal name reinsurer
+4 0 INDICADOR Maximum cover by reinsurer under contract/treaty
+4 0 INDICADOR Name of cedent
 4 0 INDICADOR Name of reinsured entity
+4 0 INDICADOR Name of reinsurer
+4 0 INDICADOR Net receivablesReinsurance 
+4 0 INDICADOR Type of reinsurance contract/treaty
 4 0 INDICADOR Type of reinsurance treaty
+4 0 INDICADOR Validity period (expiry date)
 4 -1 DIMENSION Dimensión Tiempo
 5 -1 JERARQUIA Tiempo
 6 -1 ATRIBUTO_MAESTRO Año
@@ -5489,6 +5517,9 @@
 4 0 LINEA Max Cover by Reinsurer 
 4 0 LINEA Reinsurance Recoverables 
 4 0 LINEA Reinsurance Result 
+4 0 LINEA Reinsurance result (for reinsured entity)
+4 0 LINEA Total reinsurance recoverables at reporting date
+4 0 LINEA Validity period (start date)
 3 -1 ENTIDAD Entidad QRT Intragrupo Other Entities
 4 0 INDICADOR Aggregated
 4 0 INDICADOR ID Code
