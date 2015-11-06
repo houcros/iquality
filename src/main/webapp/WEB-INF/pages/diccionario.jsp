@@ -361,8 +361,8 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
 
 	<!--tree-->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/fuelux/js/tree.min.js"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/fuelux/js/tree.min.js"></script> --%>
 
 
 	<!--common script init for all pages-->
@@ -376,6 +376,7 @@
 	<!-- Mi script personal -->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
 
 	<!-- Cookies -->
 	<script

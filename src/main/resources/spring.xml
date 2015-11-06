@@ -11,15 +11,6 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-
-	<bean id="lk_met_pla_ctrl_paseDAOJDBCTemplate" class="com.indra.iquality.dao.LK_MET_PLA_CTRL_PASEDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="lk_met_pla_ctrl_pase_jobDAOJDBCTemplate" class="com.indra.iquality.dao.LK_MET_PLA_CTRL_PASE_JOBDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
 	<bean id="paseDAOJDBCTemplate" class="com.indra.iquality.dao.impl.PaseDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>

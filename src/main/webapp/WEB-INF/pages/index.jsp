@@ -1295,12 +1295,16 @@
 <!--common script init for all pages-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 <!--script for this page-->
-	
+
+<!-- Mi script personal -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
+
 <!-- Cookies -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+
 
 
 </body>
