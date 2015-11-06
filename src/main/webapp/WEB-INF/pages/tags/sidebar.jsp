@@ -4,12 +4,12 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a href="${pageContext.servletContext.contextPath}">
-                        <i class="fa fa-terminal"></i>
-                        <span>Inicio</span>
-                    </a>
-                </li>
+<!--                 <li> -->
+<%--                     <a href="${pageContext.servletContext.contextPath}"> --%>
+<!--                         <i class="fa fa-terminal"></i> -->
+<!--                         <span>Inicio</span> -->
+<!--                     </a> -->
+<!--                 </li> -->
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
