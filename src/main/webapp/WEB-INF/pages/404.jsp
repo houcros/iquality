@@ -17,7 +17,7 @@
 <%--     <link href="<c:url value="/resources/css/bootstrap.min.css" rel="stylesheet" /> --%>
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-reset.css" rel="stylesheet">
     <!--external css-->
     <link href="${pageContext.servletContext.contextPath}/resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
