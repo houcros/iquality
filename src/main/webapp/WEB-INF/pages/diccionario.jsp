@@ -375,7 +375,7 @@
 
 	<!-- Mi script personal -->
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario-2.js"></script>
+		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario.js"></script>
 
 	<!-- Cookies -->
 	<script
