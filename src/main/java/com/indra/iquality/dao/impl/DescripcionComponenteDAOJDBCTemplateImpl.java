@@ -24,7 +24,7 @@ public class DescripcionComponenteDAOJDBCTemplateImpl implements DescripcionComp
 
 		String query = "SELECT * "
 					+ "FROM VS_MET_FI_COMPONENTE_TABLA "
-					+ "WHERE CT_ROWID = ? AND COMP_ROWID = ? ";
+					+ "WHERE COMP_ROWID = ? AND CT_ROWID = ? ";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		DescripcionComponente dc = jdbcTemplate.queryForObject(query, 
@@ -35,7 +35,7 @@ public class DescripcionComponenteDAOJDBCTemplateImpl implements DescripcionComp
 						
 						DescripcionComponente dc = new DescripcionComponente();
 						
-						dc.setNombre(rs.getString("nombre"));
+						dc.setNombre(rs.getString("de_nombre"));
 						dc.setFormato(rs.getString("de_formato"));
 						dc.setResponsable(rs.getString("de_comentario"));
 						dc.setDefinicion(rs.getString("de_definicion"));

@@ -14,6 +14,8 @@ import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.tree.GenericTreeNode;
 
+import oracle.sql.ROWID;
+
 public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConceptsDAO{
 
 	private DataSource dataSource;
@@ -113,14 +115,15 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 //			else dictionaryConcept.setTipo(DEFAULT_NULL_STRING);
 			
 			if (dictionaryConceptNodeRow.get("comp_rowid") != null)
-				dictionaryConcept.setCompRowID((String.valueOf(dictionaryConceptNodeRow.get("comp_rowid"))));
+				dictionaryConcept.setCompRowID((((ROWID) (dictionaryConceptNodeRow.get("comp_rowid"))).stringValue()));
 			else dictionaryConcept.setCompRowID(DEFAULT_NULL_STRING);
-			
+
 			if (dictionaryConceptNodeRow.get("ct_rowid") != null)
-				dictionaryConcept.setCtRowID((String.valueOf(dictionaryConceptNodeRow.get("ct_rowid"))));
+				dictionaryConcept.setCtRowID((((ROWID) (dictionaryConceptNodeRow.get("ct_rowid"))).stringValue()));
 			else dictionaryConcept.setCtRowID(DEFAULT_NULL_STRING);
 			
-			logger.info("[dictionaryConcept] -> " + dictionaryConcept);
+			logger.info("[dictionaryConcept] -> compRowID: " + (String.valueOf(dictionaryConceptNodeRow.get("comp_rowid"))));
+//			logger.info("[dictionaryConcept] -> " + dictionaryConcept);
 			
 			GenericTreeNode<DictionaryConcept> dictionaryConceptNode = new GenericTreeNode<DictionaryConcept>(dictionaryConcept);
 			dictionaryConceptList.add(dictionaryConceptNode);

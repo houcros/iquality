@@ -22,10 +22,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.io.Files;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.indra.iquality.dao.DependenciaDeJobDAO;
+import com.indra.iquality.dao.DescripcionComponenteDAO;
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.TrazaDeRegistroDAO;
 import com.indra.iquality.model.DependenciaDeJob;
+import com.indra.iquality.model.DescripcionComponente;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.TrazaDeRegistro;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
@@ -262,4 +267,34 @@ public class APIController {
 		return true;
 
 	}
+
+	@RequestMapping(value = "/descripcionComponente/{idConcepto}", method = RequestMethod.GET)
+	private @ResponseBody JSONObject getDescripcionDeComponente(@PathVariable String idConcepto){
+		
+		String[] s = idConcepto.split("&");
+		String compRowID = s[0].split(":")[1];
+		String ctRowID = s[1].split(":")[1];
+		
+//		logger.info("id: " + idConcepto);
+//		logger.info("compRowID: " + compRowID + ", ctRowID: " + ctRowID);
+		
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		DescripcionComponenteDAO descripcionComponenteDAO = ctx.getBean("descripcionComponenteDAOJDBCTemplate", DescripcionComponenteDAO.class);
+		DescripcionComponente dc = descripcionComponenteDAO.getById(compRowID, ctRowID);
+		ctx.close();
+	
+		String jsonString = new Gson().toJson(dc);
+		JSONParser parser = new JSONParser();
+		JSONObject jsonDescripcionComponente = new JSONObject();
+		try {
+			jsonDescripcionComponente = (JSONObject) parser.parse(jsonString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+//		logger.info(jsonDescripcionComponente.toString());
+		return jsonDescripcionComponente;
+	}
+
 }
