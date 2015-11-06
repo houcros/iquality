@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-//TODO @RequestMapping("/algun/path/que/englobe/varios")
 public class BaseController {
 
 //	private Sistema sistema = Sistema.getInstance();
