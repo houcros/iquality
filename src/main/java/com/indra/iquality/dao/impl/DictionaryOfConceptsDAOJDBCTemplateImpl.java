@@ -34,7 +34,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 
 		String query = "WITH CONSULTA "
 				+ "AS "
-				+ "(select ID_PADRE ,id_hijo,id_tipo,ID_SISTEMA,ID_SOFTWARE,ID_ORDEN,DESCRIPCION "
+				+ "(select ID_PADRE, id_hijo, id_tipo, ID_SISTEMA, ID_SOFTWARE, ID_ORDEN,DESCRIPCION, id_fila_lk_met_fi_comp, ID_FILA_RE_MET_FI_COMP_TAB "
 				+ "from VS_MET_FI_ARBOL_COMP VS "
 				+ "), "
 				+ "FILTRO as "
@@ -56,7 +56,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 				+ "select " 
 				+ "DESCRIPCION as title, "
 				+ "null as tooltip, "
-				+ "link, VS.ID_PADRE, VS.ID_HIJO, VS.ID_SOFTWARE, VS.ID_SISTEMA, VS.ID_TIPO, VS.ID_ORDEN "
+				+ "link, VS.ID_PADRE, VS.ID_HIJO, VS.ID_SOFTWARE, VS.ID_SISTEMA, VS.ID_TIPO, VS.ID_ORDEN, vs.id_fila_lk_met_fi_comp, VS.ID_FILA_RE_MET_FI_COMP_TAB "
 				+ "from VS_MET_FI_ARBOL_COMP VS "
 				+ "left join "
 				+ "FILTROHERM "
@@ -70,7 +70,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 				+ "            when level = 1             then 1 "
 				+ "            else                           -1 "
 				+ "      end as status, "
-				+ "       level,  title, VS.ID_TIPO as tipo "
+				+ "       level,  title, VS.ID_TIPO as tipo, vs.id_fila_lk_met_fi_comp as comp_rowid, VS.ID_FILA_RE_MET_FI_COMP_TAB as ct_rowid "
 				+ "from arbol VS "
 				+ "start with ID_PADRE is null "
 				+ "connect by   NOCYCLE "
@@ -111,6 +111,14 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl implements DictionaryOfConc
 //			if (dictionaryConceptNodeRow.get("tipo") != null)
 			dictionaryConcept.setTipo((helper.conceptTypeStringToEnum(String.valueOf(dictionaryConceptNodeRow.get("tipo")))));
 //			else dictionaryConcept.setTipo(DEFAULT_NULL_STRING);
+			
+			if (dictionaryConceptNodeRow.get("comp_rowid") != null)
+				dictionaryConcept.setCompRowID((String.valueOf(dictionaryConceptNodeRow.get("comp_rowid"))));
+			else dictionaryConcept.setCompRowID(DEFAULT_NULL_STRING);
+			
+			if (dictionaryConceptNodeRow.get("ct_rowid") != null)
+				dictionaryConcept.setCtRowID((String.valueOf(dictionaryConceptNodeRow.get("ct_rowid"))));
+			else dictionaryConcept.setCtRowID(DEFAULT_NULL_STRING);
 			
 			logger.info("[dictionaryConcept] -> " + dictionaryConcept);
 			

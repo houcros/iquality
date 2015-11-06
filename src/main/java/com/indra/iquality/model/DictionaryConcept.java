@@ -6,6 +6,8 @@ public class DictionaryConcept {
 	private int level;
 	private int status;
 	private ConceptTypeEnum tipo;
+	private String compRowID;
+	private String ctRowID;
 	
 	
 	public DictionaryConcept() {
@@ -47,6 +49,23 @@ public class DictionaryConcept {
 	public void setTipo(ConceptTypeEnum tipo) {
 		this.tipo = tipo;
 	}
+	
+	public String getCompRowID() {
+		return compRowID;
+	}
+
+	public void setCompRowID(String compRowID) {
+		this.compRowID = compRowID;
+	}
+
+	public String getCtRowID() {
+		return ctRowID;
+	}
+
+	public void setCtRowID(String ctRowID) {
+		this.ctRowID = ctRowID;
+	}
+
 	@Override
 	public String toString() {
 		return "DictionaryConcept [concept=" + concept + ", level=" + level + ", status=" + status + ", tipo=" + tipo
