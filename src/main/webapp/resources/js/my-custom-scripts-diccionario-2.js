@@ -31,8 +31,38 @@ $(document).ready(function () {
 //					'themes' : 'default,'
 					'animation': 10
 				},
+				"types": {
+//					"SECCION":{
+//						"icon": "/iQuality/resources/images/folder-1.png"
+//					},
+//					"MODELO":{
+//						"icon": "/iQuality/resources/images/folder-2.png"
+//					},
+//					"ENTIDAD":{
+//						"icon": "/iQuality/resources/images/folder-3.png"
+//					},
+					"DIMENSION":{
+						"icon": "/iQuality/resources/images/dimension.png"
+					},
+					"JERARQUIA":{
+						"icon": "/iQuality/resources/images/jerarquia.png"
+					},
+					"ATRIBUTO_MAESTRO":{
+						"icon": "/iQuality/resources/images/atributo-solo-maestro.png"
+					},
+					"ATRIBUTO":{
+						"icon": "/iQuality/resources/images/atributo.png"
+					},
+//					"INDICADOR":{
+//						"icon": "/iQuality/resources/images/indicador.png"
+//					},
+					"LINEA":{
+						"icon": "/iQuality/resources/images/indicador.png"
+					}
+				},
 				"plugins" : [
-				             "search"
+				             "search",
+				             "types"
 				             ]
 				});
 				
