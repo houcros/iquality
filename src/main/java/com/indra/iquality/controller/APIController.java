@@ -155,7 +155,7 @@ public class APIController {
 			}
 		}, "updateDictCacheThread").start();
 
-		return "redirect:/index";
+		return "redirect:/";
 	}
 	
 	private boolean auxiliaryUpdateDictionaryCache(){
