@@ -16,7 +16,7 @@
                         <span>Diccionario de conceptos</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="${pageContext.servletContext.contextPath}/diccionario-2">Diccionario</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/diccionario">Diccionario</a></li>
                         <li><a href="horizontal_menu.html">Gestionar certificaciones</a></li>
                         <li><a href="language_switch.html">Gestionar dimensiones</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/api/updateDictionaryCache">Recargar</a></li>

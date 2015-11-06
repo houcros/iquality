@@ -26,7 +26,8 @@
 	rel="stylesheet" />
 
 <!-- switch -->
-<link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-switch.css" />
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-switch.css" />
 
 <!--external css-->
 <link rel="stylesheet" type="text/css"
@@ -39,6 +40,11 @@
 <link
 	href="${pageContext.servletContext.contextPath}/resources/css/style-responsive.css"
 	rel="stylesheet" />
+
+<!-- jsTree themes -->
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/resources/css/jstree/default/style.min.css" />
+
 
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]>
@@ -69,31 +75,24 @@
 
 				<!-- BEGIN PAGE CONTENT-->
 				<div class="column">
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="panel" id="dict-explorador-indicadores">
-							<div class="panel-heading">
-								Explorador de indicadores 
-								<span class="pull-right">
-									<button id="update-dictionary-button" type="button" class="btn btn-info">
-										<i class="fa fa-refresh"></i>
-										Recargar
-									</button>
-								</span>
-							</div>
+							<div class="panel-heading mi-panel-heading">Explorador de indicadores</div>
 							<div class="panel-body">
-								<div id="FlatTree1" class="tree tree-solid-line">
-									<div class="tree-folder" style="display: none;">
-										<div class="tree-folder-header">
-											<i class="fa fa-folder"></i>
-											<div class="tree-folder-name"></div>
-										</div>
-										<div class="tree-folder-content"></div>
-										<div class="tree-loader" style="display: none"></div>
-									</div>
-									<div class="tree-item" style="display: none;">
-										<i class="tree-dot"></i>
-										<div class="tree-item-name"></div>
-									</div>
+								<div class="mi-search-bar">
+									<input id="plugins4_q" type="text" class="form-control search"
+										placeholder=" Search">
+								</div>
+								<div id="jstree" class="">
+									<!-- 									<ul> -->
+									<!-- 										<li>Root node 1 -->
+									<!-- 											<ul> -->
+									<!-- 												<li id="child_node_1">Child node 1</li> -->
+									<!-- 												<li>Child node 2</li> -->
+									<!-- 											</ul> -->
+									<!-- 										</li> -->
+									<!-- 										<li>Root node 2</li> -->
+									<!-- 									</ul> -->
 								</div>
 							</div>
 						</div>
@@ -101,11 +100,12 @@
 
 				</div>
 				<div class="column">
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<div class="panel" id="dict-ficha-definicion">
-							<div class="panel-heading">
+							<div class="panel-heading mi-panel-heading">
 								Ficha de definici&oacute;n <span class="tools pull-right">
-									<a class="fa fa-chevron-down" href="javascript:;" style="color: white"></a>
+									<a class="fa fa-chevron-down" href="javascript:;"
+									style="color: white"></a>
 								</span>
 							</div>
 							<div class="panel-body">
@@ -122,97 +122,86 @@
 													certificaci&oacute;n</a></li>
 										</ul>
 									</header>
-									<div class="panel-body">
+									<div id="content-tabs-dicha-definicion" class="panel-body">
 										<div class="tab-content">
 											<div id="tab-datos-basicos" class="tab-pane active">
 												<!-- page start-->
 
 												<div class="row">
-													<div class="col-sm-12">
-														<div class="row-fluid" id="draggable_portlets">
-															<div class="col-md-6 column sortable">
+													<div class="col-md-9">
+														<!-- BEGIN Portlet PORTLET-->
+														<div class="row">
+															<div class="col-md-12">
+																<div class="panel panel-info">
+																	<div class="panel-heading tarjetita-heading">Definici&oacute;n</div>
+																	<div class="panel-body tarjetita-body">Duis mollis, est non
+																		commodo luctus, nisi erat porttitor ligula, eget
+																		lacinia odio sem nec elit. Cras mattis consectetur
+																		purus sit amet fermentum. Duis mollis.</div>
+																</div>
+															</div>
+														</div>
+														<!-- END Portlet PORTLET-->
+
+														<!-- BEGIN Portlet PORTLET-->
+														<div class="row">
+															<div class="col-md-12">
+																<div class="panel panel-info">
+																	<div class="panel-heading tarjetita-heading">Comentarios</div>
+																	<div class="panel-body tarjetita-body">Duis mollis, est non
+																		commodo luctus, nisi erat porttitor ligula, eget
+																		lacinia odio sem nec elit. Cras mattis consectetur
+																		purus sit amet fermentum. Duis mollis. Duis mollis,
+																		est non commodo luctus, nisi erat porttitor ligula,
+																		eget lacinia odio sem nec elit. Cras mattis
+																		consectetur purus sit amet fermentum. Duis mollis.
+																		Duis mollis, est non commodo luctus, nisi erat
+																		porttitor ligula, eget lacinia odio sem nec elit. Cras
+																		mattis consectetur purus sit amet fermentum. Duis
+																		mollis.</div>
+																</div>
+															</div>
+														</div>
+														<!-- END Portlet PORTLET-->
+													</div>
+													<div class="col-md-3">
+														<div class="row">
+															<div class="col-md-12">
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="panel panel-primary">
-																			<div class="panel-heading tarjeta">
-																				Nombre <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
+																			<div class="panel-heading tarjetita-heading">
+																				Nombre
 																			</div>
-																			<div class="panel-body">Empresa</div>
+																			<div class="panel-body tarjetita-body">Empresa</div>
 																		</div>
-
 																	</div>
 																</div>
 																<!-- END Portlet PORTLET-->
+
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Responsable <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
+																			<div class="panel-heading tarjetita-heading">
+																				Formato
 																			</div>
-																			<div class="panel-body">Contabilidad</div>
+																			<div class="panel-body tarjetita-body">Alfanumérico</div>
 																		</div>
-
-																	</div>
-																</div>
-															</div>
-															<div class="col-md-6 column sortable">
-																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Definici&oacute;n <span class="tools pull-right">
-																					<a class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
-																			</div>
-																			<div class="panel-body">Duis mollis, est non
-																				commodo luctus, nisi erat porttitor ligula, eget
-																				lacinia odio sem nec elit. Cras mattis consectetur
-																				purus sit amet fermentum. Duis mollis.</div>
-																		</div>
-
 																	</div>
 																</div>
 																<!-- END Portlet PORTLET-->
+
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Formato <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
+																			<div class="panel-heading tarjetita-heading">
+																				Responsable
 																			</div>
-																			<div class="panel-body">Alfanumérico</div>
+																			<div class="panel-body tarjetita-body">Contabilidad</div>
 																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="row-fluid" id="draggable_portlets">
-															<div class="col-md-12 column sortable">
-															<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Comentarios <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
-																			</div>
-																			<div class="panel-body">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis.
-                                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis.</div>
-																		</div>
-
 																	</div>
 																</div>
 																<!-- END Portlet PORTLET-->
@@ -222,95 +211,88 @@
 												</div>
 											</div>
 											<div id="tab-datos-entidad" class="tab-pane">
-												<div class="m-bot20">
-                            						<input type="checkbox" checked class="switch-large">
-                            					</div>
-                            					<div class="row">
-													<div class="col-sm-12">
-														<div class="row-fluid" id="draggable_portlets">
-															<div class="col-md-6 column sortable">
-																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-primary">
-																			<div class="panel-heading tarjeta">
-																				Hit&oacute;rico <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
-																			</div>
-																			<div class="panel-body">5 años + año en curso</div>
-																		</div>
-
-																	</div>
-																</div>
-																<!-- END Portlet PORTLET-->
-																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Responsable <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
-																			</div>
-																			<div class="panel-body">Contabilidad</div>
-																		</div>
-
-																	</div>
+																			<div class="row">
+													<div class="col-md-9">
+														<!-- BEGIN Portlet PORTLET-->
+														<div class="row">
+															<div class="col-md-12">
+																<div class="panel panel-info">
+																	<div class="panel-heading tarjetita-heading">M&eacute;todo de obtenci&oacute;n</div>
+																	<div class="panel-body tarjetita-body">Duis mollis, est non
+																		commodo luctus, nisi erat porttitor ligula, eget
+																		lacinia odio sem nec elit. Cras mattis consectetur
+																		purus sit amet fermentum. Duis mollis.</div>
 																</div>
 															</div>
-															<div class="col-md-6 column sortable">
-																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Origen <span class="tools pull-right">
-																					<a class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
-																			</div>
-																			<div class="panel-body">
-																				<p>Sistema origen: GTC</p>
-																				<p>Tipo origen: Corporativo</p>
-																			</div>
-																		</div>
+														</div>
+														<!-- END Portlet PORTLET-->
 
-																	</div>
-																</div>
-																<!-- END Portlet PORTLET-->
-																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Formato <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
-																			</div>
-																			<div class="panel-body">Alfanumérico</div>
+														<!-- BEGIN Portlet PORTLET-->
+														<div class="row">
+															<div class="col-md-12">
+																<div class="panel panel-info">
+																	<div class="panel-heading tarjetita-heading">Trazabilidad del componente</div>
+																	<div class="panel-body tarjetita-body">
+																		<div id="jstree-stub">
+																			<ul>
+																				<li>Root node 1
+																					<ul>
+																						<li>Child node 1</li>
+																						<li><a href="#">Child node 2</a></li>
+																					</ul>
+																				</li>
+																			</ul>
 																		</div>
 																	</div>
 																</div>
 															</div>
 														</div>
-														<div class="row-fluid" id="draggable_portlets">
-															<div class="col-md-12 column sortable">
-															<!-- BEGIN Portlet PORTLET-->
+														<!-- END Portlet PORTLET-->
+													</div>
+													<div class="col-md-3">
+														<div class="row">
+															<div class="col-md-12">
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-primary">
+																			<div class="panel-heading tarjetita-heading">
+																				Origen
+																			</div>
+																			<div class="panel-body tarjetita-body">
+																				<p>Sistema: GTC</p>
+																				<p>Tipo: Corporativo</p>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+
+																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
-																			<div class="panel-heading">
-																				Comentarios <span class="tools pull-right"> <a
-																					class="fa fa-chevron-down" href="javascript:;"></a>
-																				</span>
+																			<div class="panel-heading tarjetita-heading">
+																				Hist&oacute;rico
 																			</div>
-																			<div class="panel-body">Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis.
-                                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                                        Cras mattis consectetur purus sit amet fermentum. Duis mollis.</div>
+																			<div class="panel-body tarjetita-body">5 a&ntilde;os + a&ntilde;o en curso</div>
 																		</div>
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
 
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading tarjetita-heading">
+																				Caracte&iacute;sticas de actualizaci&oacute;n 
+																			</div>
+																			<div class="panel-body tarjetita-body">
+																				<p>Periodo: Mensual</p>
+																				<p>Tipo: Sustituci&oacute;n blah blah</p>
+																			</div>
+																		</div>
 																	</div>
 																</div>
 																<!-- END Portlet PORTLET-->
@@ -319,7 +301,10 @@
 													</div>
 												</div>
 											</div>
-											<div id="tab-reglas-certificacion" class="tab-pane">ProfileProfileProfileProfileProfileProfileProfileProfile</div>
+											<div id="tab-reglas-certificacion" class="tab-pane">
+												<a class="fa fa-book" href="#"></a>
+												&nbsp;&nbsp;Validacion para saldo fin de mes por empresa y periodo.
+											</div>
 										</div>
 									</div>
 								</section>
@@ -370,8 +355,10 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
 	<!-- switch -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-bootstrap-switch.js"></script>
-	<script src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-bootstrap-switch.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
 
 	<!--tree-->
 	<script
@@ -383,23 +370,32 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 	<!--script for this page-->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script> --%>
 
 	<!-- Mi script personal -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario.js"></script>
-	
-<!-- Cookies -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-diccionario-2.js"></script>
 
-	<script>
-		jQuery(document).ready(function() {
-			TreeView.init();
-		});
-	</script>
+	<!-- Cookies -->
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
+
+	<!-- jsTree -->
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jstree/jstree.js"></script>
+
+<!-- 	<script> -->
+<!--  		jQuery(document).ready(function() { -->
+<!--  			TreeView.init(); -->
+<!--  		}); -->
+<!-- 	</script> -->
 
 
 
