@@ -196,7 +196,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
 
 <!--dynamic table initialization -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 
 

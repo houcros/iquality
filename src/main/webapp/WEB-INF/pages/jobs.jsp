@@ -144,15 +144,6 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.scrollTo.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
-<!--Easy Pie Chart-->
-<script src="${pageContext.servletContext.contextPath}/resources/js/easypiechart/jquery.easypiechart.js"></script>
-<!--Sparkline Chart-->
-<script src="${pageContext.servletContext.contextPath}/resources/js/sparkline/jquery.sparkline.js"></script>
-<!--jQuery Flot Chart-->
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.resize.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
 <!--dynamic table-->
 <script type="text/javascript" language="javascript" src="${pageContext.servletContext.contextPath}/resources/js/advanced-datatable/js/jquery.dataTables.js"></script>
@@ -171,8 +162,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
 
 <!--dynamic table initialization -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
-
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 
 </body>

@@ -170,7 +170,7 @@
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
-																		<div class="panel panel-primary">
+																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
 																				Nombre
 																			</div>
@@ -255,7 +255,7 @@
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
-																		<div class="panel panel-primary">
+																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
 																				Origen
 																			</div>
@@ -338,21 +338,6 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
-	<!--Easy Pie Chart-->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/easypiechart/jquery.easypiechart.js"></script>
-	<!--Sparkline Chart-->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/sparkline/jquery.sparkline.js"></script>
-	<!--jQuery Flot Chart-->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.js"></script>
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.tooltip.min.js"></script>
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.resize.js"></script>
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
 	<!-- switch -->
 	<script
@@ -360,18 +345,9 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
 
-	<!--tree-->
-<!-- 	<script -->
-<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/fuelux/js/tree.min.js"></script> --%>
-
-
 	<!--common script init for all pages-->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
-
-	<!--script for this page-->
-<!-- 	<script -->
-<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/tree.js"></script> --%>
 
 	<!-- Mi script personal -->
 	<script
@@ -379,8 +355,7 @@
 	<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
 
 	<!-- Cookies -->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
 	<script
