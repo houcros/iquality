@@ -69,9 +69,6 @@ public class BaseController {
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
 	private static final String VIEW_DICCIONARIO = "diccionario";
-	private static final String VIEW_CONSOLACONTROLEJECUCION = "consola_control_ejecucion";
-	private static final String VIEW_JOBS_DE_PASE = "jobs";
-	private static final String VIEW_REGISTRO_DE_JOB = "registro-de-operaciones";
 	
 	
 	// TODO Hacer los paths relativos al root del servlet para que funcionen en cualquier máquina
@@ -93,71 +90,6 @@ public class BaseController {
 		logger.debug("[login] : Called route");
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_LOGIN;
-	}
-	
-	@RequestMapping(value = "/consola-control-ejecucion", method = RequestMethod.GET)
-	public String consolaControlEjecucion(ModelMap model) {
-
-		//Get the Spring Context
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-				
-		//Get the lk_met_pla_ctrl_paseDAO Bean
-		//To use JdbcTemplate
-		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
-				
-		//Read
-		List<Pase> allPase;
-		
-		try {
-			allPase = paseDAO.getAll();
-			model.addAttribute("allTableItems", allPase);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//Close Spring Context
-		ctx.close();
-		logger.info("[consola-control-ejecucion] -> DONE");
-		
-		logger.debug("[consola-control-ejecucion] counter : {}", counter);
-		
-		// Spring uses InternalResourceViewResolver and return back index.jsp
-		return VIEW_CONSOLACONTROLEJECUCION;
-
-	}
-	
-	@RequestMapping(value = "/pases/{idEjecucion}", method = RequestMethod.GET)
-	public String showPase(@PathVariable int idEjecucion, ModelMap model) {
-
-		//Get the Spring Context
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-				
-		//Get the lk_met_pla_ctrl_paseDAO Bean
-		//To use JdbcTemplate
-		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
-				
-		//Read
-		List<Pase> unPase = new ArrayList<Pase>();
-		
-		try {
-			unPase.add(paseDAO.getById(idEjecucion));
-			logger.info(paseDAO.getById(idEjecucion).toString());
-			model.addAttribute("allTableItems", unPase);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//Close Spring Context
-		ctx.close();
-		logger.info("[consola-control-ejecucion] -> DONE");
-		
-		logger.debug("[consola-control-ejecucion] counter : {}", counter);
-		
-		// Spring uses InternalResourceViewResolver and return back index.jsp
-		return VIEW_CONSOLACONTROLEJECUCION;
-
 	}
 	
 	@RequestMapping(value = "/api/jsonTree", method = RequestMethod.GET)
@@ -230,7 +162,7 @@ public class BaseController {
 			}
 		}, "updateDictCacheThread").start();
 
-		return VIEW_INDEX;
+		return "redirect:/index";
 	}
 	
 	private boolean auxiliaryUpdateDictionaryCache(){
@@ -330,69 +262,6 @@ public class BaseController {
 
 		logger.info("[auxiliaryUpdateDictionaryCache] -> DONE");
 		return true;
-
-	}
-	
-	@RequestMapping(value = "/pases/{idEjecucion}/jobs", method = RequestMethod.GET)
-	public String getJobsdePase(@PathVariable int idEjecucion, ModelMap model) {
-
-		//Get the Spring Context
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-				
-		//Get the lk_met_pla_ctrl_paseDAO Bean
-		//To use JdbcTemplate
-		JobDAO jobDAO = ctx.getBean("jobDAOJDBCTemplate", JobDAO.class);
-				
-		//Read
-		List<Job> allJobs;
-		
-		try {
-			allJobs = jobDAO.getAll(idEjecucion);
-			model.addAttribute("allTableItems", allJobs);
-			model.addAttribute("idEjecucion", idEjecucion);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//Close Spring Context
-		ctx.close();
-		logger.info("[getJobsdePase] -> DONE");
-		
-		// Spring uses InternalResourceViewResolver and return back index.jsp
-		return VIEW_JOBS_DE_PASE;
-
-	}
-	
-	@RequestMapping(value = "/pases/{idEjecucion}/jobs/{idJob}/registro-de-operaciones", method = RequestMethod.GET)
-	public String getRegistrosDeJob(@PathVariable int idEjecucion, @PathVariable String idJob, ModelMap model) {
-
-		//Get the Spring Context
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-				
-		//Get the registroDeOperacionDAO Bean
-		//To use JdbcTemplate
-		RegistroDeOperacionDAO registroDeOperacionDAO = ctx.getBean("registroDeOperacionDAOJDBCTemplate", RegistroDeOperacionDAO.class);
-				
-		//Read registros de operación
-		List<RegistroDeOperacion> allRegistroDeOperacion;
-		
-		try {
-			allRegistroDeOperacion = registroDeOperacionDAO.getAll(idEjecucion, idJob);
-			model.addAttribute("allTableItems", allRegistroDeOperacion);
-			model.addAttribute("idEjecucion", idEjecucion);
-			model.addAttribute("idJob", idJob);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		//Close Spring Context
-		ctx.close();
-		logger.info("[getRegistrosDeJob] -> DONE");
-		
-		// Spring uses InternalResourceViewResolver and return back index.jsp
-		return VIEW_REGISTRO_DE_JOB;
 
 	}
 	
