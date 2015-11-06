@@ -59,7 +59,7 @@ public class PasesController {
 	}
 	
 	@RequestMapping(value = "/{idEjecucion}", method = RequestMethod.GET)
-	public String showPase(@PathVariable int idEjecucion, ModelMap model) {
+	private String showPase(@PathVariable int idEjecucion, ModelMap model) {
 
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -90,7 +90,7 @@ public class PasesController {
 	}
 	
 	@RequestMapping(value = "/{idEjecucion}/jobs", method = RequestMethod.GET)
-	public String getJobsdePase(@PathVariable int idEjecucion, ModelMap model) {
+	private String getJobsdePase(@PathVariable int idEjecucion, ModelMap model) {
 
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -120,9 +120,8 @@ public class PasesController {
 
 	}
 	
-	
 	@RequestMapping(value = "/{idEjecucion}/jobs/{idJob}/registro-de-operaciones", method = RequestMethod.GET)
-	public String getRegistrosDeJob(@PathVariable int idEjecucion, @PathVariable String idJob, ModelMap model) {
+	private String getRegistrosDeJob(@PathVariable int idEjecucion, @PathVariable String idJob, ModelMap model) {
 
 		//Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");

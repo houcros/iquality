@@ -43,22 +43,26 @@ public class APIController {
 	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.json";
 	private static final String DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree_para_jsTree.json";
 
-	@RequestMapping(value = "/jsonTree", method = RequestMethod.GET)
-	private @ResponseBody JSONObject getJSONTree() {
-		
+	@RequestMapping(value = "/jsonTree-para-jsTree", method = RequestMethod.GET)
+	private @ResponseBody JSONObject getJSONTreeParajsTree() {
+
+		///////////////////////////////////////////////////////////////////////////////////////
+		// Opción 1 para leer el fichero json a un JSONObject
+		// Creo que es más lenta que la opción 2 porque parsea el json
 		JSONParser parser = new JSONParser();
 		JSONObject jsonTree = new JSONObject();
 		try {
-			jsonTree = (JSONObject) parser.parse(new FileReader(DICTIONARY_JSON_CACHE_FILE));
+			jsonTree = (JSONObject) parser.parse(new FileReader(DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE));
 		} catch (FileNotFoundException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + "FileNotFoundException, " + e.getCause() + ": " + e.getMessage());
+			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		} catch (IOException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + "IOException, " + e.getCause() + ": " + e.getMessage());
+			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		} catch (ParseException e) {
-			logger.error("[getJsonTree] -> Error al leer el fichero JSON que hace de caché -> " + "ParseException, " + e.getCause() + ": " + e.getMessage());
+			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
 		}
 		
 		logger.info("[getJSONTree] -> DONE");
+		
 		return jsonTree;
 	}
 	
@@ -140,32 +144,6 @@ public class APIController {
 		
 		logger.info("[getDependenciasDeJob] -> DONE");
 		return jsonArray;
-	}
-	
-	@RequestMapping(value = "/jsonTree-para-jsTree", method = RequestMethod.GET)
-	private @ResponseBody JSONObject getJSONTreeParajsTree() {
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		// Opción 1 para leer el fichero json a un JSONObject
-		// Creo que es más lenta que la opción 2 porque parsea el json
-		JSONParser parser = new JSONParser();
-		JSONObject jsonTree = new JSONObject();
-		try {
-			jsonTree = (JSONObject) parser.parse(new FileReader(DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE));
-		} catch (FileNotFoundException e) {
-			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
-		} catch (IOException e) {
-			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
-		} catch (ParseException e) {
-			logger.error("[getJSONTreeParajsTree] -> Error al leer el fichero JSON que hace de caché -> " + e.getMessage());
-		}
-		
-		logger.info("[getJSONTree] -> DONE");
-		
-		// Descomentar para la opción 1
-		return jsonTree;
-		// Descomentar para la opción 3
-//		return jsonTreeString;
 	}
 	
 	@RequestMapping(value = "/updateDictionaryCache", method = RequestMethod.GET)

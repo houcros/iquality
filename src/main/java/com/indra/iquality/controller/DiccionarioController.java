@@ -15,7 +15,7 @@ public class DiccionarioController {
 	private static final String VIEW_DICCIONARIO = "diccionario";
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String dict2(ModelMap model){
+	private String dict2(ModelMap model){
 		logger.debug("[diccionario] : Called route");
 		return VIEW_DICCIONARIO;
 	}
