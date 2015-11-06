@@ -100,8 +100,8 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 			public Pase mapRow(ResultSet rs, int rowNum) throws SQLException{
 				
 				Pase pase = new Pase();
-				pase.setIdEjecucion(rs.getInt("id_ejecucion"));
 				
+				pase.setIdEjecucion(rs.getInt("id_ejecucion"));
 				pase.setPase(rs.getString("de_pase"));
 				pase.setEstado(rs.getString("id_estado"));
 				pase.setFechaDatos(rs.getString("id_anyo") + rs.getString("id_mes"));
