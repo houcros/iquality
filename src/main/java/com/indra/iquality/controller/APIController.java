@@ -40,7 +40,6 @@ public class APIController {
 
 	// TODO Hacer los paths relativos al root del servlet para que funcionen en cualquier máquina
 	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/resultadoQueryDiccionario.txt";
-	private static final String DICTIONARY_JSON_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree.json";
 	private static final String DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree_para_jsTree.json";
 
 	@RequestMapping(value = "/jsonTree-para-jsTree", method = RequestMethod.GET)
@@ -196,9 +195,13 @@ public class APIController {
 		// en vez del que uso ahora (createTreeFromTxtFile)
 		String conceptsForFile = new String();
 		for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes) {
-			conceptsForFile += dictionaryConceptNode.getData().getLevel() + " "
-					+ dictionaryConceptNode.getData().getStatus() + " " + dictionaryConceptNode.getData().getTipo()
-					+ " " + dictionaryConceptNode.getData().getConcept() + "\n";
+			conceptsForFile += dictionaryConceptNode.getData().getCompRowID() + "&"
+					 		+ dictionaryConceptNode.getData().getCtRowID() + "&" 
+					 		+ dictionaryConceptNode.getData().getLevel() + "&"
+							+ dictionaryConceptNode.getData().getStatus() + "&"
+							+ dictionaryConceptNode.getData().getTipo() + "&"
+							+ dictionaryConceptNode.getData().getConcept() + "\n";
+							 
 		}
 
 		// Guardo las filas de la query en un fichero
@@ -215,7 +218,9 @@ public class APIController {
 
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
+		// TODO Optimización importante: 
 		// También se puede hacer directamente desde el array allDictionaryConceptNodes
+		// Me salto el fichero .txt intermedio en el que secribo para leer a continuación
 		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
 		GenericTreeNode<DictionaryConcept> dictionaryTree = new GenericTreeNode<DictionaryConcept>();
 
@@ -232,7 +237,7 @@ public class APIController {
 		
 		///////////////////////////////////////////////////////////////////////////////////////
 		// Traduzco el tree JSON
-		// NO PRETTY! (se puede si se quiere con jsonTranslator.createPrettyJSONStringFromTree
+		// TODO Investigar, por alguna razón si el JSON no es pretty no funciona, curioso
 		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
 		String jsonTree = jsonTranslator.createPrettyJSONStringFromTreeForjsTree(dictionaryTree);
 

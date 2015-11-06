@@ -23,6 +23,17 @@ public class DictionaryConcept {
 		this.level = level;
 		this.status = status;
 		this.tipo = tipo;
+		this.compRowID = "NULL";
+		this.ctRowID = "NULL";
+	}
+	
+	public DictionaryConcept(String concept, int level, int status, ConceptTypeEnum tipo, String compRowID, String ctRowID) {
+		this.concept = concept;
+		this.level = level;
+		this.status = status;
+		this.tipo = tipo;
+		this.compRowID = compRowID;
+		this.ctRowID = ctRowID;
 	}
 
 	public String getConcept() {

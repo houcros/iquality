@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.indra.iquality.model.ConceptTypeEnum;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.tree.GenericTreeNode;
 
@@ -26,8 +27,15 @@ public class TreeToJSONTranslator {
 		}
 
 		jsonTree.put("children", children);
-//		jsonTree.put("tipo", "test");
 		jsonTree.put("type", root.getData().getTipo());
+		
+		if(root.getData().getTipo() == ConceptTypeEnum.ATRIBUTO || 
+				root.getData().getTipo() == ConceptTypeEnum.ATRIBUTO_MAESTRO ||
+				root.getData().getTipo() == ConceptTypeEnum.INDICADOR || 
+				root.getData().getTipo() == ConceptTypeEnum.LITERAL){
+			
+			jsonTree.put("id", "compRowID:" + root.getData().getCompRowID() + "&" + "ctRowID:" + root.getData().getCtRowID());
+		}
 		
 		return jsonTree;
 		

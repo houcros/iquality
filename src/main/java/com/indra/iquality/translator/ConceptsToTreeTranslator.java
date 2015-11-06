@@ -122,15 +122,22 @@ public class ConceptsToTreeTranslator {
 				// [level] [status] [tipo] [concepto]
 				// Esta ordenación está definida en BaseController.testDictionary (349)
 				if (fileRow != null && !fileRow.isEmpty()){
-					String[] elems = fileRow.split(" ", 4);
+					String[] elems = fileRow.split("&", 6);
 					
+					DictionaryConcept concept = null;
 					// helper.conceptTypeStringToEnum puede lanzar un error
-					DictionaryConcept concept = 
-							new DictionaryConcept(elems[3], Integer.parseInt(elems[0]), 
+					if(elems.length == 6){
+						concept = new DictionaryConcept(elems[5], Integer.parseInt(elems[2]), 
+								Integer.parseInt(elems[3]), helper.conceptTypeStringToEnum(elems[4]), 
+								elems[0], elems[1]);
+					}
+					else if(elems.length == 4){
+						concept = new DictionaryConcept(elems[3], Integer.parseInt(elems[0]), 
 								Integer.parseInt(elems[1]), helper.conceptTypeStringToEnum(elems[2]));
+					}
 					
 					GenericTreeNode<DictionaryConcept> conceptNode = new GenericTreeNode<DictionaryConcept>(concept);
-					ParIntNodo par = new ParIntNodo(Integer.valueOf(elems[0]), conceptNode);
+					ParIntNodo par = new ParIntNodo(Integer.valueOf(elems[2]), conceptNode);
 					filasQuery.add(par);
 				}
 			}
