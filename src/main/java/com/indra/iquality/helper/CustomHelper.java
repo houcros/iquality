@@ -30,8 +30,8 @@ public class CustomHelper {
 			case "SECCION":
 				return ConceptTypeEnum.SECCION;
 			case "SUB":
-			case "MODELO":
-				return ConceptTypeEnum.MODELO;
+			case "SUBSECCION":
+				return ConceptTypeEnum.SUBSECCION;
 			case "TAB":
 			case "ENTIDAD":
 				return ConceptTypeEnum.ENTIDAD;
@@ -48,11 +48,11 @@ public class CustomHelper {
 			case "ATRIBUTO":
 				return ConceptTypeEnum.ATRIBUTO;
 			case "I":
-			case "LINEA":
-				return ConceptTypeEnum.LINEA;
-			case "L":
 			case "INDICADOR":
 				return ConceptTypeEnum.INDICADOR;
+			case "L":
+			case "LITERAL":
+				return ConceptTypeEnum.LITERAL;
 			default:
 				return ConceptTypeEnum.UNKNOWN;
 //				throw new Exception("El tipo pasado no es ninguno de los aceptados: SEC, SUB, TAB, D, J, S, A");

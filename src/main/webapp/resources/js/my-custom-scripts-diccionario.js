@@ -35,7 +35,7 @@ $(document).ready(function () {
 //					"SECCION":{
 //						"icon": "/iQuality/resources/images/folder-1.png"
 //					},
-//					"MODELO":{
+//					"SUBSECCION":{
 //						"icon": "/iQuality/resources/images/folder-2.png"
 //					},
 //					"ENTIDAD":{
@@ -53,11 +53,11 @@ $(document).ready(function () {
 					"ATRIBUTO":{
 						"icon": "/iQuality/resources/images/atributo.png"
 					},
-//					"INDICADOR":{
-//						"icon": "/iQuality/resources/images/indicador.png"
-//					},
-					"LINEA":{
+					"INDICADOR":{
 						"icon": "/iQuality/resources/images/indicador.png"
+					},
+					"LITERAL":{
+						"icon": "/iQuality/resources/images/atributo-solo-maestro.png"
 					}
 				},
 				"plugins" : [
