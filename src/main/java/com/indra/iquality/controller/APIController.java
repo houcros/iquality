@@ -43,10 +43,9 @@ public class APIController {
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(APIController.class);
 
-	// TODO Hacer los paths relativos al root del servlet para que funcionen en cualquier máquina
-	private static final String DICTIONARY_CACHE_FILE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/resultadoQueryDiccionario.txt";
-	private static final String DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE = "C:/Users/inlucero/Documents/workspace-sts-3.7.0.RELEASE/iQuality/src/main/resources/jsonTree_para_jsTree.json";
-
+	private static final String DICTIONARY_CACHE_FILE = System.getProperty("user.home") + File.separator + ".resultadoQueryDiccionario.txt"; 
+	private static final String DICTIONARY_JSON_CACHE_FILE_FOR_JSTREE = System.getProperty("user.home") + File.separator + ".jsonTree_para_jsTree.json";
+	
 	@RequestMapping(value = "/jsonTree-para-jsTree", method = RequestMethod.GET)
 	private @ResponseBody JSONObject getJSONTreeParajsTree() {
 
