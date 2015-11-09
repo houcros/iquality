@@ -20578,7 +20578,7 @@
                 },
                 {
                   "children": [],
-                  "text": "Flujo prestaciones",
+                  "text": "Flujo prestaciones\r\n",
                   "id": "compRowID:AAAaKQAAQAAAUfnAAz\u0026ctRowID:AAAaIrAAMAAAUe1AAU",
                   "type": "INDICADOR"
                 }
@@ -33742,7 +33742,7 @@
                 },
                 {
                   "children": [],
-                  "text": "SCR Operational Risk",
+                  "text": "SCR Operational Risk\r\n",
                   "id": "compRowID:AAAaKQAAMAAAUg5ABC\u0026ctRowID:AAAaIrAAMAAAUekAA9",
                   "type": "INDICADOR"
                 },
@@ -42067,7 +42067,7 @@
               "children": [
                 {
                   "children": [],
-                  "text": "Article 112",
+                  "text": "Article 112\r\n",
                   "id": "compRowID:AAAaKQAAQAAAUfnAA7\u0026ctRowID:AAAaIrAAMAAAUe3AAL",
                   "type": "LITERAL"
                 },

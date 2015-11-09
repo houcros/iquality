@@ -191,47 +191,16 @@ public class APIController {
 		allDictionaryConceptNodes.remove(0);
 		allDictionaryConceptNodes.remove(0);
 
-		///////////////////////////////////////////////////////////////////////////////////////
-		// Escribo el resultado de la query en un fichero
-		// Esto será la caché más adelante
-		// TODO Crear el fichero sólo si no existe y la caché está al día
-		// TODO Quizás (?) sería mejor guardar un .json en vez de un .txt (mejor estructura)
-		// Pero para eso tendría que crear otro método del translator que sea createTreeFromJSONFile
-		// en vez del que uso ahora (createTreeFromTxtFile)
-		String conceptsForFile = new String();
-		for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : allDictionaryConceptNodes) {
-			conceptsForFile += dictionaryConceptNode.getData().getCompRowID() + "&"
-					 		+ dictionaryConceptNode.getData().getCtRowID() + "&" 
-					 		+ dictionaryConceptNode.getData().getLevel() + "&"
-							+ dictionaryConceptNode.getData().getStatus() + "&"
-							+ dictionaryConceptNode.getData().getTipo() + "&"
-							+ dictionaryConceptNode.getData().getConcept() + "\n";
-							 
-		}
-
-		// Guardo las filas de la query en un fichero
-		// TODO Path harcodeado, sería mejor parametrizado
-		File destination = new File(DICTIONARY_CACHE_FILE);
-		logger.info("[auxiliaryUpdateDictionaryCache] : destination path -> " + destination.getAbsolutePath());
-		try {
-			Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
-			logger.info("[auxiliaryUpdateDictionaryCache] : Succesfully wrote to file " + DICTIONARY_CACHE_FILE);
-		} catch (IOException e) {
-			// Useful error handling here
-		}
-
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		// Traduzco las filas de la query a un tree a partir del fichero que acabo de guardar
-		// TODO Optimización importante: 
-		// También se puede hacer directamente desde el array allDictionaryConceptNodes
-		// Me salto el fichero .txt intermedio en el que secribo para leer a continuación
+		// Si quiero guardo el resultado de la query en un fichero de texto
+		//auxiliaryWriteQueryResultToTextFile(allDictionaryConceptNodes, DICTIONARY_CACHE_FILE);
+		
+		// Traduzco las filas de la query a un tree a partir de los nodos de la query
 		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
 		GenericTreeNode<DictionaryConcept> dictionaryTree = new GenericTreeNode<DictionaryConcept>();
 
 		try {
-			dictionaryTree = translator.createTreeFromTxtFile(DICTIONARY_CACHE_FILE);
-			logger.info("[auxiliaryUpdateDictionaryCache] : Generado tree a partir de fichero json.");
+			dictionaryTree = translator.createTreeFromConceptList(allDictionaryConceptNodes);
+			logger.info("[auxiliaryUpdateDictionaryCache] : Generado tree a partir de fichero de texto.");
 			//					tree.myPrintTree(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -268,6 +237,33 @@ public class APIController {
 
 	}
 
+	
+	private boolean auxiliaryWriteQueryResultToTextFile(List<GenericTreeNode<DictionaryConcept>> conceptNodes, String sourcePath){
+
+		String conceptsForFile = new String();
+		for (GenericTreeNode<DictionaryConcept> dictionaryConceptNode : conceptNodes) {
+			conceptsForFile += dictionaryConceptNode.getData().getCompRowID() + "&"
+					+ dictionaryConceptNode.getData().getCtRowID() + "&" 
+					+ dictionaryConceptNode.getData().getLevel() + "&"
+					+ dictionaryConceptNode.getData().getStatus() + "&"
+					+ dictionaryConceptNode.getData().getTipo() + "&"
+					+ dictionaryConceptNode.getData().getConcept() + "\n";
+		}
+
+		// Guardo las filas de la query en un fichero
+		File destination = new File(sourcePath);
+		logger.info("[auxiliaryUpdateDictionaryCache] : destination path -> " + destination.getAbsolutePath());
+		try {
+			Files.write(conceptsForFile, destination, Charset.forName("UTF-8"));
+			logger.info("[auxiliaryUpdateDictionaryCache] : Succesfully wrote to file " + destination.getAbsolutePath());
+		} catch (IOException e) {
+			// Useful error handling here
+			logger.error("[auxiliaryUpdateDictionaryCache] : Error on writting to file " + destination.getAbsolutePath());
+		}
+
+		return true;
+	}
+	
 	@RequestMapping(value = "/descripcionComponente/{idConcepto}", method = RequestMethod.GET)
 	private @ResponseBody JSONObject getDescripcionDeComponente(@PathVariable String idConcepto){
 		

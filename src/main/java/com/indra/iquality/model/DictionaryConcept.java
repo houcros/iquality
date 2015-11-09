@@ -18,6 +18,11 @@ public class DictionaryConcept {
 		this.concept = concept;
 	}
 	
+	public DictionaryConcept(String concept, int level) {
+		this.concept = concept;
+		this.level = level;
+	}
+	
 	public DictionaryConcept(String concept, int level, int status, ConceptTypeEnum tipo) {
 		this.concept = concept;
 		this.level = level;

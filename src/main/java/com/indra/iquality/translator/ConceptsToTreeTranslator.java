@@ -61,6 +61,52 @@ public class ConceptsToTreeTranslator {
 		return root;
 	}
 
+public GenericTreeNode<DictionaryConcept> createTreeFromConceptList(List<GenericTreeNode<DictionaryConcept>> list){
+		
+		// Añado elemento ficticio con altura 0 al inicio de la lista
+		// para facilitar el algoritmo
+		list.add(0, new GenericTreeNode<DictionaryConcept>(new DictionaryConcept("ROOT", 0)));
+		
+		Stack<Integer> S = new Stack<Integer>();
+		int index = 1;
+		GenericTreeNode<DictionaryConcept> root = list.get(0);
+		GenericTreeNode<DictionaryConcept> currentNode = root;
+		
+		S.push(0);
+		// Equivalente y quizás más claro?
+//		S.push(Integer.valueOf(root.getData().getLevel()));
+		
+		while (index < list.size()){
+			
+//			System.out.println("index = " + index +
+//					" list level = " + list.get(index).getLevel() +
+//					" top stack level = " + list.get(S.peek()).getLevel());
+			
+			if(list.get(index).getData().getLevel() > list.get(S.peek()).getData().getLevel()){
+				currentNode.addChild(list.get(index));
+//				System.out.println("currentNode tiene " + currentNode.getNumberOfChildren() + " hijos");
+				
+				// La línea de abajo es equivalente a
+				// currentNode = list.get(position).getNodo() [???]
+				currentNode = currentNode.getChildAt(currentNode.getNumberOfChildren() - 1);
+//				System.out.println("Ahora currentNode es " + currentNode);
+				S.push(Integer.valueOf(index));
+				
+				++index;
+			}
+			else{
+				while(!S.isEmpty() && list.get(index).getData().getLevel() <= list.get(S.peek()).getData().getLevel()){
+//					System.out.println("popped out " + list.get(S.peek()).getLevel());
+					S.pop();
+					currentNode = currentNode.getParent();
+				}
+			}
+		}
+		
+		return root;
+	}
+
+
 	public GenericTreeNode<DictionaryConcept> createTreeFromTxtFile(String pathToSourceFile) throws NumberFormatException, Exception{
 		
 		// Esta línea puede lanzar un error de getDictionaryConceptsFromFile
