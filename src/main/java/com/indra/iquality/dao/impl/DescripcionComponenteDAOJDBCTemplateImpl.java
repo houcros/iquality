@@ -40,6 +40,10 @@ public class DescripcionComponenteDAOJDBCTemplateImpl implements DescripcionComp
 						dc.setResponsable(rs.getString("de_comentario"));
 						dc.setDefinicion(rs.getString("de_definicion"));
 						dc.setComentarios(rs.getString("de_comentario"));
+						dc.setHistoricoEnt(rs.getString("de_historico"));
+						dc.setOrigenEnt(rs.getString("id_sistema"));
+						dc.setCaracteristicasActualizacionEnt(rs.getString("id_periodo_act") + rs.getString("id_tipo_actualizacion"));
+						dc.setMetodoObtencion(rs.getString("de_formula_usuario"));
 						
 						return dc;
 					}

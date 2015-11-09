@@ -210,10 +210,8 @@
 															<div class="col-md-12">
 																<div class="panel panel-info">
 																	<div class="panel-heading tarjetita-heading">M&eacute;todo de obtenci&oacute;n</div>
-																	<div class="panel-body tarjetita-body">Duis mollis, est non
-																		commodo luctus, nisi erat porttitor ligula, eget
-																		lacinia odio sem nec elit. Cras mattis consectetur
-																		purus sit amet fermentum. Duis mollis.</div>
+																	<div class="panel-body tarjetita-body" id="tarj-metodo-obtencion-ent">
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -251,9 +249,7 @@
 																			<div class="panel-heading tarjetita-heading">
 																				Origen
 																			</div>
-																			<div class="panel-body tarjetita-body">
-																				<p>Sistema: GTC</p>
-																				<p>Tipo: Corporativo</p>
+																			<div class="panel-body tarjetita-body" id="tarj-origen-ent">
 																			</div>
 																		</div>
 																	</div>
@@ -267,7 +263,8 @@
 																			<div class="panel-heading tarjetita-heading">
 																				Hist&oacute;rico
 																			</div>
-																			<div class="panel-body tarjetita-body">5 a&ntilde;os + a&ntilde;o en curso</div>
+																			<div class="panel-body tarjetita-body" id="tarj-historico-ent">
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -280,9 +277,7 @@
 																			<div class="panel-heading tarjetita-heading">
 																				Caracte&iacute;sticas de actualizaci&oacute;n 
 																			</div>
-																			<div class="panel-body tarjetita-body">
-																				<p>Periodo: Mensual</p>
-																				<p>Tipo: Sustituci&oacute;n blah blah</p>
+																			<div class="panel-body tarjetita-body" id="tarj-caracteristicas-act-ent">
 																			</div>
 																		</div>
 																	</div>

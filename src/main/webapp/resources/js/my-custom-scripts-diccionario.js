@@ -61,13 +61,17 @@ $(document).ready(function () {
 						console.log(data.selected[0]);	
 						$.ajax({
 							url: "api/descripcionComponente/" + data.selected[0],
-							async: false,
+//							async: false,
 							success: function( data ){
 								$('#tarj-definicion').text(data.definicion);
 								$('#tarj-comentarios').text(data.comentarios);
 								$('#tarj-nombre').text(data.nombre);
 								$('#tarj-formato').text(data.formato);
 								$('#tarj-responsable').text(data.responsable);
+								$('#tarj-metodo-obtencion-ent').text(data.metodoObtencion);
+								$('#tarj-origen-ent').text(data.origenEnt);
+								$('#tarj-historico-ent').text(data.historicoEnt);
+								$('#tarj-caracteristicas-act-ent').text(data.caracteristicasActualizacionEnt);
 							}
 						});
 					}
