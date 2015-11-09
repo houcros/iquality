@@ -134,10 +134,8 @@
 															<div class="col-md-12">
 																<div class="panel panel-info">
 																	<div class="panel-heading tarjetita-heading">Definici&oacute;n</div>
-																	<div class="panel-body tarjetita-body">Duis mollis, est non
-																		commodo luctus, nisi erat porttitor ligula, eget
-																		lacinia odio sem nec elit. Cras mattis consectetur
-																		purus sit amet fermentum. Duis mollis.</div>
+																	<div class="panel-body tarjetita-body" id="tarj-definicion">
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -148,17 +146,8 @@
 															<div class="col-md-12">
 																<div class="panel panel-info">
 																	<div class="panel-heading tarjetita-heading">Comentarios</div>
-																	<div class="panel-body tarjetita-body">Duis mollis, est non
-																		commodo luctus, nisi erat porttitor ligula, eget
-																		lacinia odio sem nec elit. Cras mattis consectetur
-																		purus sit amet fermentum. Duis mollis. Duis mollis,
-																		est non commodo luctus, nisi erat porttitor ligula,
-																		eget lacinia odio sem nec elit. Cras mattis
-																		consectetur purus sit amet fermentum. Duis mollis.
-																		Duis mollis, est non commodo luctus, nisi erat
-																		porttitor ligula, eget lacinia odio sem nec elit. Cras
-																		mattis consectetur purus sit amet fermentum. Duis
-																		mollis.</div>
+																	<div class="panel-body tarjetita-body" id="tarj-comentarios">
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -174,7 +163,8 @@
 																			<div class="panel-heading tarjetita-heading">
 																				Nombre
 																			</div>
-																			<div class="panel-body tarjetita-body">Empresa</div>
+																			<div class="panel-body tarjetita-body" id="tarj-nombre">
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -187,7 +177,8 @@
 																			<div class="panel-heading tarjetita-heading">
 																				Formato
 																			</div>
-																			<div class="panel-body tarjetita-body">Alfanumérico</div>
+																			<div class="panel-body tarjetita-body" id="tarj-formato">
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -200,7 +191,8 @@
 																			<div class="panel-heading tarjetita-heading">
 																				Responsable
 																			</div>
-																			<div class="panel-body tarjetita-body">Contabilidad</div>
+																			<div class="panel-body tarjetita-body" id="tarj-responsable">
+																			</div>
 																		</div>
 																	</div>
 																</div>

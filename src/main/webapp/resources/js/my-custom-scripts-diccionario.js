@@ -1,24 +1,4 @@
 $(document).ready(function () {
-//	Custom para actualizar la cache del diccionario
-/////////////////////////////////////////////////////////
-	$('#update-dictionary-button').click(function(){
-
-		$(this).prop('disabled', true);
-
-		$.ajax({
-			url: "api/updateDictionaryCache",
-//			async: false,
-			success: function() {
-				$('#update-dictionary-button').prop('disabled', false);
-				alert( "Diccionario de conceptos recargado." );
-			}
-		});
-
-		alert( "Recargando el diccionario de conceptos." +
-		"\nPor favor, espere." );
-	});
-/////////////////////////////////////////////////////////
-	
 //	jsTree
 /////////////////////////////////////////////////////////
 	$(function () {
@@ -29,7 +9,7 @@ $(document).ready(function () {
 				$('#jstree').jstree({ 'core': {
 					'data': data.children,
 //					'themes' : 'default,'
-					'animation': 10
+					'animation': 100
 				},
 				"types": {
 //					"SECCION":{
@@ -76,7 +56,21 @@ $(document).ready(function () {
 				  });
 				// 7 bind to events triggered on the tree
 				$('#jstree').on("changed.jstree", function (e, data) {
-					console.log(data.selected);
+//					console.log(data);
+					if(!data.selected[0].match(new RegExp(/^j/))){
+						console.log(data.selected[0]);	
+						$.ajax({
+							url: "api/descripcionComponente/" + data.selected[0],
+							async: false,
+							success: function( data ){
+								$('#tarj-definicion').text(data.definicion);
+								$('#tarj-comentarios').text(data.comentarios);
+								$('#tarj-nombre').text(data.nombre);
+								$('#tarj-formato').text(data.formato);
+								$('#tarj-responsable').text(data.responsable);
+							}
+						});
+					}
 				});
 				// 8 interact with the tree - either way is OK
 //				$('button').on('click', function () {

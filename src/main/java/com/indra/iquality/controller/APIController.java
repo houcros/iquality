@@ -271,6 +271,7 @@ public class APIController {
 	@RequestMapping(value = "/descripcionComponente/{idConcepto}", method = RequestMethod.GET)
 	private @ResponseBody JSONObject getDescripcionDeComponente(@PathVariable String idConcepto){
 		
+		logger.info(("[getDescripcionDeComponente] : called route"));
 		String[] s = idConcepto.split("&");
 		String compRowID = s[0].split(":")[1];
 		String ctRowID = s[1].split(":")[1];
@@ -283,6 +284,9 @@ public class APIController {
 		DescripcionComponente dc = descripcionComponenteDAO.getById(compRowID, ctRowID);
 		ctx.close();
 	
+		// Todo esto para pasar de objeto a JSONObject
+		// No hace falta, puedo devolver el objeto directamente y me lo traduce
+		
 		String jsonString = new Gson().toJson(dc);
 		JSONParser parser = new JSONParser();
 		JSONObject jsonDescripcionComponente = new JSONObject();
@@ -293,8 +297,11 @@ public class APIController {
 			e.printStackTrace();
 		}
 
-//		logger.info(jsonDescripcionComponente.toString());
+		logger.info(jsonDescripcionComponente.toString());
 		return jsonDescripcionComponente;
+		
+		
+//		return dc;
 	}
 
 }
