@@ -56,9 +56,12 @@ $(document).ready(function () {
 				  });
 				// 7 bind to events triggered on the tree
 				$('#jstree').on("changed.jstree", function (e, data) {
-//					console.log(data);
-					if(!data.selected[0].match(new RegExp(/^j/))){
-						console.log(data.selected[0]);	
+					console.log(data);
+					var type = data.instance.get_type(data.selected[0], false);
+					if(type == "INDICADOR" || type == "ATRIBUTO" || type == "ATRIBUTO_MAESTRO"){
+//					if(!data.selected[0].match(new RegExp(/^j/))){
+						console.log(data.selected[0]);
+						console.log(type);
 						$.ajax({
 							url: "api/descripcionComponente/" + data.selected[0],
 //							async: false,
