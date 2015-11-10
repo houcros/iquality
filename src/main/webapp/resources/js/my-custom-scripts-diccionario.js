@@ -63,17 +63,32 @@ $(document).ready(function () {
 						console.log(data.selected[0]);
 						console.log(type);
 						$.ajax({
-							url: "api/descripcionComponente/" + data.selected[0],
+							url: "api/descripcionComponente/" + type + "/" + data.selected[0],
 //							async: false,
 							success: function( data ){
+								
+								$('#tarj-nombre').text(data.nombre);
+								$('#tarj-responsable').text(data.responsable);
 								$('#tarj-definicion').text(data.definicion);
 								$('#tarj-comentarios').text(data.comentarios);
-								$('#tarj-nombre').text(data.nombre);
-								$('#tarj-formato').text(data.formato);
-								$('#tarj-responsable').text(data.responsable);
+								$('#tarj-historico-ent').text(data.historico);
 								$('#tarj-metodo-obtencion-ent').text(data.metodoObtencion);
+								
+								switch(type){
+								case "INDICADOR":
+									var s;
+									for(var i = 0; i < data.certificaciones.length; ++i){
+										s += data.certificaciones[i];
+									}
+									$('#tarj-certificaciones').text(s);
+									break;
+								case "ATRIBUTO":
+									break;
+								case "ATRIBUTO_MAESTRO":
+									break;
+								}
+								$('#tarj-formato').text(data.formato);
 								$('#tarj-origen-ent').text(data.origenEnt);
-								$('#tarj-historico-ent').text(data.historicoEnt);
 								$('#tarj-caracteristicas-act-ent').text(data.caracteristicasActualizacionEnt);
 							}
 						});
