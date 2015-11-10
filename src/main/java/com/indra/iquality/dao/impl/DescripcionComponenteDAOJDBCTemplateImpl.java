@@ -10,11 +10,13 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.DescripcionComponenteDAO;
 import com.indra.iquality.model.DescripcionComponente;
+import com.indra.iquality.singleton.Sistema;
 
 public class DescripcionComponenteDAOJDBCTemplateImpl implements DescripcionComponenteDAO{
 
 	private DataSource dataSource;
-
+	Sistema sistema = Sistema.getInstance();
+	
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -24,11 +26,12 @@ public class DescripcionComponenteDAOJDBCTemplateImpl implements DescripcionComp
 
 		String query = "SELECT * "
 					+ "FROM VS_MET_FI_COMPONENTE_TABLA "
-					+ "WHERE COMP_ROWID = ? AND CT_ROWID = ? ";
+					+ "WHERE COMP_ROWID = ? AND CT_ROWID = ? "
+					+ "AND ID_SISTEMA = ? AND ID_SOFTWARE = ? ";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		DescripcionComponente dc = jdbcTemplate.queryForObject(query, 
-				new Object[]{compRowID, ctRowID}, new RowMapper<DescripcionComponente>(){
+				new Object[]{compRowID, ctRowID, sistema.getIdSistema(), sistema.getIdSoftware()}, new RowMapper<DescripcionComponente>(){
 
 					@Override
 					public DescripcionComponente mapRow(ResultSet rs, int rowNum) throws SQLException {
