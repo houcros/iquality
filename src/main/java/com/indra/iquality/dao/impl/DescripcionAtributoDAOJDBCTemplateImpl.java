@@ -65,51 +65,6 @@ public class DescripcionAtributoDAOJDBCTemplateImpl implements DescripcionAtribu
 			}
 		});
 
-		// Busco los atributos del maestro del atributo
-		DescripcionAtributo atributoMaestro = getAtributosDelMaestro(compRowID, ctRowID);
-		da.setHistoricoMaestro(atributoMaestro.getHistoricoMaestro());
-		da.setPeriodoActualizacionMaestro(atributoMaestro.getPeriodoActualizacionMaestro());
-		da.setTipoActualizacionMaestro(atributoMaestro.getTipoActualizacionMaestro());
-		da.setMetodoObtencionMaestro(atributoMaestro.getMetodoObtencionMaestro());
-
 		return da;
-
 	}
-
-	private DescripcionAtributo getAtributosDelMaestro(String compRowID, String ctRowID) {
-
-		String queryAtributosDelMaestro = "SELECT"
-				+ " VSMT.de_historico_lk as historico_maestro, PERACT.de_periodo_act as periodo_act_maestro,"
-				+ " TIPACT.de_tipo_actualizacion as tipo_act_maestro, VSMT.de_formula_usuario_lk as mtd_obtencion_maestro"
-				+ " FROM"
-				+ " VS_MET_FI_COMPONENTE_TABLA VSMT, LK_MET_FI_PERIODO_ACT PERACT,"
-				+ " LK_MET_FI_TIPO_ACTUALIZACION TIPACT"
-				+ " WHERE"
-				+ " VSMT.COMP_ROWID = ? AND VSMT.CT_ROWID = ? AND VSMT.id_sistema = ? AND VSMT.id_software = ?"
-				+ " AND VSMT.id_software = PERACT.id_software AND VSMT.id_sistema = PERACT.id_sistema"
-				+ " AND VSMT.id_periodo_act_lk = PERACT.id_periodo_act AND VSMT.id_software = TIPACT.id_software"
-				+ " AND VSMT.id_sistema = TIPACT.id_sistema AND VSMT.id_tipo_actualizacion_lk = TIPACT.id_tipo_actualizacion";
-
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescripcionAtributo da = jdbcTemplate.queryForObject(queryAtributosDelMaestro, 
-				new Object[]{compRowID, ctRowID, sistema.getIdSistema(), sistema.getIdSoftware()}, new RowMapper<DescripcionAtributo>(){
-
-			@Override
-			public DescripcionAtributo mapRow(ResultSet rs, int rowNum) throws SQLException {
-
-				DescripcionAtributo da = new DescripcionAtributo();
-
-				da.setHistoricoMaestro(rs.getString("historico_maestro"));
-				da.setPeriodoActualizacionMaestro(rs.getString("periodo_act_maestro"));
-				da.setTipoActualizacionMaestro(rs.getString("tipo_act_maestro"));
-				da.setMetodoObtencionMaestro(rs.getString("mtd_obtencion_maestro"));
-
-				return da;
-			}
-		});
-
-		return da;
-
-	}
-
 }
