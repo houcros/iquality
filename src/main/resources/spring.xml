@@ -31,7 +31,11 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="descripcionComponenteDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DescripcionComponenteDAOJDBCTemplateImpl">
+	<bean id="descripcionAtributoDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DescripcionAtributoDAOJDBCTemplateImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="descripcionIndicadorDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DescripcionIndicadorDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	

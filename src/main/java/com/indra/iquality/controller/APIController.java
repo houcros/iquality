@@ -26,11 +26,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.indra.iquality.dao.DependenciaDeJobDAO;
-import com.indra.iquality.dao.DescripcionComponenteDAO;
+import com.indra.iquality.dao.DescripcionAtributoDAO;
+import com.indra.iquality.dao.DescripcionIndicadorDAO;
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.TrazaDeRegistroDAO;
+import com.indra.iquality.model.ConceptTypeEnum;
 import com.indra.iquality.model.DependenciaDeJob;
+import com.indra.iquality.model.DescripcionAtributo;
 import com.indra.iquality.model.DescripcionComponente;
+import com.indra.iquality.model.DescripcionIndicador;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.TrazaDeRegistro;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
@@ -263,40 +267,76 @@ public class APIController {
 		return true;
 	}
 	
-	@RequestMapping(value = "/descripcionComponente/{idConcepto}", method = RequestMethod.GET)
-	private @ResponseBody JSONObject getDescripcionDeComponente(@PathVariable String idConcepto){
+	@RequestMapping(value = "/descripcionComponente/{type}/{idComponente}", method = RequestMethod.GET)
+	private @ResponseBody JSONObject getDescripcionDeComponente(@PathVariable String type, @PathVariable String idComponente){
 		
 		logger.info(("[getDescripcionDeComponente] : called route"));
-		String[] s = idConcepto.split("&");
+		String[] s = idComponente.split("&");
 		String compRowID = s[0].split(":")[1];
 		String ctRowID = s[1].split(":")[1];
 		
 //		logger.info("id: " + idConcepto);
 //		logger.info("compRowID: " + compRowID + ", ctRowID: " + ctRowID);
 		
+		if(type.equalsIgnoreCase((ConceptTypeEnum.ATRIBUTO).toString()) || type.equalsIgnoreCase((ConceptTypeEnum.ATRIBUTO_MAESTRO).toString())){
+			
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		DescripcionComponenteDAO descripcionComponenteDAO = ctx.getBean("descripcionComponenteDAOJDBCTemplate", DescripcionComponenteDAO.class);
-		DescripcionComponente dc = descripcionComponenteDAO.getById(compRowID, ctRowID);
+		DescripcionAtributoDAO descripcionAtributoDAO = ctx.getBean("descripcionAtributoDAOJDBCTemplate", DescripcionAtributoDAO.class);
+		DescripcionAtributo da = descripcionAtributoDAO.getById(compRowID, ctRowID);
 		ctx.close();
 	
 		// Todo esto para pasar de objeto a JSONObject
 		// No hace falta, puedo devolver el objeto directamente y me lo traduce
 		
-		String jsonString = new Gson().toJson(dc);
+		String jsonString = new Gson().toJson(da);
 		JSONParser parser = new JSONParser();
-		JSONObject jsonDescripcionComponente = new JSONObject();
+		JSONObject jsonDescripcionAtributo = new JSONObject();
 		try {
-			jsonDescripcionComponente = (JSONObject) parser.parse(jsonString);
+			jsonDescripcionAtributo = (JSONObject) parser.parse(jsonString);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		logger.info(jsonDescripcionComponente.toString());
-		return jsonDescripcionComponente;
+		logger.info(jsonDescripcionAtributo.toString());
+		return jsonDescripcionAtributo;
+		}
 		
+		else if (type.equalsIgnoreCase((ConceptTypeEnum.INDICADOR).toString())){
+			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+			DescripcionIndicadorDAO descripcionIndicadorDAO = ctx.getBean("descripcionIndicadorDAOJDBCTemplate", DescripcionIndicadorDAO.class);
+			DescripcionIndicador di = descripcionIndicadorDAO.getById(compRowID, ctRowID);
+			ctx.close();
 		
-//		return dc;
+			// Todo esto para pasar de objeto a JSONObject
+			// No hace falta, puedo devolver el objeto directamente y me lo traduce
+			
+			String jsonString = new Gson().toJson(di);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonDescripcionIndicador = new JSONObject();
+			try {
+				jsonDescripcionIndicador = (JSONObject) parser.parse(jsonString);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block 
+				e.printStackTrace();
+			}
+
+			logger.info(jsonDescripcionIndicador.toString());
+			return jsonDescripcionIndicador;
+		}
+		
+		else{
+			String jsonString = "{\"error\" : \"Este componente no es ni un atributo ni un indicador.\"}";
+			JSONObject mssg = new JSONObject();
+			try {
+				mssg = (JSONObject) new JSONParser().parse(jsonString);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return mssg;
+		}
+		
 	}
 
 }

@@ -7,6 +7,7 @@ package com.indra.iquality.model;
 public class DescripcionComponente {
 
 	// Datos básicos comunes
+	private int id;
 	private String nombre;
 	private String responsable;
 	private String definicion;
@@ -15,6 +16,12 @@ public class DescripcionComponente {
 	private String historico;
 	private String metodoObtencion;
 
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNombre() {
 		return nombre;
 	}

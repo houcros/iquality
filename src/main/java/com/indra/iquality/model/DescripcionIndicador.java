@@ -1,12 +1,14 @@
 package com.indra.iquality.model;
 
+import java.util.List;
+
 public class DescripcionIndicador extends DescripcionComponente {
 
 	// Datos básicos indicador
 	private String unidadMedida;
 	private String periodoAcumulado;
 	// Datos certificacion indicador
-	private String[] certificaciones;
+	private List<String> certificaciones;
 	
 	public String getUnidadMedida() {
 		return unidadMedida;
@@ -20,10 +22,10 @@ public class DescripcionIndicador extends DescripcionComponente {
 	public void setPeriodoAcumulado(String periodoAcumulado) {
 		this.periodoAcumulado = periodoAcumulado;
 	}
-	public String[] getCertificaciones() {
+	public List<String> getCertificaciones() {
 		return certificaciones;
 	}
-	public void setCertificaciones(String[] certificaciones) {
+	public void setCertificaciones(List<String> certificaciones) {
 		this.certificaciones = certificaciones;
 	}
 }
