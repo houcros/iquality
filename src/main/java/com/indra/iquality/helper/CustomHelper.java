@@ -58,4 +58,9 @@ public class CustomHelper {
 //				throw new Exception("El tipo pasado no es ninguno de los aceptados: SEC, SUB, TAB, D, J, S, A");
 		}
 	}
+	
+	public String filterString(String s){
+		if(s != null) return s;
+		return "Sin especificar";
+	}
 }

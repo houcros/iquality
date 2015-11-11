@@ -8,15 +8,20 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.indra.iquality.controller.APIController;
 import com.indra.iquality.dao.DescripcionIndicadorDAO;
+import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.DescripcionIndicador;
 import com.indra.iquality.singleton.Sistema;
 
 public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndicadorDAO {
 
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(DescripcionIndicadorDAOJDBCTemplateImpl.class);
+	private CustomHelper helper = new CustomHelper();
 	private DataSource dataSource;
 	Sistema sistema = Sistema.getInstance();
 
@@ -25,20 +30,20 @@ public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndic
 	}
 
 	private class Certificacion{
-		private int idCertificacion;
 		private int idComponente;
+		private String nombre;
 		private String descripcion;
-		public int getIdCertificacion() {
-			return idCertificacion;
-		}
-		public void setIdCertificacion(int idCertificacion) {
-			this.idCertificacion = idCertificacion;
-		}
 		public int getIdComponente() {
 			return idComponente;
 		}
 		public void setIdComponente(int idComponente) {
 			this.idComponente = idComponente;
+		}
+		public String getNombre() {
+			return nombre;
+		}
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
 		}
 		public String getDescripcion() {
 			return descripcion;
@@ -74,19 +79,21 @@ public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndic
 				DescripcionIndicador di = new DescripcionIndicador();
 
 				di.setId(rs.getInt("id_componente"));
-				di.setNombre(rs.getString("nombre"));
-				di.setResponsable(rs.getString("responsable"));
-				di.setDefinicion(rs.getString("definicion"));
-				di.setComentarios(rs.getString("comentario"));
-				di.setHistorico(rs.getString("historico"));
-				di.setMetodoObtencion(rs.getString("mtd_obtencion"));
-				di.setUnidadMedida(rs.getString("unidad_medida"));
-				di.setPeriodoAcumulado(rs.getString("periodo_acumulado"));
+				di.setNombre(helper.filterString(rs.getString("nombre")));
+				di.setResponsable(helper.filterString(rs.getString("responsable")));
+				di.setDefinicion(helper.filterString(rs.getString("definicion")));
+				di.setComentarios(helper.filterString(rs.getString("comentario")));
+				di.setHistorico(helper.filterString(rs.getString("historico")));
+				di.setMetodoObtencion(helper.filterString(rs.getString("mtd_obtencion")));
+				di.setUnidadMedida(helper.filterString(rs.getString("unidad_medida")));
+				di.setPeriodoAcumulado(helper.filterString(rs.getString("periodo_acumulado")));
 
 				return di;
 			}
 		});
 
+		logger.debug(("[getById] : Obtenidos datos mínimos del indicador -> " + di.toString()));
+		System.out.println("[getById] : Obtenidos datos mínimos del indicador -> " + di.toString());
 		// Busco las certificaciones del indicador
 		List<Certificacion> certificaciones = getCertificaciones(di.getId());
 		List<String> descripcionCertificaciones = new ArrayList<String>();
@@ -95,21 +102,26 @@ public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndic
 		}
 		di.setCertificaciones(descripcionCertificaciones);
 		
+		logger.debug(("[getById] : Obtenidos todos los datos del indicador -> " + di.toString()));
+		System.out.println("[getById] : Obtenidos todos los datos del indicador -> " + di.toString());
 		return di;
 	}
 	
 	private List<Certificacion> getCertificaciones(int idComponente) {
 
-		String queryBasicosYEntidad = "SELECT"
-				+ " comp.id_componente, CERTDEP.id_certificacion, cert.de_certificacion_det as descripcion"
-				+ " FROM"
-				+ " VS_MET_FI_COMPONENTE_TABLA COMP, RE_MET_FI_CERTIFICACION_DEP CERTDEP, LK_MET_FI_CERTIFICACION CERT"
-				+ " WHERE"
-				+ " COMP.id_componente = ? AND COMP.id_sistema = ? AND COMP.id_software = ?"
-				+ " AND COMP.id_software = CERTDEP.id_software AND COMP.id_sistema = CERTDEP.id_sistema"
-				+ " AND COMP.id_componente = CERT.id_componente_hijo AND CERTDEP.id_software = CERT.id_software"
-				+ " AND CERTDEP.id_sistema = CERT.id_sistema AND CERTDEP.id_certificacion = CERT.id_certificacion";
-
+		String queryBasicosYEntidad = "SELECT" 
+				+ " COMP.ID_COMPONENTE,"
+				+ " COMP.DE_NOMBRE,"
+				+ " CERT.DE_CERTIFICACION"
+				+ " FROM LK_MET_FI_CERTIFICACION CERT"
+				+ " LEFT JOIN LK_MET_FI_COMPONENTE COMP"
+				+ " ON(COMP.ID_COMPONENTE = CERT.ID_COMPONENTE_HIJO AND"
+				+ " COMP.ID_SOFTWARE = CERT.ID_SOFTWARE AND"
+				+ " COMP.ID_SISTEMA = CERT.ID_SISTEMA)"
+				+ " WHERE" 
+				+ " COMP.ID_COMPONENTE = ? AND"
+				+ " COMP.ID_SISTEMA = ? AND"
+				+ " COMP.ID_SOFTWARE = ?";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Certificacion> certList = new ArrayList<Certificacion>();
@@ -124,17 +136,19 @@ public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndic
 				cert.setIdComponente(Integer.valueOf((String.valueOf(certRow.get("id_componente")))));
 			else cert.setIdComponente(Sistema.DEFAULT_NULL_INT);
 			
-			if (certRow.get("id_certificacion") != null)
-				cert.setIdCertificacion(Integer.valueOf((String.valueOf(certRow.get("id_certificacion")))));
-			else cert.setIdCertificacion(Sistema.DEFAULT_NULL_INT);
+			if (certRow.get("de_nombre") != null)
+				cert.setNombre((String.valueOf(certRow.get("de_nombre"))));
+			else cert.setNombre(Sistema.DEFAULT_NULL_STRING);
 			
-			if (certRow.get("descripcion") != null)
-				cert.setDescripcion((String.valueOf(certRow.get("descripcion"))));
+			if (certRow.get("de_certificacion") != null)
+				cert.setDescripcion((String.valueOf(certRow.get("de_certificacion"))));
 			else cert.setDescripcion(Sistema.DEFAULT_NULL_STRING);
 		
 			certList.add(cert);
 		}
 		
+		logger.debug(("[getById] : Obtenidas las certificaciones del indicador -> " + certList.toString()));
+		System.out.println("[getById] : Obtenidas las certificaciones del indicador -> " + certList.toString());
 		return certList;
 	}
 }

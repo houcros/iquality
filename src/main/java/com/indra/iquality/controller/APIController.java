@@ -279,8 +279,10 @@ public class APIController {
 		//		logger.info("id: " + idConcepto);
 		//		logger.info("compRowID: " + compRowID + ", ctRowID: " + ctRowID);
 
-		if(type.equalsIgnoreCase((ConceptTypeEnum.ATRIBUTO).toString())){
+		if(type.equalsIgnoreCase((ConceptTypeEnum.ATRIBUTO).toString()) || type.equalsIgnoreCase((ConceptTypeEnum.LITERAL).toString())){
 
+			logger.info(("[getDescripcionDeComponente] : Procesando un " + type));
+			
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			DescripcionAtributoDAO descripcionAtributoDAO = ctx.getBean("descripcionAtributoDAOJDBCTemplate", DescripcionAtributoDAO.class);
 			DescripcionAtributo da = descripcionAtributoDAO.getById(compRowID, ctRowID);
@@ -289,6 +291,7 @@ public class APIController {
 			// Todo esto para pasar de objeto a JSONObject
 			// No hace falta, puedo devolver el objeto directamente y me lo traduce
 
+			logger.info(("[getDescripcionDeComponente] : Ready to parse " + type + " to a JSONObject."));
 			String jsonString = new Gson().toJson(da);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonDescripcionAtributo = new JSONObject();
@@ -304,6 +307,8 @@ public class APIController {
 		}
 
 		else if(type.equalsIgnoreCase((ConceptTypeEnum.ATRIBUTO_MAESTRO).toString())){
+			
+			logger.info(("[getDescripcionDeComponente] : Procesando un " + type));
 
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			DescripcionAtributoMaestroDAO descripcionAtributoMaestroDAO = ctx.getBean("descripcionAtributoMaestroDAOJDBCTemplate", DescripcionAtributoMaestroDAO.class);
@@ -313,6 +318,7 @@ public class APIController {
 			// Todo esto para pasar de objeto a JSONObject
 			// No hace falta, puedo devolver el objeto directamente y me lo traduce
 
+			logger.info(("[getDescripcionDeComponente] : Ready to parse " + type + " to a JSONObject."));
 			String jsonString = new Gson().toJson(da);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonDescripcionAtributo = new JSONObject();
@@ -329,6 +335,8 @@ public class APIController {
 
 		else if (type.equalsIgnoreCase((ConceptTypeEnum.INDICADOR).toString())){
 			
+			logger.info(("[getDescripcionDeComponente] : Procesando un " + type));
+			
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			DescripcionIndicadorDAO descripcionIndicadorDAO = ctx.getBean("descripcionIndicadorDAOJDBCTemplate", DescripcionIndicadorDAO.class);
 			DescripcionIndicador di = descripcionIndicadorDAO.getById(compRowID, ctRowID);
@@ -337,6 +345,7 @@ public class APIController {
 			// Todo esto para pasar de objeto a JSONObject
 			// No hace falta, puedo devolver el objeto directamente y me lo traduce
 
+			logger.info(("[getDescripcionDeComponente] : Ready to parse " + type + " to a JSONObject."));
 			String jsonString = new Gson().toJson(di);
 			JSONParser parser = new JSONParser();
 			JSONObject jsonDescripcionIndicador = new JSONObject();
@@ -352,7 +361,7 @@ public class APIController {
 		}
 
 		else{
-			String jsonString = "{\"error\" : \"Este componente no es ni un atributo ni un indicador.\"}";
+			String jsonString = "{\"error\" : \"Este componente no es ni un literal, ni un atributo ni un indicador.\"}";
 			JSONObject mssg = new JSONObject();
 			try {
 				mssg = (JSONObject) new JSONParser().parse(jsonString);

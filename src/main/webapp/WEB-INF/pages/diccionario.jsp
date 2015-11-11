@@ -103,10 +103,7 @@
 					<div class="col-md-8">
 						<div class="panel" id="dict-ficha-definicion">
 							<div class="panel-heading mi-panel-heading">
-								Ficha de definici&oacute;n <span class="tools pull-right">
-									<a class="fa fa-chevron-down" href="javascript:;"
-									style="color: white"></a>
-								</span>
+								Ficha de definici&oacute;n 
 							</div>
 							<div class="panel-body">
 								<!--tab nav start-->
@@ -117,7 +114,7 @@
 												href="#tab-datos-basicos">Datos b&aacute;sicos</a></li>
 											<li class=""><a data-toggle="tab"
 												href="#tab-datos-entidad">Datos de entidad</a></li>
-											<li class=""><a data-toggle="tab"
+											<li class="" id = "header-tab-reglas-certificacion"><a data-toggle="tab"
 												href="#tab-reglas-certificacion">Reglas de
 													certificaci&oacute;n</a></li>
 										</ul>
@@ -157,17 +154,17 @@
 														<div class="row">
 															<div class="col-md-12">
 																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
-																	<div class="col-md-12">
-																		<div class="panel panel-info">
-																			<div class="panel-heading tarjetita-heading">
-																				Nombre
-																			</div>
-																			<div class="panel-body tarjetita-body" id="tarj-nombre">
-																			</div>
-																		</div>
-																	</div>
-																</div>
+<!-- 																<div class="row"> -->
+<!-- 																	<div class="col-md-12"> -->
+<!-- 																		<div class="panel panel-info"> -->
+<!-- 																			<div class="panel-heading tarjetita-heading"> -->
+<!-- 																				Nombre -->
+<!-- 																			</div> -->
+<!-- 																			<div class="panel-body tarjetita-body" id="tarj-nombre"> -->
+<!-- 																			</div> -->
+<!-- 																		</div> -->
+<!-- 																	</div> -->
+<!-- 																</div> -->
 																<!-- END Portlet PORTLET-->
 
 																<!-- BEGIN Portlet PORTLET-->

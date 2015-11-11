@@ -28,4 +28,6 @@ public class DescripcionIndicador extends DescripcionComponente {
 	public void setCertificaciones(List<String> certificaciones) {
 		this.certificaciones = certificaciones;
 	}
+
+	
 }

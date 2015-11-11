@@ -3,8 +3,6 @@ package com.indra.iquality.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -14,13 +12,8 @@ import com.indra.iquality.singleton.Sistema;
 
 public class DescripcionAtributoMaestroDAOJDBCTemplateImpl extends DescripcionAtributoDAOJDBCTemplateImpl implements DescripcionAtributoMaestroDAO{
 
-	private DataSource dataSource;
 	Sistema sistema = Sistema.getInstance();
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-	
 	@Override
 	public DescripcionAtributoMaestro getById(String compRowID, String ctRowID){
 		

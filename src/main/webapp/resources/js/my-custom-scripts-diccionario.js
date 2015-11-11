@@ -56,7 +56,7 @@ $(document).ready(function () {
 				  });
 				// 7 bind to events triggered on the tree
 				$('#jstree').on("changed.jstree", function (e, data) {
-					console.log(data);
+//					console.log(data);
 					var type = data.instance.get_type(data.selected[0], false);
 					if(type == "INDICADOR" || type == "ATRIBUTO" || type == "ATRIBUTO_MAESTRO"){
 //					if(!data.selected[0].match(new RegExp(/^j/))){
@@ -67,7 +67,7 @@ $(document).ready(function () {
 //							async: false,
 							success: function( data ){
 								
-								$('#tarj-nombre').text(data.nombre);
+								$('#dict-ficha-definicion').children().first().text(data.nombre);
 								$('#tarj-responsable').text(data.responsable);
 								$('#tarj-definicion').text(data.definicion);
 								$('#tarj-comentarios').text(data.comentarios);
@@ -76,15 +76,19 @@ $(document).ready(function () {
 								
 								switch(type){
 								case "INDICADOR":
-									var s;
+									var s = "";
 									for(var i = 0; i < data.certificaciones.length; ++i){
-										s += data.certificaciones[i];
+										s += data.certificaciones[i] + "<br>";
 									}
-									$('#tarj-certificaciones').text(s);
+									$('#tarj-certificaciones').html(s);
+									$('#header-tab-reglas-certificacion').show();
 									break;
 								case "ATRIBUTO":
+								case "LITERAL":
+									$('#header-tab-reglas-certificacion').hide();
 									break;
 								case "ATRIBUTO_MAESTRO":
+									$('#header-tab-reglas-certificacion').hide();
 									break;
 								}
 								$('#tarj-formato').text(data.formato);

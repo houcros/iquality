@@ -14,7 +14,7 @@ import com.indra.iquality.singleton.Sistema;
 
 public class DescripcionAtributoDAOJDBCTemplateImpl implements DescripcionAtributoDAO {
 
-	private DataSource dataSource;
+	protected DataSource dataSource;
 	Sistema sistema = Sistema.getInstance();
 
 	public void setDataSource(DataSource dataSource) {
