@@ -10,6 +10,14 @@ public class DescripcionAtributoMaestro extends DescripcionAtributo {
 	
 	
 	public DescripcionAtributoMaestro(DescripcionAtributo da) {
+//		this.id = da.getId();
+		this.nombre = da.getNombre();
+		this.responsable = da.getResponsable();
+		this.definicion = da.getDefinicion();
+		this.comentarios = da.getComentarios();
+		this.historico = da.getHistorico();
+		this.metodoObtencion = da.getMetodoObtencion();
+		
 		this.formato = da.getFormato();
 		this.periodoActualizacion = da.getPeriodoActualizacion();
 		this.tipoActualizacion = da.getTipoActualizacion();

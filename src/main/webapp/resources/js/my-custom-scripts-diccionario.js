@@ -71,29 +71,62 @@ $(document).ready(function () {
 								$('#tarj-responsable').text(data.responsable);
 								$('#tarj-definicion').text(data.definicion);
 								$('#tarj-comentarios').text(data.comentarios);
+								
 								$('#tarj-historico-ent').text(data.historico);
 								$('#tarj-metodo-obtencion-ent').text(data.metodoObtencion);
 								
 								switch(type){
 								case "INDICADOR":
+									
+									$('#master-toggle-container').hide();
+									$('.show-on-atr').hide();
+									$('.show-on-ent').hide();
+									$('.show-on-master').hide();
+									$('.show-on-indic').show();
+									
+									$('#tarj-unidad-medida').text(data.unidadMedida);
+									$('#tarj-periodo-acumulado').text(data.periodoAcumulado);
+									
 									var s = "";
 									for(var i = 0; i < data.certificaciones.length; ++i){
 										s += data.certificaciones[i] + "<br>";
 									}
 									$('#tarj-certificaciones').html(s);
-									$('#header-tab-reglas-certificacion').show();
+									
 									break;
+									
 								case "ATRIBUTO":
 								case "LITERAL":
-									$('#header-tab-reglas-certificacion').hide();
+									
+									$('#master-toggle-container').hide();
+									$('.show-on-indic').hide();
+									$('.show-on-master').hide();
+									$('.show-on-atr').show();
+									$('.show-on-ent').show();
+									
+									$('#tarj-formato').text(data.formato);
+									$('#tarj-caracteristicas-act-ent').text(data.periodoActualizacion + " " + data.tipoActualizacion);
+									
 									break;
+									
 								case "ATRIBUTO_MAESTRO":
-									$('#header-tab-reglas-certificacion').hide();
+									
+									$('#master-toggle-container').show();
+									$('#master-toggle').prop('checked', true).change();
+									$('.show-on-indic').hide();
+									$('.show-on-atr').hide();
+									$('.show-on-ent').hide();
+									$('.show-on-master').show();
+									
+									$('#tarj-formato').text(data.formato);
+									$('#tarj-caracteristicas-act-ent').text(data.periodoActualizacion + " " + data.tipoActualizacion);
+									
+									$('#tarj-historico-master').text(data.historicoMaestro);
+									$('#tarj-metodo-obtencion-master').text(data.metodoObtencionMaestro);
+									$('#tarj-caracteristicas-act-master').text(data.periodoActualizacionMaestro + " " + data.tipoActualizacionMaestro);
+
 									break;
 								}
-								$('#tarj-formato').text(data.formato);
-								$('#tarj-origen-ent').text(data.origenEnt);
-								$('#tarj-caracteristicas-act-ent').text(data.caracteristicasActualizacionEnt);
 							}
 						});
 					}
@@ -113,7 +146,7 @@ $(document).ready(function () {
 	$('#jstree-stub').jstree();
 	
 	$(function() {
-		$('#master-toggler').change(function() {
+		$('#master-toggle').change(function() {
 			if($(this).prop('checked')){
 				$(".show-on-ent").hide();
 				$(".show-on-master").show();

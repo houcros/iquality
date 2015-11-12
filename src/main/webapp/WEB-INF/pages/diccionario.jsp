@@ -108,7 +108,7 @@
 												href="#tab-datos-basicos">Datos b&aacute;sicos</a></li>
 											<li class=""><a data-toggle="tab"
 												href="#tab-datos-entidad">Datos de entidad</a></li>
-											<li class="" id = "header-tab-reglas-certificacion"><a data-toggle="tab"
+											<li class="show-on-indic" id="header-tab-reglas-certificacion"><a data-toggle="tab"
 												href="#tab-reglas-certificacion">Reglas de
 													certificaci&oacute;n</a></li>
 										</ul>
@@ -147,22 +147,9 @@
 													<div class="col-md-3">
 														<div class="row">
 															<div class="col-md-12">
-																<!-- BEGIN Portlet PORTLET-->
-<!-- 																<div class="row"> -->
-<!-- 																	<div class="col-md-12"> -->
-<!-- 																		<div class="panel panel-info"> -->
-<!-- 																			<div class="panel-heading tarjetita-heading"> -->
-<!-- 																				Nombre -->
-<!-- 																			</div> -->
-<!-- 																			<div class="panel-body tarjetita-body" id="tarj-nombre"> -->
-<!-- 																			</div> -->
-<!-- 																		</div> -->
-<!-- 																	</div> -->
-<!-- 																</div> -->
-																<!-- END Portlet PORTLET-->
 
 																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
+																<div class="row show-on-atr">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
@@ -175,6 +162,34 @@
 																</div>
 																<!-- END Portlet PORTLET-->
 
+																<!-- BEGIN Portlet PORTLET-->
+																<div class="row show-on-indic">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading tarjetita-heading">
+																				Unidad de medida
+																			</div>
+																			<div class="panel-body tarjetita-body" id="tarj-unidad-medida">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+																
+																																<!-- BEGIN Portlet PORTLET-->
+																<div class="row show-on-indic">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading tarjetita-heading">
+																				Periodo acumulado en el DMS
+																			</div>
+																			<div class="panel-body tarjetita-body" id="tarj-periodo-acumulado">
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+																
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row">
 																	<div class="col-md-12">
@@ -197,7 +212,7 @@
 												<div class="row">
 													<div class="col-md-9">
 														<!-- BEGIN Portlet PORTLET-->
-														<div class="row show-on-ent">
+														<div class="row show-on-indic show-on-ent">
 															<div class="col-md-12">
 																<div class="panel panel-info">
 																	<div class="panel-heading tarjetita-heading">M&eacute;todo
@@ -212,9 +227,9 @@
 														<!-- BEGIN Portlet PORTLET-->
 														<div class="row show-on-master">
 															<div class="col-md-12">
-																<div class="panel panel-info">
+																<div class="panel panel-primary">
 																	<div class="panel-heading tarjetita-heading">M&eacute;todo
-																		de obtenci&oacute;n Master</div>
+																		de obtenci&oacute;n</div>
 																	<div class="panel-body tarjetita-body"
 																		id="tarj-metodo-obtencion-master"></div>
 																</div>
@@ -249,9 +264,9 @@
 														<div class="">
 															<div class="col-md-12">
 
-																<div class="checkbox">
+																<div class="checkbox" id="master-toggle-container">
 																	<label> <input type="checkbox"
-																		id="master-toggler" data-toggle="toggle"
+																		id="master-toggle" data-toggle="toggle"
 																		data-on="maestro" data-off="entidad"
 																		data-size="normal" data-width="110"
 																		data-onstyle="warning">
@@ -259,7 +274,7 @@
 																</div>
 
 																<!-- BEGIN Portlet PORTLET-->
-																<div class="row show-on-ent">
+																<div class="row show-on-indic show-on-ent">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
@@ -274,9 +289,9 @@
 																<!-- BEGIN Portlet PORTLET-->
 																<div class="row show-on-master">
 																	<div class="col-md-12">
-																		<div class="panel panel-info">
+																		<div class="panel panel-primary">
 																			<div class="panel-heading tarjetita-heading">
-																				Hist&oacute;rico Master</div>
+																				Hist&oacute;rico</div>
 																			<div class="panel-body tarjetita-body"
 																				id="tarj-historico-master"></div>
 																		</div>
@@ -300,9 +315,9 @@
 																<!-- BEGIN Portlet PORTLET-->														<!-- BEGIN Portlet PORTLET-->
 																<div class="row show-on-master">
 																	<div class="col-md-12">
-																		<div class="panel panel-info">
+																		<div class="panel panel-primary">
 																			<div class="panel-heading tarjetita-heading">
-																				Caracte&iacute;sticas de actualizaci&oacute;n Master</div>
+																				Caracte&iacute;sticas de actualizaci&oacute;n</div>
 																			<div class="panel-body tarjetita-body"
 																				id="tarj-caracteristicas-act-master"></div>
 																		</div>

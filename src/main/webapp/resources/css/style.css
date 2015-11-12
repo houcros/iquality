@@ -5878,6 +5878,6 @@ ul.breadcrumb.mi-breadcrumb{
        float:right;
 }
 
-.show-on-master{
+.show-on-master, #master-toggle-container, #header-tab-reglas-certificacion{
 	display:none;
 }

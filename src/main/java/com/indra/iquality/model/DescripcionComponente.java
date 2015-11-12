@@ -7,14 +7,14 @@ package com.indra.iquality.model;
 public class DescripcionComponente {
 
 	// Datos básicos comunes
-	private int id;
-	private String nombre;
-	private String responsable;
-	private String definicion;
-	private String comentarios;
+	protected int id;
+	protected String nombre;
+	protected String responsable;
+	protected String definicion;
+	protected String comentarios;
 	// Datos entidad comunes
-	private String historico;
-	private String metodoObtencion;
+	protected String historico;
+	protected String metodoObtencion;
 
 	public int getId() {
 		return id;
