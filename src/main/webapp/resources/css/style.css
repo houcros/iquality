@@ -5877,3 +5877,7 @@ ul.breadcrumb.mi-breadcrumb{
        text-align:center;
        float:right;
 }
+
+.show-on-master{
+	display:none;
+}

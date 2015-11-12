@@ -111,4 +111,18 @@ $(document).ready(function () {
 	
 	
 	$('#jstree-stub').jstree();
+	
+	$(function() {
+		$('#master-toggler').change(function() {
+			if($(this).prop('checked')){
+				$(".show-on-ent").hide();
+				$(".show-on-master").show();
+			}
+			else{
+				$(".show-on-ent").show();
+				$(".show-on-master").hide();
+			}
+		})
+	});
+
 });

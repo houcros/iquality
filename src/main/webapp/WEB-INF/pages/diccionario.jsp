@@ -12,7 +12,7 @@
 	href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico"
 	type="image/x-icon">
 
-<title>Tree View</title>
+<title>Diccionario de conceptos</title>
 
 <!--Core CSS -->
 <link
@@ -28,6 +28,9 @@
 <!-- switch -->
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-switch.css" />
+
+<!-- toggle -->
+<link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-toggle.min.css" rel="stylesheet">
 
 <!--external css-->
 <link rel="stylesheet" type="text/css"
@@ -84,15 +87,6 @@
 										placeholder=" Search">
 								</div>
 								<div id="jstree" class="">
-									<!-- 									<ul> -->
-									<!-- 										<li>Root node 1 -->
-									<!-- 											<ul> -->
-									<!-- 												<li id="child_node_1">Child node 1</li> -->
-									<!-- 												<li>Child node 2</li> -->
-									<!-- 											</ul> -->
-									<!-- 										</li> -->
-									<!-- 										<li>Root node 2</li> -->
-									<!-- 									</ul> -->
 								</div>
 							</div>
 						</div>
@@ -200,25 +194,40 @@
 												</div>
 											</div>
 											<div id="tab-datos-entidad" class="tab-pane">
-																			<div class="row">
+												<div class="row">
 													<div class="col-md-9">
 														<!-- BEGIN Portlet PORTLET-->
-														<div class="row">
+														<div class="row show-on-ent">
 															<div class="col-md-12">
 																<div class="panel panel-info">
-																	<div class="panel-heading tarjetita-heading">M&eacute;todo de obtenci&oacute;n</div>
-																	<div class="panel-body tarjetita-body" id="tarj-metodo-obtencion-ent">
-																	</div>
+																	<div class="panel-heading tarjetita-heading">M&eacute;todo
+																		de obtenci&oacute;n</div>
+																	<div class="panel-body tarjetita-body"
+																		id="tarj-metodo-obtencion-ent"></div>
 																</div>
 															</div>
 														</div>
 														<!-- END Portlet PORTLET-->
 
 														<!-- BEGIN Portlet PORTLET-->
-														<div class="row">
+														<div class="row show-on-master">
 															<div class="col-md-12">
 																<div class="panel panel-info">
-																	<div class="panel-heading tarjetita-heading">Trazabilidad del componente</div>
+																	<div class="panel-heading tarjetita-heading">M&eacute;todo
+																		de obtenci&oacute;n Master</div>
+																	<div class="panel-body tarjetita-body"
+																		id="tarj-metodo-obtencion-master"></div>
+																</div>
+															</div>
+														</div>
+														<!-- END Portlet PORTLET-->
+														
+														<!-- BEGIN Portlet PORTLET-->
+														<div class="row show-on-ent">
+															<div class="col-md-12">
+																<div class="panel panel-info">
+																	<div class="panel-heading tarjetita-heading">Trazabilidad
+																		del componente</div>
 																	<div class="panel-body tarjetita-body">
 																		<div id="jstree-stub">
 																			<ul>
@@ -237,45 +246,65 @@
 														<!-- END Portlet PORTLET-->
 													</div>
 													<div class="col-md-3">
-														<div class="row">
+														<div class="">
 															<div class="col-md-12">
+
+																<div class="checkbox">
+																	<label> <input type="checkbox"
+																		id="master-toggler" data-toggle="toggle"
+																		data-on="maestro" data-off="entidad"
+																		data-size="normal" data-width="110"
+																		data-onstyle="warning">
+																	</label>
+																</div>
+
 																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
+																<div class="row show-on-ent">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
-																				Origen
-																			</div>
-																			<div class="panel-body tarjetita-body" id="tarj-origen-ent">
-																			</div>
+																				Hist&oacute;rico</div>
+																			<div class="panel-body tarjetita-body"
+																				id="tarj-historico-ent"></div>
 																		</div>
 																	</div>
 																</div>
 																<!-- END Portlet PORTLET-->
 
 																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
+																<div class="row show-on-master">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
-																				Hist&oacute;rico
-																			</div>
-																			<div class="panel-body tarjetita-body" id="tarj-historico-ent">
-																			</div>
+																				Hist&oacute;rico Master</div>
+																			<div class="panel-body tarjetita-body"
+																				id="tarj-historico-master"></div>
 																		</div>
 																	</div>
 																</div>
 																<!-- END Portlet PORTLET-->
-
+																
 																<!-- BEGIN Portlet PORTLET-->
-																<div class="row">
+																<div class="row show-on-ent">
 																	<div class="col-md-12">
 																		<div class="panel panel-info">
 																			<div class="panel-heading tarjetita-heading">
-																				Caracte&iacute;sticas de actualizaci&oacute;n 
-																			</div>
-																			<div class="panel-body tarjetita-body" id="tarj-caracteristicas-act-ent">
-																			</div>
+																				Caracte&iacute;sticas de actualizaci&oacute;n</div>
+																			<div class="panel-body tarjetita-body"
+																				id="tarj-caracteristicas-act-ent"></div>
+																		</div>
+																	</div>
+																</div>
+																<!-- END Portlet PORTLET-->
+																
+																<!-- BEGIN Portlet PORTLET-->														<!-- BEGIN Portlet PORTLET-->
+																<div class="row show-on-master">
+																	<div class="col-md-12">
+																		<div class="panel panel-info">
+																			<div class="panel-heading tarjetita-heading">
+																				Caracte&iacute;sticas de actualizaci&oacute;n Master</div>
+																			<div class="panel-body tarjetita-body"
+																				id="tarj-caracteristicas-act-master"></div>
 																		</div>
 																	</div>
 																</div>
@@ -336,10 +365,10 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
 
 	<!-- switch -->
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-bootstrap-switch.js"></script>
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
+<!-- 	<script -->
+<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-bootstrap-switch.js"></script> --%>
+<!-- 	<script -->
+<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script> --%>
 
 	<!--common script init for all pages-->
 	<script
@@ -359,6 +388,9 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
 
+	<!-- toggle -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	
 	<!-- jsTree -->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jstree/jstree.js"></script>
