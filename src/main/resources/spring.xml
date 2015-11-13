@@ -47,6 +47,11 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="validacionTecnicaDAOJDBCTemplate" class="com.indra.iquality.dao.impl.ValidacionTecnicaDAOJDBCTemplateImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />

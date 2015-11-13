@@ -7,9 +7,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import com.indra.iquality.model.ConceptTypeEnum;
+import com.indra.iquality.singleton.Sistema;
 
 public class CustomHelper {
 
+	// Parámetros por defecto para sustituir por null en las queries
+	// Comunes para todas las queries del sistema por consistencia
+	private final String DEFAULT_NULL_STRING = "";
+	private final int DEFAULT_NULL_INT = -1;
+	private final double DEFAULT_NULL_FLOAT = -1.0;
+	private final Date DEFAULT_NULL_DATE = new Date(1);
+	
 	/*
 	 * Pasa un string que representa un timestamp a una SQLDate
 	 */
@@ -62,5 +70,15 @@ public class CustomHelper {
 	public String filterString(String s){
 		if(s != null) return s;
 		return "Sin especificar";
+	}
+
+	public String filterNullString(String s) {
+		if(s != null) return s;
+		return DEFAULT_NULL_STRING;
+	}
+
+	public int filterNullInt(Integer x) {
+		if(x != null) return x;
+		return DEFAULT_NULL_INT;
 	}
 }

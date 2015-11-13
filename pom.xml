@@ -20,6 +20,8 @@
 		<gson.version>2.4</gson.version>
 		<jackson.version>1.9.13</jackson.version>
 		<jdk.version>1.8</jdk.version>
+		<guava.version>18.0</guava.version>
+		<apache-commons.version>3.4</apache-commons.version>
 	</properties>
 
 	<dependencies>
@@ -121,10 +123,11 @@
 		<!-- Para escribir en ficheros -->
 		<!-- Se podria hacer con clases de Java, sin esta dependencia -->
 		<!-- O con Apache Commons IO -->
+		<!-- También sirve para override equals() & hashCode() -->
 		<dependency>
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
-		    <version>18.0</version>
+		    <version>${guava.version}</version>
 		</dependency>
 		
 		<!-- Para usar JSONObject -->
@@ -153,6 +156,13 @@
 <!--   <artifactId>org.json</artifactId> -->
 <!--   <version>2.0-NEXUS-3758</version> -->
 <!-- </dependency> -->
+
+	<!-- Para Override equals() & hashCode() -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>${apache-commons.version}</version>
+	</dependency>
 
 	</dependencies>
 

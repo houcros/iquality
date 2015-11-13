@@ -29,7 +29,7 @@
                     </a>
                     <ul class="sub">
                         <li><a href="general.html">Cargar ficheros</a></li>
-                        <li><a href="buttons.html">Consultar certificaciones</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/resultado-certificaciones">Resultado certificaciones</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/pases">Control de ejecución</a></li>
                         <li><a href="slider.html">Planificar cargas</a></li>
                         <li><a href="tree_view.html">Parametrizar certificaciones</a></li>

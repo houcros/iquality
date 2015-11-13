@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.indra.iquality.controller.BaseController;
 import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Job;

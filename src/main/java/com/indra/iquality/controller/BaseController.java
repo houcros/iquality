@@ -1,10 +1,16 @@
 package com.indra.iquality.controller;
 
+import java.util.List;
+
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.indra.iquality.dao.ValidacionTecnicaDAO;
+import com.indra.iquality.model.ValidacionTecnica;
 
 @Controller
 public class BaseController {
@@ -18,6 +24,7 @@ public class BaseController {
 	 */
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
+	private static final String VIEW_RESULTADO_CERTIFICACIONES = "resultado-certificaciones";
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
@@ -35,5 +42,20 @@ public class BaseController {
 		return VIEW_LOGIN;
 	}
 	
+	@RequestMapping(value = "/resultado-certificaciones", method = RequestMethod.GET)
+	private String getValidaciones(ModelMap model){
+		logger.debug("getValidaciones : Called route");
+		
+		// TEST
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
+		List<ValidacionTecnica> allValidaciones= vtDAO.getAll();
+		ctx.close();
+		
+		model.addAttribute("allTableItems", allValidaciones);
+		
+		logger.info(allValidaciones.get(0).toString());
+		return VIEW_RESULTADO_CERTIFICACIONES;
+	}
 	
 }

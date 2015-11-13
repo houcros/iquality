@@ -1,7 +1,7 @@
 (function($){
 	$(document).ready(function () {
 
-		/*==Mejora para contexto de didebar==*/
+		/*==Mejora para contexto de sidebar==*/
 		var pathnameParts = window.location.pathname.split('/');
 		// Será del estilo: pathnameParts = ["", "iQuality", "pases", "373", "jobs"]
 		if(pathnameParts.length > 2){
