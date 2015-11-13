@@ -4,63 +4,17 @@ import com.google.common.base.Objects;
 //import org.apache.commons.lang3.builder.EqualsBuilder;
 //import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class ValidacionTecnica {
+public class ValidacionTecnica extends Certificacion{
 
-	private String fecha;
-	private String seccion;
-	private String subseccion;
-	private String entidad;
-	private String certificacion;
-	// ID_ERROR hace falta?
 	private int numRegistros;
-	private String estado;
 	
-	
-	public String getFecha() {
-		return fecha;
-	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-	public String getSeccion() {
-		return seccion;
-	}
-	public void setSeccion(String seccion) {
-		this.seccion = seccion;
-	}
-	public String getSubseccion() {
-		return subseccion;
-	}
-	public void setSubseccion(String subseccion) {
-		this.subseccion = subseccion;
-	}
-	public String getEntidad() {
-		return entidad;
-	}
-	public void setEntidad(String entidad) {
-		this.entidad = entidad;
-	}
-	public String getCertificacion() {
-		return certificacion;
-	}
-	public void setCertificacion(String certificacion) {
-		this.certificacion = certificacion;
-	}
 	public int getNumRegistros() {
 		return numRegistros;
 	}
 	public void setNumRegistros(int numRegistros) {
 		this.numRegistros = numRegistros;
 	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 	
-	
-
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(fecha, seccion, subseccion, entidad, certificacion, numRegistros, estado);

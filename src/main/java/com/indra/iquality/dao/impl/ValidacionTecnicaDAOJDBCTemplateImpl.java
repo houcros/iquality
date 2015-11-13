@@ -4,25 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.sql.DataSource;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
-import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.ValidacionTecnica;
-import com.indra.iquality.singleton.Sistema;
 
-public class ValidacionTecnicaDAOJDBCTemplateImpl implements ValidacionTecnicaDAO {
+public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl implements ValidacionTecnicaDAO {
 
-	private DataSource dataSource;
-	private Sistema sistema = Sistema.getInstance();
-	private CustomHelper helper = new CustomHelper();
-	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-	
 	@Override
 	public List<ValidacionTecnica> getAll() {
 

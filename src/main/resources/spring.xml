@@ -47,6 +47,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="certificacionDeNegocioDAOJDBCTemplate" class="com.indra.iquality.dao.impl.CertificacionDeNegocioDAOJDBCTemplateImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="validacionTecnicaDAOJDBCTemplate" class="com.indra.iquality.dao.impl.ValidacionTecnicaDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
