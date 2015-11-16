@@ -65,8 +65,9 @@
 												Certificaciones de negocio <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href=${requestScope['javax.servlet.forward.request_uri']}${'?tab=1'}>Certificaciones de negocio</a></li>
-												<li><a href=${requestScope['javax.servlet.forward.request_uri']}${'?tab=2'}>Validaciones t&eacute;cnicas</a></li>
+												<li><a href="#">Certificaciones de negocio</a></li>
+<%-- 												<li><a href=${requestScope['javax.servlet.forward.request_uri']}${'/2'}>Validaciones t&eacute;cnicas</a></li> --%>
+												<li><a href="${pageContext.servletContext.contextPath}/resultado-certificaciones/2">Validaciones t&eacute;cnicas</a></li>
 											</ul>
 										</div>
 										<!-- 										Certificaciones de negocio -->

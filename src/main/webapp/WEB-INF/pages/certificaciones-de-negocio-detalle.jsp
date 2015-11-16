@@ -10,7 +10,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico">
 
-    <title>Resultado de certificaciones</title>
+    <title>Detalle de certificaciones de negocio</title>
 
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -52,36 +52,34 @@
     <section id="main-content">
         <section class="wrapper">
         <!-- page start-->
-        
-        <div class="row">
-            <div class="col-sm-12">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="panel" id="dict-explorador-indicadores">
+							<div class="panel-heading mi-panel-heading">Datos
+								b&aacute;sicos</div>
+							<div class="panel-body">
+								<div class="">
+									<p><b>Fecha:</b></p>
+									<p><b>Indicador:</b></p>
+									<p><b>Certificaci&oacute;n</b></p>
+									<p><b>M&eacute;trica evaluada</b></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+					<div class="row">
+						<div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading mi-panel-heading">
 								<div class="row">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button data-toggle="dropdown"
-												class="btn btn-default dropdown-toggle" type="button">
-												Validaciones t&eacute;cnicas <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu">
-<!-- 												<li><a -->
-<%-- 													href=${requestScope['javax.servlet.forward.request_uri']} --%>
-<%-- 													${'/1'}>Certificaciones de negocio</a></li> --%>
-												<li><a
-													href="${pageContext.servletContext.contextPath}/resultado-certificaciones/1">
-													Certificaciones de negocio</a></li>
-												<li><a
-													href="#">Validaciones t&eacute;cnicas</a></li>
-											</ul>
+											Detalle funcional de certificaciones
 										</div>
 									</div>
-									<!-- 									<div class="col-md-3"> -->
-<!-- 										<ul class="breadcrumb mi-breadcrumb"> -->
-<!-- 											<li><a -->
-<%-- 												href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Pases</a></li> --%>
-<!-- 										</ul> -->
-<!-- 									</div> -->
 								</div>
 							</header>
 							<div class="panel-body">
@@ -91,27 +89,18 @@
 										class="display table table-bordered" id="hidden-table-pases">
 										<thead>
 											<tr>
-												<th><div style="width: 50px;">Fecha</div></th>
-												<th>Secci&oacute;n</th>
-												<th><div style="width: 50px;">Subsecci&oacute;n</div></th>
-												<th><div style="width: 90px;">Entidad</div></th>
-												<th><div style="width: 90px;">Certificaci&oacute;n</div></th>
-												<th><div style="width: 70px;">Registros</div></th>
-												<th>Estado</th>
+												<th><div style="width: 50px;">Mes</div></th>
+												<th><div style="width: 50px;">Empresa</div></th>
+												<th><div style="width: 90px;">Estado</div></th>
+												<th><div style="width: 90px;">Valor de
+														m&eacute;trica evaluada</div></th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${allTableItems}" var="item">
 												<tr class="gradeA">
-													<!-- 					    <tr class="gradeX">       -->
-													<!-- 					    <tr class="gradeC">       -->
-													<!-- 					    <tr class="gradeU">       -->
-													<td class="center hidden-phone">${item.fecha}</td>
-													<td class="center hidden-phone">${item.seccion}</td>
-													<td class="center hidden-phone">${item.subseccion}</td>
-													<td class="center hidden-phone">${item.entidad}</td>
-													<td class="center hidden-phone">${item.certificacion}</td>
-													<td class="center hidden-phone">${item.numRegistros}</td>
+													<td class="center hidden-phone">${item.mes}</td>
+													<td class="center hidden-phone">${item.empresa}</td>
 													<td class="center hidden-phone"><c:choose>
 															<c:when test="${item.estado=='OK'}">
 																<span class="label label-success label-mini">${item.estado}</span>
@@ -126,6 +115,7 @@
 																<span class="label label-inverse label-mini">${item.estado}</span>
 															</c:otherwise>
 														</c:choose></td>
+													<td class="center hidden-phone">${item.metricaEvaluada}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -135,8 +125,8 @@
 							</div>
 						</section>
 					</div>
-        </div>
-        <!-- page end-->
+				</div>
+				<!-- page end-->
         </section>
     </section>
     <!--main content end-->
@@ -167,7 +157,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
 
 <!-- Mi script personal -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-validaciones-tecnicas.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-certificaciones-de-negocio-detalle.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
 
 <!-- Cookies -->

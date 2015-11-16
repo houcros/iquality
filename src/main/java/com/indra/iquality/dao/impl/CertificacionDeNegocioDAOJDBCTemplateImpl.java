@@ -15,6 +15,8 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 	public List<CertificacionDeNegocio> getAll() {
 
 		String query = "SELECT"
+				+ " AG.ID_MES,"
+				+ " AG.ID_METRICA,"
 				+ " substr(AG.ID_MES,1,4)||'-'||substr(AG.ID_MES,5,2) AS Fecha,"  
 				+ " SECC.DE_SECCION AS SECCION,"
 				+ " SUBSECC.DE_SUBSECCION AS SUBSECCION,"
@@ -64,6 +66,8 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 				+ " AG.ID_METRICA"
 				+ " union all"
 				+ " SELECT"
+				+ " AG.ID_MES,"
+				+ " AG.ID_METRICA,"
 				+ " substr(AG.ID_MES,1,4)||'-'||substr(AG.ID_MES,5,2) AS Fecha," 
 				+ " SECC.DE_SECCION AS SECCION,"
 				+ " SUBSECC.DE_SUBSECCION AS SUBSECCION,"

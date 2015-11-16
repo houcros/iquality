@@ -65,14 +65,12 @@
 												Validaciones t&eacute;cnicas <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
-<!-- 												<li><a -->
-<%-- 													href=${requestScope['javax.servlet.forward.request_uri']} --%>
-<%-- 													${'/1'}>Certificaciones de negocio</a></li> --%>
 												<li><a
-													href="${pageContext.servletContext.contextPath}/resultado-certificaciones/1">
-													Certificaciones de negocio</a></li>
+													href=${requestScope['javax.servlet.forward.request_uri']}
+													${'?tab=1'}>Certificaciones de negocio</a></li>
 												<li><a
-													href="#">Validaciones t&eacute;cnicas</a></li>
+													href=${requestScope['javax.servlet.forward.request_uri']}
+													${'?tab=2'}>Validaciones t&eacute;cnicas</a></li>
 											</ul>
 										</div>
 									</div>

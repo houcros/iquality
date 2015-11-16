@@ -15,6 +15,8 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 	public List<ValidacionTecnica> getAll() {
 
 		String query = "SELECT"
+				+ " AG.ID_MES,"
+				+ " AG.ID_METRICA,"
 				+ " substr(AG.ID_MES,1,4)||'-'||substr(AG.ID_MES,5,2) AS Fecha,"  
 				+ " SECC.DE_SECCION AS SECCION,"
 				+ " SUBSECC.DE_SUBSECCION AS SUBSECCION,"
