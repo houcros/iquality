@@ -58,8 +58,23 @@
 						<section class="panel">
 							<header class="panel-heading mi-panel-heading">
 								<div class="row">
-									<div class="col-md-9">Validaciones t&eacute;cnicas</div>
-<!-- 									<div class="col-md-3"> -->
+									<div class="col-md-9">
+										<div class="btn-group">
+											<button data-toggle="dropdown"
+												class="btn btn-default dropdown-toggle" type="button">
+												Validaciones t&eacute;cnicas <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu">
+												<li><a
+													href=${requestScope['javax.servlet.forward.request_uri']}
+													${'?tab=1'}>Certificaciones de negocio</a></li>
+												<li><a
+													href=${requestScope['javax.servlet.forward.request_uri']}
+													${'?tab=2'}>Validaciones t&eacute;cnicas</a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- 									<div class="col-md-3"> -->
 <!-- 										<ul class="breadcrumb mi-breadcrumb"> -->
 <!-- 											<li><a -->
 <%-- 												href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Pases</a></li> --%>
