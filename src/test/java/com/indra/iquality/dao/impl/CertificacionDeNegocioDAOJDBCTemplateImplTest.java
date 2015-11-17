@@ -30,7 +30,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 		cdn.setSeccion("Sección de Motores de Cálculo");
 		cdn.setSubseccion("Motor Balance y Fondos Propios");
 		cdn.setEntidad("Entidad Balance de Solvencia I y II formato QRT");
-		cdn.setCertificacion("Other technical provisions");
+		cdn.setDeCertificacion("Other technical provisions");
 		cdn.setEstado("OK");
 		cdn.setIndicador("Importe Solvencia II");
 		cdn.setIdMetrica("METR_CERT_RBA_OTH_TECH_PROV");
@@ -41,7 +41,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 		cdn.setSeccion("Sección Base");
 		cdn.setSubseccion("Modelo Contable");
 		cdn.setEntidad("Entidad contable");
-		cdn.setCertificacion("Validación para saldo final de mes por empresa y periodo");
+		cdn.setDeCertificacion("Validación para saldo final de mes por empresa y periodo");
 		cdn.setIndicador("Saldo final mes");
 		cdn.setIdMetrica("METR_CERT_CNT_SALDO_ACTUAL");
 		cdn.setIdMes("201411");

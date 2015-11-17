@@ -68,7 +68,7 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 			validacion.setSeccion(helper.filterNullString(String.valueOf(validacionRow.get("seccion"))));
 			validacion.setSubseccion(helper.filterNullString(String.valueOf(validacionRow.get("subseccion"))));
 			validacion.setEntidad(helper.filterNullString(String.valueOf(validacionRow.get("entidad"))));
-			validacion.setCertificacion(helper.filterNullString(String.valueOf(validacionRow.get("certificacion"))));
+			validacion.setDeCertificacion(helper.filterNullString(String.valueOf(validacionRow.get("certificacion"))));
 			//La query me devuelve ID_ERROR pero de momento creo que no lo necesito
 			validacion.setNumRegistros(helper.filterNullInt(Integer.valueOf(String.valueOf(validacionRow.get("num_registros")))));
 			validacion.setEstado(helper.filterNullString(String.valueOf(validacionRow.get("okko"))));

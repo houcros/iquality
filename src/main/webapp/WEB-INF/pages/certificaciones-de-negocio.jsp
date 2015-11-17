@@ -10,7 +10,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico">
 
-    <title>Resultado de certificaciones</title>
+    <title>Resultado de certificaciones de negocio</title>
 
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -84,9 +84,11 @@
 								<div class="adv-table">
 									<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
 									<table cellpadding="0" cellspacing="0" border="0"
-										class="display table table-bordered" id="hidden-table-pases">
+										class="display table table-bordered" id="hidden-table-certificaciones-negocio">
 										<thead>
 											<tr>
+												<th>id_metrica</th>
+												<th>id_mes</th>
 												<th><div style="width: 50px;">Fecha</div></th>
 												<th>Secci&oacute;n</th>
 												<th><div style="width: 50px;">Subsecci&oacute;n</div></th>
@@ -102,11 +104,13 @@
 													<!-- 					    <tr class="gradeX">       -->
 													<!-- 					    <tr class="gradeC">       -->
 													<!-- 					    <tr class="gradeU">       -->
+													<td class="center hidden-phone">${item.idMetrica}</td>
+													<td class="center hidden-phone">${item.idMes}</td>
 													<td class="center hidden-phone">${item.fecha}</td>
 													<td class="center hidden-phone">${item.seccion}</td>
 													<td class="center hidden-phone">${item.subseccion}</td>
 													<td class="center hidden-phone">${item.entidad}</td>
-													<td class="center hidden-phone">${item.certificacion}</td>
+													<td class="center hidden-phone">${item.deCertificacion}</td>
 													<td class="center hidden-phone">${item.indicador}</td>
 													<td class="center hidden-phone"><c:choose>
 															<c:when test="${item.estado=='OK'}">

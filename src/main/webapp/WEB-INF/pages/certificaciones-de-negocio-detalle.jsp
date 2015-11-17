@@ -55,15 +55,15 @@
 
 				<div class="row">
 					<div class="col-md-12">
-						<div class="panel" id="dict-explorador-indicadores">
+						<div class="panel" id="datos-basicos-certificacion-detalle">
 							<div class="panel-heading mi-panel-heading">Datos
 								b&aacute;sicos</div>
 							<div class="panel-body">
 								<div class="">
 									<p><b>Fecha:</b></p>
 									<p><b>Indicador:</b></p>
-									<p><b>Certificaci&oacute;n</b></p>
-									<p><b>M&eacute;trica evaluada</b></p>
+									<p><b>Certificaci&oacute;n:</b></p>
+									<p><b>M&eacute;trica evaluada:</b></p>
 								</div>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 <!--dynamic table initialization -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 <!-- Mi script personal -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-certificaciones-de-negocio-detalle.js"></script>

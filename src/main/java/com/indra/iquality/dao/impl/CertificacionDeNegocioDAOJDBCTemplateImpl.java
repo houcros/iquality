@@ -134,7 +134,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 			certDeNegocio.setSeccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("seccion"))));
 			certDeNegocio.setSubseccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("subseccion"))));
 			certDeNegocio.setEntidad(helper.filterNullString(String.valueOf(certDeNegocioRow.get("entidad"))));
-			certDeNegocio.setCertificacion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("de_certificacion"))));
+			certDeNegocio.setDeCertificacion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("de_certificacion"))));
 			//La query me devuelve ID_ERROR pero de momento creo que no lo necesito
 			certDeNegocio.setEstado(helper.filterNullString(String.valueOf(certDeNegocioRow.get("okko"))));
 			certDeNegocio.setIndicador(helper.filterNullString(String.valueOf(certDeNegocioRow.get("metrica"))));

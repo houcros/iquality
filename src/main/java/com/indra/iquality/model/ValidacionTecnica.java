@@ -17,7 +17,7 @@ public class ValidacionTecnica extends Certificacion{
 	
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(fecha, seccion, subseccion, entidad, certificacion, numRegistros, estado);
+		return Objects.hashCode(fecha, seccion, subseccion, entidad, deCertificacion, numRegistros, estado);
 		/*
 		 * Con Apache Commons
 		return new HashCodeBuilder(31, 33). // two randomly chosen prime numbers
@@ -43,7 +43,7 @@ public class ValidacionTecnica extends Certificacion{
 					&& Objects.equal(seccion, other.seccion)
 					&& Objects.equal(subseccion, other.subseccion)
 					&& Objects.equal(entidad, other.entidad)
-					&& Objects.equal(certificacion, other.certificacion)
+					&& Objects.equal(deCertificacion, other.deCertificacion)
 					&& numRegistros == other.numRegistros
 					&& Objects.equal(estado, other.estado);
 		}
@@ -70,7 +70,7 @@ public class ValidacionTecnica extends Certificacion{
 	@Override
 	public String toString() {
 		return "ValidacionTecnica [fecha=" + fecha + ", seccion=" + seccion + ", subseccion=" + subseccion
-				+ ", entidad=" + entidad + ", certificacion=" + certificacion + ", numRegistros=" + numRegistros
+				+ ", entidad=" + entidad + ", certificacion=" + deCertificacion + ", numRegistros=" + numRegistros
 				+ ", estado=" + estado + "]";
 	}
 }

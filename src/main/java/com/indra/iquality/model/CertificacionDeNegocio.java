@@ -15,7 +15,7 @@ public class CertificacionDeNegocio extends Certificacion {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(fecha, seccion, subseccion, entidad, certificacion, indicador, estado, idMetrica, idMes);
+		return Objects.hashCode(fecha, seccion, subseccion, entidad, deCertificacion, indicador, estado, idMetrica, idMes);
 	}
 	
 	@Override
@@ -28,7 +28,7 @@ public class CertificacionDeNegocio extends Certificacion {
 					&& Objects.equal(seccion, other.seccion)
 					&& Objects.equal(subseccion, other.subseccion)
 					&& Objects.equal(entidad, other.entidad)
-					&& Objects.equal(certificacion, other.certificacion)
+					&& Objects.equal(deCertificacion, other.deCertificacion)
 					&& Objects.equal(indicador, other.indicador)
 					&& Objects.equal(estado, other.estado)
 					&& Objects.equal(idMetrica, other.idMetrica)
@@ -40,7 +40,7 @@ public class CertificacionDeNegocio extends Certificacion {
 	@Override
 	public String toString() {
 		return "ValidacionTecnica [fecha=" + fecha + ", seccion=" + seccion + ", subseccion=" + subseccion
-				+ ", entidad=" + entidad + ", certificacion=" + certificacion + ", indicador=" + indicador
+				+ ", entidad=" + entidad + ", certificacion=" + deCertificacion + ", indicador=" + indicador
 				+ ", estado=" + estado + "]";
 	}
 	

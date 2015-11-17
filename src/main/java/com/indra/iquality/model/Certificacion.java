@@ -9,7 +9,7 @@ public abstract class Certificacion {
 	protected String seccion;
 	protected String subseccion;
 	protected String entidad;
-	protected String certificacion;
+	protected String deCertificacion;
 	// ID_ERROR hace falta? Para validacion quizas?
 	protected String estado;
 	
@@ -49,11 +49,11 @@ public abstract class Certificacion {
 	public void setEntidad(String entidad) {
 		this.entidad = entidad;
 	}
-	public String getCertificacion() {
-		return certificacion;
+	public String getDeCertificacion() {
+		return deCertificacion;
 	}
-	public void setCertificacion(String certificacion) {
-		this.certificacion = certificacion;
+	public void setDeCertificacion(String deCertificacion) {
+		this.deCertificacion = deCertificacion;
 	}
 	public String getEstado() {
 		return estado;

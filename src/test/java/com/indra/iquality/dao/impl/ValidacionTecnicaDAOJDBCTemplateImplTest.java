@@ -27,14 +27,14 @@ public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 		vt.setSeccion("Sección Base");
 		vt.setSubseccion("Modelo Contable");
 		vt.setEntidad("Maestro de Cuentas Contables");
-		vt.setCertificacion("Validación de Empresa a no existente");
+		vt.setDeCertificacion("Validación de Empresa a no existente");
 		vt.setNumRegistros(0);
 		vt.setEstado("OK");
 		assertEquals(vtList.get(0), vt);
 		
 		vt.setFecha("2013-06");
 		vt.setEntidad("Maestro de Agrupación de Importes");
-		vt.setCertificacion("Validación de Empresa a no informado");
+		vt.setDeCertificacion("Validación de Empresa a no informado");
 		assertEquals(vtList.get(9), vt);
 		
 	}
