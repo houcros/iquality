@@ -26,8 +26,9 @@ $(document).ready(function() {
     var oTable = $('#hidden-table-certificaciones-negocio').dataTable( {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] },
-//            { "bVisible": false, "aTargets": [ 1 ], "bSortable": false },
-//            { "bVisible": false, "aTargets": [ 2 ], "bSortable": false }
+            { "bVisible": false, "aTargets": [ 1 ], "bSortable": false },
+            { "bVisible": false, "aTargets": [ 2 ], "bSortable": false },
+            { "bVisible": false, "aTargets": [ 3 ], "bSortable": false }
         ],
         "aaSorting": [[1, 'asc']]
     });
@@ -35,9 +36,15 @@ $(document).ready(function() {
     $(document).on('click','#hidden-table-certificaciones-negocio tbody td img',function () {
         var nTr = $(this).parents('tr')[0];
         var aData = oTable.fnGetData( nTr );
-//        window.location = "pases/" + aData[1] + "/jobs";
-        window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2] + 
-        	"&fecha=" + aData[3] + "&ind=" + aData[8];
+        
+        $.cookie('detCert_idMet', aData[1], { path : '/iQuality/resultado-certificaciones/1/detalle'});
+        $.cookie('detCert_idMes', aData[2], { path : '/iQuality/resultado-certificaciones/1/detalle'});
+        $.cookie('detCert_Certi', aData[3], { path : '/iQuality/resultado-certificaciones/1/detalle'});
+        $.cookie('detCert_Fecha', aData[4], { path : '/iQuality/resultado-certificaciones/1/detalle'});
+        $.cookie('detCert_Indic', aData[9], { path : '/iQuality/resultado-certificaciones/1/detalle'});
+        
+        window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
+        
     } );
     
     

@@ -87,8 +87,9 @@
 										class="display table table-bordered" id="hidden-table-certificaciones-negocio">
 										<thead>
 											<tr>
-												<th>id_metrica</th>
-												<th>id_mes</th>
+												<th>_hidden_id_metrica</th>
+												<th>_hidden_id_mes</th>
+												<th>_hidden_certificacion</th>
 												<th><div style="width: 50px;">Fecha</div></th>
 												<th>Secci&oacute;n</th>
 												<th><div style="width: 50px;">Subsecci&oacute;n</div></th>
@@ -106,6 +107,7 @@
 													<!-- 					    <tr class="gradeU">       -->
 													<td class="center hidden-phone">${item.idMetrica}</td>
 													<td class="center hidden-phone">${item.idMes}</td>
+													<td class="center hidden-phone">${item.certificacion}</td>
 													<td class="center hidden-phone">${item.fecha}</td>
 													<td class="center hidden-phone">${item.seccion}</td>
 													<td class="center hidden-phone">${item.subseccion}</td>
@@ -164,7 +166,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 <!--dynamic table initialization -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 <!-- Mi script personal -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-certificaciones-de-negocio.js"></script>

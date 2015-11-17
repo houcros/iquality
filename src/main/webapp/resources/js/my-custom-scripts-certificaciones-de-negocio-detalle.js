@@ -23,10 +23,14 @@ $(document).ready(function() {
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
+    var colSettings = [{ "bVisible": false, "aTargets": [ 0 ], "bSortable": false}]; // Esta columna la devería suprimir en verdad
+    var numDims = $.cookie('numDims');
+    for (i = parseInt(numDims) + 1; i <= 6; ++i){
+    	colSettings.push({ "bVisible": false, "aTargets": [ i ], "bSortable": false });
+    }
+    
     var oTable = $('#hidden-table-pases').dataTable( {
-        "aoColumnDefs": [
-            { "bSortable": false, "aTargets": [ 0 ] }
-        ],
+        "aoColumnDefs": colSettings,
         "aaSorting": [[1, 'asc']]
     });
 
@@ -36,13 +40,21 @@ $(document).ready(function() {
 //        window.location = "pases/" + aData[1] + "/jobs";
         window.location = "#";
     } );
+    	
+    // DEBUG
+//    console.log($.cookie('detCert_idMet'));
+//    console.log($.cookie('detCert_idMes'));
+//    console.log($.cookie('detCert_Certi'));
+//    console.log($.cookie('detCert_Fecha'));
+//    console.log($.cookie('detCert_Indic'));
+    
+    $('#dBas-cert-det-1').append('  ' + $.cookie('detCert_Fecha'));
+    $('#dBas-cert-det-2').append('  ' + $.cookie('detCert_Indic'));
+    $('#dBas-cert-det-3').append('  ' + $.cookie('detCert_Certi'));
+    $('#dBas-cert-det-4').append('  testing');
     
     
-    /*
-     * Intento de recuperar el estado de la búsqueda a partir de la query en la URL
-     * Falta terminar (no funciona el KeyPress event para simular el enter en el
-     * campo de búsqueda)
-     */
+    // Obtengo todos los parámetros que pueda haber en la query
     var urlParams;
     (window.onpopstate = function () {
         var match,
@@ -56,6 +68,13 @@ $(document).ready(function() {
            urlParams[decode(match[1])] = decode(match[2]);
     })();
     
+    
+    
+    /*
+     * Intento de recuperar el estado de la búsqueda a partir de la query en la URL
+     * Falta terminar (no funciona el KeyPress event para simular el enter en el
+     * campo de búsqueda)
+     */
     if(urlParams['search'] !== ""){
     	$( '#hidden-table-pases_filter:first-child' ).find( 'input' ).first().val( urlParams['search'] );
     	$( '#hidden-table-pases_filter:first-child' ).find( 'input' ).first().attr('id', 'mi-search-input')

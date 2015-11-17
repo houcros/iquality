@@ -15,7 +15,7 @@ public class CertificacionDeNegocio extends Certificacion {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(fecha, seccion, subseccion, entidad, deCertificacion, indicador, estado, idMetrica, idMes);
+		return Objects.hashCode(fecha, seccion, subseccion, entidad, certificacion, deCertificacion, indicador, estado, idMetrica, idMes);
 	}
 	
 	@Override
@@ -29,6 +29,7 @@ public class CertificacionDeNegocio extends Certificacion {
 					&& Objects.equal(subseccion, other.subseccion)
 					&& Objects.equal(entidad, other.entidad)
 					&& Objects.equal(deCertificacion, other.deCertificacion)
+					&& Objects.equal(certificacion, other.certificacion)
 					&& Objects.equal(indicador, other.indicador)
 					&& Objects.equal(estado, other.estado)
 					&& Objects.equal(idMetrica, other.idMetrica)

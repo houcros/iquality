@@ -2,6 +2,9 @@ package com.indra.iquality.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.indra.iquality.dao.CertificacionDeNegocioDAO;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
 import com.indra.iquality.model.CertificacionDeNegocio;
+import com.indra.iquality.model.DetalleDeCertificacion;
 import com.indra.iquality.model.ValidacionTecnica;
 
 @Controller
@@ -83,31 +87,46 @@ public class BaseController {
 	}
 	
 	@RequestMapping(value = "/resultado-certificaciones/{tab}/detalle", method = RequestMethod.GET)
-	private String getDetalleCertificaciones(@PathVariable int tab, ModelMap model){
+	private String getDetalleCertificaciones(@PathVariable int tab, 
+			@RequestParam (value = "idMet", required = true) String idMetrica, 
+			@RequestParam (value = "idMes", required = true) String idMes, 
+			ModelMap model, HttpServletResponse response){
 		logger.debug("getValidaciones : Called route");
 		
-//		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		
 		if(tab == 1){
-//			CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
-//			List<CertificacionDeNegocio> allCertificaciones= cdnDAO.getAll();
-//			model.addAttribute("allTableItems", allCertificaciones);
-//			ctx.close();
-//			
+			CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
+			List<String> allHeaders= cdnDAO.getHeadersDetalles(idMetrica);
+			int numDims = allHeaders.size();
+			
+			// Pongo los headers que tengo
+			while(allHeaders.size() < 6) allHeaders.add("STUB");
+			int aux_count = 0;
+			for(String s : allHeaders){
+				String aux = "headerDim" + String.valueOf(++aux_count);
+				model.addAttribute(aux, s);
+			}
+			
+			List<DetalleDeCertificacion> allDetallesDeCert = cdnDAO.getDetallesDeCertificacion(idMes, idMetrica, numDims);
+			model.addAttribute("allTableItems", allDetallesDeCert);
+			ctx.close();
+
+			response.addCookie(new Cookie("numDims", String.valueOf(numDims)));
 //			logger.info(allCertificaciones.get(0).toString());
 			return VIEW_CERTIFICACIONES_DE_NEGOCIO_DETALLE;
 		}
-		else if (tab == 2){
+//		else if (tab == 2){
 //			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
 //			List<ValidacionTecnica> allValidaciones= vtDAO.getAll();
 //			model.addAttribute("allTableItems", allValidaciones);
 //			ctx.close();
 //			
 //			logger.info(allValidaciones.get(0).toString());
-			return VIEW_VALIDACIONES_TECNICAS_DETALLE;
-		}
+//			return VIEW_VALIDACIONES_TECNICAS_DETALLE;
+//		}
 		else{
-//			ctx.close();
+			ctx.close();
 			return VIEW_INDEX;
 		}
 

@@ -60,10 +60,10 @@
 								b&aacute;sicos</div>
 							<div class="panel-body">
 								<div class="">
-									<p><b>Fecha:</b></p>
-									<p><b>Indicador:</b></p>
-									<p><b>Certificaci&oacute;n:</b></p>
-									<p><b>M&eacute;trica evaluada:</b></p>
+									<p id="dBas-cert-det-1"><b>Fecha:</b></p>
+									<p id="dBas-cert-det-2"><b>Indicador:</b></p>
+									<p id="dBas-cert-det-3"><b>Certificaci&oacute;n:</b></p>
+									<p id="dBas-cert-det-4"><b>M&eacute;trica evaluada:</b></p>
 								</div>
 							</div>
 						</div>
@@ -77,7 +77,7 @@
 								<div class="row">
 									<div class="col-md-9">
 										<div class="btn-group">
-											Detalle funcional de certificaciones
+											Detalle funcional de la certificaci&oacute;n
 										</div>
 									</div>
 								</div>
@@ -89,18 +89,26 @@
 										class="display table table-bordered" id="hidden-table-pases">
 										<thead>
 											<tr>
-												<th><div style="width: 50px;">Mes</div></th>
-												<th><div style="width: 50px;">Empresa</div></th>
-												<th><div style="width: 90px;">Estado</div></th>
-												<th><div style="width: 90px;">Valor de
-														m&eacute;trica evaluada</div></th>
+												<th><div style="width: 75px;">${headerDim1}</div></th>
+												<th><div style="width: 75px;">${headerDim2}</div></th>
+												<th><div style="width: 75px;">${headerDim3}</div></th>
+												<th><div style="width: 75px;">${headerDim4}</div></th>
+												<th><div style="width: 75px;">${headerDim5}</div></th>
+												<th><div style="width: 75px;">${headerDim6}</div></th>
+												<th><div style="width: 75px;">Valor evaluado</div></th>
+												<th><div style="width: 75px;">Estado</div></th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${allTableItems}" var="item">
 												<tr class="gradeA">
-													<td class="center hidden-phone">${item.mes}</td>
-													<td class="center hidden-phone">${item.empresa}</td>
+													<td class="center hidden-phone">${item.valDimension1}</td>
+													<td class="center hidden-phone">${item.valDimension2}</td>
+													<td class="center hidden-phone">${item.valDimension3}</td>
+													<td class="center hidden-phone">${item.valDimension4}</td>
+													<td class="center hidden-phone">${item.valDimension5}</td>
+													<td class="center hidden-phone">${item.valDimension6}</td>
+													<td class="center hidden-phone">${item.hcValMetricaAct}</td>
 													<td class="center hidden-phone"><c:choose>
 															<c:when test="${item.estado=='OK'}">
 																<span class="label label-success label-mini">${item.estado}</span>
@@ -115,7 +123,6 @@
 																<span class="label label-inverse label-mini">${item.estado}</span>
 															</c:otherwise>
 														</c:choose></td>
-													<td class="center hidden-phone">${item.metricaEvaluada}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

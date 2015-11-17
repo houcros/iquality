@@ -134,6 +134,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 			certDeNegocio.setSeccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("seccion"))));
 			certDeNegocio.setSubseccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("subseccion"))));
 			certDeNegocio.setEntidad(helper.filterNullString(String.valueOf(certDeNegocioRow.get("entidad"))));
+			certDeNegocio.setCertificacion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("certificacion"))));
 			certDeNegocio.setDeCertificacion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("de_certificacion"))));
 			//La query me devuelve ID_ERROR pero de momento creo que no lo necesito
 			certDeNegocio.setEstado(helper.filterNullString(String.valueOf(certDeNegocioRow.get("okko"))));
@@ -216,20 +217,21 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 			
 			// Depende de cuántas dimensiones (eqvl. headers) voy a mostrar
 			// Idea feliz con el switch sin breaks :)
-			switch(qttHeaders){
-			case 6:
-				detalle.setValDimension6(String.valueOf(detallesRow.get("VAL_DIMENSION_6")));
-			case 5:
-				detalle.setValDimension5(String.valueOf(detallesRow.get("VAL_DIMENSION_5")));
-			case 4:
-				detalle.setValDimension4(String.valueOf(detallesRow.get("VAL_DIMENSION_4")));
-			case 3:
-				detalle.setValDimension3(String.valueOf(detallesRow.get("VAL_DIMENSION_3")));
-			case 2:
-				detalle.setValDimension2(String.valueOf(detallesRow.get("VAL_DIMENSION_2")));
-			case 1:
-				detalle.setValDimension1(String.valueOf(detallesRow.get("VAL_DIMENSION_1")));
-			}
+			// El filter creo que no hace falta, los headers que están no devuelven nulls creo...
+//			switch(qttHeaders){
+//			case 6:
+				detalle.setValDimension6(helper.filterNullString(String.valueOf(detallesRow.get("VAL_DIMENSION_6"))));
+//			case 5:
+				detalle.setValDimension5(helper.filterNullString(String.valueOf(detallesRow.get("VAL_DIMENSION_5"))));
+//			case 4:
+				detalle.setValDimension4(helper.filterNullString(String.valueOf(detallesRow.get("VAL_DIMENSION_4"))));
+//			case 3:
+				detalle.setValDimension3(helper.filterNullString(String.valueOf(detallesRow.get("VAL_DIMENSION_3"))));
+//			case 2:
+				detalle.setValDimension2(helper.filterNullString(String.valueOf(detallesRow.get("VAL_DIMENSION_2"))));
+//			case 1:
+				detalle.setValDimension1(helper.filterNullString(String.valueOf(detallesRow.get("VAL_DIMENSION_1"))));
+//			}
 			
 			detallesList.add(detalle);
 		}
