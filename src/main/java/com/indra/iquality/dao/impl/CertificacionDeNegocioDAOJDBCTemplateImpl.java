@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.CertificacionDeNegocioDAO;
+import com.indra.iquality.model.DetalleDeCertificacion;
 import com.indra.iquality.model.CertificacionDeNegocio;
 
 public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl implements CertificacionDeNegocioDAO {
@@ -125,6 +126,10 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 			
 			CertificacionDeNegocio certDeNegocio = new CertificacionDeNegocio();
 			
+			// Lo necesito para obtener los headers con this.getHeadersDetalles()
+			certDeNegocio.setIdMetrica(String.valueOf(certDeNegocioRow.get("ID_METRICA")));
+			certDeNegocio.setIdMes(helper.filterNullString(String.valueOf(certDeNegocioRow.get("ID_MES"))));
+			
 			certDeNegocio.setFecha(helper.filterNullString(String.valueOf(certDeNegocioRow.get("fecha"))));
 			certDeNegocio.setSeccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("seccion"))));
 			certDeNegocio.setSubseccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("subseccion"))));
@@ -139,5 +144,96 @@ public class CertificacionDeNegocioDAOJDBCTemplateImpl extends DAOJDBCTemplateIm
 		
 		return certDeNegocioList;
 	}
+	
+	@Override
+	public List<String> getHeadersDetalles(String idMetrica){
+		
+		String query = "select distinct dimensionX.id_dimension ,c1.de_nombre as header"
+				+ " from"
+				+ " lk_met_iq_metrica_dimension dimensionX,"
+				+ " lk_met_iq_tabla_campo tb1,"
+				+ " lk_met_fi_componente c1"
+				+ " where"
+				+ " dimensionX.id_tabla_lk = tb1.id_tabla"
+				+ " and dimensionX.id_campo_nom_lk = tb1.id_campo"
+				+ " and tb1.id_componente = c1.id_componente"
+				+ " and tb1.id_software = c1.id_software"
+				+ " and dimensionX.id_metrica = ?"
+				+ " order by dimensionX.id_dimension";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		List<String> headersList = new ArrayList<String>();
+		
+		List<Map<String, Object>> headerRows = jdbcTemplate.queryForList(query, new Object[]{ idMetrica });
+		for (Map<String, Object> headerRow : headerRows){
+			headersList.add(String.valueOf(headerRow.get("header")));
+		}
+		
+		return headersList;
+	}
 
+	@Override
+	public List<DetalleDeCertificacion> getDetallesDeCertificacion(String idMes, String idMetrica, int qttHeaders){
+		
+		String query = "SELECT"
+				+ " substr(ID_MES,1,4)||'-'||substr(ID_MES,5,2) AS Fecha,"  
+				+ " decode(VAL_DIMENSION_1,'NO_APLICA',' ',VAL_DIMENSION_1) as VAL_DIMENSION_1,"
+				+ " DECODE(VAL_DIMENSION_2 ,'NO_APLICA',' ',VAL_DIMENSION_2) as VAL_DIMENSION_2,"
+				+ " DECODE(VAL_DIMENSION_3 ,'NO_APLICA',' ',VAL_DIMENSION_3) as VAL_DIMENSION_3,"
+				+ " DECODE(VAL_DIMENSION_4 ,'NO_APLICA',' ',VAL_DIMENSION_4) as VAL_DIMENSION_4,"
+				+ " DECODE(VAL_DIMENSION_5 ,'NO_APLICA',' ',VAL_DIMENSION_5) as VAL_DIMENSION_5,"
+				+ " DECODE(VAL_DIMENSION_6 ,'NO_APLICA',' ',VAL_DIMENSION_6) as VAL_DIMENSION_6,"
+				+ " HC_VALOR_METRICA_ACT,"
+				+ " CASE"
+				+ " WHEN MAX(ID_SN_ERROR_WARNING) > 0 THEN 'KO'"
+				+ " WHEN MAX(ID_SN_ERROR_WARNING) = 0 THEN 'OK'"
+				+ " END AS OKKO"
+				+ " FROM AG_MET_IQ_CERTIF_FUNCIONAL"
+				+ " WHERE"
+				+ " ID_MES = ? AND"
+				+ " ID_METRICA = ?"
+				+ " GROUP BY ID_MES,"
+				+ " VAL_DIMENSION_1,"
+				+ " VAL_DIMENSION_2,"
+				+ " VAL_DIMENSION_3,"
+				+ " VAL_DIMENSION_4,"
+				+ " VAL_DIMENSION_5,"
+				+ " VAL_DIMENSION_6,"
+				+ " HC_VALOR_METRICA_ACT";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		List<DetalleDeCertificacion> detallesList = new ArrayList<DetalleDeCertificacion>();
+		
+		List<Map<String, Object>> detallesRows = jdbcTemplate.queryForList(query, new Object[]{ idMes, idMetrica });
+		for (Map<String, Object> detallesRow : detallesRows){
+			
+			DetalleDeCertificacion detalle = new DetalleDeCertificacion();
+			
+			// Siempre
+			detalle.setFecha(String.valueOf(detallesRow.get("fecha")));
+			detalle.setHcValMetricaAct(String.valueOf(detallesRow.get("HC_VALOR_METRICA_ACT")));
+			detalle.setEstado(String.valueOf(detallesRow.get("okko")));
+			
+			// Depende de cuántas dimensiones (eqvl. headers) voy a mostrar
+			// Idea feliz con el switch sin breaks :)
+			switch(qttHeaders){
+			case 6:
+				detalle.setValDimension6(String.valueOf(detallesRow.get("VAL_DIMENSION_6")));
+			case 5:
+				detalle.setValDimension5(String.valueOf(detallesRow.get("VAL_DIMENSION_5")));
+			case 4:
+				detalle.setValDimension4(String.valueOf(detallesRow.get("VAL_DIMENSION_4")));
+			case 3:
+				detalle.setValDimension3(String.valueOf(detallesRow.get("VAL_DIMENSION_3")));
+			case 2:
+				detalle.setValDimension2(String.valueOf(detallesRow.get("VAL_DIMENSION_2")));
+			case 1:
+				detalle.setValDimension1(String.valueOf(detallesRow.get("VAL_DIMENSION_1")));
+			}
+			
+			detallesList.add(detalle);
+		}
+		
+		return detallesList;
+	}
 }

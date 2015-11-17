@@ -2,6 +2,9 @@ package com.indra.iquality.model;
 
 public abstract class Certificacion {
 
+	protected String idMetrica;
+	protected String idMes;
+	
 	protected String fecha;
 	protected String seccion;
 	protected String subseccion;
@@ -10,7 +13,18 @@ public abstract class Certificacion {
 	// ID_ERROR hace falta? Para validacion quizas?
 	protected String estado;
 	
-	
+	public String getIdMetrica() {
+		return idMetrica;
+	}
+	public void setIdMetrica(String idMetrica) {
+		this.idMetrica = idMetrica;
+	}
+	public String getIdMes() {
+		return idMes;
+	}
+	public void setIdMes(String idMes) {
+		this.idMes = idMes;
+	}
 	public String getFecha() {
 		return fecha;
 	}
