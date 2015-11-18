@@ -9,7 +9,6 @@ import java.util.Map;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
 import com.indra.iquality.model.ValidacionTecnica;
@@ -69,6 +68,17 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 	}
 
 	@Override
+	public List<Map<String, Object>> getDetallesDeValidacion(String idMetrica, String idMes){
+		
+		String query = getQuery(idMetrica, idMes);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		List<Map<String, Object>> anonymousRows = jdbcTemplate.queryForList(query);
+		
+		return anonymousRows;
+	}
+
+	// En un futuro hacerla privada (auxiliar), pero tengo que mirar cómo unitest entonces
 	public String getQuery(String idMetrica, String idMes) {
 
 		String query = "SELECT" + " DE_QUERY FROM BS_MET_IQ_VALIDACION" + " WHERE ID_METRICA = ? AND ID_MES = ?";
@@ -84,5 +94,4 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 		
 		return resultQuery;
 	}
-
 }
