@@ -67,11 +67,11 @@ public class ValidacionTecnica extends Certificacion{
 				isEquals();
 		 */
 	}
-	
 	@Override
 	public String toString() {
-		return "ValidacionTecnica [fecha=" + fecha + ", seccion=" + seccion + ", subseccion=" + subseccion
-				+ ", entidad=" + entidad + ", certificacion=" + deCertificacion + ", numRegistros=" + numRegistros
-				+ ", estado=" + estado + "]";
+		return "ValidacionTecnica [numRegistros=" + numRegistros + ", idMetrica=" + idMetrica + ", idMes=" + idMes
+				+ ", fecha=" + fecha + ", seccion=" + seccion + ", subseccion=" + subseccion + ", entidad=" + entidad
+				+ ", certificacion=" + certificacion + ", deCertificacion=" + deCertificacion + ", estado=" + estado
+				+ "]";
 	}
 }

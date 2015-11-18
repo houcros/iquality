@@ -76,7 +76,10 @@ public class BaseController {
 			model.addAttribute("allTableItems", allValidaciones);
 			ctx.close();
 			
-			logger.info(allValidaciones.get(0).toString());
+			// DEBUG
+			for (ValidacionTecnica validacion : allValidaciones)
+				logger.debug(validacion.toString());
+			
 			return VIEW_VALIDACIONES_TECNICAS;
 		}
 		else{
