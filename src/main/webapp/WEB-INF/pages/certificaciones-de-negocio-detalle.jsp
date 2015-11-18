@@ -10,7 +10,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico">
 
-    <title>Detalle de certificaciones de negocio</title>
+    <title>Detalle de una certificaci&oacute;n de negocio</title>
 
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -76,9 +76,7 @@
 							<header class="panel-heading mi-panel-heading">
 								<div class="row">
 									<div class="col-md-9">
-										<div class="btn-group">
 											Detalle funcional de la certificaci&oacute;n
-										</div>
 									</div>
 								</div>
 							</header>

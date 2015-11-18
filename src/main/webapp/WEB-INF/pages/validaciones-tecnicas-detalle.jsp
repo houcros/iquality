@@ -10,7 +10,7 @@
     <meta name="author" content="ThemeBucket">
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico">
 
-    <title>Resultado de certificaciones</title>
+    <title>Detalle de una validaci&oacute;n</title>
 
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
@@ -59,27 +59,8 @@
 							<header class="panel-heading mi-panel-heading">
 								<div class="row">
 									<div class="col-md-9">
-										<div class="btn-group">
-											<button data-toggle="dropdown"
-												class="btn btn-default dropdown-toggle" type="button">
-												Validaciones t&eacute;cnicas <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu">
-												<li><a
-													href=${requestScope['javax.servlet.forward.request_uri']}
-													${'?tab=1'}>Certificaciones de negocio</a></li>
-												<li><a
-													href=${requestScope['javax.servlet.forward.request_uri']}
-													${'?tab=2'}>Validaciones t&eacute;cnicas</a></li>
-											</ul>
-										</div>
+										Detalle funcional de la valida&oacute;n
 									</div>
-									<!-- 									<div class="col-md-3"> -->
-<!-- 										<ul class="breadcrumb mi-breadcrumb"> -->
-<!-- 											<li><a -->
-<%-- 												href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Pases</a></li> --%>
-<!-- 										</ul> -->
-<!-- 									</div> -->
 								</div>
 							</header>
 							<div class="panel-body">
@@ -89,41 +70,61 @@
 										class="display table table-bordered" id="hidden-table-pases">
 										<thead>
 											<tr>
-												<th><div style="width: 50px;">Fecha</div></th>
-												<th>Secci&oacute;n</th>
-												<th><div style="width: 50px;">Subsecci&oacute;n</div></th>
-												<th><div style="width: 90px;">Entidad</div></th>
-												<th><div style="width: 90px;">Certificaci&oacute;n</div></th>
-												<th><div style="width: 70px;">Registros</div></th>
-												<th>Estado</th>
+												<th>${headerDim1}</th>
+												<th>${headerDim2}</th>
+												<th>${headerDim3}</th>
+												<th>${headerDim4}</th>
+												<th>${headerDim5}</th>
+												<th>${headerDim6}</th>
+												<th>${headerDim7}</th>
+												<th>${headerDim8}</th>
+												<th>${headerDim9}</th>
+												<th>${headerDim10}</th>
+												<th>${headerDim11}</th>
+												<th>${headerDim12}</th>
+												<th>${headerDim13}</th>
+												<th>${headerDim14}</th>
+												<th>${headerDim15}</th>
+												<th>${headerDim16}</th>
+												<th>${headerDim17}</th>
+												<th>${headerDim18}</th>
+												<th>${headerDim19}</th>
+												<th>${headerDim20}</th>
+												<th>${headerDim21}</th>
+												<th>${headerDim22}</th>
+												<th>${headerDim23}</th>
+												<th>${headerDim24}</th>
+												<th>${headerDim25}</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${allTableItems}" var="item">
 												<tr class="gradeA">
-													<!-- 					    <tr class="gradeX">       -->
-													<!-- 					    <tr class="gradeC">       -->
-													<!-- 					    <tr class="gradeU">       -->
-													<td class="center hidden-phone">${item.fecha}</td>
-													<td class="center hidden-phone">${item.seccion}</td>
-													<td class="center hidden-phone">${item.subseccion}</td>
-													<td class="center hidden-phone">${item.entidad}</td>
-													<td class="center hidden-phone">${item.certificacion}</td>
-													<td class="center hidden-phone">${item.numRegistros}</td>
-													<td class="center hidden-phone"><c:choose>
-															<c:when test="${item.estado=='OK'}">
-																<span class="label label-success label-mini">${item.estado}</span>
-															</c:when>
-															<c:when test="${item.estado=='KO'}">
-																<span class="label label-danger label-mini">${item.estado}</span>
-															</c:when>
-															<c:when test="${item.estado=='PDTE'}">
-																<span class="label label-warning label-mini">${item.estado}</span>
-															</c:when>
-															<c:otherwise>
-																<span class="label label-inverse label-mini">${item.estado}</span>
-															</c:otherwise>
-														</c:choose></td>
+													<td class="center hidden-phone">${item.valDimension1}</td>
+													<td class="center hidden-phone">${item.valDimension2}</td>
+													<td class="center hidden-phone">${item.valDimension3}</td>
+													<td class="center hidden-phone">${item.valDimension4}</td>
+													<td class="center hidden-phone">${item.valDimension5}</td>
+													<td class="center hidden-phone">${item.valDimension6}</td>
+													<td class="center hidden-phone">${item.valDimension7}</td>
+													<td class="center hidden-phone">${item.valDimension8}</td>
+													<td class="center hidden-phone">${item.valDimension9}</td>
+													<td class="center hidden-phone">${item.valDimension10}</td>
+													<td class="center hidden-phone">${item.valDimension11}</td>
+													<td class="center hidden-phone">${item.valDimension12}</td>
+													<td class="center hidden-phone">${item.valDimension13}</td>
+													<td class="center hidden-phone">${item.valDimension14}</td>
+													<td class="center hidden-phone">${item.valDimension15}</td>
+													<td class="center hidden-phone">${item.valDimension16}</td>
+													<td class="center hidden-phone">${item.valDimension17}</td>
+													<td class="center hidden-phone">${item.valDimension18}</td>
+													<td class="center hidden-phone">${item.valDimension19}</td>
+													<td class="center hidden-phone">${item.valDimension20}</td>
+													<td class="center hidden-phone">${item.valDimension21}</td>
+													<td class="center hidden-phone">${item.valDimension22}</td>
+													<td class="center hidden-phone">${item.valDimension23}</td>
+													<td class="center hidden-phone">${item.valDimension24}</td>
+													<td class="center hidden-phone">${item.valDimension25}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

@@ -1,6 +1,8 @@
 package com.indra.iquality.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +34,7 @@ public class BaseController {
 	 */
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
+	private static final String VIEW_ERROR = "505";
 	private static final String VIEW_CERTIFICACIONES_DE_NEGOCIO = "certificaciones-de-negocio";
 	private static final String VIEW_CERTIFICACIONES_DE_NEGOCIO_DETALLE = "certificaciones-de-negocio-detalle";
 	private static final String VIEW_VALIDACIONES_TECNICAS = "validaciones-tecnicas";
@@ -104,7 +107,8 @@ public class BaseController {
 			int numDims = allHeaders.size();
 			
 			// Pongo los headers que tengo
-			while(allHeaders.size() < 6) allHeaders.add("STUB");
+			// TODO des-harcodear este 6
+			while(allHeaders.size() < 6) allHeaders.add("_STUB");
 			int aux_count = 0;
 			for(String s : allHeaders){
 				String aux = "headerDim" + String.valueOf(++aux_count);
@@ -119,15 +123,38 @@ public class BaseController {
 //			logger.info(allCertificaciones.get(0).toString());
 			return VIEW_CERTIFICACIONES_DE_NEGOCIO_DETALLE;
 		}
-//		else if (tab == 2){
-//			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
-//			List<ValidacionTecnica> allValidaciones= vtDAO.getAll();
-//			model.addAttribute("allTableItems", allValidaciones);
-//			ctx.close();
-//			
+		else if (tab == 2){
+			
+			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
+			List<Map<String, Object>> allDetallesDeVali= vtDAO.getDetallesDeValidacion(idMetrica, idMes);
+			ctx.close();
+			
+			// TODO DE MOMENTO devolveré un error si no obtengo datos en la query
+			if (allDetallesDeVali.size() == 0){
+				logger.error("No hay detalles para esta validación.");
+				return VIEW_ERROR;
+			}
+			
+			// Número de columnas a mostrar
+			int numCols = allDetallesDeVali.get(0).size();
+			// Pongo los headers que tengo más stubs
+			List<String> allHeaders = new ArrayList<String>();
+			for (Map.Entry<String, Object> entry : allDetallesDeVali.get(0).entrySet()){
+				allHeaders.add(entry.getKey());
+			}
+			// TODO des-harcodear este 25 (50)
+			while(allHeaders.size() < 25) allHeaders.add("_STUB");
+			
+			// Pongo los headers en el jsp
+			int aux_count = 0;
+			for(String s : allHeaders){
+				String aux = "headerDim" + String.valueOf(++aux_count);
+				model.addAttribute(aux, s);
+			}
+			
 //			logger.info(allValidaciones.get(0).toString());
-//			return VIEW_VALIDACIONES_TECNICAS_DETALLE;
-//		}
+			return VIEW_VALIDACIONES_TECNICAS_DETALLE;
+		}
 		else{
 			ctx.close();
 			return VIEW_INDEX;
