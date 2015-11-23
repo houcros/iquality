@@ -34,7 +34,7 @@ public class BaseController {
 	 */
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
-	private static final String VIEW_ERROR = "505";
+	private static final String VIEW_ERROR = "500";
 	private static final String VIEW_CERTIFICACIONES_DE_NEGOCIO = "certificaciones-de-negocio";
 	private static final String VIEW_CERTIFICACIONES_DE_NEGOCIO_DETALLE = "certificaciones-de-negocio-detalle";
 	private static final String VIEW_VALIDACIONES_TECNICAS = "validaciones-tecnicas";
@@ -80,8 +80,8 @@ public class BaseController {
 			ctx.close();
 			
 			// DEBUG
-			for (ValidacionTecnica validacion : allValidaciones)
-				logger.debug(validacion.toString());
+//			for (ValidacionTecnica validacion : allValidaciones)
+//				logger.debug(validacion.toString());
 			
 			return VIEW_VALIDACIONES_TECNICAS;
 		}
@@ -152,6 +152,7 @@ public class BaseController {
 				model.addAttribute(aux, s);
 			}
 			
+			response.addCookie(new Cookie("numCols", String.valueOf(numCols)));
 //			logger.info(allValidaciones.get(0).toString());
 			return VIEW_VALIDACIONES_TECNICAS_DETALLE;
 		}

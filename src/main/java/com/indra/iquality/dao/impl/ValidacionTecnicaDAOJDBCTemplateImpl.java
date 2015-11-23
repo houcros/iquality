@@ -6,15 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
+import com.indra.iquality.controller.BaseController;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
 import com.indra.iquality.model.ValidacionTecnica;
 
 public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl implements ValidacionTecnicaDAO {
 
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(ValidacionTecnicaDAOJDBCTemplateImpl.class);
+	
 	@Override
 	public List<ValidacionTecnica> getAll() {
 
@@ -71,8 +75,15 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 	public List<Map<String, Object>> getDetallesDeValidacion(String idMetrica, String idMes){
 		
 		String query = getQuery(idMetrica, idMes);
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		if (query == null || query.equals("")){
+			logger.warn("Has intentado ejecutar una query nula o vacía");
+			System.out.println("Has intentado ejecutar una query nula o vacía");
+			return new ArrayList<Map<String, Object>>();
+		}
 		
+		logger.info(query);
+		System.out.println(query);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Map<String, Object>> anonymousRows = jdbcTemplate.queryForList(query);
 		
 		return anonymousRows;

@@ -8,13 +8,13 @@ $(document).ready(function() {
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
-    var colSettings = [];
-    var numDims = $.cookie('numDims');
-    for (i = parseInt(numDims); i < 6; ++i){ // Desharcodear el 6 (?)
+    var colSettings = "";
+    var numCols = $.cookie('numCols');
+    for (i = parseInt(numDims); i < 25; ++i){ // Desharcodear el 25 (50) (?)
     	colSettings.push({ "bVisible": false, "aTargets": [ i ], "bSortable": false });
     }
     
-    var oTable = $('#hidden-table-certificaciones-negocio-detalle').dataTable( {
+    var oTable = $('#hidden-table-validacion-tecnica-detalle').dataTable( {
         "aoColumnDefs": colSettings,
         "aaSorting": [[1, 'asc']]
     });
@@ -22,14 +22,6 @@ $(document).ready(function() {
     // DEBUG
 //    console.log($.cookie('detCert_idMet'));
 //    console.log($.cookie('detCert_idMes'));
-//    console.log($.cookie('detCert_Certi'));
-//    console.log($.cookie('detCert_Fecha'));
-//    console.log($.cookie('detCert_Indic'));
-    
-    $('#dBas-cert-det-1').append('  ' + $.cookie('detCert_Fecha'));
-    $('#dBas-cert-det-2').append('  ' + $.cookie('detCert_Indic'));
-    $('#dBas-cert-det-3').append('  ' + $.cookie('detCert_Certi'));
-    $('#dBas-cert-det-4').append('  testing');
     
     
     

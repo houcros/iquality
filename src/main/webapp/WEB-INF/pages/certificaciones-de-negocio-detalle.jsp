@@ -84,7 +84,7 @@
 								<div class="adv-table">
 									<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
 									<table cellpadding="0" cellspacing="0" border="0"
-										class="display table table-bordered" id="hidden-table-pases">
+										class="display table table-bordered" id="hidden-table-certificaciones-negocio-detalle">
 										<thead>
 											<tr>
 												<th><div style="width: 75px;">${headerDim1}</div></th>
