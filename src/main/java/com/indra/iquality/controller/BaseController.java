@@ -20,6 +20,7 @@ import com.indra.iquality.dao.CertificacionDeNegocioDAO;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
 import com.indra.iquality.model.CertificacionDeNegocio;
 import com.indra.iquality.model.DetalleDeCertificacion;
+import com.indra.iquality.model.DetalleDeValidacion;
 import com.indra.iquality.model.ValidacionTecnica;
 
 @Controller
@@ -126,7 +127,7 @@ public class BaseController {
 		else if (tab == 2){
 			
 			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
-			List<Map<String, Object>> allDetallesDeVali= vtDAO.getDetallesDeValidacion(idMetrica, idMes);
+			List<DetalleDeValidacion> allDetallesDeVali= vtDAO.getDetallesDeValidacion(idMetrica, idMes);
 			ctx.close();
 			
 			// TODO DE MOMENTO devolveré un error si no obtengo datos en la query
@@ -135,15 +136,8 @@ public class BaseController {
 				return VIEW_ERROR;
 			}
 			
-			// Número de columnas a mostrar
-			int numCols = allDetallesDeVali.get(0).size();
-			// Pongo los headers que tengo más stubs
-			List<String> allHeaders = new ArrayList<String>();
-			for (Map.Entry<String, Object> entry : allDetallesDeVali.get(0).entrySet()){
-				allHeaders.add(entry.getKey());
-			}
-			// TODO des-harcodear este 25 (50)
-			while(allHeaders.size() < 25) allHeaders.add("_STUB");
+			int numCols = vtDAO.getLastNumCols();
+			List<String> allHeaders = vtDAO.getHeaders();
 			
 			// Pongo los headers en el jsp
 			int aux_count = 0;
@@ -151,6 +145,8 @@ public class BaseController {
 				String aux = "headerDim" + String.valueOf(++aux_count);
 				model.addAttribute(aux, s);
 			}
+			
+			model.addAttribute("allTableItems", allDetallesDeVali);
 			
 			response.addCookie(new Cookie("numCols", String.valueOf(numCols)));
 //			logger.info(allValidaciones.get(0).toString());

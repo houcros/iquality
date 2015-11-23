@@ -8,9 +8,9 @@ $(document).ready(function() {
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
-    var colSettings = "";
+    var colSettings = [];
     var numCols = $.cookie('numCols');
-    for (i = parseInt(numDims); i < 25; ++i){ // Desharcodear el 25 (50) (?)
+    for (i = parseInt(numCols); i < 25; ++i){ // Desharcodear el 25 (50) (?)
     	colSettings.push({ "bVisible": false, "aTargets": [ i ], "bSortable": false });
     }
     
@@ -18,6 +18,7 @@ $(document).ready(function() {
         "aoColumnDefs": colSettings,
         "aaSorting": [[1, 'asc']]
     });
+
 
     // DEBUG
 //    console.log($.cookie('detCert_idMet'));

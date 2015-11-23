@@ -11,13 +11,16 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
-import com.indra.iquality.controller.BaseController;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
+import com.indra.iquality.model.DetalleDeValidacion;
 import com.indra.iquality.model.ValidacionTecnica;
+import com.indra.iquality.singleton.Sistema;
 
 public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl implements ValidacionTecnicaDAO {
 
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(ValidacionTecnicaDAOJDBCTemplateImpl.class);
+	private int lastNumCols = 0;
+	private List<String> headers = new ArrayList<String>();
 	
 	@Override
 	public List<ValidacionTecnica> getAll() {
@@ -72,21 +75,46 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 	}
 
 	@Override
-	public List<Map<String, Object>> getDetallesDeValidacion(String idMetrica, String idMes){
+	public List<DetalleDeValidacion> getDetallesDeValidacion(String idMetrica, String idMes){
 		
 		String query = getQuery(idMetrica, idMes);
 		if (query == null || query.equals("")){
 			logger.warn("Has intentado ejecutar una query nula o vacía");
 			System.out.println("Has intentado ejecutar una query nula o vacía");
-			return new ArrayList<Map<String, Object>>();
+			return new ArrayList<DetalleDeValidacion>();
 		}
 		
 		logger.info(query);
 		System.out.println(query);
+		
+		List<DetalleDeValidacion> ddvList = new ArrayList<DetalleDeValidacion>();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Map<String, Object>> anonymousRows = jdbcTemplate.queryForList(query);
 		
-		return anonymousRows;
+		lastNumCols = anonymousRows.isEmpty() ? 0 : anonymousRows.get(0).size();
+		headers.clear();
+		for (Map.Entry<String, Object> entry : anonymousRows.get(0).entrySet())
+			headers.add(entry.getKey());
+		while(headers.size() < DetalleDeValidacion.MAX_DIMENSIONES)
+			headers.add("_STUB");
+		
+		int debugCont = 0;
+		for (Map<String, Object> anonymousRow : anonymousRows){
+			
+			List<String> strs = new ArrayList<String>();
+			for (Map.Entry<String, Object> entry : anonymousRow.entrySet()){
+//				System.out.println("Poniendo valor " + entry.getValue());
+				strs.add(String.valueOf(entry.getValue()));
+			}
+			while(strs.size() < DetalleDeValidacion.MAX_DIMENSIONES){
+				strs.add(Sistema.DEFAULT_NULL_STRING);
+			}
+			
+			ddvList.add(new DetalleDeValidacion(strs));
+//			System.out.println("Agregado detalle de validación " + String.valueOf(++debugCont));
+		}
+		
+		return ddvList;
 	}
 
 	// En un futuro hacerla privada (auxiliar), pero tengo que mirar cómo unitest entonces
@@ -104,5 +132,13 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 				});
 		
 		return resultQuery;
+	}
+	
+	public int getLastNumCols(){
+		return lastNumCols;
+	}
+	
+	public List<String> getHeaders(){
+		return headers;
 	}
 }

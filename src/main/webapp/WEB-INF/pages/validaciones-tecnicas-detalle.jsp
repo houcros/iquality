@@ -163,10 +163,10 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 <!--dynamic table initialization -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script>
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 <!-- Mi script personal -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-validaciones-tecnicas.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-validaciones-tecnicas-detalle.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
 
 <!-- Cookies -->
