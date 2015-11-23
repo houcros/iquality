@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-    $('#dynamic-table').dataTable( {
-        "aaSorting": [[ 4, "desc" ]]
-    } );
-
     /*
      * Insert a 'details' column to the table
      */
@@ -23,13 +19,43 @@ $(document).ready(function() {
     /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
+    
+    var langParams = {
+    		"sProcessing":     "Procesando...",
+    		"sLengthMenu":     "Mostrar _MENU_ registros",
+    		"sZeroRecords":    "No se encontraron resultados",
+    		"sEmptyTable":     "Ning&uacute;n dato disponible en esta tabla",
+    		"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    		"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    		"sInfoPostFix":    "",
+    		"sSearch":         "Buscar:",
+    		"sUrl":            "",
+    		"sInfoThousands":  ",",
+    		"sLoadingRecords": "Cargando...",
+    		"oPaginate": {
+    			"sFirst":    "Primero",
+    			"sLast":     "&Uacute;ltimo",
+    			"sNext":     "Siguiente",
+    			"sPrevious": "Anterior"
+    		},
+    		"oAria": {
+    			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+    			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    		}
+    	};
+    
     var oTable = $('#hidden-table-validaciones-tecnicas').dataTable( {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] },
             { "bVisible": false, "aTargets": [ 1 ], "bSortable": false },
             { "bVisible": false, "aTargets": [ 2 ], "bSortable": false }
         ],
-        "aaSorting": [[1, 'asc']]
+        "aaSorting": [[1, 'asc']],
+        "oLanguage": langParams
+//    	"oLanguage": {
+//    		"sUrl": "http://cdn.datatables.net/plug-ins/1.10.10/i18n/Spanish.json"
+//    	}
     });
 
     $(document).on('click','#hidden-table-validaciones-tecnicas tbody td img',function () {
