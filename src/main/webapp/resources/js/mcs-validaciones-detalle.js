@@ -10,8 +10,9 @@ $(document).ready(function() {
     // Inicializo tabla con los settings de arriba
     var oTable = $('#hidden-table-validacion-tecnica-detalle').dataTable( {
         "aoColumnDefs": colSettings,
-        "aaSorting": [[1, 'asc']]
-    });
+        "aaSorting": [[1, 'asc']],
+        "oLanguage": langParams    
+        });
 
     // Pongo los datos básicos a partir de las cookies dejadas
     // en la pantalla anterior

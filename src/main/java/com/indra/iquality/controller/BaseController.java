@@ -1,8 +1,6 @@
 package com.indra.iquality.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -131,10 +129,10 @@ public class BaseController {
 			ctx.close();
 			
 			// TODO DE MOMENTO devolveré un error si no obtengo datos en la query
-			if (allDetallesDeVali.size() == 0){
-				logger.error("No hay detalles para esta validación.");
-				return VIEW_ERROR;
-			}
+//			if (allDetallesDeVali.size() == 0){
+//				logger.error("No hay detalles para esta validación.");
+//				return VIEW_ERROR;
+//			}
 			
 			int numCols = vtDAO.getLastNumCols();
 			List<String> allHeaders = vtDAO.getHeaders();

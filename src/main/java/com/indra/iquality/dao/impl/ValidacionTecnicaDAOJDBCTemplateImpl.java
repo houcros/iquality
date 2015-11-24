@@ -93,8 +93,10 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 		
 		lastNumCols = anonymousRows.isEmpty() ? 0 : anonymousRows.get(0).size();
 		headers.clear();
-		for (Map.Entry<String, Object> entry : anonymousRows.get(0).entrySet())
-			headers.add(entry.getKey());
+		if (anonymousRows.size() > 0){
+			for (Map.Entry<String, Object> entry : anonymousRows.get(0).entrySet())
+				headers.add(entry.getKey());
+		}
 		while(headers.size() < DetalleDeValidacion.MAX_DIMENSIONES)
 			headers.add("_STUB");
 		

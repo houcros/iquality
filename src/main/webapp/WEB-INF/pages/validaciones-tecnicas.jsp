@@ -167,9 +167,6 @@
 <!--common script init for all pages-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
-<!--dynamic table initialization -->
-<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
-
 <!-- Mi script personal -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/lang-sett-es.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/mcs-validaciones.js"></script>

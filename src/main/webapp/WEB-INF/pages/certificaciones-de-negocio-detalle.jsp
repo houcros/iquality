@@ -161,6 +161,7 @@
 <%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 <!-- Mi script personal -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/lang-sett-es.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/mcs-certificaciones-detalle.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
 
