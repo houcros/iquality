@@ -60,10 +60,6 @@
 								<div class="row">
 									<div class="col-md-9">Registro de ejecuciones</div>
 									<div class="col-md-3">
-										<ul class="breadcrumb mi-breadcrumb">
-											<li><a
-												href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Pases</a></li>
-										</ul>
 									</div>
 								</div>
 							</header>

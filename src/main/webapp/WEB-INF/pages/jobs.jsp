@@ -65,10 +65,10 @@
 									<div class="col-md-3">
 										<ul class="breadcrumb mi-breadcrumb">
 											<li><a
-												href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}">Pase
-													${idEjecucion}</a></li>
-											<li><a
-												href="#">Jobs</a></li>
+												href="${pageContext.servletContext.contextPath}/pases">
+												Pases
+												</a>
+											</li>
 										</ul>
 									</div>
 								</div>

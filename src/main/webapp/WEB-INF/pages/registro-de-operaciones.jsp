@@ -65,9 +65,8 @@
 									</div>
 									<div class="col-md-4">
 										<ul class="breadcrumb mi-breadcrumb">
-											<li><a href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}">Pase ${idEjecucion}</a></li>
-											<li><a href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}/jobs">Job ${idJob}</a></li>
-											<li><a href="#">Regops</a></li>
+											<li><a href="${pageContext.servletContext.contextPath}/pases">Pases</a></li>
+											<li><a href="${pageContext.servletContext.contextPath}/pases/${idEjecucion}/jobs">Jobs del pase ${idEjecucion}</a></li>
 										</ul>
 									</div>
 								</div>
