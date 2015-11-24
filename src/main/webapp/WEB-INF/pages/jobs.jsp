@@ -152,8 +152,8 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 <!-- Mi script personal -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-jobs.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/mcs-jobs.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
 
 <!-- Cookies -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>

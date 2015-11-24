@@ -169,8 +169,8 @@
 <%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
 
 <!-- Mi script personal -->
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-scripts-certificaciones-de-negocio.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/my-custom-script.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/mcs-certificaciones.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
 
 <!-- Cookies -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>

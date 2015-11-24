@@ -1,38 +1,4 @@
-$(document).ready(function() {
-
-    $('#dynamic-table').dataTable( {
-        "aaSorting": [[ 4, "desc" ]]
-    } );
-
-
-    /*
-     * Initialse DataTables, with no sorting on the 'details' column
-     */
-    var colSettings = [];
-    var numCols = $.cookie('numCols');
-    for (i = parseInt(numCols); i < 25; ++i){ // Desharcodear el 25 (50) (?)
-    	colSettings.push({ "bVisible": false, "aTargets": [ i ], "bSortable": false });
-    }
-    
-    var oTable = $('#hidden-table-validacion-tecnica-detalle').dataTable( {
-        "aoColumnDefs": colSettings,
-        "aaSorting": [[1, 'asc']]
-    });
-
-    $('#dBas-vali-det-1').append('  ' + $.cookie('detVali_Entid'));
-    $('#dBas-vali-det-2').append('  ' + $.cookie('detVali_Valid'));
-    $('#dBas-vali-det-3').append('  ' + $.cookie('detVali_Fecha'));
-    
-    
-    // DEBUG
-//    console.log($.cookie('detCert_idMet'));
-//    console.log($.cookie('detCert_idMes'));
-    
-    
-    
-    
-    
-    // Obtengo todos los parámetros que pueda haber en la query
+ // Obtengo todos los parámetros que pueda haber en la query
     var urlParams;
     (window.onpopstate = function () {
         var match,
@@ -65,4 +31,3 @@ $(document).ready(function() {
     	$( '#mi-search-input' ).trigger(e);
     }
     
-} );
