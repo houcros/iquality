@@ -13,6 +13,9 @@
 			case 'pases':
 				$('#nav-accordion > li > ul > li > a:eq(6)').parent().addClass('active');
 				break;
+			case 'resultado-certificaciones':
+				$('#nav-accordion > li > ul > li > a:eq(5)').parent().addClass('active');
+				break;
 			}
 		}
 
