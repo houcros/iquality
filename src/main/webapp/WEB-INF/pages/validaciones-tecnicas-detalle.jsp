@@ -82,8 +82,9 @@
 							<div class="panel-body">
 								<div class="adv-table">
 									<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
+									<div class="table-responsive"> 
 									<table cellpadding="0" cellspacing="0" border="0"
-										class="display table table-bordered" id="hidden-table-validacion-tecnica-detalle">
+										class="table table-bordered table-striped table-condensed display" id="hidden-table-validacion-tecnica-detalle">
 										<thead>
 											<tr>
 												<th>${headerDim1}</th>
@@ -145,7 +146,7 @@
 											</c:forEach>
 										</tbody>
 									</table>
-
+								</div>
 								</div>
 							</div>
 						</section>
