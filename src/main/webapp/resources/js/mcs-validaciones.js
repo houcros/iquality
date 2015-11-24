@@ -3,18 +3,18 @@ $(document).ready(function() {
     /*
      * Insert a 'details' column to the table
      */
-    var nCloneTh = document.createElement( 'th' );
-    var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;">';
-    nCloneTd.className = "center";
-
-    $('#hidden-table-validaciones-tecnicas thead tr').each( function () {
-        this.insertBefore( nCloneTh, this.childNodes[0] );
-    } );
-
-    $('#hidden-table-validaciones-tecnicas tbody tr').each( function () {
-        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
-    } );
+//    var nCloneTh = document.createElement( 'th' );
+//    var nCloneTd = document.createElement( 'td' );
+//    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;">';
+//    nCloneTd.className = "center";
+//
+//    $('#hidden-table-validaciones-tecnicas thead tr').each( function () {
+//        this.insertBefore( nCloneTh, this.childNodes[0] );
+//    } );
+//
+//    $('#hidden-table-validaciones-tecnicas tbody tr').each( function () {
+//        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+//    } );
 
     /*
      * Inicializo la tabla sin mostrar id_metrica e id_mes

@@ -91,6 +91,7 @@
 										class="display table table-bordered" id="hidden-table-validaciones-tecnicas">
 										<thead>
 											<tr>
+												<th><div style="width: 20px;"></div></th>
 												<th>_hidden_id_metrica</th>
 												<th>_hidden_id_mes</th>
 												<th><div style="width: 50px;">Fecha</div></th>
@@ -108,6 +109,14 @@
 													<!-- 					    <tr class="gradeX">       -->
 													<!-- 					    <tr class="gradeC">       -->
 													<!-- 					    <tr class="gradeU">       -->
+													<c:choose>
+														<c:when test="${item.estado=='KO'}">
+															<td class="center"><img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;"></td>
+														</c:when>
+														<c:otherwise>
+															<td class="center"></td>
+														</c:otherwise>
+													</c:choose>
 													<td class="center hidden-phone">${item.idMetrica}</td>
 													<td class="center hidden-phone">${item.idMes}</td>
 													<td class="center hidden-phone">${item.fecha}</td>
