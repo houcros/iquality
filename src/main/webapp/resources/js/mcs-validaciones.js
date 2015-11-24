@@ -36,13 +36,19 @@ $(document).ready(function() {
         var nTr = $(this).parents('tr')[0];
         var aData = oTable.fnGetData( nTr );
 
-        $.cookie('detVali_idMet', aData[1], { path : '/iQuality/resultado-certificaciones/2/detalle'});
-        $.cookie('detVali_idMes', aData[2], { path : '/iQuality/resultado-certificaciones/2/detalle'});
-        $.cookie('detVali_Fecha', aData[3], { path : '/iQuality/resultado-certificaciones/2/detalle'});
-        $.cookie('detVali_Entid', aData[6], { path : '/iQuality/resultado-certificaciones/2/detalle'});
-        $.cookie('detVali_Valid', aData[7], { path : '/iQuality/resultado-certificaciones/2/detalle'});
-        
-        window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
+        if (aData[9].indexOf('KO') > -1){
+            $.cookie('detVali_idMet', aData[1], { path : '/iQuality/resultado-certificaciones/2/detalle'});
+            $.cookie('detVali_idMes', aData[2], { path : '/iQuality/resultado-certificaciones/2/detalle'});
+            $.cookie('detVali_Fecha', aData[3], { path : '/iQuality/resultado-certificaciones/2/detalle'});
+            $.cookie('detVali_Entid', aData[6], { path : '/iQuality/resultado-certificaciones/2/detalle'});
+            $.cookie('detVali_Valid', aData[7], { path : '/iQuality/resultado-certificaciones/2/detalle'});
+            
+            window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
+        }
+        else{
+        	alert("Nada interesante que ver.");
+        }
+
     } );
     
 } );
