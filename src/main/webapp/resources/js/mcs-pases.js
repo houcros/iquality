@@ -27,8 +27,8 @@ $(document).ready(function() {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] }
         ],
-        "aaSorting": [[1, 'asc']]
-    });
+        "aaSorting": [[1, 'asc']],
+        "oLanguage": langParams    });
 
     $(document).on('click','#hidden-table-pases tbody td img',function () {
         var nTr = $(this).parents('tr')[0];

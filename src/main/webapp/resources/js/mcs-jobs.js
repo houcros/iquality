@@ -29,8 +29,8 @@ $(document).ready(function() {
         "aoColumnDefs": [
             { "bSortable": false, "aTargets": [ 0 ] }
         ],
-        "aaSorting": [[1, 'asc']]
-    });
+        "aaSorting": [[1, 'asc']],
+        "oLanguage": langParams    });
 
  // Mi intento de adaptar la tabla escondida
     function fnFormatDetailsCustom ( oTable, nTr )

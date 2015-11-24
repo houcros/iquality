@@ -26,8 +26,8 @@ $(document).ready(function() {
             { "bVisible": false, "aTargets": [ 2 ], "bSortable": false },
             { "bVisible": false, "aTargets": [ 3 ], "bSortable": false }
         ],
-        "aaSorting": [[1, 'asc']]
-    });
+        "aaSorting": [[1, 'asc']],
+        "oLanguage": langParams    });
 
     /*
      * Dejo caer las cookies que usaré en la pantalla de detalle y sigo el link

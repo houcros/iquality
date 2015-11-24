@@ -186,6 +186,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
 <!-- Mi script personal -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/lang-sett-es.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/mcs-registro-de-ops.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
 	
