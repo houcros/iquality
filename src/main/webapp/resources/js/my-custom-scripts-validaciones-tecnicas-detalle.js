@@ -19,7 +19,11 @@ $(document).ready(function() {
         "aaSorting": [[1, 'asc']]
     });
 
-
+    $('#dBas-vali-det-1').append('  ' + $.cookie('detVali_Entid'));
+    $('#dBas-vali-det-2').append('  ' + $.cookie('detVali_Valid'));
+    $('#dBas-vali-det-3').append('  ' + $.cookie('detVali_Fecha'));
+    
+    
     // DEBUG
 //    console.log($.cookie('detCert_idMet'));
 //    console.log($.cookie('detCert_idMes'));

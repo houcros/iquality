@@ -53,13 +53,29 @@
         <section class="wrapper">
         <!-- page start-->
         
+        				<div class="row">
+					<div class="col-md-12">
+						<div class="panel" id="datos-basicos-validacion-detalle">
+							<div class="panel-heading mi-panel-heading">Datos
+								b&aacute;sicos</div>
+							<div class="panel-body">
+								<div class="">
+									<p id="dBas-vali-det-1"><b>Entidad validada:</b></p>
+									<p id="dBas-vali-det-2"><b>Validaci&oacute;n:</b></p>
+									<p id="dBas-vali-det-3"><b>Fecha:</b></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        
         <div class="row">
             <div class="col-sm-12">
 						<section class="panel">
 							<header class="panel-heading mi-panel-heading">
 								<div class="row">
 									<div class="col-md-9">
-										Detalle funcional de la valida&oacute;n
+										Detalle funcional de la validaci&oacute;n
 									</div>
 								</div>
 							</header>
