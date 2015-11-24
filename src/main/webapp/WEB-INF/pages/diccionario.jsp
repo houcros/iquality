@@ -379,12 +379,6 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
 
-	<!-- switch -->
-<!-- 	<script -->
-<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/my-custom-bootstrap-switch.js"></script> --%>
-<!-- 	<script -->
-<%-- 		src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script> --%>
-
 	<!--common script init for all pages-->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
