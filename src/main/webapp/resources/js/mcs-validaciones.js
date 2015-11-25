@@ -36,12 +36,13 @@ $(document).ready(function() {
         var nTr = $(this).parents('tr')[0];
         var aData = oTable.fnGetData( nTr );
 
+        // TODO Quizás puedo eliminar este if/else pq no podré clickar los que no estén a KO
         if (aData[9].indexOf('KO') > -1){
             $.cookie('detVali_Fecha', aData[3], { path : '/iQuality/resultado-certificaciones/2/detalle'});
             $.cookie('detVali_Entid', aData[6], { path : '/iQuality/resultado-certificaciones/2/detalle'});
             $.cookie('detVali_Valid', aData[7], { path : '/iQuality/resultado-certificaciones/2/detalle'});
             
-            window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
+//            window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
         }
         else{
         	alert("Nada interesante que ver.");

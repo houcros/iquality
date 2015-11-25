@@ -40,7 +40,7 @@ $(document).ready(function() {
         $.cookie('detCert_Fecha', aData[4], { path : '/iQuality/resultado-certificaciones/1/detalle'});
         $.cookie('detCert_Indic', aData[9], { path : '/iQuality/resultado-certificaciones/1/detalle'});
         
-        window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
+//        window.location += "/detalle?idMet=" + aData[1] + "&idMes=" + aData[2];
         
     } );
     

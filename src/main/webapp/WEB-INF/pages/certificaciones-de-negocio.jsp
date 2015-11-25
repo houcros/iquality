@@ -106,7 +106,11 @@
 													<!-- 					    <tr class="gradeX">       -->
 													<!-- 					    <tr class="gradeC">       -->
 													<!-- 					    <tr class="gradeU">       -->
-													<td class="center"><img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;"></td>
+													<td class="center">
+														<a href=${requestScope['javax.servlet.forward.request_uri']}${"/detalle?idMet="}${item.idMetrica}${"&idMes="}${item.idMes}>
+															<img src="/iQuality/resources/images/details_open.png">
+														</a>
+													</td>
 													<td class="center hidden-phone">${item.idMetrica}</td>
 													<td class="center hidden-phone">${item.idMes}</td>
 													<td class="center hidden-phone">${item.certificacion}</td>

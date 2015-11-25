@@ -76,12 +76,6 @@
 											</ul>
 										</div>
 									</div>
-									<!-- 									<div class="col-md-3"> -->
-<!-- 										<ul class="breadcrumb mi-breadcrumb"> -->
-<!-- 											<li><a -->
-<%-- 												href="${pageContext.servletContext.contextPath}/consola-control-ejecucion">Pases</a></li> --%>
-<!-- 										</ul> -->
-<!-- 									</div> -->
 								</div>
 							</header>
 							<div class="panel-body">
@@ -111,7 +105,11 @@
 													<!-- 					    <tr class="gradeU">       -->
 													<c:choose>
 														<c:when test="${item.estado=='KO'}">
-															<td class="center"><img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;"></td>
+															<td class="center">
+																<a href=${requestScope['javax.servlet.forward.request_uri']}${"/detalle?idMet="}${item.idMetrica}${"&idMes="}${item.idMes}>
+																	<img src="/iQuality/resources/images/details_open.png">
+																</a>
+															</td>
 														</c:when>
 														<c:otherwise>
 															<td class="center"></td>
