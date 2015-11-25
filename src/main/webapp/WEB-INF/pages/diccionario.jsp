@@ -103,7 +103,7 @@
 								<!--tab nav start-->
 								<section class="panel">
 									<header class="panel-heading tab-bg-dark-navy-blue ">
-										<ul class="nav nav-tabs">
+										<ul class="nav nav-tabs" id="myTabs">
 											<li class="active"><a data-toggle="tab"
 												href="#tab-datos-basicos">Datos b&aacute;sicos</a></li>
 											<li class=""><a data-toggle="tab"

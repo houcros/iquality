@@ -67,6 +67,9 @@ $(document).ready(function () {
 //							async: false,
 							success: function( data ){
 								
+								// Muestro siempre la primera tab de un componente
+								$('#myTabs a[href="#tab-datos-basicos"]').tab('show');
+								
 								$('#dict-ficha-definicion').children().first().text(data.nombre);
 								$('#tarj-responsable').text(data.responsable);
 								$('#tarj-definicion').text(data.definicion);
