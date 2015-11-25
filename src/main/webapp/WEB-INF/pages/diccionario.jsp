@@ -102,18 +102,18 @@
 							<div class="panel-body">
 								<!--tab nav start-->
 								<section class="panel">
-									<header class="panel-heading tab-bg-dark-navy-blue ">
+									<header class="panel-heading tab-bg-dark-navy-blue">
 										<ul class="nav nav-tabs" id="myTabs">
 											<li class="active"><a data-toggle="tab"
-												href="#tab-datos-basicos">Datos b&aacute;sicos</a></li>
+												href="#tab-datos-basicos"><span>Datos b&aacute;sicos</span></a></li>
 											<li class=""><a data-toggle="tab"
-												href="#tab-datos-entidad">Datos de entidad</a></li>
+												href="#tab-datos-entidad"><span>Datos de entidad</span></a></li>
 											<li class="show-on-indic" id="header-tab-reglas-certificacion"><a data-toggle="tab"
-												href="#tab-reglas-certificacion">Reglas de
-													certificaci&oacute;n</a></li>
+												href="#tab-reglas-certificacion"><span>Reglas de
+													certificaci&oacute;n</span></a></li>
 										</ul>
 									</header>
-									<div id="content-tabs-dicha-definicion" class="panel-body">
+									<div id="content-tabs-ficha-definicion" class="panel-body">
 										<div class="tab-content">
 											<div id="tab-datos-basicos" class="tab-pane active">
 												<!-- page start-->

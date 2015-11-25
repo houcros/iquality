@@ -5817,7 +5817,7 @@ padding:0.7em;
 	padding: 4px 8px;
 }
 
-#content-tabs-dicha-definicion{
+#content-tabs-ficha-definicion{
 	background-color: #FFFAFA;
 }
 
@@ -5880,4 +5880,14 @@ ul.breadcrumb.mi-breadcrumb{
 
 .show-on-master, #master-toggle-container, #header-tab-reglas-certificacion{
 	display:none;
+}
+
+/* Estilo nav-tabs pantalla diccionario */
+.nav-tabs a {
+    display:block;
+    height:18px;
+}
+.nav-tabs a span{
+    display:block;
+    line-height:5px;
 }
