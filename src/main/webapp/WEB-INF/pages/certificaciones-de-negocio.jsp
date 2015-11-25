@@ -87,6 +87,7 @@
 										class="display table table-bordered" id="hidden-table-certificaciones-negocio">
 										<thead>
 											<tr>
+												<th><div style="width: 20px;"></div></th>
 												<th>_hidden_id_metrica</th>
 												<th>_hidden_id_mes</th>
 												<th>_hidden_certificacion</th>
@@ -105,6 +106,7 @@
 													<!-- 					    <tr class="gradeX">       -->
 													<!-- 					    <tr class="gradeC">       -->
 													<!-- 					    <tr class="gradeU">       -->
+													<td class="center"><img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;"></td>
 													<td class="center hidden-phone">${item.idMetrica}</td>
 													<td class="center hidden-phone">${item.idMes}</td>
 													<td class="center hidden-phone">${item.certificacion}</td>

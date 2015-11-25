@@ -37,8 +37,6 @@ $(document).ready(function() {
         var aData = oTable.fnGetData( nTr );
 
         if (aData[9].indexOf('KO') > -1){
-            $.cookie('detVali_idMet', aData[1], { path : '/iQuality/resultado-certificaciones/2/detalle'});
-            $.cookie('detVali_idMes', aData[2], { path : '/iQuality/resultado-certificaciones/2/detalle'});
             $.cookie('detVali_Fecha', aData[3], { path : '/iQuality/resultado-certificaciones/2/detalle'});
             $.cookie('detVali_Entid', aData[6], { path : '/iQuality/resultado-certificaciones/2/detalle'});
             $.cookie('detVali_Valid', aData[7], { path : '/iQuality/resultado-certificaciones/2/detalle'});
