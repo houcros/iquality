@@ -330,20 +330,8 @@
 												</div>
 											</div>
 											<div id="tab-reglas-certificacion" class="tab-pane">
-												<a class="fa fa-book" href="#"></a> &nbsp;&nbsp;Validacion
-												para saldo fin de mes por empresa y periodo.
-												<!-- BEGIN Portlet PORTLET-->
-												<div class="row">
-													<div class="col-md-12">
-														<div class="panel panel-info">
-															<div class="panel-heading tarjetita-heading">
-																Test</div>
-															<div class="panel-body tarjetita-body"
-																id="tarj-certificaciones"></div>
-														</div>
-													</div>
+												<div id="div-certificaciones">
 												</div>
-												<!-- END Portlet PORTLET-->
 											</div>
 										</div>
 									</div>

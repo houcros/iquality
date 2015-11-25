@@ -88,10 +88,12 @@ $(document).ready(function () {
 									$('#tarj-periodo-acumulado').text(data.periodoAcumulado);
 									
 									var s = "";
+									var icon = "<a class=\"fa fa-book\" href=\"#\"></a>&nbsp;&nbsp;";
 									for(var i = 0; i < data.certificaciones.length; ++i){
-										s += data.certificaciones[i] + "<br>";
+										s += icon + data.certificaciones[i] + "<br>";
 									}
-									$('#tarj-certificaciones').html(s);
+									if (s == "") s = "<i>Indicador sin certificaciones</i>";
+									$('#div-certificaciones').html(s);
 									
 									break;
 									
