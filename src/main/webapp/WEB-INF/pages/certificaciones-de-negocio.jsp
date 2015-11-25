@@ -59,10 +59,10 @@
 							<header class="panel-heading mi-panel-heading">
 								<div class="row">
 									<div class="col-md-9">
-										<div class="btn-group">
+										<div class="btn-group my-btn-group">
 											<button data-toggle="dropdown"
-												class="btn btn-default dropdown-toggle" type="button">
-												Certificaciones de negocio <span class="caret"></span>
+												class="btn dropdown-toggle custom-dropdown" type="button">
+												CERTIFICACIONES DE NEGOCIO <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu">
 												<li><a href="#">Certificaciones de negocio</a></li>

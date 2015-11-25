@@ -5891,3 +5891,20 @@ ul.breadcrumb.mi-breadcrumb{
     display:block;
     line-height:5px;
 }
+
+/* Dropdown certificaciones */
+.custom-dropdown{
+	/* 	background-color: #1FB5AD; */
+	background-color: #FFA900;
+	color: white;
+	/* text-align:center; */
+	text-align:left;
+	/* vertical-align:middle; */
+	font-weight:bold;
+	font-family:Verdana, Geneva, sans-serif;
+	/* font-family:Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif; */
+	font-size:100%;
+}
+.my-btn-group, .my-btn-group button{
+	padding:0;
+}
