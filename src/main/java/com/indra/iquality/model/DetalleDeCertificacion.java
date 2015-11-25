@@ -2,6 +2,8 @@ package com.indra.iquality.model;
 
 public class DetalleDeCertificacion {
 
+	public static final int MAX_DIMENSIONES = 6;
+	
 	private String fecha;
 	private String valDimension1;
 	private String valDimension2;

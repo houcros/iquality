@@ -33,11 +33,6 @@ public class BaseController {
 	 */
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
-	private static final String VIEW_ERROR = "500";
-	private static final String VIEW_CERTIFICACIONES_DE_NEGOCIO = "certificaciones-de-negocio";
-	private static final String VIEW_CERTIFICACIONES_DE_NEGOCIO_DETALLE = "certificaciones-de-negocio-detalle";
-	private static final String VIEW_VALIDACIONES_TECNICAS = "validaciones-tecnicas";
-	private static final String VIEW_VALIDACIONES_TECNICAS_DETALLE = "validaciones-tecnicas-detalle";
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
@@ -54,108 +49,5 @@ public class BaseController {
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_LOGIN;
 	}
-	
-	@RequestMapping(value = "/resultado-certificaciones/{tab}", method = RequestMethod.GET)
-//	private String getValidaciones(@RequestParam(value="tab", required=false) Integer tab, ModelMap model){
-	private String getCertificaciones(@PathVariable int tab, ModelMap model){
-		logger.debug("getValidaciones : Called route");
-		
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		
-//		if(tab == null || tab == 1){
-		if(tab == 1){
-			CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
-			List<CertificacionDeNegocio> allCertificaciones= cdnDAO.getAll();
-			model.addAttribute("allTableItems", allCertificaciones);
-			ctx.close();
-			
-			logger.info(allCertificaciones.get(0).toString());
-			return VIEW_CERTIFICACIONES_DE_NEGOCIO;
-		}
-		else if (tab == 2){
-			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
-			List<ValidacionTecnica> allValidaciones= vtDAO.getAll();
-			model.addAttribute("allTableItems", allValidaciones);
-			ctx.close();
-			
-			// DEBUG
-//			for (ValidacionTecnica validacion : allValidaciones)
-//				logger.debug(validacion.toString());
-			
-			return VIEW_VALIDACIONES_TECNICAS;
-		}
-		else{
-			ctx.close();
-			return VIEW_INDEX;
-		}
-
-	}
-	
-	@RequestMapping(value = "/resultado-certificaciones/{tab}/detalle", method = RequestMethod.GET)
-	private String getDetalleCertificaciones(@PathVariable int tab, 
-			@RequestParam (value = "idMet", required = true) String idMetrica, 
-			@RequestParam (value = "idMes", required = true) String idMes, 
-			ModelMap model, HttpServletResponse response){
-		logger.debug("getValidaciones : Called route");
-		
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		
-		if(tab == 1){
-			CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
-			List<String> allHeaders= cdnDAO.getHeadersDetalles(idMetrica);
-			int numDims = allHeaders.size();
-			
-			// Pongo los headers que tengo
-			// TODO des-harcodear este 6
-			while(allHeaders.size() < 6) allHeaders.add("_STUB");
-			int aux_count = 0;
-			for(String s : allHeaders){
-				String aux = "headerDim" + String.valueOf(++aux_count);
-				model.addAttribute(aux, s);
-			}
-			
-			List<DetalleDeCertificacion> allDetallesDeCert = cdnDAO.getDetallesDeCertificacion(idMes, idMetrica, numDims);
-			model.addAttribute("allTableItems", allDetallesDeCert);
-			ctx.close();
-
-			response.addCookie(new Cookie("numDims", String.valueOf(numDims)));
-//			logger.info(allCertificaciones.get(0).toString());
-			return VIEW_CERTIFICACIONES_DE_NEGOCIO_DETALLE;
-		}
-		else if (tab == 2){
-			
-			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
-			List<DetalleDeValidacion> allDetallesDeVali= vtDAO.getDetallesDeValidacion(idMetrica, idMes);
-			ctx.close();
-			
-			// TODO DE MOMENTO devolveré un error si no obtengo datos en la query
-//			if (allDetallesDeVali.size() == 0){
-//				logger.error("No hay detalles para esta validación.");
-//				return VIEW_ERROR;
-//			}
-			
-			int numCols = vtDAO.getLastNumCols();
-			List<String> allHeaders = vtDAO.getHeaders();
-			
-			// Pongo los headers en el jsp
-			int aux_count = 0;
-			for(String s : allHeaders){
-				String aux = "headerDim" + String.valueOf(++aux_count);
-				model.addAttribute(aux, s);
-			}
-			
-			model.addAttribute("allTableItems", allDetallesDeVali);
-			
-			response.addCookie(new Cookie("numCols", String.valueOf(numCols)));
-//			logger.info(allValidaciones.get(0).toString());
-			return VIEW_VALIDACIONES_TECNICAS_DETALLE;
-		}
-		else{
-			ctx.close();
-			return VIEW_INDEX;
-		}
-
-	}
-	
 	
 }
