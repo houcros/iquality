@@ -255,8 +255,8 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 				+ " VS.DEFPASE_ROWID,VS.ID_FECHA_CREACION,S.DE_SOFTWARE"
 				+ " FROM VS_MET_PLA_DEF_PASE VS , LK_MET_IQ_SOFTWARE S"
 				+ " WHERE"
-				+ " VS.ID_SISTEMA = S.ID_SISTEMA AND"
-				+ " VS.ID_SOFTWARE = S.ID_SOFTWARE";
+				+ " VS.ID_SISTEMA = ? AND"
+				+ " VS.ID_SOFTWARE = ?";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<PaseDef> paseDefList = new ArrayList<PaseDef>();
