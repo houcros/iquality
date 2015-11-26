@@ -17,6 +17,8 @@ import com.indra.iquality.controller.BaseController;
 import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Pase;
+import com.indra.iquality.model.PaseDef;
+import com.indra.iquality.singleton.Sistema;
 
 public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 
@@ -27,6 +29,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 //	private int contadorDebugger = 0;
 	
 	private final CustomHelper helper = new CustomHelper();
+	private Sistema sistema = Sistema.getInstance();
 	
 	private final static String DEFAULT_NULL_STRING = "";
 	private final static int DEFAULT_NULL_INT = -1;
@@ -240,6 +243,38 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 			paseList.add(pase);
 		}
 		return paseList;
+	}
+	
+	@Override
+	public List<PaseDef> getAllDefs(){
+		
+		// Podría prescindir de algunos campos que no se muestran
+		String query = "SELECT"
+				+ " VS.ID_SISTEMA, VS.ID_SOFTWARE, VS.ID_PASE, VS.DE_PASE,"
+				+ " DECODE(VS.ID_SN_PASE_ATIPICO,'N','No','S','Sí') AS ID_SN_PASE_ATIPICO,"
+				+ " VS.DEFPASE_ROWID,VS.ID_FECHA_CREACION,S.DE_SOFTWARE"
+				+ " FROM VS_MET_PLA_DEF_PASE VS , LK_MET_IQ_SOFTWARE S"
+				+ " WHERE"
+				+ " VS.ID_SISTEMA = S.ID_SISTEMA AND"
+				+ " VS.ID_SOFTWARE = S.ID_SOFTWARE";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		List<PaseDef> paseDefList = new ArrayList<PaseDef>();
+
+		List<Map<String,Object>> paseDefRows = jdbcTemplate.queryForList(query, new Object[]{sistema.getIdSistema(), sistema.getIdSoftware()});
+		for (Map<String,Object> paseDefRow : paseDefRows){
+			
+			PaseDef paseDef = new PaseDef();
+			
+			paseDef.setId(helper.filterNullInt(Integer.parseInt(String.valueOf(paseDefRow.get("ID_PASE")))));
+			paseDef.setNombre(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
+			paseDef.setEsAtipico(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SN_PASE_ATIPICO"))));
+			paseDef.setSistema(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SISTEMA"))));
+			paseDef.setSoftware(helper.filterNullString(String.valueOf(paseDefRow.get("DE_SOFTWARE"))));
+			
+			paseDefList.add(paseDef);
+		}
+		return paseDefList;
 	}
 	
 }

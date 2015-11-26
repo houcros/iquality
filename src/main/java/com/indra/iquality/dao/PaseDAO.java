@@ -3,6 +3,7 @@ package com.indra.iquality.dao;
 import java.util.List;
 
 import com.indra.iquality.model.Pase;
+import com.indra.iquality.model.PaseDef;
 
 //CRUD operations
 public interface PaseDAO {
@@ -16,5 +17,7 @@ public interface PaseDAO {
 	//Delete
 	public void deleteById(int id_ejecucion);
 	//Get All
-	public List<Pase> getAll ()  throws Exception;
+	public List<Pase> getAll()  throws Exception;
+	
+	public List<PaseDef> getAllDefs();
 }
