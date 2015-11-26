@@ -5,16 +5,19 @@
 		var pathnameParts = window.location.pathname.split('/');
 		// Será del estilo: pathnameParts = ["", "iQuality", "pases", "373", "jobs"]
 		if(pathnameParts.length > 2){
-			console.log(pathnameParts[2]);
+//			console.log(pathnameParts[2]);
 			switch(pathnameParts[2]){
 			case 'diccionario':
 				$('#nav-accordion > li > ul > li > a:eq(0)').parent().addClass('active');
 				break;
+			case 'resultado-certificaciones':
+				$('#nav-accordion > li > ul > li > a:eq(5)').parent().addClass('active');
+				break;
 			case 'pases':
 				$('#nav-accordion > li > ul > li > a:eq(6)').parent().addClass('active');
 				break;
-			case 'resultado-certificaciones':
-				$('#nav-accordion > li > ul > li > a:eq(5)').parent().addClass('active');
+			case 'planificar-cargas':
+				$('#nav-accordion > li > ul > li > a:eq(7)').parent().addClass('active');
 				break;
 			}
 		}

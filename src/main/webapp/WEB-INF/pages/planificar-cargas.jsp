@@ -65,7 +65,23 @@
 							</header>
 							<div class="panel-body">
 								<div class="adv-table">
-									<!--                     <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info"> -->
+								 <div class="clearfix">
+                                <div class="btn-group">
+                                    <button id="btn-nuevo-pase-def" class="btn btn-primary">
+                                        Nuevo <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+<!--                                 <div class="btn-group pull-right"> -->
+<!--                                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i> -->
+<!--                                     </button> -->
+<!--                                     <ul class="dropdown-menu pull-right"> -->
+<!--                                         <li><a href="#">Print</a></li> -->
+<!--                                         <li><a href="#">Save as PDF</a></li> -->
+<!--                                         <li><a href="#">Export to Excel</a></li> -->
+<!--                                     </ul> -->
+<!--                                 </div> -->
+                            </div>
+                            <div class="space15"></div>
 									<table cellpadding="0" cellspacing="0" border="0"
 										class="display table table-bordered" id="hidden-table-pases-def">
 										<thead>

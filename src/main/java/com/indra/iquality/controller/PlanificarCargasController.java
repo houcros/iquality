@@ -18,6 +18,7 @@ import com.indra.iquality.model.PaseDef;
 public class PlanificarCargasController {
 
 	private static final String VIEW_PASES_DEF = "planificar-cargas";
+	private static final String VIEW_WIZARD = "wizard-nuevo-pase";
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(PlanificarCargasController.class);
 
@@ -43,6 +44,11 @@ public class PlanificarCargasController {
 		logger.info("[getPasesDef] -> DONE");
 		
 		return VIEW_PASES_DEF;
+	}
+	
+	@RequestMapping(value = "/wizard-nuevo-pase", method = RequestMethod.GET)
+	private String wizard(Model model){
+		return VIEW_WIZARD;
 	}
 	
 }
