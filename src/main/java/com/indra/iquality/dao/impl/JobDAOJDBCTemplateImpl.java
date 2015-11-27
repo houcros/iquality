@@ -61,7 +61,38 @@ public class JobDAOJDBCTemplateImpl implements JobDAO {
 
 	@Override
 	public List<Job> getAll() throws Exception {
-		return null;
+		
+		String query = "SELECT"
+				+ " JOB.ROWID,  JOB.ID_JOB, JOB.ID_SOFTWARE, JOB.ID_SISTEMA, JOB.ID_BLOQUE,"
+				+ " SOFT.DE_SOFTWARE, BLOQ.DE_BLOQUE"
+				+ " FROM"
+				+ " LK_MET_IQ_JOB JOB, LK_MET_IQ_SOFTWARE SOFT, LK_MET_IQ_BLOQUE BLOQ"
+				+ " WHERE"
+				+ " JOB.ID_SISTEMA = SOFT.ID_SISTEMA AND" 
+				+ " JOB.ID_SOFTWARE = SOFT.ID_SOFTWARE AND"
+				+ " JOB.ID_SOFTWARE = ? AND"
+				+ " JOB.ID_SISTEMA = ? AND"
+				+ " JOB.ID_SISTEMA = BLOQ.ID_SISTEMA AND"
+				+ " JOB.ID_BLOQUE = BLOQ.ID_BLOQUE"
+				+ " ORDER BY JOB.ID_JOB ASC";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		List<Job> jobList = new ArrayList<Job>();
+
+		List<Map<String,Object>> jobRows = jdbcTemplate.queryForList(query, new Object[]{sistema.getIdSoftware(), sistema.getIdSistema()});
+		
+		for(Map<String,Object> jobRow : jobRows){
+			
+			Job job = new Job();
+			
+			job.setIdJob(helper.filterNullString(String.valueOf(jobRow.get("ID_JOB"))));
+			job.setSistema(helper.filterNullString(String.valueOf(jobRow.get("ID_SISTEMA"))));
+			job.setIdBloque(helper.filterNullString(String.valueOf(jobRow.get("ID_BLOQUE"))));
+			job.setBloque(helper.filterNullString(String.valueOf(jobRow.get("DE_BLOQUE"))));
+			
+			jobList.add(job);
+		}
+		return jobList;
 	}
 	
 	/*

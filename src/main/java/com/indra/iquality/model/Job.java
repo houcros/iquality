@@ -15,6 +15,9 @@ public class Job {
 	private Date fechaOKPuntoDeControl;
 	private String duracion;
 	
+	private String idBloque;
+	private String bloque;
+	
 	private int software;
 	private String sistema;
 
@@ -96,6 +99,26 @@ public class Job {
 
 	public void setDuracion(String duracion) {
 		this.duracion = duracion;
+	}
+
+
+	public String getIdBloque() {
+		return idBloque;
+	}
+
+
+	public void setIdBloque(String idBloque) {
+		this.idBloque = idBloque;
+	}
+
+
+	public String getBloque() {
+		return bloque;
+	}
+
+
+	public void setBloque(String bloque) {
+		this.bloque = bloque;
 	}
 
 

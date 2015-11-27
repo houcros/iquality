@@ -10,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.dao.PaseDAO;
+import com.indra.iquality.model.Job;
 import com.indra.iquality.model.PaseDef;
 
 @Controller
@@ -28,6 +30,8 @@ public class PlanificarCargasController {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
 		List<PaseDef> allPasesDef;
+		//Close Spring Context
+		ctx.close();
 		
 		try {
 			allPasesDef = paseDAO.getAllDefs();
@@ -37,9 +41,6 @@ public class PlanificarCargasController {
 			e.printStackTrace();
 		}
 		
-		//Close Spring Context
-		ctx.close();
-		
 		model.addAttribute("allTableItems", allPasesDef);
 		logger.info("[getPasesDef] -> DONE");
 		
@@ -48,6 +49,25 @@ public class PlanificarCargasController {
 	
 	@RequestMapping(value = "/wizard-nuevo-pase", method = RequestMethod.GET)
 	private String wizard(Model model){
+		
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		JobDAO jobDAO = ctx.getBean("jobDAOJDBCTemplate", JobDAO.class);
+		List<Job> allJobs;
+		//Close Spring Context
+		ctx.close();
+		
+		try{
+			allJobs = jobDAO.getAll();
+		}
+		catch (Exception e){
+			allJobs = new ArrayList<Job>();
+			logger.error("[wizard] : excepción <" + e.getMessage() + "> al intentar obtener todos los Jobs.");
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("allJobs", allJobs);
+		logger.info("[getPasesDef] -> DONE");
+		
 		return VIEW_WIZARD;
 	}
 }
