@@ -19,6 +19,8 @@ public class PlanificarCargasController {
 
 	private static final String VIEW_PASES_DEF = "planificar-cargas";
 	private static final String VIEW_WIZARD = "wizard-nuevo-pase";
+	private static final String VIEW_WIZARD_V2 = "wizard-v2";
+	private static final String VIEW_WIZARD_V3 = "wizard-v3";
 	
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(PlanificarCargasController.class);
 
@@ -51,4 +53,13 @@ public class PlanificarCargasController {
 		return VIEW_WIZARD;
 	}
 	
+	@RequestMapping(value = "/wizard-v2", method = RequestMethod.GET)
+	private String wizardv2(Model model){
+		return VIEW_WIZARD_V2;
+	}
+	
+	@RequestMapping(value = "/wizard-v3", method = RequestMethod.GET)
+	private String wizardv3(Model model){
+		return VIEW_WIZARD_V3;
+	}
 }

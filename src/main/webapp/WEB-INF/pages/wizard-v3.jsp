@@ -52,6 +52,9 @@
     <link href="${pageContext.servletContext.contextPath}/resources/css/style.css" rel="stylesheet">
     <link href="${pageContext.servletContext.contextPath}/resources/css/style-responsive.css" rel="stylesheet" />
 
+	<!-- Wizard -->
+	<link href="${pageContext.servletContext.contextPath}/resources/css/prettify.css" rel="stylesheet">
+	
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -87,10 +90,21 @@
                     </header>
                     <div class="panel-body">
 
-                        <div id="wizard">
-                            <h2>Datos del pase</h2>
-
-									<section>
+<div id="rootwizard">
+	<div class="navbar">
+	  <div class="navbar-inner">
+	    <div class="container">
+	<ul>
+	  	<li><a href="#tab1" data-toggle="tab">Datos del pase</a></li>
+		<li><a href="#tab2" data-toggle="tab">Asociar jobs</a></li>
+		<li><a href="#tab3" data-toggle="tab">Fin</a></li>
+	</ul>
+	 </div>
+	  </div>
+	</div>
+	<div class="tab-content">
+	    <div class="tab-pane" id="tab1">
+	      <section>
 										<form class="form-horizontal" method="get">
 											<div class="form-group">
 <!-- 												<label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Sistema</label> -->
@@ -134,10 +148,9 @@
 											</div>
 										</form>
 									</section>
-
-									<h2>Asociar jobs</h2>
-                            <section>
-                                <div class="form-group last">
+	    </div>
+	    <div class="tab-pane" id="tab2">
+	                                   <div class="form-group last">
         <label class="control-label col-md-3">Searchable</label>
         <div class="col-md-9">
         <select name="country" class="multi-select" multiple="" id="my_multi_select3" >
@@ -379,14 +392,19 @@
         </select>
         </div>
         </div>
-                            </section>
+	    </div>
+		<div class="tab-pane" id="tab3">
+			3
+	    </div>
+		<ul class="pager wizard">
+			<li class="previous first" style="display:none;"><a href="#">First</a></li>
+			<li class="previous"><a href="#">Anterior</a></li>
+			<li class="next last" style="display:none;"><a href="#">Last</a></li>
+		  	<li class="next"><a href="#">Siguiente</a></li>
+		</ul>
+	</div>	
+</div>
 
-
-                            <h2>Final</h2>
-                            <section>
-                                <p>Pase creado con éxito.</p>
-                            </section>
-                        </div>
                     </div>
                 </section>
             </div>
@@ -444,7 +462,7 @@
 <!--common script init for all pages-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
 
-<script src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script>
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script> --%>
 
 <script src="${pageContext.servletContext.contextPath}/resources/js/advanced-form.js"></script>
 <!--Easy Pie Chart-->
@@ -458,6 +476,9 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 
 
+<!-- Wizard -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/wizard/jquery.bootstrap.wizard.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/wizard/prettify.js"></script>
 
 
 <!-- Steps -->
@@ -483,5 +504,10 @@
 <!-- URL utility -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/URI.js-gh-pages/src/URI.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  	$('#rootwizard').bootstrapWizard();
+});
+</script>
 </body>
 </html>
