@@ -174,8 +174,9 @@
 														<label class="col-lg-2 control-label">Sistema</label>
 														<div class="col-lg-8">
 															<select class="form-control m-bot15">
-																<option>Datamart de Solvencia</option>
-																<option>iQuality</option>
+																<c:forEach items="${allSystems}" var="system">
+																	<option value="${system.left}">${system.right}</option>
+																</c:forEach>
 															</select>
 														</div>
 
