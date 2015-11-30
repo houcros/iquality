@@ -104,9 +104,11 @@
 	rel="stylesheet" />
 
 <!-- Wizard -->
-<link
-	href="${pageContext.servletContext.contextPath}/resources/css/prettify.css"
-	rel="stylesheet">
+<link href="${pageContext.servletContext.contextPath}/resources/css/prettify.css"	rel="stylesheet">
+	
+	<!-- Select2 -->
+<link href="${pageContext.servletContext.contextPath}/resources/css/select2.min.css" rel="stylesheet">
+	
 <!-- Custom -->
 <%-- <link href="${pageContext.servletContext.contextPath}/resources/css/mcs-wizard.css" rel="stylesheet"> --%>
 
@@ -229,15 +231,21 @@
 										</div>
 										<div class="tab-pane" id="tab3">
 											<div class="form-group last">
-												<label class="control-label col-md-3">Jobs
-													disponibles</label>
-												<div class="col-md-9">
-													<select name="job" class="multi-select" multiple=""
-														id="multi_select_dependencias">
-														<c:forEach items="${allJobs}" var="job">
-															<option value="${job.idJob}">${job.idJob}</option>
-														</c:forEach>
+												<label class="col-lg-2 control-label">Jobs de este pase</label>
+												<div class="col-lg-8">
+													<select class="form-control m-bot15" id="desplegable-jobs">
+														<!-- Rellenar con JS -->
 													</select>
+												</div>
+
+												<div class="form-group">
+													<label class="control-label col-md-3">Dependencias
+														disponibles</label>
+														<div class="col-md-9">
+													<select class="js-example-basic-multiple" id="desplegable-dependencias">
+														<!-- Rellenar con JS -->
+													</select>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -381,5 +389,8 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/URI.js-gh-pages/src/URI.min.js"></script>
 
+	<!-- Select2 -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/select2.min.js"></script>
+	
 </body>
 </html>
