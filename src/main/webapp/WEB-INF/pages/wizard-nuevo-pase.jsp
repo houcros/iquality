@@ -170,7 +170,7 @@
 									<div class="tab-content">
 										<div class="tab-pane" id="tab1">
 											<section>
-												<form class="form-horizontal" method="get">
+												<form class="form-horizontal" method="post" action="" id="wizard-form">
 													<div class="form-group">
 														<!-- 												<label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Sistema</label> -->
 														<label class="col-lg-2 control-label">Sistema</label>
@@ -188,13 +188,13 @@
 															pase</label>
 														<div class="col-lg-8">
 															<input type="text" class="form-control"
-																placeholder="Nombre">
+																placeholder="Nombre" id="nombre-pase">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Es atípico</label>
 
-														<div class="col-sm-9 icheck ">
+														<div class="col-sm-9 icheck " id="es-atipico">
 
 															<div class="square-green">
 																<div class="radio ">
@@ -388,5 +388,9 @@
 	<!-- Select2 -->
 	<script src="${pageContext.servletContext.contextPath}/resources/js/select2.min.js"></script>
 	
+	<!-- 	Form Validation -->
+	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.min.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js/mcs-validation-wizard.js"></script>
+
 </body>
 </html>
