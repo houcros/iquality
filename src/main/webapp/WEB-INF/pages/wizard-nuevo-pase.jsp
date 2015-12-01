@@ -220,7 +220,7 @@
 												<label class="control-label col-md-3">Jobs
 													disponibles</label>
 												<div class="col-md-9">
-													<select name="job" class="multi-select" multiple=""
+													<select multiple name="job" class="multi-select"
 														id="multi_select_jobs">
 														<c:forEach items="${allJobs}" var="job">
 															<option value="${job.idJob}">${job.idJob}</option>
@@ -237,16 +237,6 @@
 														<!-- Rellenar con JS -->
 													</select>
 												</div>
-
-												<div class="form-group">
-													<label class="control-label col-md-3">Dependencias
-														disponibles</label>
-														<div class="col-md-9">
-													<select class="js-example-basic-multiple" id="desplegable-dependencias">
-														<!-- Rellenar con JS -->
-													</select>
-													</div>
-												</div>
 											</div>
 										</div>
 										<ul class="pager wizard">
@@ -259,6 +249,14 @@
 									</div>
 								</div>
 
+							</div>
+						</section>
+						<section class="panel">
+							<label class="control-label col-md-3">Dependencias
+														disponibles</label>
+							<div class="col-md-6">
+							<select multiple style="width:100%" class="" id="desplegable-dependencias">
+							</select>
 							</div>
 						</section>
 					</div>
@@ -333,8 +331,6 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery-tags-input/jquery.tagsinput.js"></script>
 
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/select2/select2.js"></script>
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/select-init.js"></script>
 
