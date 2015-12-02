@@ -3,6 +3,18 @@ var validateFirstStep = function(){
     return $("#wizard-form").valid();
 };
 
+var validateSecondStep = function(){
+	console.log("validateSecondStep");
+//	$("#multi_select_jobs").rules("add", {
+//		required: true,
+//		messages:{
+//			required: "Un pase debe constar de al menos 1 job."
+//		}
+//	});
+//	console.log($("#multi_select_jobs").rules());
+    return $("#wizard-form-2").valid();
+};
+
 var Script = function () {
 
     $.validator.setDefaults({
@@ -22,6 +34,7 @@ var Script = function () {
             	sistema: "required",
             	rdatipico: "required",
             	nompase: "required",
+            	job: "required",
                 /*
                 username: {
                     required: true,
@@ -50,7 +63,7 @@ var Script = function () {
             
             messages: {
             	rdatipico: "El pase es atipico?",
-            	nompase: "Introduzca un nombre para el pase"
+            	nompase: "Introduzca un nombre para el pase",
                 /*
                 lastname: "Please enter your lastname",
                 username: {
@@ -72,6 +85,14 @@ var Script = function () {
             }
         });
 
+        $("#wizard-form-2").validate({
+        	rules: {
+        		jobs: "required",
+        	},
+        	messages: {
+        			jobs: "Un pase debe constar de al menos 1 job",
+        	}
+        });
         /*
         // propose username by combining first- and lastname
         $("#username").focus(function() {

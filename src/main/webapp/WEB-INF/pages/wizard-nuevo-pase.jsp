@@ -170,7 +170,7 @@
 									<div class="tab-content">
 										<div class="tab-pane" id="tab1">
 											<section>
-												<form class="form-horizontal" method="post" action="" id="wizard-form">
+												<form class="cmxform form-horizontal" method="post" action="" id="wizard-form">
 													<div class="form-group">
 														<!-- 												<label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Sistema</label> -->
 														<label class="col-lg-2 control-label">Sistema</label>
@@ -184,7 +184,7 @@
 
 													</div>
 													<div class="form-group">
-														<label class="col-lg-2 control-label">Nombre del
+														<label for="nompase" class="col-lg-2 control-label">Nombre del
 															pase</label>
 														<div class="col-lg-8">
 															<input type="text" class="form-control"
@@ -192,7 +192,7 @@
 														</div>
 													</div>
 													<div class="form-group">
-														<label class="col-sm-3 control-label">Es atípico</label>
+														<label for="rdatipico" class="col-sm-3 control-label">Es atípico</label>
 
 														<div class="col-sm-9 icheck ">
 
@@ -216,28 +216,39 @@
 											</section>
 										</div>
 										<div class="tab-pane" id="tab2">
-											<div class="form-group">
-												<label class="control-label col-md-3">Jobs
-													disponibles</label>
-												<div class="col-md-9">
-													<select multiple name="jobs" class="multi-select"
-														id="multi_select_jobs">
-														<c:forEach items="${allJobs}" var="job">
-															<option value="${job.idJob}">${job.idJob}</option>
-														</c:forEach>
-													</select>
+											<form class="cmxform form-horizontal" method="post" action=""
+												id="wizard-form-2">
+
+												<div class="form-group">
+													<label for="jobs" class="control-label col-md-3">Jobs
+														disponibles</label>
+													<div class="col-md-9">
+														<select multiple name="jobs" class="multi-select"
+															id="multi_select_jobs">
+															<c:forEach items="${allJobs}" var="job">
+																<option value="${job.idJob}">${job.idJob}</option>
+															</c:forEach>
+														</select>
+													</div>
 												</div>
-											</div>
+											</form>
 										</div>
 										<div class="tab-pane" id="tab3">
-											<div class="form-group last">
-												<label class="col-lg-2 control-label">Jobs de este pase</label>
-												<div class="col-lg-8">
-													<select class="form-control m-bot15" id="desplegable-jobs">
-														<!-- Rellenar con JS -->
-													</select>
+											<form class="cmxform form-horizontal" method="post" action=""
+												id="wizard-form-3">
+												<div class="form-group">
+													<label class="col-lg-2 control-label">Jobs de este
+														pase</label>
+													<div class="col-lg-8">
+														<select class="form-control m-bot15" id="desplegable-jobs">
+															<!-- Rellenar con JS -->
+														</select>
+													</div>
 												</div>
-											</div>
+												<div class="form-group last">
+												
+												</div>
+											</form>
 										</div>
 										<ul class="pager wizard">
 											<li class="previous"><a href="javascript:;">Anterior</a></li>

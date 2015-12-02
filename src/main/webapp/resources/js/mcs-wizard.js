@@ -87,6 +87,13 @@ $(document).ready(function() {
 				console.log("validated: ", validated);
 				return validated;
 			}
+			// Agrego para validar el multiselect de jobs
+			else if(index==2){
+				console.log("Validar segundo paso.");
+				var validated = validateSecondStep();
+				console.log("validated: ", validated);
+				return validated;
+			}
 		}
 	});
 
