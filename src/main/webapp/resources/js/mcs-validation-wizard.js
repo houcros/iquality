@@ -1,7 +1,17 @@
+var validateFirstStep = function(){
+	console.log("validateFirstStep");
+    return $("#wizard-form").valid();
+};
+
 var Script = function () {
 
     $.validator.setDefaults({
-        submitHandler: function() { alert("submitted!"); }
+        submitHandler: function(form) {
+//        	$(form).ajaxSubmit();
+        	// or
+//        	form.submit();
+        	alert("submitted!"); 
+        }
     });
 
     $().ready(function() {
@@ -9,8 +19,9 @@ var Script = function () {
         // validate signup form on keyup and submit
         $("#wizard-form").validate({
             rules: {
-            	'es-atipico': "required",
-                'nombre-pase': "required",
+            	sistema: "required",
+            	rdatipico: "required",
+            	nompase: "required",
                 /*
                 username: {
                     required: true,
@@ -38,7 +49,8 @@ var Script = function () {
             },
             
             messages: {
-            	'es-atipico': "¿El pase es atipico?",
+            	rdatipico: "El pase es atipico?",
+            	nompase: "Introduzca un nombre para el pase"
                 /*
                 lastname: "Please enter your lastname",
                 username: {

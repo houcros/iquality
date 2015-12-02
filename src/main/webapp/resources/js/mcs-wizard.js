@@ -35,7 +35,7 @@ var searchableParams = {
 }
 
 /*
- * Variable para guardar el estado del multiselect para cada opt de job
+ * Variable para guardar las depencencias seleccionadas para cada job
  */
 estado = {};
 
@@ -45,6 +45,7 @@ $(document).ready(function() {
 	 */
 	$('#rootwizard').bootstrapWizard({
 		onTabShow : function(tab, navigation, index) {
+			// Update progress bar
 			var $total = navigation.find('li').length;
 			var $current = index + 1;
 			var $percent = ($current / $total) * 100;
@@ -76,7 +77,16 @@ $(document).ready(function() {
 				// Muestro el panel en la última pestaña
 				$("#desplegable-dependencias").closest("section").show();
 			}
-			else $("#desplegable-dependencias-cont").closest("section").hide();
+			else $("#desplegable-dependencias").closest("section").hide();
+		},
+		// Validar el paso actual cuando click en *next*
+		onNext: function(tab, navigation, index){
+			if(index === 1){
+				console.log("Validar primer paso.");
+				var validated = validateFirstStep();
+				console.log("validated: ", validated);
+				return validated;
+			}
 		}
 	});
 
@@ -86,6 +96,7 @@ $(document).ready(function() {
 	});
 	window.prettyPrint && prettyPrint()
 
+	
 	/*
 	 * Inicializo el multiselect
 	 */

@@ -161,7 +161,7 @@
 									</div>
 									<div class="row">
 									<div class="col-md-8 col-md-offset-2">
-									<div id="bar" class="progress progress-xs">
+									<div id="bar" class="progress progress-xs progress-striped active">
 										<div class="progress-bar" role="progressbar" aria-valuenow="0"
 											aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
 									</div>
@@ -175,7 +175,7 @@
 														<!-- 												<label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Sistema</label> -->
 														<label class="col-lg-2 control-label">Sistema</label>
 														<div class="col-lg-8">
-															<select class="form-control m-bot15">
+															<select class="form-control m-bot15" id="sistema" name="sistema">
 																<c:forEach items="${allSystems}" var="system">
 																	<option value="${system.left}">${system.right}</option>
 																</c:forEach>
@@ -188,24 +188,24 @@
 															pase</label>
 														<div class="col-lg-8">
 															<input type="text" class="form-control"
-																placeholder="Nombre" id="nombre-pase">
+																placeholder="Nombre" id="nompase" name="nompase">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="col-sm-3 control-label">Es atípico</label>
 
-														<div class="col-sm-9 icheck " id="es-atipico">
+														<div class="col-sm-9 icheck ">
 
 															<div class="square-green">
 																<div class="radio ">
-																	<input tabindex="3" type="radio" name="demo-radio">
+																	<input tabindex="3" type="radio" name="rdatipico">
 																	<label>Sí</label>
 																</div>
 															</div>
 
 															<div class="square-red">
 																<div class="radio ">
-																	<input tabindex="3" type="radio" name="demo-radio">
+																	<input tabindex="3" type="radio" name="rdatipico" checked>
 																	<label>No</label>
 																</div>
 															</div>
@@ -220,7 +220,7 @@
 												<label class="control-label col-md-3">Jobs
 													disponibles</label>
 												<div class="col-md-9">
-													<select multiple name="job" class="multi-select"
+													<select multiple name="jobs" class="multi-select"
 														id="multi_select_jobs">
 														<c:forEach items="${allJobs}" var="job">
 															<option value="${job.idJob}">${job.idJob}</option>
