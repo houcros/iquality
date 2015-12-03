@@ -17,14 +17,14 @@ var validateSecondStep = function(){
 
 var Script = function () {
 
-    $.validator.setDefaults({
-        submitHandler: function(form) {
-//        	$(form).ajaxSubmit();
-        	// or
-//        	form.submit();
-        	alert("submitted!"); 
-        }
-    });
+//    $.validator.setDefaults({
+//        submitHandler: function(form) {
+////        	$(form).ajaxSubmit();
+//        	// or
+////        	form.submit();
+//        	alert("submitted!"); 
+//        }
+//    });
 
     $().ready(function() {
 
@@ -32,8 +32,8 @@ var Script = function () {
         $("#wizard-form").validate({
             rules: {
             	sistema: "required",
-            	rdatipico: "required",
-            	nompase: "required",
+            	esAtipico: "required",
+            	nombrePase: "required",
             	job: "required",
                 /*
                 username: {
@@ -62,8 +62,8 @@ var Script = function () {
             },
             
             messages: {
-            	rdatipico: "El pase es atipico?",
-            	nompase: "Introduzca un nombre para el pase",
+            	esAtipico: "El pase es atipico?",
+            	nombrePase: "Introduzca un nombre para el pase",
                 /*
                 lastname: "Please enter your lastname",
                 username: {

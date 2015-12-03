@@ -7,12 +7,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.indra.iquality.dao.CertificacionDeNegocioDAO;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
@@ -20,6 +25,7 @@ import com.indra.iquality.model.CertificacionDeNegocio;
 import com.indra.iquality.model.DetalleDeCertificacion;
 import com.indra.iquality.model.DetalleDeValidacion;
 import com.indra.iquality.model.ValidacionTecnica;
+import com.indra.iquality.model.form.WizardForm1;
 
 @Controller
 public class BaseController {
@@ -50,4 +56,15 @@ public class BaseController {
 		return VIEW_LOGIN;
 	}
 	
+	@RequestMapping(value = "/post-test", method = RequestMethod.POST, headers = { "Content-type=application/json" })
+	@ResponseStatus(value = HttpStatus.OK)
+	private @ResponseBody void handleWizardPost(@RequestBody WizardForm1 wf){
+	
+		logger.debug("[post-test] : Called route");
+		
+		logger.info(wf.getSistema());
+		logger.info(wf.getNombrePase());
+		logger.info(wf.getEsAtipico());
+		
+	}
 }

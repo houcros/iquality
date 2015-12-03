@@ -56,8 +56,27 @@ $(document).ready(function() {
 			// *Custom*
 			// Cuando estoy en la ultima tab pongo los jobs que el usuario selecciono
 			if(index === 2){
+				// Ademas hago el submit de los datos que tengo hasta ahora
+				console.log("strigify: ", $("#wizard-form").serializeJSON());
+				$.ajax({
+					'type': 'POST',
+					'url': '/iQuality/post-test',
+					'data': $("#wizard-form").serializeJSON(), 
+					'dataType': 'json',
+					'headers': {
+						'Accept': 'application/json',
+				        'Content-Type': 'application/json' 
+					},
+					'success': function(){
+						console.log('mandarina');
+					}
+				})
+				.fail(alert("Error!"));
+//				$("#wizard-form-2").submit()
+				
+				
 				selectedOps = $('#multi_select_jobs').val();
-				if(selectedOps == null) alert("No has seleccionado ningún job!");
+				//if(selectedOps == null) alert("No has seleccionado ningún job!");
 //				console.log("selectedOps on init: ", selectedOps);
 				previousOpt = selectedOps[0];
 

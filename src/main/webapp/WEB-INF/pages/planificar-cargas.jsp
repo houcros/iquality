@@ -67,9 +67,11 @@
 								<div class="adv-table">
 								 <div class="clearfix">
                                 <div class="btn-group">
+                                <a href="${pageContext.servletContext.contextPath}/planificar-cargas/wizard-nuevo-pase">
                                     <button id="btn-nuevo-pase-def" class="btn btn-primary">
-                                        Nuevo <i class="fa fa-plus"></i>
+                                    	Nuevo <i class="fa fa-plus"></i>
                                     </button>
+                                    </a>
                                 </div>
 <!--                                 <div class="btn-group pull-right"> -->
 <!--                                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i> -->

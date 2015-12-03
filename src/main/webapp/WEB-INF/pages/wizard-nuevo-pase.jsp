@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 <meta charset="utf-8">
 
@@ -169,13 +169,15 @@
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane" id="tab1">
-											<section>
-												<form class="cmxform form-horizontal" method="post" action="" id="wizard-form">
+<%-- 												<form class="cmxform form-horizontal" id="wizard-form" method="post" action="${pageContext.servletContext.contextPath}/post-test"  --%>
+<!-- 													th:action="@{/postTest}" th:object="*{wizardForm1}"> -->
+														<form class="cmxform form-horizontal" id="wizard-form" method="post" action="#">
+													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 													<div class="form-group">
 														<!-- 												<label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Sistema</label> -->
 														<label class="col-lg-2 control-label">Sistema</label>
 														<div class="col-lg-8">
-															<select class="form-control m-bot15" id="sistema" name="sistema">
+															<select class="form-control m-bot15" id="sistema" name="sistema" th:field="*{sistema}">
 																<c:forEach items="${allSystems}" var="system">
 																	<option value="${system.left}">${system.right}</option>
 																</c:forEach>
@@ -184,28 +186,28 @@
 
 													</div>
 													<div class="form-group">
-														<label for="nompase" class="col-lg-2 control-label">Nombre del
+														<label for="nombrePase" class="col-lg-2 control-label">Nombre del
 															pase</label>
 														<div class="col-lg-8">
 															<input type="text" class="form-control"
-																placeholder="Nombre" id="nompase" name="nompase">
+																placeholder="Nombre" id="nompase" name="nombrePase" th:field="*{nombrePase}">
 														</div>
 													</div>
 													<div class="form-group">
-														<label for="rdatipico" class="col-sm-3 control-label">Es atípico</label>
+														<label for="esAtipico" class="col-sm-3 control-label">Es atípico</label>
 
 														<div class="col-sm-9 icheck ">
 
 															<div class="square-green">
 																<div class="radio ">
-																	<input tabindex="3" type="radio" name="rdatipico">
+																	<input tabindex="3" type="radio" name="esAtipico" value="si">
 																	<label>Sí</label>
 																</div>
 															</div>
 
 															<div class="square-red">
 																<div class="radio ">
-																	<input tabindex="3" type="radio" name="rdatipico" checked>
+																	<input tabindex="3" type="radio" name="esAtipico" value="no" checked>
 																	<label>No</label>
 																</div>
 															</div>
@@ -213,7 +215,6 @@
 														</div>
 													</div>
 												</form>
-											</section>
 										</div>
 										<div class="tab-pane" id="tab2">
 											<form class="cmxform form-horizontal" method="post" action=""
@@ -263,12 +264,16 @@
 							</div>
 						</section>
 						<section class="panel">
+														<form class="cmxform form-horizontal" method="post" action="" id="wizard-form-4">
+							<div class="form-group">
 							<label class="control-label col-md-3">Dependencias
 														disponibles</label>
 							<div class="col-md-6">
 							<select multiple style="width:100%" class="" id="desplegable-dependencias">
 							</select>
 							</div>
+							</div>
+							</form>
 						</section>
 					</div>
 				</div>
@@ -402,6 +407,9 @@
 	<!-- 	Form Validation -->
 	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.min.js"></script>
 	<script src="${pageContext.servletContext.contextPath}/resources/js/mcs-validation-wizard.js"></script>
+	
+	<!-- Convert to JSON -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/jquery.serialize-object.min.js"></script>
 
 </body>
 </html>

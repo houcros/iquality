@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,6 +15,7 @@ import com.indra.iquality.model.DetalleDeCertificacion;
 
 public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
+	@Ignore
 	@Test
 	public void testGetAll() {
 		
@@ -48,6 +50,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 		assertEquals(cdnList.get(3), cdn);
 	}
 	
+	@Ignore
 	@Test
 	public void testGetHeadersDetalles(){
 		
@@ -65,6 +68,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
 	}
 
+	@Ignore
 	@Test
 	public void testGetDetallesDeCertificacion(){
 		

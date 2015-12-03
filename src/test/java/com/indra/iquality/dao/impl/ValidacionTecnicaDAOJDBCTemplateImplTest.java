@@ -3,7 +3,9 @@ package com.indra.iquality.dao.impl;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,6 +17,7 @@ public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(ValidacionTecnicaDAOJDBCTemplateImplTest.class);
 	
+	@Ignore
 	@Test
 	public void testGetAll() {
 		
@@ -45,6 +48,7 @@ public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 		
 	}
 
+	@Ignore
 	@Test
 	public void testGetQuery(){
 		
@@ -66,20 +70,4 @@ public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 		
 	}
 	
-//	@Test
-//	public void testGetDetallesDeValidacion(){
-//		
-//		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-//		ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
-//		List<Map<String, Object>> anonymousRows = vtDAO.getDetallesDeValidacion("METR_VAL_CNT_CUENTAS_CONTABLES_NO_EXISTENTE_EMPR", "201306");
-//		ctx.close();
-//		
-//		if (anonymousRows.size() == 0){ System.out.println("0 filas retornadas."); return; }
-//		
-//		int numCols = anonymousRows.get(0).size();
-//		for (Map.Entry<String, Object> entry : anonymousRows.get(0).entrySet()){
-//			System.out.println(entry.getKey() + "/" + entry.getValue());
-//		}
-//		
-//	}
 }

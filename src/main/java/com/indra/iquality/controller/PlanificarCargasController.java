@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,6 +18,7 @@ import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.dao.SistemaDAO;
 import com.indra.iquality.model.Job;
 import com.indra.iquality.model.PaseDef;
+import com.indra.iquality.model.form.WizardForm1;
 
 @Controller
 @RequestMapping(value = "/planificar-cargas")
@@ -84,5 +86,15 @@ public class PlanificarCargasController {
 		logger.info("[getPasesDef] -> DONE");
 		return VIEW_WIZARD;
 	}
+
+//	@RequestMapping(value = "/wizard-nuevo-pase", method = RequestMethod.POST)
+//	private void handleWizardPost(@ModelAttribute WizardForm1 wf){
+//	
+//		logger.info(wf.getSistema());
+//		logger.info(wf.getNombrePase());
+//		logger.info(wf.getSistema());
+//		
+//		return;
+//	}
 }
 	
