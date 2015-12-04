@@ -1,15 +1,20 @@
 package com.indra.iquality.model.form;
 
+import java.util.Map;
+
 public class WizardForm1 {
 
-	private String Sistema;
+	private String sistema;
 	private String nombrePase;
 	private String esAtipico;
+//	private String[] jobs;
+//	private Map<String, String[]> estados;
+	
 	public String getSistema() {
-		return Sistema;
+		return sistema;
 	}
 	public void setSistema(String sistema) {
-		Sistema = sistema;
+		this.sistema = sistema;
 	}
 	public String getNombrePase() {
 		return nombrePase;

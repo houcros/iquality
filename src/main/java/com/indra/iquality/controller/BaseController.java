@@ -5,6 +5,10 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
@@ -58,13 +62,41 @@ public class BaseController {
 	
 	@RequestMapping(value = "/post-test", method = RequestMethod.POST, headers = { "Content-type=application/json" })
 	@ResponseStatus(value = HttpStatus.OK)
-	private @ResponseBody void handleWizardPost(@RequestBody WizardForm1 wf){
+//	private @ResponseBody void handleWizardPost(@RequestBody WizardForm1 wf){
+	private @ResponseBody void handleWizardPost(@RequestBody String jsonString){
 	
 		logger.debug("[post-test] : Called route");
 		
-		logger.info(wf.getSistema());
-		logger.info(wf.getNombrePase());
-		logger.info(wf.getEsAtipico());
+		JSONParser parser = new JSONParser();
+		JSONObject json;
+//		logger.info(jsonString);
+		try {
+			json = (JSONObject) parser.parse(jsonString);
+			logger.info(json.toJSONString());
+			logger.info((String) json.get("sistema"));
+			logger.info((String) json.get("nombrePase"));
+			logger.info((String) json.get("esAtipico"));
+			JSONArray jobs = (JSONArray) json.get("jobs");
+			for(int i = 0; i < jobs.size(); ++i){
+				logger.info((String)jobs.get(i));
+			}
+			JSONObject estados = (JSONObject) json.get("estados");
+			for(int i = 0; i < jobs.size(); ++i){
+				JSONArray dependencias = (JSONArray) estados.get(jobs.get(i));
+				for(int j = 0; j < dependencias.size(); ++j){
+					logger.info((String)dependencias.get(j));
+				}
+				logger.info("---");
+			}
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		logger.info(wf.getSistema());
+//		logger.info(wf.getNombrePase());
+//		logger.info(wf.getEsAtipico());
 		
 	}
 }

@@ -57,21 +57,20 @@ $(document).ready(function() {
 			// Cuando estoy en la ultima tab pongo los jobs que el usuario selecciono
 			if(index === 2){
 				// Ademas hago el submit de los datos que tengo hasta ahora
-				console.log("strigify: ", $("#wizard-form").serializeJSON());
-				$.ajax({
-					'type': 'POST',
-					'url': '/iQuality/post-test',
-					'data': $("#wizard-form").serializeJSON(), 
-					'dataType': 'json',
-					'headers': {
-						'Accept': 'application/json',
-				        'Content-Type': 'application/json' 
-					},
-					'success': function(){
-						console.log('mandarina');
-					}
-				})
-				.fail(alert("Error!"));
+//				console.log("strigify: ", $("#wizard-form").serializeJSON());
+//				$.ajax({
+//					'type': 'POST',
+//					'url': '/iQuality/post-test',
+//					'data': $("#wizard-form").serializeJSON(), 
+////					'dataType': 'json',
+//					'headers': {
+//						'Accept': 'application/json',
+//				        'Content-Type': 'application/json' 
+//					},
+//					'success': function(){
+//						console.log('mandarina');
+//					}
+//				}).fail(alert("Error!"));
 //				$("#wizard-form-2").submit()
 				
 				
@@ -117,6 +116,34 @@ $(document).ready(function() {
 	});
 
 	$('#rootwizard .finish').click(function() {
+		
+//		var datosBasicos = $("#wizard-form").serializeJSON();
+		var datos = {
+				'sistema':  $('#sistema').val(),
+				'nombrePase': $('#nompase').val(),
+				'esAtipico': $("#wizard-form input[type='radio']:checked").val(),
+				'jobs': selectedOps,
+				'estados': estado
+		}
+		
+		console.log("---");
+		console.log("datos-string: ", JSON.stringify(datos));
+		
+		$.ajax({
+			'type': 'POST',
+			'url': '/iQuality/post-test',
+//			'data': datosBasicos, 
+			'data': JSON.stringify(datos), 
+//			'dataType': 'json',
+			'headers': {
+				'Accept': 'application/json',
+		        'Content-Type': 'application/json' 
+			},
+			'success': function(){
+				console.log('mandarina');
+			}
+		}).fail(alert("Error!"));
+		
 		alert('Finished!, Starting over!');
 		$('#rootwizard').find("a[href*='tab1']").trigger('click');
 	});
