@@ -1,6 +1,8 @@
 package com.indra.iquality.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +26,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.indra.iquality.dao.CertificacionDeNegocioDAO;
+import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
 import com.indra.iquality.model.CertificacionDeNegocio;
 import com.indra.iquality.model.DetalleDeCertificacion;
 import com.indra.iquality.model.DetalleDeValidacion;
+import com.indra.iquality.model.PaseDef;
 import com.indra.iquality.model.ValidacionTecnica;
 import com.indra.iquality.model.form.WizardForm1;
 
@@ -72,22 +76,46 @@ public class BaseController {
 //		logger.info(jsonString);
 		try {
 			json = (JSONObject) parser.parse(jsonString);
-			logger.info(json.toJSONString());
-			logger.info((String) json.get("sistema"));
-			logger.info((String) json.get("nombrePase"));
-			logger.info((String) json.get("esAtipico"));
-			JSONArray jobs = (JSONArray) json.get("jobs");
-			for(int i = 0; i < jobs.size(); ++i){
-				logger.info((String)jobs.get(i));
+//			logger.info(json.toJSONString());
+			
+			PaseDef pd = new PaseDef((String) json.get("nombrePase"),
+									 (String) json.get("sistema"),
+									 (String) json.get("esAtipico"));
+			logger.info(pd.getNombre());
+			logger.info(pd.getSistema());
+			logger.info(pd.getEsAtipico());
+			
+			JSONArray jobsJSONArray = (JSONArray) json.get("jobs");
+			String[] jobs = new String[jobsJSONArray.size()];
+			for(int i = 0; i < jobsJSONArray.size(); ++i){
+				jobs[i] = (String)jobsJSONArray.get(i);
 			}
-			JSONObject estados = (JSONObject) json.get("estados");
-			for(int i = 0; i < jobs.size(); ++i){
-				JSONArray dependencias = (JSONArray) estados.get(jobs.get(i));
-				for(int j = 0; j < dependencias.size(); ++j){
-					logger.info((String)dependencias.get(j));
+			logger.info("JOBS:");
+			for(int i = 0; i < jobs.length; ++i) logger.info(jobs[i]);
+			
+
+
+			JSONObject estadosJSONObject = (JSONObject) json.get("estados");
+			Map<String, String[]> dependencias = new HashMap<String, String[]>();
+			for(int i = 0; i < jobs.length; ++i){
+				JSONArray dependenciasJSONArray = (JSONArray) estadosJSONObject.get(jobs[i]);
+				String[] dependenciasDeUnJob = new String[dependenciasJSONArray.size()];
+				for(int j = 0; j < dependenciasJSONArray.size(); ++j){
+					dependenciasDeUnJob[j] = (String)dependenciasJSONArray.get(j);
 				}
-				logger.info("---");
+				dependencias.put(jobs[i], dependenciasDeUnJob);
 			}
+			logger.info("DEPENDENCIAS:");
+			for(Map.Entry<String, String[]> entry : dependencias.entrySet()){
+				logger.info("job: " + entry.getKey() + ", dependencias: ");
+				for(int k = 0; k < entry.getValue().length; ++k)
+					logger.info(entry.getValue()[k]);
+			}
+
+			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+			PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
+			ctx.close();
+			paseDAO.newPaseDef(pd, jobs, dependencias);
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -98,5 +126,6 @@ public class BaseController {
 //		logger.info(wf.getNombrePase());
 //		logger.info(wf.getEsAtipico());
 		
+		logger.debug("[post-test] : Returning");
 	}
 }

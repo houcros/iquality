@@ -8,6 +8,16 @@ public class PaseDef {
 	private String sistema;
 	private String software;
 	
+	public PaseDef(){
+		
+	};
+	
+	public PaseDef(String nombre, String sistema, String esAtipico){
+		this.nombre = nombre;
+		this.sistema = sistema;
+		this.esAtipico = esAtipico;
+	}
+	
 	public int getId() {
 		return id;
 	}

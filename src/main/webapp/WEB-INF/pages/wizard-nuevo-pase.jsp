@@ -200,14 +200,14 @@
 
 															<div class="square-green">
 																<div class="radio ">
-																	<input tabindex="3" type="radio" name="esAtipico" value="si">
+																	<input tabindex="3" type="radio" name="esAtipico" value="S">
 																	<label>Sí</label>
 																</div>
 															</div>
 
 															<div class="square-red">
 																<div class="radio ">
-																	<input tabindex="3" type="radio" name="esAtipico" value="no" checked>
+																	<input tabindex="3" type="radio" name="esAtipico" value="N" checked>
 																	<label>No</label>
 																</div>
 															</div>

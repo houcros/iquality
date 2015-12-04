@@ -276,5 +276,62 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 		}
 		return paseDefList;
 	}
+
+	@Override
+	public void newPaseDef(PaseDef pd, String[] jobs, Map<String, String[]> dependencias) {
+		
+		String queryInsertDatosBasicos = "insert into VS_MET_PLA_DEF_PASE (id_sistema, id_software, de_pase, id_sn_pase_atipico)"
+										+ " values (?, ?, ?, ?)";
+		String queryInsertJobs = "insert into VS_MET_PLA_DEF_PASE_JOB (id_sistema, id_software, id_pase, id_job, id_sn_punto_control)"
+								+ " values (?, ?, ?, ?, ?)";
+		String queryInsertDependencias = "insert into VS_MET_PLA_DEF_PASE_JOB_REL (id_sistema, id_software, id_pase, id_job_padre, id_job_hijo)"
+									+ " values (?, ?, ?, ?, ?)";
+		String queryIdPase = "select max(id_pase) from VS_MET_PLA_DEF_PASE";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		// Inserto datos básicos del pase
+		Object[] params = new Object[]{
+				sistema.getIdSistema(), sistema.getIdSoftware(),
+				pd.getNombre(), pd.getEsAtipico()
+		};
+		int out = jdbcTemplate.update(queryInsertDatosBasicos, params);
+		if (out!=0) System.out.println("Datos básicos guardados; out = " + String.valueOf(out));
+		else System.out.println("Error al insertar datos básicos!");
+		
+		// Inserto jobs del pase
+		int idPase = jdbcTemplate.queryForObject(queryIdPase, Integer.class);
+		params = new Object[]{
+				sistema.getIdSistema(), sistema.getIdSoftware(),
+				idPase, "_STUB_nombre", "N" // TODO desharcodear el default checkpoint = "N"
+		};
+		for(int i = 0; i < jobs.length; ++i){
+			params[3] = jobs[i];
+			out = jdbcTemplate.update(queryInsertJobs, params);
+			if (out!=0) System.out.println("Job " + jobs[i] + " guardado; out = " + String.valueOf(out));
+			else System.out.println("Error al insertar un job!");
+		}
+		
+		// NOTA: en principio se podrían hacer el insert anterior y este en dos loops
+		// anidados (en vez de dos anidados más uno), pero un trigger en la BD no
+		// permite hacer el insert de las dependencias si los dos jobs involucrados
+		// no han sido insertados en VS_MET_PLA_DEF_PASE_JOB
+		
+		// Inserto dependencias de los jobs del pase
+		params = new Object[]{
+				sistema.getIdSistema(), sistema.getIdSoftware(),
+				idPase, "_STUB_id_job_padre", "__STUB_id_job_hijo"
+		};
+		for(int i = 0; i < jobs.length; ++i){
+			params[3] = jobs[i];
+			for(int j = 0; j < dependencias.get(jobs[i]).length; ++j){
+				params[4] = dependencias.get(jobs[i])[j];
+				out = jdbcTemplate.update(queryInsertDependencias, params);
+				if (out!=0) System.out.println("Dependencia de job " + jobs[i] + " guardada; out = " + String.valueOf(out));
+				else System.out.println("Error al insertar dependencia de un job!");
+			}
+
+		}
+	}
 	
 }
