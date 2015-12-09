@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.indra.iquality.dao;
 
 import java.sql.ResultSet;
@@ -13,14 +16,32 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.model.Employee;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EmployeeDAOJDBCTemplateImpl.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.1, 09/12/15
+ * 
+ * La Class EmployeeDAOJDBCTemplateImpl.
+ */
 public class EmployeeDAOJDBCTemplateImpl implements EmployeeDAO {
 
+	/** The data source. */
 	private DataSource dataSource;
 
+	/**
+	 * Setea el data source.
+	 *
+	 * @param dataSource el nuevo data source
+	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#save(com.indra.iquality.model.Employee)
+	 */
 	@Override
 	public void save(Employee employee) {
 		String query = "insert into Employee (id, name, role) values (?,?,?)";
@@ -36,6 +57,9 @@ public class EmployeeDAOJDBCTemplateImpl implements EmployeeDAO {
 		}else System.out.println("Employee save failed with id="+employee.getId());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#getById(int)
+	 */
 	@Override
 	public Employee getById(int id) {
 		String query = "select id, name, role from Employee where id = ?";
@@ -57,6 +81,9 @@ public class EmployeeDAOJDBCTemplateImpl implements EmployeeDAO {
 		return emp;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#update(com.indra.iquality.model.Employee)
+	 */
 	@Override
 	public void update(Employee employee) {
 		String query = "update Employee set name=?, role=? where id=?";
@@ -69,6 +96,9 @@ public class EmployeeDAOJDBCTemplateImpl implements EmployeeDAO {
 		}else System.out.println("No Employee found with id="+employee.getId());
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#deleteById(int)
+	 */
 	@Override
 	public void deleteById(int id) {
 
@@ -81,6 +111,9 @@ public class EmployeeDAOJDBCTemplateImpl implements EmployeeDAO {
 		}else System.out.println("No Employee found with id="+id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#getAll()
+	 */
 	@Override
 	public List<Employee> getAll() {
 		String query = "select id, name, role from Employee";

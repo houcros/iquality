@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.indra.iquality.dao;
 
 import java.sql.Connection;
@@ -11,14 +14,32 @@ import javax.sql.DataSource;
 
 import com.indra.iquality.model.Employee;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EmployeeDAOImpl.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.1, 09/12/15
+ * 
+ * La Class EmployeeDAOImpl.
+ */
 public class EmployeeDAOImpl implements EmployeeDAO {
 
+	/** The data source. */
 	private DataSource dataSource;
 
+	/**
+	 * Setea el data source.
+	 *
+	 * @param dataSource el nuevo data source
+	 */
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#save(com.indra.iquality.model.Employee)
+	 */
 	@Override
 	public void save(Employee employee) {
 		String query = "insert into Employee (id, name, role) values (?,?,?)";
@@ -46,6 +67,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#getById(int)
+	 */
 	@Override
 	public Employee getById(int id) {
 		String query = "select name, role from Employee where id = ?";
@@ -81,6 +105,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		return emp;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#update(com.indra.iquality.model.Employee)
+	 */
 	@Override
 	public void update(Employee employee) {
 		String query = "update Employee set name=?, role=? where id=?";
@@ -108,6 +135,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#deleteById(int)
+	 */
 	@Override
 	public void deleteById(int id) {
 		String query = "delete from Employee where id=?";
@@ -133,6 +163,9 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.indra.iquality.dao.EmployeeDAO#getAll()
+	 */
 	@Override
 	public List<Employee> getAll() {
 		String query = "select id, name, role from Employee";
