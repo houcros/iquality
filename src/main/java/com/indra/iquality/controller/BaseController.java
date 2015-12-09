@@ -1,11 +1,7 @@
 package com.indra.iquality.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,38 +12,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.indra.iquality.dao.CertificacionDeNegocioDAO;
-import com.indra.iquality.dao.PaseDAO;
-import com.indra.iquality.dao.ValidacionTecnicaDAO;
-import com.indra.iquality.model.CertificacionDeNegocio;
-import com.indra.iquality.model.DetalleDeCertificacion;
-import com.indra.iquality.model.DetalleDeValidacion;
-import com.indra.iquality.model.PaseDef;
-import com.indra.iquality.model.ValidacionTecnica;
-import com.indra.iquality.model.form.WizardForm1;
+import com.indra.iquality.dao.EjecucionDAO;
+import com.indra.iquality.model.Pase;
 
 @Controller
 public class BaseController {
 
-//	private Sistema sistema = Sistema.getInstance();
-	
+	// private Sistema sistema = Sistema.getInstance();
+
 	/*
-	 * Esto puede ser útil en algún momento
-	 *      <p>The context path is: ${pageContext.request.contextPath}.</p>
-            <p>The context path is: ${pageContext.servletContext.contextPath}.</p>
+	 * Esto puede ser útil en algún momento <p>The context path is:
+	 * ${pageContext.request.contextPath}.</p> <p>The context path is:
+	 * ${pageContext.servletContext.contextPath}.</p>
 	 */
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
-	
+
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -63,69 +49,67 @@ public class BaseController {
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_LOGIN;
 	}
-	
+
 	@RequestMapping(value = "/post-test", method = RequestMethod.POST, headers = { "Content-type=application/json" })
 	@ResponseStatus(value = HttpStatus.OK)
-//	private @ResponseBody void handleWizardPost(@RequestBody WizardForm1 wf){
-	private @ResponseBody void handleWizardPost(@RequestBody String jsonString){
-	
+	// private @ResponseBody void handleWizardPost(@RequestBody WizardForm1 wf){
+	private @ResponseBody void handleWizardPost(@RequestBody String jsonString) {
+
 		logger.debug("[post-test] : Called route");
-		
+
 		JSONParser parser = new JSONParser();
 		JSONObject json;
-//		logger.info(jsonString);
+		// logger.info(jsonString);
 		try {
 			json = (JSONObject) parser.parse(jsonString);
-//			logger.info(json.toJSONString());
-			
-			PaseDef pd = new PaseDef((String) json.get("nombrePase"),
-									 (String) json.get("sistema"),
-									 (String) json.get("esAtipico"));
+			// logger.info(json.toJSONString());
+
+			Pase pd = new Pase((String) json.get("nombrePase"), (String) json.get("sistema"),
+					(String) json.get("esAtipico"));
 			logger.info(pd.getNombre());
 			logger.info(pd.getSistema());
 			logger.info(pd.getEsAtipico());
-			
+
 			JSONArray jobsJSONArray = (JSONArray) json.get("jobs");
 			String[] jobs = new String[jobsJSONArray.size()];
-			for(int i = 0; i < jobsJSONArray.size(); ++i){
-				jobs[i] = (String)jobsJSONArray.get(i);
+			for (int i = 0; i < jobsJSONArray.size(); ++i) {
+				jobs[i] = (String) jobsJSONArray.get(i);
 			}
 			logger.info("JOBS:");
-			for(int i = 0; i < jobs.length; ++i) logger.info(jobs[i]);
-			
-
+			for (int i = 0; i < jobs.length; ++i)
+				logger.info(jobs[i]);
 
 			JSONObject estadosJSONObject = (JSONObject) json.get("estados");
 			Map<String, String[]> dependencias = new HashMap<String, String[]>();
-			for(int i = 0; i < jobs.length; ++i){
+			for (int i = 0; i < jobs.length; ++i) {
 				JSONArray dependenciasJSONArray = (JSONArray) estadosJSONObject.get(jobs[i]);
 				String[] dependenciasDeUnJob = new String[dependenciasJSONArray.size()];
-				for(int j = 0; j < dependenciasJSONArray.size(); ++j){
-					dependenciasDeUnJob[j] = (String)dependenciasJSONArray.get(j);
+				for (int j = 0; j < dependenciasJSONArray.size(); ++j) {
+					dependenciasDeUnJob[j] = (String) dependenciasJSONArray.get(j);
 				}
 				dependencias.put(jobs[i], dependenciasDeUnJob);
 			}
 			logger.info("DEPENDENCIAS:");
-			for(Map.Entry<String, String[]> entry : dependencias.entrySet()){
+			for (Map.Entry<String, String[]> entry : dependencias.entrySet()) {
 				logger.info("job: " + entry.getKey() + ", dependencias: ");
-				for(int k = 0; k < entry.getValue().length; ++k)
+				for (int k = 0; k < entry.getValue().length; ++k)
 					logger.info(entry.getValue()[k]);
 			}
 
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
+			EjecucionDAO paseDAO = ctx.getBean("ejecucionDAOJDBCTemplate", EjecucionDAO.class);
 			ctx.close();
 			paseDAO.newPaseDef(pd, jobs, dependencias);
-			
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		logger.info(wf.getSistema());
-//		logger.info(wf.getNombrePase());
-//		logger.info(wf.getEsAtipico());
-		
+
+		// logger.info(wf.getSistema());
+		// logger.info(wf.getNombrePase());
+		// logger.info(wf.getEsAtipico());
+
 		logger.debug("[post-test] : Returning");
 	}
 }

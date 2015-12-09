@@ -6,8 +6,8 @@ package com.indra.iquality.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.indra.iquality.model.Ejecucion;
 import com.indra.iquality.model.Pase;
-import com.indra.iquality.model.PaseDef;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -19,7 +19,7 @@ import com.indra.iquality.model.PaseDef;
  *          La Interface PaseDAO.
  */
 // CRUD operations
-public interface PaseDAO {
+public interface EjecucionDAO {
 
 	/**
 	 * Save.
@@ -28,7 +28,7 @@ public interface PaseDAO {
 	 *            the pase
 	 */
 	// Create
-	public void save(Pase pase);
+	public void save(Ejecucion pase);
 
 	/**
 	 * New pase def.
@@ -40,7 +40,7 @@ public interface PaseDAO {
 	 * @param dependencias
 	 *            the dependencias
 	 */
-	public void newPaseDef(PaseDef pd, String[] jobs, Map<String, String[]> dependencias);
+	public void newPaseDef(Pase pd, String[] jobs, Map<String, String[]> dependencias);
 
 	/**
 	 * Obtiene el by id.
@@ -50,7 +50,7 @@ public interface PaseDAO {
 	 * @return el by id
 	 */
 	// Read
-	public Pase getById(int id_ejecucion);
+	public Ejecucion getById(int id_ejecucion);
 
 	/**
 	 * Update.
@@ -59,7 +59,7 @@ public interface PaseDAO {
 	 *            the pase
 	 */
 	// Update
-	public void update(Pase pase);
+	public void update(Ejecucion pase);
 
 	/**
 	 * Delete by id.
@@ -79,7 +79,7 @@ public interface PaseDAO {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public List<Pase> getAll() throws Exception;
+	public List<Ejecucion> getAll() throws Exception;
 
 	/**
 	 * Obtiene el all defs.
@@ -87,5 +87,5 @@ public interface PaseDAO {
 	 * @return Todos las definiciones de pases del sistema y versión de software
 	 *         actual
 	 */
-	public List<PaseDef> getAllDefs();
+	public List<Pase> getAllDefs();
 }

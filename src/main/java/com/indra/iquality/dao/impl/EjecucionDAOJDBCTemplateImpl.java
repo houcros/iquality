@@ -12,13 +12,13 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import com.indra.iquality.dao.PaseDAO;
+import com.indra.iquality.dao.EjecucionDAO;
 import com.indra.iquality.helper.CustomHelper;
+import com.indra.iquality.model.Ejecucion;
 import com.indra.iquality.model.Pase;
-import com.indra.iquality.model.PaseDef;
 import com.indra.iquality.singleton.Sistema;
 
-public class PaseDAOJDBCTemplateImpl implements PaseDAO {
+public class EjecucionDAOJDBCTemplateImpl implements EjecucionDAO {
 
 	private DataSource dataSource;
 
@@ -34,13 +34,13 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 	}
 
 	@Override
-	public void save(Pase pase) {
+	public void save(Ejecucion pase) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Pase getById(int idEjecucion) {
+	public Ejecucion getById(int idEjecucion) {
 
 		String query = "select " + "PASE.ROWID as EJEC_ROWID, " + "PASE.ID_EJECUCION, " + "PASE.ID_SISTEMA, "
 				+ "SOFT.DE_SOFTWARE, " + "PASE.ID_SOFTWARE, " + "PASE.ID_PASE, " + "PASE.DE_PASE, "
@@ -66,12 +66,12 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 				+ "PASE.ID_EJECUCION = ? ";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		Pase pase = jdbcTemplate.queryForObject(query, new Object[] { idEjecucion }, new RowMapper<Pase>() {
+		Ejecucion pase = jdbcTemplate.queryForObject(query, new Object[] { idEjecucion }, new RowMapper<Ejecucion>() {
 
 			@Override
-			public Pase mapRow(ResultSet rs, int rowNum) throws SQLException {
+			public Ejecucion mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-				Pase pase = new Pase();
+				Ejecucion pase = new Ejecucion();
 
 				pase.setIdEjecucion(rs.getInt("id_ejecucion"));
 				pase.setPase(rs.getString("de_pase"));
@@ -92,7 +92,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 	}
 
 	@Override
-	public void update(Pase pase) {
+	public void update(Ejecucion pase) {
 		// TODO Auto-generated method stub
 
 	}
@@ -109,7 +109,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 	 * @see com.indra.iquality.dao.PaseDAO#getAll()
 	 */
 	@Override
-	public List<Pase> getAll() throws Exception {
+	public List<Ejecucion> getAll() throws Exception {
 
 		/*
 		 * Es la query tal como la saqué del APEX Hay varios atributos que no
@@ -138,7 +138,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 				+ "PASE.ID_SISTEMA = ESC.ID_SISTEMA AND " + "PASE.ID_ESCENARIO = ESC.ID_ESCENARIO";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<Pase> paseList = new ArrayList<Pase>();
+		List<Ejecucion> paseList = new ArrayList<Ejecucion>();
 
 		List<Map<String, Object>> paseRows = jdbcTemplate.queryForList(query);
 
@@ -146,7 +146,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 
 			// ++contadorDebugger;
 
-			Pase pase = new Pase();
+			Ejecucion pase = new Ejecucion();
 
 			if (paseRow.get("id_ejecucion") != null)
 				pase.setIdEjecucion(Integer.parseInt(String.valueOf(paseRow.get("id_ejecucion"))));
@@ -204,7 +204,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 	}
 
 	@Override
-	public List<PaseDef> getAllDefs() {
+	public List<Pase> getAllDefs() {
 
 		// Podría prescindir de algunos campos que no se muestran
 		String query = "SELECT" + " VS.ID_SISTEMA, VS.ID_SOFTWARE, VS.ID_PASE, VS.DE_PASE,"
@@ -214,13 +214,13 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 				+ " VS.ID_SOFTWARE = ?";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<PaseDef> paseDefList = new ArrayList<PaseDef>();
+		List<Pase> paseDefList = new ArrayList<Pase>();
 
 		List<Map<String, Object>> paseDefRows = jdbcTemplate.queryForList(query,
 				new Object[] { sistema.getIdSistema(), sistema.getIdSoftware() });
 		for (Map<String, Object> paseDefRow : paseDefRows) {
 
-			PaseDef paseDef = new PaseDef();
+			Pase paseDef = new Pase();
 
 			paseDef.setId(helper.filterNullInt(Integer.parseInt(String.valueOf(paseDefRow.get("ID_PASE")))));
 			paseDef.setNombre(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
@@ -234,7 +234,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 	}
 
 	@Override
-	public void newPaseDef(PaseDef pd, String[] jobs, Map<String, String[]> dependencias) {
+	public void newPaseDef(Pase pd, String[] jobs, Map<String, String[]> dependencias) {
 
 		String queryInsertDatosBasicos = "insert into VS_MET_PLA_DEF_PASE (id_sistema, id_software, de_pase, id_sn_pase_atipico)"
 				+ " values (?, ?, ?, ?)";

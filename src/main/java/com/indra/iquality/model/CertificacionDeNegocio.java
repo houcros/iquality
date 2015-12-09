@@ -7,32 +7,32 @@ import com.google.common.base.Objects;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class CertificacionDeNegocio.
+ * The Class CertificacionDeNegocio. Represents a business certification that
+ * must be satisfied for the system to be in a valid status.
  *
  * @author Ignacio N. Lucero Ascencio
  * @version 0.1, 09/12/15
  * 
- *          The Class CertificacionDeNegocio.
  */
 public class CertificacionDeNegocio extends Certificacion {
 
-	/** The indicador. */
+	/** The name of the certification. */
 	private String indicador;
 
 	/**
-	 * Gets the indicador.
+	 * Gets the name of the certification.
 	 *
-	 * @return the indicador
+	 * @return the name of the certification
 	 */
 	public String getIndicador() {
 		return indicador;
 	}
 
 	/**
-	 * Sets the indicador.
+	 * Sets the name of the certification.
 	 *
 	 * @param indicador
-	 *            the new indicador
+	 *            the new name of the certification
 	 */
 	public void setIndicador(String indicador) {
 		this.indicador = indicador;
