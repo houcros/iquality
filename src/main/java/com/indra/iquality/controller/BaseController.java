@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.indra.iquality.dao.EjecucionDAO;
+import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.model.Pase;
 
 @Controller
@@ -97,7 +97,7 @@ public class BaseController {
 			}
 
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			EjecucionDAO paseDAO = ctx.getBean("ejecucionDAOJDBCTemplate", EjecucionDAO.class);
+			PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
 			ctx.close();
 			paseDAO.newPaseDef(pd, jobs, dependencias);
 

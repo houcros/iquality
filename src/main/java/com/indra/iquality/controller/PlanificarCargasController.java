@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.indra.iquality.dao.EjecucionDAO;
 import com.indra.iquality.dao.JobDAO;
+import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.dao.SistemaDAO;
 import com.indra.iquality.model.Job;
 import com.indra.iquality.model.Pase;
@@ -30,7 +30,7 @@ public class PlanificarCargasController {
 	private String getPasesDef(Model model) {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		EjecucionDAO paseDAO = ctx.getBean("ejecucionDAOJDBCTemplate", EjecucionDAO.class);
+		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
 		List<Pase> allPasesDef;
 		// Close Spring Context
 		ctx.close();

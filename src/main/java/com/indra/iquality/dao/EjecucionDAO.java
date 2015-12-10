@@ -4,10 +4,8 @@
 package com.indra.iquality.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.indra.iquality.model.Ejecucion;
-import com.indra.iquality.model.Pase;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -29,18 +27,6 @@ public interface EjecucionDAO {
 	 */
 	// Create
 	public void save(Ejecucion pase);
-
-	/**
-	 * New pase def.
-	 *
-	 * @param pd
-	 *            the pd
-	 * @param jobs
-	 *            the jobs
-	 * @param dependencias
-	 *            the dependencias
-	 */
-	public void newPaseDef(Pase pd, String[] jobs, Map<String, String[]> dependencias);
 
 	/**
 	 * Obtiene el by id.
@@ -81,11 +67,4 @@ public interface EjecucionDAO {
 	 */
 	public List<Ejecucion> getAll() throws Exception;
 
-	/**
-	 * Obtiene el all defs.
-	 *
-	 * @return Todos las definiciones de pases del sistema y versión de software
-	 *         actual
-	 */
-	public List<Pase> getAllDefs();
 }
