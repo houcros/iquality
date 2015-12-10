@@ -12,12 +12,12 @@ import com.indra.iquality.dao.TrazaDeRegistroDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.RegistroDeOperacion;
 import com.indra.iquality.model.TrazaDeRegistro;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class TrazaDeRegistroDAOJDBCTemplateImpl implements TrazaDeRegistroDAO{
 
 	private DataSource dataSource;
-	private Sistema sistema = Sistema.getInstance();
+	private Entorno sistema = Entorno.getInstance();
 	private final CustomHelper helper = new CustomHelper();
 	
 	// Debugging
@@ -59,23 +59,23 @@ public class TrazaDeRegistroDAOJDBCTemplateImpl implements TrazaDeRegistroDAO{
 			
 			if (trazaRow.get("id_traza") != null)
 				traza.setIdTraza((Integer.valueOf(String.valueOf(trazaRow.get("id_traza")))));
-			else traza.setIdTraza(Sistema.DEFAULT_NULL_INT);
+			else traza.setIdTraza(Entorno.DEFAULT_NULL_INT);
 			
 			if (trazaRow.get("id_fecha") != null)
 				traza.setIdFecha((helper.auxStringToSqlDate(String.valueOf(trazaRow.get("id_fecha")))));
-			else traza.setIdFecha(Sistema.DEFAULT_NULL_DATE);
+			else traza.setIdFecha(Entorno.DEFAULT_NULL_DATE);
 			
 			if (trazaRow.get("fecha") != null)
 				traza.setFecha((String.valueOf(trazaRow.get("fecha"))));
-			else traza.setFecha(Sistema.DEFAULT_NULL_STRING);
+			else traza.setFecha(Entorno.DEFAULT_NULL_STRING);
 			
 			if (trazaRow.get("id_categoria") != null)
 				traza.setCategoria((String.valueOf(trazaRow.get("id_categoria"))));
-			else traza.setCategoria(Sistema.DEFAULT_NULL_STRING);
+			else traza.setCategoria(Entorno.DEFAULT_NULL_STRING);
 			
 			if (trazaRow.get("de_mensaje") != null)
 				traza.setMensaje((String.valueOf(trazaRow.get("de_mensaje"))));
-			else traza.setMensaje(Sistema.DEFAULT_NULL_STRING);
+			else traza.setMensaje(Entorno.DEFAULT_NULL_STRING);
 			
 			trazaList.add(traza);
 		}

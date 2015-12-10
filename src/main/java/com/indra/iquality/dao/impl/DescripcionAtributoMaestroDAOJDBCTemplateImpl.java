@@ -8,11 +8,11 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.DescripcionAtributoMaestroDAO;
 import com.indra.iquality.model.DescripcionAtributoMaestro;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class DescripcionAtributoMaestroDAOJDBCTemplateImpl extends DescripcionAtributoDAOJDBCTemplateImpl implements DescripcionAtributoMaestroDAO{
 
-	Sistema sistema = Sistema.getInstance();
+	Entorno sistema = Entorno.getInstance();
 
 	@Override
 	public DescripcionAtributoMaestro getById(String compRowID, String ctRowID){

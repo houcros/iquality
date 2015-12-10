@@ -32,7 +32,7 @@ import com.indra.iquality.dao.DescripcionIndicadorDAO;
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.TrazaDeRegistroDAO;
 import com.indra.iquality.model.ConceptTypeEnum;
-import com.indra.iquality.model.DependenciaDeJob;
+import com.indra.iquality.model.Dependencia;
 import com.indra.iquality.model.DescripcionAtributo;
 import com.indra.iquality.model.DescripcionComponente;
 import com.indra.iquality.model.DescripcionIndicador;
@@ -127,7 +127,7 @@ public class APIController {
 		DependenciaDeJobDAO dependenciaDeJobDAO = ctx.getBean("dependenciaDeJobDAOJDBCTemplate", DependenciaDeJobDAO.class);
 		
 		//Read trazas
-		List<DependenciaDeJob> allDependencias = null;
+		List<Dependencia> allDependencias = null;
 		
 		try {
 			allDependencias = dependenciaDeJobDAO.getAll(idEjecucion, idJob);
@@ -143,7 +143,7 @@ public class APIController {
 		// O en el translator (?)
 		
 		JSONArray jsonArray = new JSONArray();
-		for (DependenciaDeJob dependencia : allDependencias){
+		for (Dependencia dependencia : allDependencias){
 		
 			logger.debug("[getDependenciasDeJob] -> " + dependencia.getIdPase() + " | " + dependencia.getEstado());			
 			jsonArray.add(dependencia);

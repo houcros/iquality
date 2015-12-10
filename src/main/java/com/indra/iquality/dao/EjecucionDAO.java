@@ -12,7 +12,7 @@ import com.indra.iquality.model.Ejecucion;
  * The Interface PaseDAO.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 09-dic-2015
  * 
  *          La Interface PaseDAO.
  */
@@ -65,6 +65,6 @@ public interface EjecucionDAO {
 	 * @throws Exception
 	 *             the exception
 	 */
-	public List<Ejecucion> getAll() throws Exception;
+	public List<Ejecucion> getAllEjecuciones() throws Exception;
 
 }

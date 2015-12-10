@@ -16,14 +16,14 @@ import com.indra.iquality.controller.APIController;
 import com.indra.iquality.dao.DescripcionIndicadorDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.DescripcionIndicador;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndicadorDAO {
 
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(DescripcionIndicadorDAOJDBCTemplateImpl.class);
 	private CustomHelper helper = new CustomHelper();
 	private DataSource dataSource;
-	Sistema sistema = Sistema.getInstance();
+	Entorno sistema = Entorno.getInstance();
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
@@ -134,15 +134,15 @@ public class DescripcionIndicadorDAOJDBCTemplateImpl implements DescripcionIndic
 			
 			if (certRow.get("id_componente") != null)
 				cert.setIdComponente(Integer.valueOf((String.valueOf(certRow.get("id_componente")))));
-			else cert.setIdComponente(Sistema.DEFAULT_NULL_INT);
+			else cert.setIdComponente(Entorno.DEFAULT_NULL_INT);
 			
 			if (certRow.get("de_nombre") != null)
 				cert.setNombre((String.valueOf(certRow.get("de_nombre"))));
-			else cert.setNombre(Sistema.DEFAULT_NULL_STRING);
+			else cert.setNombre(Entorno.DEFAULT_NULL_STRING);
 			
 			if (certRow.get("de_certificacion") != null)
 				cert.setDescripcion((String.valueOf(certRow.get("de_certificacion"))));
-			else cert.setDescripcion(Sistema.DEFAULT_NULL_STRING);
+			else cert.setDescripcion(Entorno.DEFAULT_NULL_STRING);
 		
 			certList.add(cert);
 		}

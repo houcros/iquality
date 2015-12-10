@@ -1,32 +1,31 @@
-/*
- * 
- */
 package com.indra.iquality.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.indra.iquality.model.Pase;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface PaseDAO.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 10-dic-2015
  * 
  *          The Interface PaseDAO.
  */
-// CRUD operations
 public interface PaseDAO {
 
 	/**
-	 * Obtiene el all defs.
+	 * Gets all the records of ETL flows present in the underlying DB.
 	 *
-	 * @return Todos las definiciones de pases del sistema y versión de software
-	 *         actual
+	 * @return all the flows
 	 */
-	public List<Pase> getAllDefs();
+	public List<Pase> getAllPases();
 
-	public void newPaseDef(Pase pd, String[] jobs, Map<String, String[]> dependencias);
+	/**
+	 * Insert a new flow into the underlying DB. Idempotent method.
+	 *
+	 * @param pase
+	 *            the flow to insert
+	 */
+	public void insertPase(Pase pase);
 }

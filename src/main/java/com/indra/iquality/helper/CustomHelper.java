@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import com.indra.iquality.model.ConceptTypeEnum;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class CustomHelper {
 

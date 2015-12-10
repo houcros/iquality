@@ -1,6 +1,6 @@
 package com.indra.iquality.model;
 
-public class DependenciaDeJob {
+public class Dependencia {
 
 	// TODO Nuevamente creo que muchos de estos atributos sobran
 	// aunque estén en la query original

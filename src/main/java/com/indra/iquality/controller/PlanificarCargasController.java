@@ -36,7 +36,7 @@ public class PlanificarCargasController {
 		ctx.close();
 
 		try {
-			allPasesDef = paseDAO.getAllDefs();
+			allPasesDef = paseDAO.getAllPases();
 		} catch (Exception e) {
 			allPasesDef = new ArrayList<Pase>();
 			logger.error("[getPasesDef] : excepción <" + e.getMessage() + "> al intentar obtener todos los PaseDef.");

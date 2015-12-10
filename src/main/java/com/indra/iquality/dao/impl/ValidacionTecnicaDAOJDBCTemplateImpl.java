@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import com.indra.iquality.dao.ValidacionTecnicaDAO;
 import com.indra.iquality.model.DetalleDeValidacion;
 import com.indra.iquality.model.ValidacionTecnica;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl implements ValidacionTecnicaDAO {
 
@@ -109,7 +109,7 @@ public class ValidacionTecnicaDAOJDBCTemplateImpl extends DAOJDBCTemplateImpl im
 				strs.add(String.valueOf(entry.getValue()));
 			}
 			while(strs.size() < DetalleDeValidacion.MAX_DIMENSIONES){
-				strs.add(Sistema.DEFAULT_NULL_STRING);
+				strs.add(Entorno.DEFAULT_NULL_STRING);
 			}
 			
 			ddvList.add(new DetalleDeValidacion(strs));

@@ -16,7 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.indra.iquality.dao.RegistroDeOperacionDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.RegistroDeOperacion;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 /**
  * @author inlucero
@@ -25,7 +25,7 @@ import com.indra.iquality.singleton.Sistema;
 public class RegistroDeOperacionDAOJDBCTemplateImpl implements RegistroDeOperacionDAO{
 
 	private DataSource dataSource;
-	private Sistema sistema = Sistema.getInstance();
+	private Entorno sistema = Entorno.getInstance();
 	
 	// Debugging
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(RegistroDeOperacionDAOJDBCTemplateImpl.class);
@@ -98,91 +98,91 @@ public class RegistroDeOperacionDAOJDBCTemplateImpl implements RegistroDeOperaci
 			
 			if (registroRow.get("op_rowid") != null)
 				registro.setOpRowId((String.valueOf(registroRow.get("op_rowid"))));
-			else registro.setOpRowId(Sistema.DEFAULT_NULL_STRING);
+			else registro.setOpRowId(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("final_rowid") != null)
 				registro.setFinalRowId((String.valueOf(registroRow.get("final_rowid"))));
-			else registro.setFinalRowId(Sistema.DEFAULT_NULL_STRING);
+			else registro.setFinalRowId(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("id_operacion") != null)
 				registro.setIdOperacion((Integer.valueOf(String.valueOf(registroRow.get("id_operacion")))));
-			else registro.setIdOperacion(Sistema.DEFAULT_NULL_INT);
+			else registro.setIdOperacion(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("id_sistema") != null)
 				registro.setSistema((String.valueOf(registroRow.get("id_sistema"))));
-			else registro.setSistema(Sistema.DEFAULT_NULL_STRING);
+			else registro.setSistema(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("id_software") != null)
 				registro.setSoftware((Integer.valueOf(String.valueOf(registroRow.get("id_software")))));
-			else registro.setSoftware(Sistema.DEFAULT_NULL_INT);
+			else registro.setSoftware(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("de_bloque") != null)
 				registro.setDescripcionBloque((String.valueOf(registroRow.get("de_bloque"))));
-			else registro.setDescripcionBloque(Sistema.DEFAULT_NULL_STRING);
+			else registro.setDescripcionBloque(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("id_job") != null)
 				registro.setIdJob((String.valueOf(registroRow.get("id_job"))));
-			else registro.setIdJob(Sistema.DEFAULT_NULL_STRING);
+			else registro.setIdJob(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("de_escenario") != null)
 				registro.setDescripcionEscenario((String.valueOf(registroRow.get("de_escenario"))));
-			else registro.setDescripcionEscenario(Sistema.DEFAULT_NULL_STRING);
+			else registro.setDescripcionEscenario(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("id_ejecucion") != null)
 				registro.setIdEjecucion((Integer.valueOf(String.valueOf(registroRow.get("id_ejecucion")))));
-			else registro.setIdEjecucion(Sistema.DEFAULT_NULL_INT);
+			else registro.setIdEjecucion(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("id_fecha_inicio") != null)
 				registro.setFechaInicio((helper.auxStringToSqlDate(String.valueOf(registroRow.get("id_fecha_inicio")))));
-			else registro.setFechaInicio(Sistema.DEFAULT_NULL_DATE);
+			else registro.setFechaInicio(Entorno.DEFAULT_NULL_DATE);
 			
 			if (registroRow.get("id_fecha_fin") != null)
 				registro.setFechaFin((helper.auxStringToSqlDate(String.valueOf(registroRow.get("id_fecha_fin")))));
-			else registro.setFechaFin(Sistema.DEFAULT_NULL_DATE);
+			else registro.setFechaFin(Entorno.DEFAULT_NULL_DATE);
 			
 			if (registroRow.get("fc_duracion") != null)
 				registro.setFcDuracion((Double.valueOf(String.valueOf(registroRow.get("fc_duracion")))));
-			else registro.setFcDuracion(Sistema.DEFAULT_NULL_INT);
+			else registro.setFcDuracion(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("id_tipo_operacion") != null)
 				registro.setTipoDeOperacion((String.valueOf(registroRow.get("id_tipo_operacion"))));
-			else registro.setTipoDeOperacion(Sistema.DEFAULT_NULL_STRING);
+			else registro.setTipoDeOperacion(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("fc_filas_cargadas") != null)
 				registro.setFcFilasCargadas((Integer.valueOf(String.valueOf(registroRow.get("fc_filas_cargadas")))));
-			else registro.setFcFilasCargadas(Sistema.DEFAULT_NULL_INT);
+			else registro.setFcFilasCargadas(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("fc_filas_actualizadas") != null)
 				registro.setFcFilasActualizadas((Integer.valueOf(String.valueOf(registroRow.get("fc_filas_actualizadas")))));
-			else registro.setFcFilasActualizadas(Sistema.DEFAULT_NULL_INT);
+			else registro.setFcFilasActualizadas(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("fc_filas_leidas") != null)
 				registro.setFcFilasLeidas((Integer.valueOf(String.valueOf(registroRow.get("fc_filas_leidas")))));
-			else registro.setFcFilasLeidas(Sistema.DEFAULT_NULL_INT);
+			else registro.setFcFilasLeidas(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("fc_filas_rechazadas") != null)
 				registro.setFcFilasRechazadas((Integer.valueOf(String.valueOf(registroRow.get("fc_filas_rechazadas")))));
-			else registro.setFcFilasRechazadas(Sistema.DEFAULT_NULL_INT);
+			else registro.setFcFilasRechazadas(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("fc_filas_descartadas") != null)
 				registro.setFcFilasDescartadas((Integer.valueOf(String.valueOf(registroRow.get("fc_filas_descartadas")))));
-			else registro.setFcFilasDescartadas(Sistema.DEFAULT_NULL_INT);
+			else registro.setFcFilasDescartadas(Entorno.DEFAULT_NULL_INT);
 			
 			if (registroRow.get("de_software") != null)
 				registro.setDescripcionSoftware((String.valueOf(registroRow.get("de_software"))));
-			else registro.setDescripcionSoftware(Sistema.DEFAULT_NULL_STRING);
+			else registro.setDescripcionSoftware(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("de_operacion") != null)
 				registro.setDescripcionOperacion((String.valueOf(registroRow.get("de_operacion"))));
-			else registro.setDescripcionOperacion(Sistema.DEFAULT_NULL_STRING);
+			else registro.setDescripcionOperacion(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("id_estado") != null)
 				registro.setEstado((String.valueOf(registroRow.get("id_estado"))));
-			else registro.setEstado(Sistema.DEFAULT_NULL_STRING);
+			else registro.setEstado(Entorno.DEFAULT_NULL_STRING);
 			
 			if (registroRow.get("fecha") != null)
 				registro.setFechaDatos((String.valueOf(registroRow.get("fecha"))));
-			else registro.setFechaDatos(Sistema.DEFAULT_NULL_STRING);
+			else registro.setFechaDatos(Entorno.DEFAULT_NULL_STRING);
 			
 			System.out.println("[getAll] -> " + registro.toString());
 			registroList.add(registro);

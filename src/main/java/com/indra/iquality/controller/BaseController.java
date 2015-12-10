@@ -62,13 +62,6 @@ public class BaseController {
 		// logger.info(jsonString);
 		try {
 			json = (JSONObject) parser.parse(jsonString);
-			// logger.info(json.toJSONString());
-
-			Pase pd = new Pase((String) json.get("nombrePase"), (String) json.get("sistema"),
-					(String) json.get("esAtipico"));
-			logger.info(pd.getNombre());
-			logger.info(pd.getSistema());
-			logger.info(pd.getEsAtipico());
 
 			JSONArray jobsJSONArray = (JSONArray) json.get("jobs");
 			String[] jobs = new String[jobsJSONArray.size()];
@@ -96,10 +89,12 @@ public class BaseController {
 					logger.info(entry.getValue()[k]);
 			}
 
+			Pase pase = new Pase((String) json.get("nombrePase"), (String) json.get("esAtipico"), jobs, dependencias);
+
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
 			ctx.close();
-			paseDAO.newPaseDef(pd, jobs, dependencias);
+			paseDAO.insertPase(pase);
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

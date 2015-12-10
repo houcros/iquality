@@ -7,8 +7,8 @@ import java.sql.Date;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class Ejecucion. Represents an execution of a pass for a given system and
- * software version on a date.
+ * The Class Ejecucion. Represents an execution of an ETL flow for a given
+ * system and software version on a date. See {@link Pase}.
  *
  * @author Ignacio N. Lucero Ascencio
  * @version 0.1, 09/12/15

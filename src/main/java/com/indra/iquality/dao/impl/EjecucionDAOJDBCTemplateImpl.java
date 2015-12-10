@@ -15,14 +15,14 @@ import org.springframework.jdbc.core.RowMapper;
 import com.indra.iquality.dao.EjecucionDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Ejecucion;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class EjecucionDAOJDBCTemplateImpl implements EjecucionDAO {
 
 	private DataSource dataSource;
 
 	private final CustomHelper helper = new CustomHelper();
-	private Sistema sistema = Sistema.getInstance();
+	private Entorno sistema = Entorno.getInstance();
 
 	private final static String DEFAULT_NULL_STRING = "";
 	private final static int DEFAULT_NULL_INT = -1;
@@ -108,7 +108,7 @@ public class EjecucionDAOJDBCTemplateImpl implements EjecucionDAO {
 	 * @see com.indra.iquality.dao.PaseDAO#getAll()
 	 */
 	@Override
-	public List<Ejecucion> getAll() throws Exception {
+	public List<Ejecucion> getAllEjecuciones() throws Exception {
 
 		/*
 		 * Es la query tal como la saqué del APEX Hay varios atributos que no

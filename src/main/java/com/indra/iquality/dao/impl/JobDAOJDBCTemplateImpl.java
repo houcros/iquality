@@ -14,12 +14,12 @@ import org.springframework.jdbc.core.RowMapper;
 import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Job;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class JobDAOJDBCTemplateImpl implements JobDAO {
 
 	private DataSource dataSource;
-	private Sistema sistema = Sistema.getInstance();
+	private Entorno sistema = Entorno.getInstance();
 	
 	// Debugging
 //	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);

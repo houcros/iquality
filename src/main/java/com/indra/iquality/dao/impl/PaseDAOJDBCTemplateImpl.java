@@ -6,78 +6,97 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.PaseDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Pase;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 
 	private DataSource dataSource;
 	private final CustomHelper helper = new CustomHelper();
-	private Sistema sistema = Sistema.getInstance();
+	private Entorno entorno = Entorno.getInstance();
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
 	@Override
-	public List<Pase> getAllDefs() {
+	public List<Pase> getAllPases() {
 
-		// Podría prescindir de algunos campos que no se muestran
-		String query = "SELECT" + " VS.ID_SISTEMA, VS.ID_SOFTWARE, VS.ID_PASE, VS.DE_PASE,"
-				+ " DECODE(VS.ID_SN_PASE_ATIPICO,'N','No','S','Sí') AS ID_SN_PASE_ATIPICO,"
-				+ " VS.DEFPASE_ROWID,VS.ID_FECHA_CREACION,S.DE_SOFTWARE"
-				+ " FROM VS_MET_PLA_DEF_PASE VS , LK_MET_IQ_SOFTWARE S" + " WHERE" + " VS.ID_SISTEMA = ? AND"
+		// TODO arquitectura -> La query original tambien seleccionaba
+		// VS.DEFPASE_ROWID y VS.ID_FECHA_CREACION pero no se muestran. Se
+		// quieren mostrar?
+		String query = "SELECT"
+				+ " VS.ID_PASE, VS.DE_PASE, DECODE(VS.ID_SN_PASE_ATIPICO,'N','No','S','Sí') AS ID_SN_PASE_ATIPICO,"
+				+ " FROM VS_MET_PLA_DEF_PASE VS , LK_MET_IQ_SOFTWARE S WHERE VS.ID_SISTEMA = ? AND"
 				+ " VS.ID_SOFTWARE = ?";
 
+		// Inicializo la conexión a la BD e inicializo la lista que voy a
+		// retornar
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<Pase> paseDefList = new ArrayList<Pase>();
-
+		List<Pase> paseList = new ArrayList<Pase>();
+		// Lanzo la query
 		List<Map<String, Object>> paseDefRows = jdbcTemplate.queryForList(query,
-				new Object[] { sistema.getIdSistema(), sistema.getIdSoftware() });
+				new Object[] { entorno.getIdSistema(), entorno.getIdSoftware() });
+
+		// Itero sobre el resultado de la query y mapeo cada record a un pase
 		for (Map<String, Object> paseDefRow : paseDefRows) {
 
-			Pase paseDef = new Pase();
+			Pase pase = new Pase();
 
-			paseDef.setId(helper.filterNullInt(Integer.parseInt(String.valueOf(paseDefRow.get("ID_PASE")))));
-			paseDef.setNombre(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
-			paseDef.setEsAtipico(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SN_PASE_ATIPICO"))));
-			paseDef.setSistema(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SISTEMA"))));
-			paseDef.setSoftware(helper.filterNullString(String.valueOf(paseDefRow.get("DE_SOFTWARE"))));
+			pase.setId(helper.filterNullInt(Integer.parseInt(String.valueOf(paseDefRow.get("ID_PASE")))));
+			pase.setNombre(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
+			pase.setEsAtipico(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SN_PASE_ATIPICO"))));
+			pase.setSistema(entorno.getIdSistema());
+			pase.setSoftware(entorno.getDescripcionSoftware());
 
-			paseDefList.add(paseDef);
+			paseList.add(pase);
 		}
-		return paseDefList;
+		return paseList;
 	}
 
 	@Override
-	public void newPaseDef(Pase pd, String[] jobs, Map<String, String[]> dependencias) {
+	public void insertPase(Pase pase) {
 
+		// Por el diseño actual de la BD son necesarias 4 queries
+		// 1. Para insertar los datos básicos del pase
 		String queryInsertDatosBasicos = "insert into VS_MET_PLA_DEF_PASE (id_sistema, id_software, de_pase, id_sn_pase_atipico)"
 				+ " values (?, ?, ?, ?)";
+		// 2. Para insertar los jobs asociados al pase
 		String queryInsertJobs = "insert into VS_MET_PLA_DEF_PASE_JOB (id_sistema, id_software, id_pase, id_job, id_sn_punto_control)"
 				+ " values (?, ?, ?, ?, ?)";
+		// 3. Para insertar las dependencias entre los jobs del pase
 		String queryInsertDependencias = "insert into VS_MET_PLA_DEF_PASE_JOB_REL (id_sistema, id_software, id_pase, id_job_padre, id_job_hijo)"
 				+ " values (?, ?, ?, ?, ?)";
+		// 4. Para saber cuál es el próximo identificador de pase
+		// TODO arquitectura -> Sería mejor controlar esto desde la aplicación?
 		String queryIdPase = "select max(id_pase) from VS_MET_PLA_DEF_PASE";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		Object[] params;
+		int out;
 
-		// Inserto datos básicos del pase
-		Object[] params = new Object[] { sistema.getIdSistema(), sistema.getIdSoftware(), pd.getNombre(),
-				pd.getEsAtipico() };
-		int out = jdbcTemplate.update(queryInsertDatosBasicos, params);
-		if (out != 0)
-			System.out.println("Datos básicos guardados; out = " + String.valueOf(out));
-		else
-			System.out.println("Error al insertar datos básicos!");
-
+		// Query 1: inserto datos básicos del pase
+		try {
+			params = new Object[] { entorno.getIdSistema(), entorno.getIdSoftware(), pase.getNombre(),
+					pase.getEsAtipico() };
+			out = jdbcTemplate.update(queryInsertDatosBasicos, params);
+			if (out != 0)
+				System.out.println("Datos básicos guardados; out = " + String.valueOf(out));
+			else
+				System.out.println("Error al insertar datos básicos!");
+		} catch (Exception e) {
+			if (e instanceof DataIntegrityViolationException) {
+				// TODO
+			}
+		}
 		// Inserto jobs del pase
 		int idPase = jdbcTemplate.queryForObject(queryIdPase, Integer.class);
-		params = new Object[] { sistema.getIdSistema(), sistema.getIdSoftware(), idPase, "_STUB_nombre", "N" // TODO
+		params = new Object[] { entorno.getIdSistema(), entorno.getIdSoftware(), idPase, "_STUB_nombre", "N" // TODO
 																												// desharcodear
 																												// el
 																												// default
@@ -85,11 +104,11 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 																												// =
 																												// "N"
 		};
-		for (int i = 0; i < jobs.length; ++i) {
-			params[3] = jobs[i];
+		for (int i = 0; i < pase.getJobs().length; ++i) {
+			params[3] = pase.getJobs()[i];
 			out = jdbcTemplate.update(queryInsertJobs, params);
 			if (out != 0)
-				System.out.println("Job " + jobs[i] + " guardado; out = " + String.valueOf(out));
+				System.out.println("Job " + pase.getJobs()[i] + " guardado; out = " + String.valueOf(out));
 			else
 				System.out.println("Error al insertar un job!");
 		}
@@ -103,15 +122,16 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 		// no han sido insertados en VS_MET_PLA_DEF_PASE_JOB
 
 		// Inserto dependencias de los jobs del pase
-		params = new Object[] { sistema.getIdSistema(), sistema.getIdSoftware(), idPase, "_STUB_id_job_padre",
+		params = new Object[] { entorno.getIdSistema(), entorno.getIdSoftware(), idPase, "_STUB_id_job_padre",
 				"__STUB_id_job_hijo" };
-		for (int i = 0; i < jobs.length; ++i) {
-			params[3] = jobs[i];
-			for (int j = 0; j < dependencias.get(jobs[i]).length; ++j) {
-				params[4] = dependencias.get(jobs[i])[j];
+		for (int i = 0; i < pase.getJobs().length; ++i) {
+			params[3] = pase.getJobs()[i];
+			for (int j = 0; j < pase.getDependencias().get(pase.getJobs()[i]).length; ++j) {
+				params[4] = pase.getDependencias().get(pase.getJobs()[i])[j];
 				out = jdbcTemplate.update(queryInsertDependencias, params);
 				if (out != 0)
-					System.out.println("Dependencia de job " + jobs[i] + " guardada; out = " + String.valueOf(out));
+					System.out.println(
+							"Dependencia de job " + pase.getJobs()[i] + " guardada; out = " + String.valueOf(out));
 				else
 					System.out.println("Error al insertar dependencia de un job!");
 			}

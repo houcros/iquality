@@ -10,12 +10,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.DescripcionAtributoDAO;
 import com.indra.iquality.model.DescripcionAtributo;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class DescripcionAtributoDAOJDBCTemplateImpl implements DescripcionAtributoDAO {
 
 	protected DataSource dataSource;
-	Sistema sistema = Sistema.getInstance();
+	Entorno sistema = Entorno.getInstance();
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;

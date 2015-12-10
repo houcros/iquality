@@ -10,14 +10,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.DependenciaDeJobDAO;
 import com.indra.iquality.helper.CustomHelper;
-import com.indra.iquality.model.DependenciaDeJob;
+import com.indra.iquality.model.Dependencia;
 import com.indra.iquality.model.Job;
-import com.indra.iquality.singleton.Sistema;
+import com.indra.iquality.singleton.Entorno;
 
 public class DependenciaDeJobDAOJDBCTemplateImpl implements DependenciaDeJobDAO {
 
 	private DataSource dataSource;
-	private Sistema sistema = Sistema.getInstance();
+	private Entorno sistema = Entorno.getInstance();
 	
 	// Debugging
 //	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -28,7 +28,7 @@ public class DependenciaDeJobDAOJDBCTemplateImpl implements DependenciaDeJobDAO 
 	}
 	
 	@Override
-	public List<DependenciaDeJob> getAll(int idEjecucion, String idJob) {
+	public List<Dependencia> getAll(int idEjecucion, String idJob) {
 		
 		// TODO Puedo simplificar la query?
 		// O devolver una List<Job> y quedarme con los atributos que quiero
@@ -53,7 +53,7 @@ public class DependenciaDeJobDAOJDBCTemplateImpl implements DependenciaDeJobDAO 
 					+ "PASEJOB.ID_JOB = JOBREL.ID_JOB_PADRE ";
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<DependenciaDeJob> dependenciaList = new ArrayList<DependenciaDeJob>();
+		List<Dependencia> dependenciaList = new ArrayList<Dependencia>();
 
 		List<Map<String,Object>> dependenciaRows = jdbcTemplate.queryForList(query, new Object[]{idJob, idEjecucion, sistema.getIdSistema(), sistema.getIdSoftware()});
 		
@@ -61,39 +61,39 @@ public class DependenciaDeJobDAOJDBCTemplateImpl implements DependenciaDeJobDAO 
 			
 //			++contadorDebugger;
 			
-			DependenciaDeJob dependencia = new DependenciaDeJob();
+			Dependencia dependencia = new Dependencia();
 			
 			if (dependenciaRow.get("id_ejecucion") != null)
 				dependencia.setIdEjecucion((Integer.valueOf(String.valueOf(dependenciaRow.get("id_ejecucion")))));
-			else dependencia.setIdEjecucion(Sistema.DEFAULT_NULL_INT);
+			else dependencia.setIdEjecucion(Entorno.DEFAULT_NULL_INT);
 			
 			if (dependenciaRow.get("id_sistema") != null)
 				dependencia.setSistema((String.valueOf(dependenciaRow.get("id_sistema"))));
-			else dependencia.setSistema(Sistema.DEFAULT_NULL_STRING);
+			else dependencia.setSistema(Entorno.DEFAULT_NULL_STRING);
 			
 			if (dependenciaRow.get("id_software") != null)
 				dependencia.setSoftware((Integer.valueOf(String.valueOf(dependenciaRow.get("id_software")))));
-			else dependencia.setSoftware(Sistema.DEFAULT_NULL_INT);
+			else dependencia.setSoftware(Entorno.DEFAULT_NULL_INT);
 			
 			if (dependenciaRow.get("id_pase") != null)
 				dependencia.setIdPase((Integer.valueOf(String.valueOf(dependenciaRow.get("id_pase")))));
-			else dependencia.setIdPase(Sistema.DEFAULT_NULL_INT);
+			else dependencia.setIdPase(Entorno.DEFAULT_NULL_INT);
 			
 			if (dependenciaRow.get("id_job_padre") != null)
 				dependencia.setIdJobPadre((String.valueOf(dependenciaRow.get("id_job_padre"))));
-			else dependencia.setIdJobPadre(Sistema.DEFAULT_NULL_STRING);
+			else dependencia.setIdJobPadre(Entorno.DEFAULT_NULL_STRING);
 		
 			if (dependenciaRow.get("id_job_hijo") != null)
 				dependencia.setIdJobHijo((String.valueOf(dependenciaRow.get("id_job_hijo"))));
-			else dependencia.setIdJobHijo(Sistema.DEFAULT_NULL_STRING);
+			else dependencia.setIdJobHijo(Entorno.DEFAULT_NULL_STRING);
 			
 			if (dependenciaRow.get("id_sn_habilitada") != null)
 				dependencia.setSnHabilitada((String.valueOf(dependenciaRow.get("id_sn_habilitada"))));
-			else dependencia.setSnHabilitada(Sistema.DEFAULT_NULL_STRING);
+			else dependencia.setSnHabilitada(Entorno.DEFAULT_NULL_STRING);
 			
 			if (dependenciaRow.get("id_estado") != null)
 				dependencia.setEstado((String.valueOf(dependenciaRow.get("id_estado"))));
-			else dependencia.setEstado(Sistema.DEFAULT_NULL_STRING);
+			else dependencia.setEstado(Entorno.DEFAULT_NULL_STRING);
 			
 			dependenciaList.add(dependencia);
 		}

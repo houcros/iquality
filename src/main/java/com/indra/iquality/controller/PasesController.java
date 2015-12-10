@@ -43,7 +43,7 @@ public class PasesController {
 		List<Ejecucion> allPase;
 
 		try {
-			allPase = paseDAO.getAll();
+			allPase = paseDAO.getAllEjecuciones();
 			model.addAttribute("allTableItems", allPase);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -5,7 +5,7 @@ package com.indra.iquality.dao;
 
 import java.util.List;
 
-import com.indra.iquality.model.DependenciaDeJob;
+import com.indra.iquality.model.Dependencia;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -25,5 +25,5 @@ public interface DependenciaDeJobDAO {
 	 * @param idJob the id job
 	 * @return el all
 	 */
-	public List<DependenciaDeJob> getAll(int idEjecucion, String idJob);
+	public List<Dependencia> getAll(int idEjecucion, String idJob);
 }

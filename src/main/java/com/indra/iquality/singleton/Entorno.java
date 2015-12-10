@@ -2,9 +2,9 @@ package com.indra.iquality.singleton;
 
 import java.sql.Date;
 
-public class Sistema {
+public class Entorno {
 
-	private static Sistema instance;
+	private static Entorno instance;
 
 	// Parámetros por defecto para sustituir por null en las queries
 	// Comunes para todas las queries del sistema por consistencia
@@ -22,23 +22,23 @@ public class Sistema {
 	
 	// TODO Generalizar la creación cuando llame a Sistema
 	// De momento harcodeada
-	private Sistema(){
+	private Entorno(){
 		idSoftware = 1;
 		idSistema = "DMS";
 		descripcionSoftware = "Versión inicial";
 		esSoftwareActual = true;
 	};
 
-	private Sistema(int idSoft, String idSist, String descripcion, boolean actual){
+	private Entorno(int idSoft, String idSist, String descripcion, boolean actual){
 		idSoftware = idSoft;
 		idSistema = idSist;
 		descripcionSoftware = descripcion;
 		esSoftwareActual = actual;
 	}
 	
-	public static Sistema getInstance(){
+	public static Entorno getInstance(){
 		if(instance == null)
-			instance = new Sistema();
+			instance = new Entorno();
 		return instance;
 	}
 	
@@ -90,8 +90,8 @@ public class Sistema {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public static void setInstance(Sistema instance) {
-		Sistema.instance = instance;
+	public static void setInstance(Entorno instance) {
+		Entorno.instance = instance;
 	}
 	
 }
