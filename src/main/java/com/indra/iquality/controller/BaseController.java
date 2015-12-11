@@ -18,6 +18,7 @@ public class BaseController {
 	 */
 	private static final String VIEW_INDEX = "index";
 	private static final String VIEW_LOGIN = "login";
+	private static final String VIEW_NOT_FOUND = "404";
 	private static final String VIEW_ERROR = "500";
 
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(BaseController.class);
@@ -25,22 +26,25 @@ public class BaseController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	private String index(ModelMap model) {
 		logger.debug("[index] : Called route");
-		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_INDEX;
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	private String login(ModelMap model) {
 		logger.debug("[login] : Called route");
-		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_LOGIN;
 	}
 
 	@RequestMapping(value = "/server-error", method = RequestMethod.GET)
 	private String serverError(ModelMap model) {
 		logger.debug("[login] : Called route");
-		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_ERROR;
+	}
+
+	@RequestMapping(value = "/not-found", method = RequestMethod.GET)
+	private String notFound(ModelMap model) {
+		logger.debug("[login] : Called route");
+		return VIEW_NOT_FOUND;
 	}
 
 }
