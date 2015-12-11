@@ -35,7 +35,7 @@ import com.indra.iquality.model.Pase;
  * @author Ignacio N. Lucero Ascencio
  * @version 0.5, 11-dic-2015
  * 
- *          The Controller FlowManagmentController.
+ *          The Class FlowManagmentController.
  */
 @Controller
 @RequestMapping(value = "/planificar-cargas")
@@ -44,10 +44,12 @@ public class FlowManagementController {
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(FlowManagementController.class);
 
-	/** The Constant VIEW_PASES_DEF pointing to a view. */
-	private static final String VIEW_PASES_DEF = "planificar-cargas";
+	/** The Constant pointing to the view of all the flows. */
+	private static final String VIEW_FLOWS = "planificar-cargas";
 
-	/** The Constant VIEW_WIZARD pointing to a view. */
+	/**
+	 * The Constant pointing to the view of the wizard for creating a new flow.
+	 */
 	private static final String VIEW_WIZARD = "wizard-nuevo-pase";
 
 	/**
@@ -59,9 +61,9 @@ public class FlowManagementController {
 	 * @return the view to display
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	private String showFlows(Model model) {
+	private String showAllFlows(Model model) {
 
-		logger.debug("[showFlows] : INIT");
+		logger.info("[showAllFlows] : INIT");
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -69,13 +71,12 @@ public class FlowManagementController {
 		ctx.close();
 
 		// Obtengo todos los pases
-		List<Pase> allPases;
+		List<Pase> allPases = null;
 		try {
 			allPases = paseDAO.getAllPases();
-			logger.debug("[showFlows] : Obtenidos todos los pases");
+			logger.debug("[showAllFlows] : Obtenidos todos los pases");
 		} catch (Exception e) {
-			allPases = new ArrayList<Pase>();
-			logger.error("[showFlows] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
+			logger.error("[showAllFlows] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
 					e.getStackTrace());
 			return "redirect:/server-error";
 		}
@@ -83,8 +84,8 @@ public class FlowManagementController {
 		// Paso todos los pases a la vista
 		model.addAttribute("allTableItems", allPases);
 
-		logger.debug("[showFlows] : RETURN");
-		return VIEW_PASES_DEF;
+		logger.info("[showAllFlows] : RETURN");
+		return VIEW_FLOWS;
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class FlowManagementController {
 	@RequestMapping(value = "/wizard-nuevo-pase", method = RequestMethod.GET)
 	private String wizardNewFlow(Model model) {
 
-		logger.debug("[wizardNewFlow] : INIT");
+		logger.info("[wizardNewFlow] : INIT");
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -142,7 +143,7 @@ public class FlowManagementController {
 	@ResponseStatus(value = HttpStatus.OK)
 	private @ResponseBody JSONObject handleNewFlowPost(@RequestBody String jsonString) {
 
-		logger.debug("[handleNewFlowPost] : INIT");
+		logger.info("[handleNewFlowPost] : INIT");
 		logger.debug("[handleNewFlowPost] : jsonString : {}", jsonString);
 
 		// Este es el JSON con la página a donde redirigir. Se puede extender
@@ -220,7 +221,7 @@ public class FlowManagementController {
 
 		// Pongo la página a la cual redirigir si todo va bien
 		jsonResponse.put("redirect", "/iQuality/planificar-cargas/");
-		logger.debug("[handleNewFlowPost] : RETURN");
+		logger.info("[handleNewFlowPost] : RETURN");
 		return jsonResponse;
 	}
 
