@@ -169,52 +169,40 @@
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane" id="tab1">
-<%-- 												<form class="cmxform form-horizontal" id="wizard-form" method="post" action="${pageContext.servletContext.contextPath}/post-test"  --%>
-<!-- 													th:action="@{/postTest}" th:object="*{wizardForm1}"> -->
-														<form class="cmxform form-horizontal" id="wizard-form" method="post" action="#">
-													<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-													<div class="form-group">
-														<!-- 												<label class="col-sm-3 control-label col-lg-3" for="inputSuccess">Sistema</label> -->
-														<label class="col-lg-2 control-label">Sistema</label>
-														<div class="col-lg-8">
-															<select class="form-control m-bot15" id="sistema" name="sistema" th:field="*{sistema}">
-																<c:forEach items="${allSystems}" var="system">
-																	<option value="${system.left}">${system.right}</option>
-																</c:forEach>
-															</select>
-														</div>
-
+											<form class="cmxform form-horizontal" id="wizard-form"
+												method="post" action="#">
+												<div class="form-group">
+													<label for="nombrePase" class="col-lg-2 control-label">Nombre
+														del pase</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control"
+															placeholder="Nombre" id="nompase" name="nombrePase"
+															th:field="*{nombrePase}">
 													</div>
-													<div class="form-group">
-														<label for="nombrePase" class="col-lg-2 control-label">Nombre del
-															pase</label>
-														<div class="col-lg-8">
-															<input type="text" class="form-control"
-																placeholder="Nombre" id="nompase" name="nombrePase" th:field="*{nombrePase}">
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="esAtipico" class="col-sm-3 control-label">Es atípico</label>
+												</div>
+												<div class="form-group">
+													<label for="esAtipico" class="col-sm-3 control-label">Es
+														atípico</label>
 
-														<div class="col-sm-9 icheck ">
+													<div class="col-sm-9 icheck ">
 
-															<div class="square-green">
-																<div class="radio ">
-																	<input tabindex="3" type="radio" name="esAtipico" value="S">
-																	<label>Sí</label>
-																</div>
+														<div class="square-green">
+															<div class="radio ">
+																<input tabindex="3" type="radio" name="esAtipico"
+																	value="S"> <label>Sí</label>
 															</div>
-
-															<div class="square-red">
-																<div class="radio ">
-																	<input tabindex="3" type="radio" name="esAtipico" value="N" checked>
-																	<label>No</label>
-																</div>
-															</div>
-
 														</div>
+
+														<div class="square-red">
+															<div class="radio ">
+																<input tabindex="3" type="radio" name="esAtipico"
+																	value="N" checked> <label>No</label>
+															</div>
+														</div>
+
 													</div>
-												</form>
+												</div>
+											</form>
 										</div>
 										<div class="tab-pane" id="tab2">
 											<form class="cmxform form-horizontal" method="post" action=""
@@ -246,9 +234,7 @@
 														</select>
 													</div>
 												</div>
-												<div class="form-group last">
-												
-												</div>
+												<div class="form-group last"></div>
 											</form>
 										</div>
 										<ul class="pager wizard">

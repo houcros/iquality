@@ -131,21 +131,26 @@ $(document).ready(function() {
 		
 		$.ajax({
 			'type': 'POST',
-			'url': '/iQuality/post-test',
+			'url': '/iQuality/planificar-cargas/post-wizard',
 //			'data': datosBasicos, 
 			'data': JSON.stringify(datos), 
 //			'dataType': 'json',
 			'headers': {
 				'Accept': 'application/json',
 		        'Content-Type': 'application/json' 
-			},
-			'success': function(){
-				console.log('mandarina');
 			}
-		}).fail(alert("Error!"));
+		}).done(function(rdata){
+			console.log(rdata);
+			window.location = rdata.redirect;
+			alert('Pase creado.');
+		}).fail(function(rdata){
+			console.log(rdata);
+			window.location = rdata.error;
+			alert('Error al crear.');
+		});
 		
-		alert('Finished!, Starting over!');
-		$('#rootwizard').find("a[href*='tab1']").trigger('click');
+		
+//		$('#rootwizard').find("a[href*='tab1']").trigger('click');
 	});
 	window.prettyPrint && prettyPrint()
 

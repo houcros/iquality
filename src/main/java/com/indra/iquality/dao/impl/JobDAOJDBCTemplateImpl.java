@@ -87,7 +87,7 @@ public class JobDAOJDBCTemplateImpl implements JobDAO {
 			job.setBloque(helper.filterNullString(String.valueOf(jobRow.get("DE_BLOQUE"))));
 
 			jobList.add(job);
-			logger.debug("[{}] : Job {}", "getAll", job);
+			logger.trace("[{}] : Job {}", "getAll", job);
 		}
 		logger.debug("[getAll] : Exiting");
 		return jobList;

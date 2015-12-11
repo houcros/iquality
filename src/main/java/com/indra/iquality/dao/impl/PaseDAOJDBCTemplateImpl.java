@@ -57,7 +57,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 			pase.setSoftware(entorno.getDescripcionSoftware());
 
 			paseList.add(pase);
-			logger.debug("[getAllPases] : pase {}", pase);
+			logger.trace("[getAllPases] : pase {}", pase);
 		}
 		return paseList;
 	}
