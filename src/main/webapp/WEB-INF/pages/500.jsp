@@ -40,7 +40,7 @@
           <div class="error-desk">
               <h2>OOOPS!!!</h2>
               <p class="nrml-txt-alt">Something went wrong.</p>
-              <p>Why not try refreshing your page? Or you can <a href="#" class="sp-link">contact our support</a> if the problem persists.</p>
+              <p>If you're a developer, please check the logs at <b>C:/logsiQuality/</b>. Else, <a href="#" class="sp-link">contact our support</a> if the problem persists.</p>
           </div>
           <a href="index.html" class="back-btn"><i class="fa fa-home"></i> Back To Home</a>
       </section>
