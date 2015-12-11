@@ -91,7 +91,7 @@ public class PasesController {
 
 	@RequestMapping(value = "/{idEjecucion}/jobs", method = RequestMethod.GET)
 	private String getJobsdePase(@PathVariable int idEjecucion, ModelMap model) {
-
+		logger.debug("[getJobsdePase] : Starting");
 		// Get the Spring Context
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
@@ -113,9 +113,8 @@ public class PasesController {
 
 		// Close Spring Context
 		ctx.close();
-		logger.info("[getJobsdePase] -> DONE");
 
-		// Spring uses InternalResourceViewResolver and return back index.jsp
+		logger.debug("[getJobsdePase] : Exiting");
 		return VIEW_JOBS_DE_PASE;
 
 	}

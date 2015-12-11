@@ -19,10 +19,11 @@ import com.indra.iquality.singleton.Entorno;
  */
 public class Pase {
 
+	// Instance variables
 	/** The unique immutable identifier. */
 	private int id;
 
-	/** The descriptive name. */
+	/** The descriptive name of the flow. */
 	private String nombre;
 
 	/**
@@ -50,6 +51,7 @@ public class Pase {
 	 */
 	private Map<String, String[]> dependencias;
 
+	// Constructors
 	/**
 	 * Instantiates a new empty flow.
 	 */
@@ -81,14 +83,14 @@ public class Pase {
 		this.software = Entorno.getInstance().getDescripcionSoftware();
 	}
 
+	// Getters
 	/**
-	 * Sets the unique identifier. Can't (shouldn't) be set more than once.
+	 * Gets the unique identifier.
 	 *
-	 * @param id
-	 *            the new unique identifier
+	 * @return the unique identifier
 	 */
-	public void setId(int id) {
-		this.id = id;
+	public int getId() {
+		return id;
 	}
 
 	/**
@@ -101,6 +103,62 @@ public class Pase {
 	}
 
 	/**
+	 * Gets the typicality of the flow.
+	 *
+	 * @return the typicality
+	 */
+	public String getEsAtipico() {
+		return esAtipico;
+	}
+
+	/**
+	 * Gets the system where the flow is defined.
+	 *
+	 * @return the system
+	 */
+	public String getSistema() {
+		return sistema;
+	}
+
+	/**
+	 * Gets the software version of the system.
+	 *
+	 * @return the software version
+	 */
+	public String getSoftware() {
+		return software;
+	}
+
+	/**
+	 * Gets the identifiers of the jobs of this flow.
+	 *
+	 * @return the identifiers of the jobs
+	 */
+	public String[] getJobs() {
+		return jobs;
+	}
+
+	/**
+	 * Gets the dependencies of the jobs of associated to this flow.
+	 *
+	 * @return a map with the dependencies
+	 */
+	public Map<String, String[]> getDependencias() {
+		return dependencias;
+	}
+
+	// Setters
+	/**
+	 * Sets the unique identifier. Can't (shouldn't) be set more than once.
+	 *
+	 * @param id
+	 *            the new unique identifier
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/**
 	 * Sets the name of the flow.
 	 *
 	 * @param nombre
@@ -108,15 +166,6 @@ public class Pase {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	/**
-	 * Gets the typicality of the flow.
-	 *
-	 * @return the typicality
-	 */
-	public String getEsAtipico() {
-		return esAtipico;
 	}
 
 	/**
@@ -150,15 +199,6 @@ public class Pase {
 	}
 
 	/**
-	 * Gets the identifiers of the jobs of this flow.
-	 *
-	 * @return the identifiers of the jobs
-	 */
-	public String[] getJobs() {
-		return jobs;
-	}
-
-	/**
 	 * Sets the identifiers of the jobs of this flow.
 	 *
 	 * @param jobs
@@ -166,15 +206,6 @@ public class Pase {
 	 */
 	public void setJobs(String[] jobs) {
 		this.jobs = jobs;
-	}
-
-	/**
-	 * Gets the dependencies of the jobs of associated to this flow.
-	 *
-	 * @return a map with the dependencies
-	 */
-	public Map<String, String[]> getDependencias() {
-		return dependencias;
 	}
 
 	/**

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -16,6 +17,7 @@ import com.indra.iquality.singleton.Entorno;
 
 public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(PaseDAOJDBCTemplateImpl.class);
 	private DataSource dataSource;
 	private final CustomHelper helper = new CustomHelper();
 	private Entorno entorno = Entorno.getInstance();
@@ -31,7 +33,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 		// VS.DEFPASE_ROWID y VS.ID_FECHA_CREACION pero no se muestran. Se
 		// quieren mostrar?
 		String query = "SELECT"
-				+ " VS.ID_PASE, VS.DE_PASE, DECODE(VS.ID_SN_PASE_ATIPICO,'N','No','S','Sí') AS ID_SN_PASE_ATIPICO,"
+				+ " VS.ID_PASE, VS.DE_PASE, DECODE(VS.ID_SN_PASE_ATIPICO,'N','No','S','Sí') AS ID_SN_PASE_ATIPICO"
 				+ " FROM VS_MET_PLA_DEF_PASE VS , LK_MET_IQ_SOFTWARE S WHERE VS.ID_SISTEMA = ? AND"
 				+ " VS.ID_SOFTWARE = ?";
 
@@ -55,6 +57,7 @@ public class PaseDAOJDBCTemplateImpl implements PaseDAO {
 			pase.setSoftware(entorno.getDescripcionSoftware());
 
 			paseList.add(pase);
+			logger.debug("[getAllPases] : pase {}", pase);
 		}
 		return paseList;
 	}

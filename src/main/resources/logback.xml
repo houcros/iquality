@@ -2,24 +2,52 @@
 <!DOCTYPE xml>
 
 <configuration>
-    
+
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-
-			<Pattern>
+		<encoder>
+			<!-- By default, encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+			<pattern>
 				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
-			</Pattern>
+			</pattern>
+		</encoder>
+	</appender>
 
-		</layout>
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+		<file>c:/logsiQuality/logFile.log</file>
+
+		<!-- From logback manual: "Indeed, TimeBasedTriggeringPolicy implements 
+			both RollingPolicy and TriggeringPolicy interfaces." -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<!-- By default, encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
+			<pattern>%-4relative [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+
 	</appender>
 
 	<logger name="com.indra.iquality.controller" level="debug"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</logger>
+	
+	<logger name="com.indra.iquality.dao.impl" level="debug"
+		additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<root level="error">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
 	</root>
 
 </configuration>

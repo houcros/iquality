@@ -5,18 +5,20 @@ package com.indra.iquality.model;
 
 import java.sql.Date;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Job. Represents an atomic step in an ETL process flow.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.5, 10-dic-2015
+ * @version 0.5, 11-dic-2015
  * 
  *          The Class Job.
  */
 public class Job {
 
-	/** The id job. */
+	// Instance variables
 	// PK = id_job + id_ejecucion
+	/** The id job. */
 	private String idJob;
 
 	/** The id ejecucion. */
@@ -53,11 +55,121 @@ public class Job {
 	private String sistema;
 
 	/**
+	 * Gets the id job.
+	 *
+	 * @return the id job
+	 */
+	// Getters
+	public String getIdJob() {
+		return idJob;
+	}
+
+	/**
+	 * Gets the id ejecucion.
+	 *
+	 * @return the id ejecucion
+	 */
+	public String getIdEjecucion() {
+		return idEjecucion;
+	}
+
+	/**
+	 * Gets the estado.
+	 *
+	 * @return the estado
+	 */
+	public String getEstado() {
+		return estado;
+	}
+
+	/**
+	 * Gets the fecha inicio.
+	 *
+	 * @return the fecha inicio
+	 */
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	/**
+	 * Gets the fecha fin.
+	 *
+	 * @return the fecha fin
+	 */
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	/**
+	 * Gets the punto de control.
+	 *
+	 * @return the punto de control
+	 */
+	public String getPuntoDeControl() {
+		return puntoDeControl;
+	}
+
+	/**
+	 * Gets the fecha ok punto de control.
+	 *
+	 * @return the fecha ok punto de control
+	 */
+	public Date getFechaOKPuntoDeControl() {
+		return fechaOKPuntoDeControl;
+	}
+
+	/**
+	 * Gets the duracion.
+	 *
+	 * @return the duracion
+	 */
+	public String getDuracion() {
+		return duracion;
+	}
+
+	/**
+	 * Gets the id bloque.
+	 *
+	 * @return the id bloque
+	 */
+	public String getIdBloque() {
+		return idBloque;
+	}
+
+	/**
+	 * Gets the bloque.
+	 *
+	 * @return the bloque
+	 */
+	public String getBloque() {
+		return bloque;
+	}
+
+	/**
+	 * Gets the software.
+	 *
+	 * @return the software
+	 */
+	public int getSoftware() {
+		return software;
+	}
+
+	/**
+	 * Gets the sistema.
+	 *
+	 * @return the sistema
+	 */
+	public String getSistema() {
+		return sistema;
+	}
+
+	/**
 	 * Sets the id job.
 	 *
 	 * @param idJob
 	 *            the new id job
 	 */
+	// Setters
 	public void setIdJob(String idJob) {
 		this.idJob = idJob;
 	}
@@ -90,15 +202,6 @@ public class Job {
 	 */
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
-	}
-
-	/**
-	 * Gets the fecha fin.
-	 *
-	 * @return the fecha fin
-	 */
-	public Date getFechaFin() {
-		return fechaFin;
 	}
 
 	/**

@@ -70,6 +70,7 @@
 										class="display table table-bordered" id="hidden-table-pases">
 										<thead>
 											<tr>
+												<th><div style="width: 20px;"></div></th>
 												<th>Ejecuci&oacute;n</th>
 												<th>Pase</th>
 												<th class="hidden-phone"><div style="width: 50px;">Estado</div></th>
@@ -86,9 +87,14 @@
 										<tbody>
 											<c:forEach items="${allTableItems}" var="item">
 												<tr class="gradeA">
-													<!-- 					    <tr class="gradeX">       -->
-													<!-- 					    <tr class="gradeC">       -->
-													<!-- 					    <tr class="gradeU">       -->
+												<!-- <tr class="gradeX"> -->
+												<!-- <tr class="gradeC"> -->
+												<!-- <tr class="gradeU"> -->
+													<td class="center">
+														<a href=${requestScope['javax.servlet.forward.request_uri']}${'/'}${item.idEjecucion}${"/jobs"}>
+															<img src="/iQuality/resources/images/details_open.png">
+														</a>
+													</td>
 													<td class="center hidden-phone">${item.idEjecucion}</td>
 													<td class="center hidden-phone">${item.pase}</td>
 													<td class="center hidden-phone"><c:choose>

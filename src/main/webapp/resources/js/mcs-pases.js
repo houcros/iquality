@@ -5,22 +5,6 @@ $(document).ready(function() {
     } );
 
     /*
-     * Insert a 'details' column to the table
-     */
-    var nCloneTh = document.createElement( 'th' );
-    var nCloneTd = document.createElement( 'td' );
-    nCloneTd.innerHTML = '<img src="/iQuality/resources/images/details_open.png" style="cursor:pointer;">';
-    nCloneTd.className = "center";
-
-    $('#hidden-table-pases thead tr').each( function () {
-        this.insertBefore( nCloneTh, this.childNodes[0] );
-    } );
-
-    $('#hidden-table-pases tbody tr').each( function () {
-        this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
-    } );
-
-    /*
      * Initialse DataTables, with no sorting on the 'details' column
      */
     var oTable = $('#hidden-table-pases').dataTable( {
