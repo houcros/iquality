@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.indra.iquality.dao.JobDAO;
-import com.indra.iquality.dao.PaseDAO;
+import com.indra.iquality.dao.FlowDAO;
 import com.indra.iquality.model.Job;
-import com.indra.iquality.model.Pase;
+import com.indra.iquality.model.Flow;
 
 /**
  * The Class FlowManagmentController. Handles all the requests related to the
@@ -67,11 +67,11 @@ public class FlowManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
+		FlowDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", FlowDAO.class);
 		ctx.close();
 
 		// Obtengo todos los pases
-		List<Pase> allPases = null;
+		List<Flow> allPases = null;
 		try {
 			allPases = paseDAO.getAllPases();
 			logger.debug("[showAllFlows] : Obtenidos todos los pases");
@@ -199,10 +199,10 @@ public class FlowManagementController {
 			}
 
 			// Creo el pase con los datos del JSON y lo que acabo de parsear
-			Pase pase = new Pase((String) json.get("nombrePase"), (String) json.get("esAtipico"), jobs, dependencias);
+			Flow pase = new Flow((String) json.get("nombrePase"), (String) json.get("esAtipico"), jobs, dependencias);
 			// Inserto el pase mediante el DAO
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			PaseDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", PaseDAO.class);
+			FlowDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", FlowDAO.class);
 			ctx.close();
 			paseDAO.insertPase(pase);
 

@@ -13,11 +13,11 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="paseDAOJDBCTemplate" class="com.indra.iquality.dao.impl.PaseDAOJDBCTemplateImpl">
+	<bean id="flowDAOJDBCTemplate" class="com.indra.iquality.dao.impl.FlowDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="ejecucionDAOJDBCTemplate" class="com.indra.iquality.dao.impl.EjecucionDAOJDBCTemplateImpl">
+	<bean id="executionDAOJDBCTemplate" class="com.indra.iquality.dao.impl.ExecutionDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
@@ -25,7 +25,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="dependenciaDeJobDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DependenciaDeJobDAOJDBCTemplateImpl">
+	<bean id="dependencyDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DependencyDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
@@ -33,35 +33,23 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="registroDeOperacionDAOJDBCTemplate" class="com.indra.iquality.dao.impl.RegistroDeOperacionDAOJDBCTemplateImpl">
+	<bean id="registerOfOperationsDAOJDBCTemplate" class="com.indra.iquality.dao.impl.RegisterOfOperationsDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="trazaDeRegistroDAOJDBCTemplate" class="com.indra.iquality.dao.impl.TrazaDeRegistroDAOJDBCTemplateImpl">
+	<bean id="traceOfRegisterDAOJDBCTemplate" class="com.indra.iquality.dao.impl.TraceOfRegisterDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="descripcionAtributoDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DescripcionAtributoDAOJDBCTemplateImpl">
+	<bean id="businessCertificateDAOJDBCTemplate" class="com.indra.iquality.dao.impl.BusinessCertificateDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="descripcionAtributoMaestroDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DescripcionAtributoMaestroDAOJDBCTemplateImpl">
+	<bean id="technicalCertificateDAOJDBCTemplate" class="com.indra.iquality.dao.impl.TechnicalCertificateDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="descripcionIndicadorDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DescripcionIndicadorDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="certificacionDeNegocioDAOJDBCTemplate" class="com.indra.iquality.dao.impl.CertificacionDeNegocioDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="validacionTecnicaDAOJDBCTemplate" class="com.indra.iquality.dao.impl.ValidacionTecnicaDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="sistemaDAOJDBCTemplate" class="com.indra.iquality.dao.impl.SistemaDAOJDBCTemplateImpl">
+	<bean id="environmentDAOJDBCTemplate" class="com.indra.iquality.dao.impl.EnvironmentDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	

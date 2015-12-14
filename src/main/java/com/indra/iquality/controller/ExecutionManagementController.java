@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.indra.iquality.dao.EjecucionDAO;
+import com.indra.iquality.dao.ExecutionDAO;
 import com.indra.iquality.dao.JobDAO;
-import com.indra.iquality.dao.RegistroDeOperacionDAO;
-import com.indra.iquality.model.Ejecucion;
+import com.indra.iquality.dao.RegisterOfOperationsDAO;
+import com.indra.iquality.model.Execution;
 import com.indra.iquality.model.Job;
-import com.indra.iquality.model.RegistroDeOperacion;
+import com.indra.iquality.model.RegisterOfOperation;
 
 /**
  * The Class ExecutionManagementController. Handles all the requests related to
@@ -64,11 +64,11 @@ public class ExecutionManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		EjecucionDAO ejecucionDAO = ctx.getBean("ejecucionDAOJDBCTemplate", EjecucionDAO.class);
+		ExecutionDAO ejecucionDAO = ctx.getBean("ejecucionDAOJDBCTemplate", ExecutionDAO.class);
 		ctx.close();
 
 		// Obtengo todas la ejecuciones
-		List<Ejecucion> allEjecuciones = null;
+		List<Execution> allEjecuciones = null;
 		try {
 			allEjecuciones = ejecucionDAO.getAllEjecuciones();
 			logger.debug("[showAllExecutions] : Obtenidos todas las ejecuciones");
@@ -102,12 +102,12 @@ public class ExecutionManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		EjecucionDAO ejecucionDAO = ctx.getBean("ejecucionDAOJDBCTemplate", EjecucionDAO.class);
+		ExecutionDAO ejecucionDAO = ctx.getBean("ejecucionDAOJDBCTemplate", ExecutionDAO.class);
 		ctx.close();
 
 		// Obtengo una ejecución. Será una lista de un elemento en vez de una
 		// Execution para aprovechar la misma vista
-		List<Ejecucion> unaEjecucion = new ArrayList<Ejecucion>();
+		List<Execution> unaEjecucion = new ArrayList<Execution>();
 		try {
 			unaEjecucion.add(ejecucionDAO.getById(idEjecucion));
 			logger.debug("[showExecution] : Obtenida la ejecución con id {}", idEjecucion);
@@ -186,12 +186,12 @@ public class ExecutionManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		RegistroDeOperacionDAO registroDeOperacionDAO = ctx.getBean("registroDeOperacionDAOJDBCTemplate",
-				RegistroDeOperacionDAO.class);
+		RegisterOfOperationsDAO registroDeOperacionDAO = ctx.getBean("registroDeOperacionDAOJDBCTemplate",
+				RegisterOfOperationsDAO.class);
 		ctx.close();
 
 		// Obtengo todos los registros de operaciones del job
-		List<RegistroDeOperacion> registroDeOperaciones = null;
+		List<RegisterOfOperation> registroDeOperaciones = null;
 		try {
 			registroDeOperaciones = registroDeOperacionDAO.getAll(idEjecucion, idJob);
 			logger.debug(

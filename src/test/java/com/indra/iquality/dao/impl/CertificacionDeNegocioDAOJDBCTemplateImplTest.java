@@ -9,9 +9,9 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.indra.iquality.dao.CertificacionDeNegocioDAO;
-import com.indra.iquality.model.CertificacionDeNegocio;
-import com.indra.iquality.model.DetalleDeCertificacion;
+import com.indra.iquality.dao.BusinessCertificateDAO;
+import com.indra.iquality.model.BusinessCertificate;
+import com.indra.iquality.model.DetailOfCertificate;
 
 public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
@@ -20,11 +20,11 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 	public void testGetAll() {
 		
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
-		List<CertificacionDeNegocio> cdnList= cdnDAO.getAll();
+		BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", BusinessCertificateDAO.class);
+		List<BusinessCertificate> cdnList= cdnDAO.getAll();
 		ctx.close();
 		
-		CertificacionDeNegocio cdn = new CertificacionDeNegocio();
+		BusinessCertificate cdn = new BusinessCertificate();
 		
 		assertEquals(cdnList.size(), 7);
 		
@@ -55,8 +55,8 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 	public void testGetHeadersDetalles(){
 		
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
-		List<String> headerList= cdnDAO.getHeadersDetalles("METR_CERT_CNT_SALDO_ACTUAL");
+		BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", BusinessCertificateDAO.class);
+		List<String> headerList= cdnDAO.getDetailHeaders("METR_CERT_CNT_SALDO_ACTUAL");
 		ctx.close();
 		
 		assertEquals(headerList.size(), 2);
@@ -73,8 +73,8 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 	public void testGetDetallesDeCertificacion(){
 		
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", CertificacionDeNegocioDAO.class);
-		List<DetalleDeCertificacion> detallesList= cdnDAO.getDetallesDeCertificacion("201306", "METR_CERT_CNT_SALDO_ACTUAL", 2);
+		BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate", BusinessCertificateDAO.class);
+		List<DetailOfCertificate> detallesList= cdnDAO.getCertificateDetails("201306", "METR_CERT_CNT_SALDO_ACTUAL", 2);
 		ctx.close();
 		
 		assertEquals(detallesList.size(), 6);

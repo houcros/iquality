@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.indra.iquality.dao.CertificacionDeNegocioDAO;
-import com.indra.iquality.dao.ValidacionTecnicaDAO;
-import com.indra.iquality.model.CertificacionDeNegocio;
-import com.indra.iquality.model.DetalleDeCertificacion;
-import com.indra.iquality.model.DetalleDeValidacion;
-import com.indra.iquality.model.ValidacionTecnica;
+import com.indra.iquality.dao.BusinessCertificateDAO;
+import com.indra.iquality.dao.TechnicalCertificateDAO;
+import com.indra.iquality.model.BusinessCertificate;
+import com.indra.iquality.model.DetailOfCertificate;
+import com.indra.iquality.model.DetailOfValidation;
+import com.indra.iquality.model.TechnicalCertificate;
+import com.indra.iquality.singleton.Environment;
 
 /**
  * The Class CertificatesResultController. Handles all the requests related to
@@ -39,6 +40,9 @@ public class CertificatesResultController {
 
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(CertificatesResultController.class);
+
+	/** The Constant reference to the environment. */
+	private final static Environment environment = Environment.getInstance();
 
 	/**
 	 * The Constant pointing to the view of all the business certificates.
@@ -94,11 +98,12 @@ public class CertificatesResultController {
 		if (tab == TAB_VAL_BUSSINESS_CERTIFICATE) {
 
 			// En esta pestaña muestro las certificaciones de negocio
-			CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate",
-					CertificacionDeNegocioDAO.class);
+			BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate",
+					BusinessCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las certificaciones y las paso a la vista
-			List<CertificacionDeNegocio> allCertificaciones = cdnDAO.getAll();
+			List<BusinessCertificate> allCertificaciones = cdnDAO.getAll(environment.getIdSistema(),
+					environment.getIdSoftware());
 			model.addAttribute("allTableItems", allCertificaciones);
 
 			logger.info("[getCertificates] : RETURN (from tab {})", tab);
@@ -107,10 +112,10 @@ public class CertificatesResultController {
 		} else if (tab == TAB_VAL_TECHNICAL_CERTIFICATE) {
 
 			// En esta pestaña muestro las validaciones técnicas
-			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
+			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", TechnicalCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las validaciones y las paso a la vista
-			List<ValidacionTecnica> allValidaciones = vtDAO.getAll();
+			List<TechnicalCertificate> allValidaciones = vtDAO.getAll();
 			model.addAttribute("allTableItems", allValidaciones);
 
 			logger.info("[getCertificates] : RETURN (from tab {})", tab);
@@ -165,17 +170,18 @@ public class CertificatesResultController {
 
 			// En esta pestaña muestro los detalles de una certificación de
 			// negocio
-			CertificacionDeNegocioDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate",
-					CertificacionDeNegocioDAO.class);
+			BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate",
+					BusinessCertificateDAO.class);
 			ctx.close();
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
-			List<String> allHeaders = cdnDAO.getHeadersDetalles(idMetrica);
+			List<String> allHeaders = cdnDAO.getDetailHeaders(idMetrica, environment.getIdSistema(),
+					environment.getIdSoftware());
 			int numDims = allHeaders.size();
 			// Por completitud, agrego headers STUB para rellenar hasta el
 			// número máximo, aunque es prescindible
-			while (allHeaders.size() < DetalleDeCertificacion.MAX_DIMENSIONES)
+			while (allHeaders.size() < DetailOfCertificate.MAX_DIMENSIONES)
 				allHeaders.add("_STUB");
 			// Pongo todos los headers en la vista
 			int aux_count = 0;
@@ -186,8 +192,8 @@ public class CertificatesResultController {
 
 			// Obtengo todos valores de cada columna de la tabla de detalle y
 			// los pongo en la vista
-			List<DetalleDeCertificacion> allDetallesDeCert = cdnDAO.getDetallesDeCertificacion(idMes, idMetrica,
-					numDims);
+			List<DetailOfCertificate> allDetallesDeCert = cdnDAO.getCertificateDetails(idMes, idMetrica, numDims,
+					environment.getIdSistema(), environment.getIdSoftware());
 			model.addAttribute("allTableItems", allDetallesDeCert);
 			// Suelto una cookie con el número de dimensiones para que el
 			// frontend sepa qué dimensiones (columnas de la tabla) mostrar: las
@@ -202,12 +208,12 @@ public class CertificatesResultController {
 			// En esta pestaña muestro los detalles de una validación técnica
 			// ATENCIÓN: el orden de los métodos es inverso al de la pestaña
 			// anterior
-			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
+			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", TechnicalCertificateDAO.class);
 			ctx.close();
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
-			List<DetalleDeValidacion> allDetallesDeVali = vtDAO.getDetallesDeValidacion(idMetrica, idMes);
+			List<DetailOfValidation> allDetallesDeVali = vtDAO.getDetallesDeValidacion(idMetrica, idMes);
 			// ATENCIÓN: Hay que llamar a getDetallesDeValidacion antes de estos
 			// dos métodos o no funcionrá como se espera!
 			List<String> allHeaders = vtDAO.getHeaders();

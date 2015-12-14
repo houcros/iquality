@@ -25,18 +25,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.io.Files;
 import com.google.gson.Gson;
-import com.indra.iquality.dao.DependenciaDeJobDAO;
-import com.indra.iquality.dao.DescripcionAtributoDAO;
-import com.indra.iquality.dao.DescripcionAtributoMaestroDAO;
-import com.indra.iquality.dao.DescripcionIndicadorDAO;
+import com.indra.iquality.dao.DependencyDAO;
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
-import com.indra.iquality.dao.TrazaDeRegistroDAO;
+import com.indra.iquality.dao.TraceOfRegisterDAO;
 import com.indra.iquality.model.ConceptTypeEnum;
-import com.indra.iquality.model.Dependencia;
-import com.indra.iquality.model.DescripcionAtributo;
+import com.indra.iquality.model.Dependency;
 import com.indra.iquality.model.DescripcionIndicador;
+import com.indra.iquality.model.DescriptionOfAttribute;
 import com.indra.iquality.model.DictionaryConcept;
-import com.indra.iquality.model.TrazaDeRegistro;
+import com.indra.iquality.model.RegisterTrace;
+import com.indra.iquality.singleton.Environment;
 import com.indra.iquality.translator.ConceptsToTreeTranslator;
 import com.indra.iquality.translator.TreeToJSONTranslator;
 import com.indra.iquality.tree.GenericTreeNode;
@@ -56,6 +54,9 @@ public class APIController {
 
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(APIController.class);
+
+	/** The Constant reference to the environment. */
+	private final static Environment environment = Environment.getInstance();
 
 	/**
 	 * The Constant representing the path where to save the verbose (extra)
@@ -140,11 +141,11 @@ public class APIController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		TrazaDeRegistroDAO trazaDeRegistroDAO = ctx.getBean("trazaDeRegistroDAOJDBCTemplate", TrazaDeRegistroDAO.class);
+		TraceOfRegisterDAO trazaDeRegistroDAO = ctx.getBean("trazaDeRegistroDAOJDBCTemplate", TraceOfRegisterDAO.class);
 		ctx.close();
 
 		// Obtengo todas las trazas
-		List<TrazaDeRegistro> allTrazaDeRegistro = null;
+		List<RegisterTrace> allTrazaDeRegistro = null;
 		try {
 			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion);
 			logger.debug("[getOperationTrace] : Obtenidas todas las trazas");
@@ -155,7 +156,7 @@ public class APIController {
 
 		// Parseo las trazas a un JSONArray
 		JSONArray jsonArray = new JSONArray();
-		for (TrazaDeRegistro trazaDeRegistro : allTrazaDeRegistro) {
+		for (RegisterTrace trazaDeRegistro : allTrazaDeRegistro) {
 			logger.debug("[getOperationTrace] : Parseando traza " + trazaDeRegistro.toString());
 			jsonArray.add(trazaDeRegistro);
 		}
@@ -180,14 +181,14 @@ public class APIController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		DependenciaDeJobDAO dependenciaDeJobDAO = ctx.getBean("dependenciaDeJobDAOJDBCTemplate",
-				DependenciaDeJobDAO.class);
+		DependencyDAO dependenciaDeJobDAO = ctx.getBean("dependencyDAOJDBCTemplate", DependencyDAO.class);
 		ctx.close();
 
 		// Obtengo todas las dependencias
-		List<Dependencia> allDependencias = null;
+		List<Dependency> allDependencias = null;
 		try {
-			allDependencias = dependenciaDeJobDAO.getAll(idEjecucion, idJob);
+			allDependencias = dependenciaDeJobDAO.getAll(idEjecucion, idJob, environment.getIdSistema(),
+					environment.getIdSoftware());
 			logger.debug("[getJobDependencies] : Obtenidas todas las dependencias del job {} para la ejecuión {}",
 					idJob, idEjecucion);
 		} catch (Exception e) {
@@ -197,7 +198,7 @@ public class APIController {
 
 		// Parseo las dependencias a un JSONArray
 		JSONArray jsonArray = new JSONArray();
-		for (Dependencia dependencia : allDependencias) {
+		for (Dependency dependencia : allDependencias) {
 			logger.debug("[getJobDependencies] : Parseando dependencia " + dependencia.toString());
 			jsonArray.add(dependencia);
 		}
@@ -252,7 +253,8 @@ public class APIController {
 		// Leo todos los nodos del diccionario
 		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
 		try {
-			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAll();
+			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAllConcepts(environment.getIdSistema(),
+					environment.getIdSoftware());
 			logger.debug("[auxiliaryUpdateDictionaryCache] : Obtenidos todos los nodos del diccionario.");
 		} catch (Exception e) {
 			logger.error("[auxiliaryUpdateDictionaryCache] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
@@ -397,10 +399,11 @@ public class APIController {
 
 			// Abro el contexto para el DAO
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			DescripcionAtributoDAO descripcionAtributoDAO = ctx.getBean("descripcionAtributoDAOJDBCTemplate",
-					DescripcionAtributoDAO.class);
+			DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate",
+					DictionaryOfConceptsDAO.class);
 			ctx.close();
-			DescripcionAtributo da = descripcionAtributoDAO.getById(compRowID, ctRowID);
+			DescriptionOfAttribute da = dictionaryOfConceptsDAO.getDescriptionOfAttribute(compRowID, ctRowID,
+					environment.getIdSistema(), environment.getIdSoftware());
 
 			// Parseo (redundante?)
 			String jsonString = new Gson().toJson(da);
@@ -425,10 +428,11 @@ public class APIController {
 
 			// Abro el contexto para el DAO
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			DescripcionAtributoMaestroDAO descripcionAtributoMaestroDAO = ctx
-					.getBean("descripcionAtributoMaestroDAOJDBCTemplate", DescripcionAtributoMaestroDAO.class);
+			DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate",
+					DictionaryOfConceptsDAO.class);
 			ctx.close();
-			DescripcionAtributo da = descripcionAtributoMaestroDAO.getById(compRowID, ctRowID);
+			DescriptionOfAttribute da = dictionaryOfConceptsDAO.getDescriptionOfMasterAttribute(compRowID, ctRowID,
+					environment.getIdSistema(), environment.getIdSoftware());
 
 			// Parseo (redundante?)
 			String jsonString = new Gson().toJson(da);
@@ -453,10 +457,11 @@ public class APIController {
 
 			// Abro el contexto para el DAO
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			DescripcionIndicadorDAO descripcionIndicadorDAO = ctx.getBean("descripcionIndicadorDAOJDBCTemplate",
-					DescripcionIndicadorDAO.class);
+			DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate",
+					DictionaryOfConceptsDAO.class);
 			ctx.close();
-			DescripcionIndicador di = descripcionIndicadorDAO.getById(compRowID, ctRowID);
+			DescripcionIndicador di = dictionaryOfConceptsDAO.getDescriptionOfIndicator(compRowID, ctRowID,
+					environment.getIdSistema(), environment.getIdSoftware());
 
 			// Parseo (redundante?)
 			String jsonString = new Gson().toJson(di);

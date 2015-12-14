@@ -1,6 +1,6 @@
 package com.indra.iquality.model;
 
-public class DescripcionAtributoMaestro extends DescripcionAtributo {
+public class DescripcionAtributoMaestro extends DescriptionOfAttribute {
 
 	// Datos entidad maestro del atributo
 	private String historicoMaestro;
@@ -9,7 +9,7 @@ public class DescripcionAtributoMaestro extends DescripcionAtributo {
 	private String metodoObtencionMaestro;
 	
 	
-	public DescripcionAtributoMaestro(DescripcionAtributo da) {
+	public DescripcionAtributoMaestro(DescriptionOfAttribute da) {
 //		this.id = da.getId();
 		this.nombre = da.getNombre();
 		this.responsable = da.getResponsable();

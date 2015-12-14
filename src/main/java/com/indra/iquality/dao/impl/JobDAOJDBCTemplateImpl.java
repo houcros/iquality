@@ -13,13 +13,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.helper.CustomHelper;
 import com.indra.iquality.model.Job;
-import com.indra.iquality.singleton.Entorno;
+import com.indra.iquality.singleton.Environment;
 
 public class JobDAOJDBCTemplateImpl implements JobDAO {
 
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(JobDAOJDBCTemplateImpl.class);
 	private DataSource dataSource;
-	private Entorno sistema = Entorno.getInstance();
+	private Environment sistema = Environment.getInstance();
 
 	// Debugging
 	// private final static org.slf4j.Logger logger =

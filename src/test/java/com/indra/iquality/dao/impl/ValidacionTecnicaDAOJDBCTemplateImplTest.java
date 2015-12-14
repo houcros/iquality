@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.indra.iquality.dao.ValidacionTecnicaDAO;
-import com.indra.iquality.model.ValidacionTecnica;
+import com.indra.iquality.dao.TechnicalCertificateDAO;
+import com.indra.iquality.model.TechnicalCertificate;
 
 public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 
@@ -22,11 +22,11 @@ public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 	public void testGetAll() {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
-		List<ValidacionTecnica> vtList = vtDAO.getAll();
+		TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", TechnicalCertificateDAO.class);
+		List<TechnicalCertificate> vtList = vtDAO.getAll();
 		ctx.close();
 
-		ValidacionTecnica vt = new ValidacionTecnica();
+		TechnicalCertificate vt = new TechnicalCertificate();
 
 		vt.setIdMetrica("METR_VAL_CNT_CUENTAS_CONTABLES_NO_EXISTENTE_EMPR");
 		vt.setIdMes("201304");
