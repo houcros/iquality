@@ -21,7 +21,6 @@ import com.indra.iquality.model.Ejecucion;
 import com.indra.iquality.model.Job;
 import com.indra.iquality.model.RegistroDeOperacion;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ExecutionManagementController. Handles all the requests related to
  * the management (mainly reads) related with executions of ETL flows, as well

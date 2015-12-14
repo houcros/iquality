@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.indra.iquality.controller;
 
 import java.util.List;
@@ -21,20 +24,64 @@ import com.indra.iquality.model.DetalleDeCertificacion;
 import com.indra.iquality.model.DetalleDeValidacion;
 import com.indra.iquality.model.ValidacionTecnica;
 
+/**
+ * The Class CertificatesResultController. Handles all the requests related to
+ * the management (mainly reads) related with certificates.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 14-dic-2015
+ * 
+ *          The Class CertificatesResultController.
+ */
 @Controller
 @RequestMapping("/resultado-certificaciones")
 public class CertificatesResultController {
 
+	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(CertificatesResultController.class);
 
-	private static final String VIEW_INDEX = "index";
+	/**
+	 * The Constant pointing to the view of all the business certificates.
+	 */
 	private static final String VIEW_BUSINESS_CERTIFICATES = "certificaciones-de-negocio";
+
+	/**
+	 * The Constant pointing to a detailed view of a business certificates.
+	 */
 	private static final String VIEW_BUSINESS_CERTIFICATES_DETAIL = "certificaciones-de-negocio-detalle";
+
+	/**
+	 * The Constant pointing to the view of all the technical certificates.
+	 */
 	private static final String VIEW_TECHNICAL_CERTIFICATES = "validaciones-tecnicas";
+
+	/**
+	 * The Constant pointing to a detailed view of a technical certificates.
+	 */
 	private static final String VIEW_TECHNICAL_CERTIFICATES_DETAIL = "validaciones-tecnicas-detalle";
+
+	/**
+	 * The Constant to represent the first tab.
+	 */
 	private static final int TAB_VAL_BUSSINESS_CERTIFICATE = 1;
+
+	/**
+	 * The Constant to represent the second tab.
+	 */
 	private static final int TAB_VAL_TECHNICAL_CERTIFICATE = 2;
 
+	/**
+	 * Handles a GET request to display all the certificates of a given type for
+	 * the current system and software version.
+	 *
+	 * @param tab
+	 *            the type of certificates to view; currently supports
+	 *            {@link #TAB_VAL_BUSSINESS_CERTIFICATE} and
+	 *            {@link #TAB_VAL_TECHNICAL_CERTIFICATE}.
+	 * @param model
+	 *            the model to pass data to the view
+	 * @return the view to display
+	 */
 	@RequestMapping(value = "/{tab}", method = RequestMethod.GET)
 	private String getCertificates(@PathVariable int tab, ModelMap model) {
 
@@ -80,6 +127,28 @@ public class CertificatesResultController {
 
 	}
 
+	/**
+	 * Handles a GET request to display the detailed view of a certificate of a
+	 * given type for the current system and software version. As the detailed
+	 * tables have a variable number of columns, this method leaves a cookie in
+	 * the browser so that the frontend knows how many columns to display.
+	 *
+	 * @param tab
+	 *            the type of certificates to view; currently supports
+	 *            {@link #TAB_VAL_BUSSINESS_CERTIFICATE} and
+	 *            {@link #TAB_VAL_TECHNICAL_CERTIFICATE}.
+	 * @param idMetrica
+	 *            the metrics for which to check the certificate; submit as part
+	 *            of the query string
+	 * @param idMes
+	 *            the month for which to check the certificate; submit as part
+	 *            of the query string
+	 * @param model
+	 *            the model to pass data to the view
+	 * @param response
+	 *            needed to add cookies
+	 * @return the view to display
+	 */
 	@RequestMapping(value = "/{tab}/detalle", method = RequestMethod.GET)
 	private String getDetailsOfCertificate(@PathVariable int tab,
 			@RequestParam(value = "idMet", required = true) String idMetrica,
@@ -131,31 +200,43 @@ public class CertificatesResultController {
 		} else if (tab == TAB_VAL_TECHNICAL_CERTIFICATE) {
 
 			// En esta pestaña muestro los detalles de una validación técnica
+			// ATENCIÓN: el orden de los métodos es inverso al de la pestaña
+			// anterior
 			ValidacionTecnicaDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", ValidacionTecnicaDAO.class);
 			ctx.close();
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
 			List<DetalleDeValidacion> allDetallesDeVali = vtDAO.getDetallesDeValidacion(idMetrica, idMes);
-
-			int numCols = vtDAO.getLastNumCols();
+			// ATENCIÓN: Hay que llamar a getDetallesDeValidacion antes de estos
+			// dos métodos o no funcionrá como se espera!
 			List<String> allHeaders = vtDAO.getHeaders();
-
-			// Pongo los headers en el jsp
+			int numCols = vtDAO.getLastNumCols();
+			// Pongo todos los headers en la vista
 			int aux_count = 0;
 			for (String s : allHeaders) {
 				String aux = "headerDim" + String.valueOf(++aux_count);
 				model.addAttribute(aux, s);
 			}
-
+			// Pongo todos los detalles en la vista
 			model.addAttribute("allTableItems", allDetallesDeVali);
 
+			// Suelto una cookie con el número de dimensiones para que el
+			// frontend sepa qué dimensiones (columnas de la tabla) mostrar: las
+			// numCols primeras
 			response.addCookie(new Cookie("numCols", String.valueOf(numCols)));
-			// logger.info(allValidaciones.get(0).toString());
+
+			logger.info("[getDetailsOfCertificate] : RETURN (from tab {})", tab);
 			return VIEW_TECHNICAL_CERTIFICATES_DETAIL;
+
 		} else {
+			// Si no es ninguna de las pestañas anteriores, la página no existe
 			ctx.close();
-			return VIEW_INDEX;
+			logger.warn(
+					"[getDetailsOfCertificate] : El usuario ha pedido una pestaña de certificaciones que no existe : {}",
+					tab);
+			logger.info("[getDetailsOfCertificate] : RETURN (from invalid tab {})", tab);
+			return "redirect:/not-found";
 		}
 
 	}
