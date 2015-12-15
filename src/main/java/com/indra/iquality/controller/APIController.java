@@ -257,8 +257,9 @@ public class APIController {
 					environment.getIdSoftware());
 			logger.debug("[auxiliaryUpdateDictionaryCache] : Obtenidos todos los nodos del diccionario.");
 		} catch (Exception e) {
-			logger.error("[auxiliaryUpdateDictionaryCache] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
-					e.getMessage(), e.getStackTrace());
+			logger.error("[auxiliaryUpdateDictionaryCache] : Excepción <{}> | Ayuda: {} | Stacktrace: ", e.getClass(),
+					e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 
@@ -308,6 +309,7 @@ public class APIController {
 			return false;
 		}
 
+		logger.info("[auxiliaryUpdateDictionaryCache] : ACTUALIZADA CACHE");
 		logger.info("[auxiliaryUpdateDictionaryCache] : RETURN");
 		return true;
 

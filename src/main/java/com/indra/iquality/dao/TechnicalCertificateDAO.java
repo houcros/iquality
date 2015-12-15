@@ -15,7 +15,7 @@ import com.indra.iquality.model.TechnicalCertificate;
  * @author Ignacio N. Lucero Ascencio
  * @version 0.1, 09/12/15
  * 
- * La Interface ValidacionTecnicaDAO.
+ *          La Interface ValidacionTecnicaDAO.
  */
 public interface TechnicalCertificateDAO {
 
@@ -24,13 +24,15 @@ public interface TechnicalCertificateDAO {
 	 *
 	 * @return el all
 	 */
-	public List<TechnicalCertificate> getAll();
+	public List<TechnicalCertificate> getAll(String sistema, int software);
 
 	/**
 	 * Obtiene el detalles de validacion.
 	 *
-	 * @param idMetrica the id metrica
-	 * @param idMes the id mes
+	 * @param idMetrica
+	 *            the id metrica
+	 * @param idMes
+	 *            the id mes
 	 * @return el detalles de validacion
 	 */
 	public List<DetailOfValidation> getDetallesDeValidacion(String idMetrica, String idMes);

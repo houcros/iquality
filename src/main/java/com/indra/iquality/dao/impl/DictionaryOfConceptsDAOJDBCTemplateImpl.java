@@ -14,10 +14,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
-import com.indra.iquality.model.DescriptionOfAttribute;
 import com.indra.iquality.model.DescripcionAtributoMaestro;
 import com.indra.iquality.model.DescripcionIndicador;
+import com.indra.iquality.model.DescriptionOfAttribute;
 import com.indra.iquality.model.DictionaryConcept;
+import com.indra.iquality.singleton.Environment;
 import com.indra.iquality.tree.GenericTreeNode;
 
 import oracle.sql.ROWID;
@@ -31,7 +32,8 @@ import oracle.sql.ROWID;
  * 
  *          The Class DictionaryOfConceptsDAOJDBCTemplateImpl.
  */
-public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl implements DictionaryOfConceptsDAO {
+public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl
+		implements DictionaryOfConceptsDAO {
 
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory
@@ -90,8 +92,16 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 					.setConcept(helper.filterNullString(String.valueOf(dictionaryConceptNodeRow.get("title"))));
 			dictionaryConcept
 					.setTipo((helper.conceptTypeStringToEnum(String.valueOf(dictionaryConceptNodeRow.get("tipo")))));
-			dictionaryConcept.setCompRowID((((ROWID) (dictionaryConceptNodeRow.get("comp_rowid"))).stringValue()));
-			dictionaryConcept.setCtRowID((((ROWID) (dictionaryConceptNodeRow.get("ct_rowid"))).stringValue()));
+			// Son ROWIDs the Oracle. Hay que filtrarlos de otra manera
+			if (dictionaryConceptNodeRow.get("comp_rowid") != null) {
+				dictionaryConcept.setCompRowID((((ROWID) (dictionaryConceptNodeRow.get("comp_rowid"))).stringValue()));
+			} else
+				dictionaryConcept.setCompRowID(Environment.DEFAULT_NULL_STRING);
+
+			if (dictionaryConceptNodeRow.get("ct_rowid") != null) {
+				dictionaryConcept.setCtRowID((((ROWID) (dictionaryConceptNodeRow.get("ct_rowid"))).stringValue()));
+			} else
+				dictionaryConcept.setCtRowID(Environment.DEFAULT_NULL_STRING);
 
 			GenericTreeNode<DictionaryConcept> dictionaryConceptNode = new GenericTreeNode<DictionaryConcept>(
 					dictionaryConcept);

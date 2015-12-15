@@ -20,6 +20,7 @@ import com.indra.iquality.dao.RegisterOfOperationsDAO;
 import com.indra.iquality.model.Execution;
 import com.indra.iquality.model.Job;
 import com.indra.iquality.model.RegisterOfOperation;
+import com.indra.iquality.singleton.Environment;
 
 /**
  * The Class ExecutionManagementController. Handles all the requests related to
@@ -37,6 +38,9 @@ public class ExecutionManagementController {
 
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(ExecutionManagementController.class);
+
+	/** The Constant reference to the environment. */
+	private final static Environment environment = Environment.getInstance();
 
 	/** The Constant pointing to the view of all the executions. */
 	private static final String VIEW_EXECUTIONS = "pases";
@@ -70,7 +74,7 @@ public class ExecutionManagementController {
 		// Obtengo todas la ejecuciones
 		List<Execution> allEjecuciones = null;
 		try {
-			allEjecuciones = ejecucionDAO.getAllEjecuciones();
+			allEjecuciones = ejecucionDAO.getAllEjecuciones(environment.getIdSistema(), environment.getIdSoftware());
 			logger.debug("[showAllExecutions] : Obtenidos todas las ejecuciones");
 		} catch (Exception e) {
 			logger.error("[showAllExecutions] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
@@ -109,7 +113,8 @@ public class ExecutionManagementController {
 		// Execution para aprovechar la misma vista
 		List<Execution> unaEjecucion = new ArrayList<Execution>();
 		try {
-			unaEjecucion.add(ejecucionDAO.getById(idEjecucion));
+			unaEjecucion
+					.add(ejecucionDAO.getById(idEjecucion, environment.getIdSistema(), environment.getIdSoftware()));
 			logger.debug("[showExecution] : Obtenida la ejecución con id {}", idEjecucion);
 		} catch (Exception e) {
 			logger.error("[showExecution] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),

@@ -112,10 +112,12 @@ public class CertificatesResultController {
 		} else if (tab == TAB_VAL_TECHNICAL_CERTIFICATE) {
 
 			// En esta pestaña muestro las validaciones técnicas
-			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", TechnicalCertificateDAO.class);
+			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate",
+					TechnicalCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las validaciones y las paso a la vista
-			List<TechnicalCertificate> allValidaciones = vtDAO.getAll();
+			List<TechnicalCertificate> allValidaciones = vtDAO.getAll(environment.getIdSistema(),
+					environment.getIdSoftware());
 			model.addAttribute("allTableItems", allValidaciones);
 
 			logger.info("[getCertificates] : RETURN (from tab {})", tab);
@@ -208,7 +210,8 @@ public class CertificatesResultController {
 			// En esta pestaña muestro los detalles de una validación técnica
 			// ATENCIÓN: el orden de los métodos es inverso al de la pestaña
 			// anterior
-			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", TechnicalCertificateDAO.class);
+			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate",
+					TechnicalCertificateDAO.class);
 			ctx.close();
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este

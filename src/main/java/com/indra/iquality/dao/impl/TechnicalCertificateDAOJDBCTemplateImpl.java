@@ -16,14 +16,16 @@ import com.indra.iquality.model.DetailOfValidation;
 import com.indra.iquality.model.TechnicalCertificate;
 import com.indra.iquality.singleton.Environment;
 
-public class TechnicalValidationDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl implements TechnicalCertificateDAO {
+public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl
+		implements TechnicalCertificateDAO {
 
-	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(TechnicalValidationDAOJDBCTemplateImpl.class);
+	private final static org.slf4j.Logger logger = LoggerFactory
+			.getLogger(TechnicalCertificateDAOJDBCTemplateImpl.class);
 	private int lastNumCols = 0;
 	private List<String> headers = new ArrayList<String>();
 
 	@Override
-	public List<TechnicalCertificate> getAll() {
+	public List<TechnicalCertificate> getAll(String sistema, int software) {
 
 		String query = "SELECT" + " AG.ID_MES," + " AG.ID_METRICA,"
 				+ " substr(AG.ID_MES,1,4)||'-'||substr(AG.ID_MES,5,2) AS Fecha," + " SECC.DE_SECCION AS SECCION,"
@@ -47,8 +49,7 @@ public class TechnicalValidationDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<TechnicalCertificate> validacionList = new ArrayList<TechnicalCertificate>();
 
-		List<Map<String, Object>> validacionRows = jdbcTemplate.queryForList(query,
-				new Object[] { sistema.getIdSistema(), sistema.getIdSoftware() });
+		List<Map<String, Object>> validacionRows = jdbcTemplate.queryForList(query, new Object[] { sistema, software });
 		for (Map<String, Object> validacionRow : validacionRows) {
 
 			TechnicalCertificate validacion = new TechnicalCertificate();
