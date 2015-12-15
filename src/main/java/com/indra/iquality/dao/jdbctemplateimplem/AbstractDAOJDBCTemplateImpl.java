@@ -1,4 +1,4 @@
-package com.indra.iquality.dao.impl;
+package com.indra.iquality.dao.jdbctemplateimplem;
 
 import javax.sql.DataSource;
 

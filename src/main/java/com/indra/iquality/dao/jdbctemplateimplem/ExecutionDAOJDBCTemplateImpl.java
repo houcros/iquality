@@ -1,7 +1,7 @@
 /*
  * 
  */
-package com.indra.iquality.dao.impl;
+package com.indra.iquality.dao.jdbctemplateimplem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

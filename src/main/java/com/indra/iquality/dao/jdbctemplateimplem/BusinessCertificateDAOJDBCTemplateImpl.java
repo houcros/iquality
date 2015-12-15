@@ -1,7 +1,7 @@
 /*
  * 
  */
-package com.indra.iquality.dao.impl;
+package com.indra.iquality.dao.jdbctemplateimplem;
 
 import java.util.ArrayList;
 import java.util.List;
