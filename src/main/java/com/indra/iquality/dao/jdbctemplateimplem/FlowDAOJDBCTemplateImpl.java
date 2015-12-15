@@ -97,16 +97,11 @@ public class FlowDAOJDBCTemplateImpl implements FlowDAO {
 				// TODO
 			}
 		}
-		// Inserto jobs del pase
+		// Query 2: inserto jobs del pase
 		int idPase = jdbcTemplate.queryForObject(queryIdPase, Integer.class);
-		params = new Object[] { entorno.getIdSistema(), entorno.getIdSoftware(), idPase, "_STUB_nombre", "N" // TODO
-																												// desharcodear
-																												// el
-																												// default
-																												// checkpoint
-																												// =
-																												// "N"
-		};
+		params = new Object[] { entorno.getIdSistema(), entorno.getIdSoftware(), idPase, "_STUB_nombre", "N" };
+		// TODO desharcodear el default checkpoint = "N"
+
 		for (int i = 0; i < pase.getJobs().length; ++i) {
 			params[3] = pase.getJobs()[i];
 			out = jdbcTemplate.update(queryInsertJobs, params);
@@ -124,7 +119,7 @@ public class FlowDAOJDBCTemplateImpl implements FlowDAO {
 		// involucrados
 		// no han sido insertados en VS_MET_PLA_DEF_PASE_JOB
 
-		// Inserto dependencias de los jobs del pase
+		// Query 3: inserto dependencias de los jobs del pase
 		params = new Object[] { entorno.getIdSistema(), entorno.getIdSoftware(), idPase, "_STUB_id_job_padre",
 				"__STUB_id_job_hijo" };
 		for (int i = 0; i < pase.getJobs().length; ++i) {
