@@ -46,14 +46,7 @@ public class FlowDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl impleme
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Flow> paseList = new ArrayList<Flow>();
-		List<Map<String, Object>> paseDefRows;
-		try {
-			paseDefRows = jdbcTemplate.queryForList(query, new Object[] { system, software });
-		} catch (Exception e) {
-			logger.error("[getAll] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new ArrayList<Flow>();
-		}
+		List<Map<String, Object>> paseDefRows = jdbcTemplate.queryForList(query, new Object[] { system, software });
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> paseDefRow : paseDefRows) {

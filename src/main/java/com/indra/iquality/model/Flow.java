@@ -62,8 +62,8 @@ public class Flow {
 	/**
 	 * Instantiates a new flow with a given name, typicality, list of jobs and
 	 * list of dependencies. System and software will be set to those active in
-	 * the current environment. See {@link com.indra.iquality.singleton.Environment}
-	 * .
+	 * the current environment. See
+	 * {@link com.indra.iquality.singleton.Environment} .
 	 *
 	 * @param nombre
 	 *            the name of the flow
@@ -80,7 +80,7 @@ public class Flow {
 		this.jobs = jobs;
 		this.dependencias = dependencias;
 		this.sistema = Environment.getInstance().getIdSistema();
-		this.software = Environment.getInstance().getDescripcionSoftware();
+		this.software = Environment.getInstance().getSoftwareDescription();
 	}
 
 	// Getters

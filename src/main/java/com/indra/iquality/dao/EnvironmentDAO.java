@@ -18,6 +18,8 @@ public interface EnvironmentDAO {
 	/**
 	 * Gets the current software version of the environment system.
 	 *
+	 * @param sistema
+	 *            the system
 	 * @return a pair where the first value is the identifier of the software
 	 *         version and the second value is its description
 	 */

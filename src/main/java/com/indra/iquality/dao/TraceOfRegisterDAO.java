@@ -7,23 +7,30 @@ import java.util.List;
 
 import com.indra.iquality.model.RegisterTrace;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface TrazaDeRegistroDAO.
+ * The Interface to interact with the persistent representations of register
+ * traces of operations.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 15-dic-2015
  * 
- * La Interface TrazaDeRegistroDAO.
+ *          The Interface TraceOfRegisterDAO.
  */
 public interface TraceOfRegisterDAO {
 
 	/**
-	 * Obtiene el all.
+	 * Gets all the register traces of an operation for a given system and
+	 * software version.
 	 *
-	 * @param idOperacion the id operacion
-	 * @return el all
-	 * @throws Exception the exception
+	 * @param idOperacion
+	 *            the identifier of the operation
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return the all
+	 * @throws Exception
+	 *             all the register traces of the operation
 	 */
-	public List<RegisterTrace> getAll(int idOperacion) throws Exception;
+	public List<RegisterTrace> getAll(int idOperacion, String sistema, int software) throws Exception;
 }

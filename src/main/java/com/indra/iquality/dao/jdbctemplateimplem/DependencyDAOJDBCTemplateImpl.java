@@ -51,14 +51,8 @@ public class DependencyDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl i
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Dependency> dependenciaList = new ArrayList<Dependency>();
-		List<Map<String, Object>> dependenciaRows;
-		try {
-			dependenciaRows = jdbcTemplate.queryForList(query, new Object[] { idJob, idEjecucion, sistema, software });
-		} catch (Exception e) {
-			logger.error("[getAll] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new ArrayList<Dependency>();
-		}
+		List<Map<String, Object>> dependenciaRows = jdbcTemplate.queryForList(query,
+				new Object[] { idJob, idEjecucion, sistema, software });
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> dependenciaRow : dependenciaRows) {

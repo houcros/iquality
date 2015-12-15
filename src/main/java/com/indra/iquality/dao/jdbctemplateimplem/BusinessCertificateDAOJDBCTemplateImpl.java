@@ -86,15 +86,8 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<BusinessCertificate> certDeNegocioList = new ArrayList<BusinessCertificate>();
-		List<Map<String, Object>> certDeNegocioRows;
-		try {
-			certDeNegocioRows = jdbcTemplate.queryForList(query,
-					new Object[] { sistema, software, sistema, sistema, software });
-		} catch (Exception e) {
-			logger.error("[getAll] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new ArrayList<BusinessCertificate>();
-		}
+		List<Map<String, Object>> certDeNegocioRows = jdbcTemplate.queryForList(query,
+				new Object[] { sistema, software, sistema, sistema, software });
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> certDeNegocioRow : certDeNegocioRows) {
@@ -147,14 +140,7 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<String> headersList = new ArrayList<String>();
-		List<Map<String, Object>> headerRows;
-		try {
-			headerRows = jdbcTemplate.queryForList(query, new Object[] { idMetrica });
-		} catch (Exception e) {
-			logger.error("[getDetailHeaders] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new ArrayList<String>();
-		}
+		List<Map<String, Object>> headerRows = jdbcTemplate.queryForList(query, new Object[] { idMetrica });
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> headerRow : headerRows) {
@@ -196,14 +182,7 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<DetailOfCertificate> detallesList = new ArrayList<DetailOfCertificate>();
-		List<Map<String, Object>> detallesRows;
-		try {
-			detallesRows = jdbcTemplate.queryForList(query, new Object[] { idMes, idMetrica });
-		} catch (Exception e) {
-			logger.error("[getCertificateDetails] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new ArrayList<DetailOfCertificate>();
-		}
+		List<Map<String, Object>> detallesRows = jdbcTemplate.queryForList(query, new Object[] { idMes, idMetrica });
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> detallesRow : detallesRows) {

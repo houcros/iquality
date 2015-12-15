@@ -3,6 +3,7 @@
  */
 package com.indra.iquality.dao;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.indra.iquality.model.Execution;
@@ -23,8 +24,13 @@ public interface ExecutionDAO {
 	 *
 	 * @param execution
 	 *            the execution to save
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return true, if successful
 	 */
-	public void save(Execution execution);
+	public boolean save(Execution execution, String sistema, int software);
 
 	/**
 	 * Gets an execution given its unique identifier for a system and software
@@ -45,16 +51,26 @@ public interface ExecutionDAO {
 	 *
 	 * @param execution
 	 *            the new representation of the execution
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return true, if successful
 	 */
-	public void update(Execution execution);
+	public boolean update(Execution execution, String sistema, int software);
 
 	/**
 	 * Delete an execution with a given identifier.
 	 *
 	 * @param idEjecucion
 	 *            the id of the execution to delete
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return true, if successful
 	 */
-	public void deleteById(int idEjecucion);
+	public boolean deleteById(int idEjecucion, String sistema, int software);
 
 	/**
 	 * Gets all the executions of a system with a software version.
@@ -64,7 +80,9 @@ public interface ExecutionDAO {
 	 * @param software
 	 *            the software version
 	 * @return all the ETL executions
+	 * @throws ParseException
+	 *             if a date is bad formatted
 	 */
-	public List<Execution> getAllExecutions(String sistema, int software);
+	public List<Execution> getAll(String sistema, int software) throws ParseException;
 
 }

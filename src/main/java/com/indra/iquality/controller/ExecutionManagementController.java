@@ -68,17 +68,17 @@ public class ExecutionManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		ExecutionDAO ejecucionDAO = ctx.getBean("ejecucionDAOJDBCTemplate", ExecutionDAO.class);
+		ExecutionDAO ejecucionDAO = ctx.getBean("executionDAOJDBCTemplate", ExecutionDAO.class);
 		ctx.close();
 
 		// Obtengo todas la ejecuciones
 		List<Execution> allEjecuciones = null;
 		try {
-			allEjecuciones = ejecucionDAO.getAllExecutions(environment.getIdSistema(), environment.getIdSoftware());
+			allEjecuciones = ejecucionDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
 			logger.debug("[showAllExecutions] : Obtenidos todas las ejecuciones");
 		} catch (Exception e) {
-			logger.error("[showAllExecutions] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
-					e.getStackTrace());
+			logger.error("[showAllExecutions] : Excepción <{}> | Ayuda: {} ", e.getClass(), e.getMessage());
+			e.printStackTrace();
 			return "redirect:/server-error";
 		}
 
@@ -106,7 +106,7 @@ public class ExecutionManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		ExecutionDAO ejecucionDAO = ctx.getBean("ejecucionDAOJDBCTemplate", ExecutionDAO.class);
+		ExecutionDAO ejecucionDAO = ctx.getBean("executionDAOJDBCTemplate", ExecutionDAO.class);
 		ctx.close();
 
 		// Obtengo una ejecución. Será una lista de un elemento en vez de una
@@ -117,8 +117,8 @@ public class ExecutionManagementController {
 					.add(ejecucionDAO.getById(idEjecucion, environment.getIdSistema(), environment.getIdSoftware()));
 			logger.debug("[showExecution] : Obtenida la ejecución con id {}", idEjecucion);
 		} catch (Exception e) {
-			logger.error("[showExecution] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
-					e.getStackTrace());
+			logger.error("[showExecution] : Excepción <{}> | Ayuda: {} ", e.getClass(), e.getMessage());
+			e.printStackTrace();
 			return "redirect:/server-error";
 		}
 
@@ -153,11 +153,11 @@ public class ExecutionManagementController {
 		// Obtengo todos los jobs de la ejecución
 		List<Job> allJobs = null;
 		try {
-			allJobs = jobDAO.getAll(idEjecucion);
+			allJobs = jobDAO.getAllOfExecution(idEjecucion, environment.getIdSistema(), environment.getIdSoftware());
 			logger.debug("[getJobsOfExecution] : Obtenidos los jobs de la ejecución con id {}", idEjecucion);
 		} catch (Exception e) {
-			logger.error("[getJobsOfExecution] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
-					e.getStackTrace());
+			logger.error("[getJobsOfExecution] : Excepción <{}> | Ayuda: {}  ", e.getClass(), e.getMessage());
+			e.printStackTrace();
 			return "redirect:/server-error";
 		}
 
@@ -191,20 +191,21 @@ public class ExecutionManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		RegisterOfOperationsDAO registroDeOperacionDAO = ctx.getBean("registroDeOperacionDAOJDBCTemplate",
+		RegisterOfOperationsDAO registroDeOperacionDAO = ctx.getBean("registerOfOperationsDAOJDBCTemplate",
 				RegisterOfOperationsDAO.class);
 		ctx.close();
 
 		// Obtengo todos los registros de operaciones del job
 		List<RegisterOfOperation> registroDeOperaciones = null;
 		try {
-			registroDeOperaciones = registroDeOperacionDAO.getAll(idEjecucion, idJob);
+			registroDeOperaciones = registroDeOperacionDAO.getAll(idEjecucion, idJob, environment.getIdSistema(),
+					environment.getIdSoftware());
 			logger.debug(
 					"[getRegopsOfJob] : Obtenidos los registros de operaciones del job con id {} de la ejecuciçon {}",
 					idJob, idEjecucion);
 		} catch (Exception e) {
-			logger.error("[getRegopsOfJob] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
-					e.getStackTrace());
+			logger.error("[getRegopsOfJob] : Excepción <{}> | Ayuda: {} ", e.getClass(), e.getMessage());
+			e.printStackTrace();
 			return "redirect:/server-error";
 		}
 

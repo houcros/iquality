@@ -10,7 +10,7 @@ import com.indra.iquality.model.DetailOfCertificate;
 
 /**
  * The Interface to interact with the persistent representations of business
- * certifications. See {@link com.indra.iquality.model.BusinessCertificate}.
+ * certificates. See {@link com.indra.iquality.model.BusinessCertificate}.
  *
  * @author Ignacio N. Lucero Ascencio
  * @version 0.1, 09/12/15
@@ -41,7 +41,8 @@ public interface BusinessCertificateDAO {
 	 * {@link com.indra.iquality.model.BusinessCertificate}.
 	 *
 	 * @param idMetrica
-	 *            the identifier for an instance of CertificacionDeNegocio
+	 *            the identifier for an instance of
+	 *            {@link com.indra.iquality.model.BusinessCertificate}
 	 * @param sistema
 	 *            the current system
 	 * @param software

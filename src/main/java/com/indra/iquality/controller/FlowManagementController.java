@@ -23,10 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.dao.FlowDAO;
-import com.indra.iquality.model.Job;
+import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.model.Flow;
+import com.indra.iquality.model.Job;
+import com.indra.iquality.singleton.Environment;
 
 /**
  * The Class FlowManagmentController. Handles all the requests related to the
@@ -43,6 +44,9 @@ public class FlowManagementController {
 
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(FlowManagementController.class);
+
+	/** The Constant reference to the environment. */
+	private final static Environment environment = Environment.getInstance();
 
 	/** The Constant pointing to the view of all the flows. */
 	private static final String VIEW_FLOWS = "planificar-cargas";
@@ -73,7 +77,7 @@ public class FlowManagementController {
 		// Obtengo todos los pases
 		List<Flow> allPases = null;
 		try {
-			allPases = paseDAO.getAllFlows();
+			allPases = paseDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
 			logger.debug("[showAllFlows] : Obtenidos todos los pases");
 		} catch (Exception e) {
 			logger.error("[showAllFlows] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
@@ -108,7 +112,7 @@ public class FlowManagementController {
 		// Obtengo todos los jobs
 		List<Job> allJobs;
 		try {
-			allJobs = jobDAO.getAll();
+			allJobs = jobDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
 			logger.debug("[wizardNewFlow] : Obtenidos todos los jobs");
 		} catch (Exception e) {
 			allJobs = new ArrayList<Job>();
@@ -204,7 +208,7 @@ public class FlowManagementController {
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			FlowDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", FlowDAO.class);
 			ctx.close();
-			paseDAO.insertPase(pase);
+			paseDAO.save(pase, environment.getIdSistema(), environment.getIdSoftware());
 
 		} catch (ParseException e) {
 			logger.error("[handleNewFlowPost] : Parseando JSON string");

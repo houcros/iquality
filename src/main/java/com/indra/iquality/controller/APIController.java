@@ -147,7 +147,8 @@ public class APIController {
 		// Obtengo todas las trazas
 		List<RegisterTrace> allTrazaDeRegistro = null;
 		try {
-			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion);
+			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion, environment.getIdSistema(),
+					environment.getIdSoftware());
 			logger.debug("[getOperationTrace] : Obtenidas todas las trazas");
 		} catch (Exception e) {
 			logger.error("[getOperationTrace] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),

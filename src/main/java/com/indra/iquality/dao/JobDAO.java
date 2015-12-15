@@ -3,82 +3,92 @@
  */
 package com.indra.iquality.dao;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.indra.iquality.model.Job;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Interface JobDAO.
+ * The Interface to interact with the persistent representations of atomic parts
+ * of an ETL executions, a.k.a, jobs.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 15-dic-2015
  * 
- * La Interface JobDAO.
+ *          The Interface JobDAO.
  */
-//CRUD operations
 public interface JobDAO {
-	
+
 	/**
-	 * Save.
+	 * Gets an job given its unique identifier and its execution identifier for
+	 * a system and software version.
 	 *
-	 * @param job the job
+	 * @param idEjecucion
+	 *            the identifier of the execution of the job
+	 * @param idJob
+	 *            the identifier of the job
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return the job
 	 */
-	//Create
-	public void save(Job job);
-	//Read
+	public Job getById(int idEjecucion, String idJob, String sistema, int software);
+
 	/**
-	 * Obtiene el by id.
+	 * Update the persistent representation of a job.
 	 *
-	 * @param id_ejecucion the id_ejecucion
-	 * @param id_job the id_job
-	 * @return el by id
+	 * @param job
+	 *            the new representation of the job
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return true, if successful
 	 */
-	/*
-	 * id_ejecucion y id_job son la PK
-	 * software y sistema son para el control de versiones de iQuality
-	 */
-	public Job getById(int id_ejecucion, String id_job);
-	
+	public boolean update(Job job, String sistema, int software);
+
 	/**
-	 * Update.
+	 * Delete a job with a given identifier and execution.
 	 *
-	 * @param job the job
+	 * @param idEjecucion
+	 *            the identifier of the execution of the job
+	 * @param idJob
+	 *            the identifier of the job
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return true, if successful
 	 */
-	//Update
-	public void update(Job job);
-	//Delete
+	public boolean deleteById(int idEjecucion, String idJob, String sistema, int software);
+
 	/**
-	 * Delete by id.
+	 * Gets all the jobs of in system with a software version.
 	 *
-	 * @param id_ejecucion the id_ejecucion
-	 * @param id_job the id_job
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return all the jobs
+	 * @throws ParseException
+	 *             if a date is bad formatted
 	 */
-	/*
-	 * id_ejecucion y id_job son la PK
-	 * software y sistema son para el control de versiones de iQuality
-	 */
-	public void deleteById(int id_ejecucion, String id_job);
-	
+	public List<Job> getAll(String sistema, int software) throws ParseException;
+
 	/**
-	 * Obtiene el all.
+	 * Gets all the jobs of an execution in a system with a software version.
 	 *
-	 * @return el all
-	 * @throws Exception the exception
+	 * @param idEjecucion
+	 *            the identifier of the execution of the job
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return all the jobs of an execution
+	 * @throws ParseException
+	 *             if a date is bad formatted
 	 */
-	//Get All
-	public List<Job> getAll () throws Exception;
-	
-	/**
-	 * Obtiene el all.
-	 *
-	 * @param id_ejecucion the id_ejecucion
-	 * @return el all
-	 * @throws Exception the exception
-	 */
-	/*
-	 * Obtener todos los jobs del pase con PK = id_ejecucion
-	 * software y sistema son para el control de versiones de iQuality
-	 */
-	public List<Job> getAll (int id_ejecucion) throws Exception;
+	public List<Job> getAllOfExecution(int idEjecucion, String sistema, int software) throws ParseException;
 }

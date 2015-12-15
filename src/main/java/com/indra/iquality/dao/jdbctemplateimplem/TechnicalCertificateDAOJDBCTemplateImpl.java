@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.indra.iquality.dao.jdbctemplateimplem;
 
 import java.sql.ResultSet;
@@ -16,16 +19,45 @@ import com.indra.iquality.model.DetailOfValidation;
 import com.indra.iquality.model.TechnicalCertificate;
 import com.indra.iquality.singleton.Environment;
 
+/**
+ * Implementation of {@link com.indra.iquality.dao.TechnicalCertificateDAO}
+ * using JDBC to connect to an Oracle DB.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 15-dic-2015
+ * 
+ *          The Class TechnicalCertificateDAOJDBCTemplateImpl.
+ */
 public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl
 		implements TechnicalCertificateDAO {
 
+	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory
 			.getLogger(TechnicalCertificateDAOJDBCTemplateImpl.class);
+
+	/**
+	 * The description of the headers of the detailed view of the last
+	 * certificate consulted.
+	 */
 	private int lastNumCols = 0;
+
+	/**
+	 * The description of the headers of the detailed view of the last
+	 * certificate consulted.
+	 */
 	private List<String> headers = new ArrayList<String>();
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.indra.iquality.dao.TechnicalCertificateDAO#getAll(java.lang.String,
+	 * int)
+	 */
 	@Override
 	public List<TechnicalCertificate> getAll(String sistema, int software) {
+
+		logger.info("[getAll] : INIT");
 
 		String query = "SELECT" + " AG.ID_MES," + " AG.ID_METRICA,"
 				+ " substr(AG.ID_MES,1,4)||'-'||substr(AG.ID_MES,5,2) AS Fecha," + " SECC.DE_SECCION AS SECCION,"
@@ -46,25 +78,23 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 				+ " SUBSECC.DE_SUBSECCION," + " TAB.DE_TABLA," + " ERR.DE_ERROR,"
 				+ " AG.ID_ERROR, AG.ID_METRICA, TAB.ID_SOFTWARE, TAB.ID_TABLA";
 
+		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<TechnicalCertificate> validacionList = new ArrayList<TechnicalCertificate>();
-
 		List<Map<String, Object>> validacionRows = jdbcTemplate.queryForList(query, new Object[] { sistema, software });
+
+		// Mapeo a una lista
 		for (Map<String, Object> validacionRow : validacionRows) {
 
 			TechnicalCertificate validacion = new TechnicalCertificate();
 
 			validacion.setIdMetrica(helper.filterNullString(String.valueOf(validacionRow.get("id_metrica"))));
 			validacion.setIdMes(helper.filterNullString(String.valueOf(validacionRow.get("id_mes"))));
-
 			validacion.setFecha(helper.filterNullString(String.valueOf(validacionRow.get("fecha"))));
 			validacion.setSeccion(helper.filterNullString(String.valueOf(validacionRow.get("seccion"))));
 			validacion.setSubseccion(helper.filterNullString(String.valueOf(validacionRow.get("subseccion"))));
 			validacion.setEntidad(helper.filterNullString(String.valueOf(validacionRow.get("entidad"))));
 			validacion.setCertificacion(helper.filterNullString(String.valueOf(validacionRow.get("certificacion"))));
-			// validacion.setDeCertificacion(helper.filterNullString(String.valueOf(validacionRow.get("de_certificacion"))));
-			// La query me devuelve ID_ERROR pero de momento creo que no lo
-			// necesito
 			validacion.setNumRegistros(
 					helper.filterNullInt(Integer.valueOf(String.valueOf(validacionRow.get("num_registros")))));
 			validacion.setEstado(helper.filterNullString(String.valueOf(validacionRow.get("okko"))));
@@ -72,40 +102,55 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			validacionList.add(validacion);
 		}
 
+		logger.info("[getAll] : RETURN");
 		return validacionList;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.indra.iquality.dao.TechnicalCertificateDAO#getCertificateDetails(java
+	 * .lang.String, java.lang.String, java.lang.String, int)
+	 */
 	@Override
-	public List<DetailOfValidation> getDetallesDeValidacion(String idMetrica, String idMes) {
+	public List<DetailOfValidation> getCertificateDetails(String idMetrica, String idMes, String sistema,
+			int software) {
+		// TODO usar sistema y software?
 
-		String query = getQuery(idMetrica, idMes);
+		logger.info("[getDetallesDeValidacion] : INIT");
+
+		// Obtengo la query con el método auxiliar
+		String query = getQuery(idMetrica, idMes, sistema, software);
 		if (query == null || query.equals("")) {
-			logger.warn("Has intentado ejecutar una query nula o vacía");
-			System.out.println("Has intentado ejecutar una query nula o vacía");
+			logger.error("[getDetallesDeValidacion] : Has intentado ejecutar una query nula o vacía");
 			return new ArrayList<DetailOfValidation>();
 		}
 
-		logger.info(query);
-		System.out.println(query);
-
+		// Hago la query
 		List<DetailOfValidation> ddvList = new ArrayList<DetailOfValidation>();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Map<String, Object>> anonymousRows = jdbcTemplate.queryForList(query);
 
+		// Tomo el número de columnas que tendrá
 		lastNumCols = anonymousRows.isEmpty() ? 0 : anonymousRows.get(0).size();
+		// Tomo los headers; importante vaciar antes
 		headers.clear();
 		if (anonymousRows.size() > 0) {
 			for (Map.Entry<String, Object> entry : anonymousRows.get(0).entrySet())
 				headers.add(entry.getKey());
 		}
+		// Agrego stubs a los headers que sobran (aunque no hace falta)
 		while (headers.size() < DetailOfValidation.MAX_DIMENSIONES)
 			headers.add("_STUB");
 
+		logger.debug("[getDetallesDeValidacion] : Obtenidos headers.");
+
+		// Mapeo
 		for (Map<String, Object> anonymousRow : anonymousRows) {
 
 			List<String> strs = new ArrayList<String>();
 			for (Map.Entry<String, Object> entry : anonymousRow.entrySet()) {
-				// System.out.println("Poniendo valor " + entry.getValue());
 				strs.add(String.valueOf(entry.getValue()));
 			}
 			while (strs.size() < DetailOfValidation.MAX_DIMENSIONES) {
@@ -113,17 +158,35 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			}
 
 			ddvList.add(new DetailOfValidation(strs));
-			// System.out.println("Agregado detalle de validación " +
-			// String.valueOf(++debugCont));
 		}
 
+		logger.info("[getDetallesDeValidacion] : RETURN");
 		return ddvList;
 	}
 
-	private String getQuery(String idMetrica, String idMes) {
+	/**
+	 * Auxiliary method to get the query needed to get the details of a
+	 * technical certificate.
+	 *
+	 * @param idMetrica
+	 *            the identifier of the metric of the certificate
+	 * @param idMes
+	 *            the month of execution of the certificate
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return the query to get the details
+	 */
+	private String getQuery(String idMetrica, String idMes, String sistema, int software) {
+		// TODO usar sistema y software?
 
+		logger.info("[getQuery] : INIT");
+
+		// Query para obtener la query xD
 		String query = "SELECT" + " DE_QUERY FROM BS_MET_IQ_VALIDACION" + " WHERE ID_METRICA = ? AND ID_MES = ?";
 
+		// Hago la query y mapeo a un String
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		String resultQuery = jdbcTemplate.query(query, new Object[] { idMetrica, idMes },
 				new ResultSetExtractor<String>() {
@@ -133,14 +196,25 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 					}
 				});
 
+		logger.info("[getQuery] : RETURN");
 		return resultQuery;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.indra.iquality.dao.TechnicalCertificateDAO#getLastNumCols()
+	 */
 	@Override
 	public int getLastNumCols() {
 		return lastNumCols;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.indra.iquality.dao.TechnicalCertificateDAO#getHeaders()
+	 */
 	@Override
 	public List<String> getHeaders() {
 		return headers;

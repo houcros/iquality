@@ -16,8 +16,17 @@ public class CustomHelper {
 	 */
 	public Date auxStringToSqlDate(String tmstmp) throws ParseException {
 
+		if (tmstmp == null)
+			return Environment.DEFAULT_NULL_DATE;
+
 		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		Timestamp timestamp = Timestamp.valueOf(tmstmp);
+		Timestamp timestamp;
+		try {
+			timestamp = Timestamp.valueOf(tmstmp);
+		} catch (IllegalArgumentException e) {
+			return Environment.DEFAULT_NULL_DATE;
+		}
+
 		java.util.Date util_date = dateFormat.parse(dateFormat.format(timestamp));
 		Date sql_date = new Date(util_date.getTime());
 
@@ -76,4 +85,11 @@ public class CustomHelper {
 			return x;
 		return Environment.DEFAULT_NULL_INT;
 	}
+
+	public double filterNullDouble(Double x) {
+		if (x != null)
+			return x;
+		return Environment.DEFAULT_NULL_DOUBLE;
+	}
+
 }

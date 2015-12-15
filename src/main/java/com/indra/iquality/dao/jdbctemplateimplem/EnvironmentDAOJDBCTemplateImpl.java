@@ -40,18 +40,9 @@ public class EnvironmentDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl 
 		String query = "select ID_SOFTWARE, DE_SOFTWARE from lk_met_iq_software"
 				+ " where ID_SISTEMA = ? and ID_SN_SOFTWARE_ACTUAL = 'S'";
 
-		Map<String, Object> currentSoftwareRow = null;
-
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		try {
-			currentSoftwareRow = jdbcTemplate.queryForMap(query, new Object[] { sistema });
-		} catch (Exception e) {
-			// Espero sólo una fila de la versión actual
-			logger.error("[getCurrentEnvironment] : Excepción <{}> | Ayuda: {} (¿hay más de una versión actual?)",
-					e.getClass(), e.getMessage());
-			e.printStackTrace();
-		}
+		Map<String, Object> currentSoftwareRow = jdbcTemplate.queryForMap(query, new Object[] { sistema });
 
 		// Mapeo al resultado
 		Pair<Integer, String> currentSoftware = new MutablePair<Integer, String>(

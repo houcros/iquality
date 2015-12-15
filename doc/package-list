@@ -1,6 +1,6 @@
 com.indra.iquality.controller
 com.indra.iquality.dao
-com.indra.iquality.dao.impl
+com.indra.iquality.dao.jdbctemplateimplem
 com.indra.iquality.helper
 com.indra.iquality.model
 com.indra.iquality.model.form

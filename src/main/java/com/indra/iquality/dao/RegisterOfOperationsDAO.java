@@ -3,34 +3,39 @@
  */
 package com.indra.iquality.dao;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.indra.iquality.model.RegisterOfOperation;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface RegistroDeOperacionDAO.
+ * The Interface to interact with the persistent representations of the register
+ * of operations of jobs.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 15-dic-2015
  * 
- * La Interface RegistroDeOperacionDAO.
+ *          The Interface RegisterOfOperationsDAO.
  */
 public interface RegisterOfOperationsDAO {
 
 	/**
-	 * Obtiene el all.
+	 * Gets all the register of operations of a job from an execution, given a
+	 * system with a software version.
 	 *
-	 * @param idEjecucion the id ejecucion
-	 * @param idJob the id job
-	 * @return el all
-	 * @throws Exception the exception
+	 * @param idEjecucion
+	 *            the identifier of the execution of the job
+	 * @param idJob
+	 *            the identifier of the job
+	 * @param sistema
+	 *            the system
+	 * @param software
+	 *            the software version
+	 * @return all the register of operations of a job
+	 * @throws ParseException
+	 *             if a date is bad formatted
 	 */
-	/*
-	 * Obtener todos los registros de operaciones del job con 
-	 * PK = id_job + id_ejecucion
-	 * software y sistema son para el control de versiones de iQuality
-	 */
-	public List<RegisterOfOperation> getAll (int idEjecucion, String idJob) throws Exception;
-	
+	public List<RegisterOfOperation> getAll(int idEjecucion, String idJob, String sistema, int software)
+			throws ParseException;
+
 }

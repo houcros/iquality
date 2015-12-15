@@ -38,9 +38,10 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	 * Execution)
 	 */
 	@Override
-	public void save(Execution pase) {
+	public boolean save(Execution pase, String sistema, int software) {
 		// TODO Auto-generated method stub
 		logger.debug("[save] : UNIMPLEMENTED");
+		return false;
 	}
 
 	/*
@@ -79,35 +80,28 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		Execution execution;
-		try {
-			execution = jdbcTemplate.queryForObject(query, new Object[] { idEjecucion }, new RowMapper<Execution>() {
-				@Override
-				public Execution mapRow(ResultSet rs, int rowNum) throws SQLException {
+		Execution execution = jdbcTemplate.queryForObject(query, new Object[] { idEjecucion },
+				new RowMapper<Execution>() {
+					@Override
+					public Execution mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-					Execution exec = new Execution();
+						Execution exec = new Execution();
 
-					exec.setIdEjecucion(rs.getInt("id_ejecucion"));
-					exec.setPase(rs.getString("de_pase"));
-					exec.setEstado(rs.getString("id_estado"));
-					exec.setFechaDatos(rs.getString("id_anyo") + rs.getString("id_mes"));
-					exec.setEscenario(rs.getString("id_escenario"));
-					exec.setFechaInicio(rs.getDate("id_fecha_inicio_real"));
-					exec.setFechaFin(rs.getDate("id_fecha_fin_real"));
-					exec.setFechaPlanificada(rs.getDate("id_fecha_inicio"));
-					exec.setSoftware(rs.getString("de_software"));
-					exec.setDuracion(rs.getString("duracion"));
+						exec.setIdEjecucion(rs.getInt("id_ejecucion"));
+						exec.setPase(rs.getString("de_pase"));
+						exec.setEstado(rs.getString("id_estado"));
+						exec.setFechaDatos(rs.getString("id_anyo") + rs.getString("id_mes"));
+						exec.setEscenario(rs.getString("id_escenario"));
+						exec.setFechaInicio(rs.getDate("id_fecha_inicio_real"));
+						exec.setFechaFin(rs.getDate("id_fecha_fin_real"));
+						exec.setFechaPlanificada(rs.getDate("id_fecha_inicio"));
+						exec.setSoftware(rs.getString("de_software"));
+						exec.setDuracion(rs.getString("duracion"));
 
-					return exec;
-				}
+						return exec;
+					}
 
-			});
-
-		} catch (Exception e) {
-			logger.error("[getCertifications] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new Execution();
-		}
+				});
 
 		logger.debug("[getById] : found flow {}", execution.toString());
 		logger.info("[getById] : RETURN");
@@ -121,9 +115,10 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	 * Execution)
 	 */
 	@Override
-	public void update(Execution pase) {
+	public boolean update(Execution pase, String sistema, int software) {
 		// TODO Auto-generated method stub
 		logger.debug("[update] : UNIMPLEMENTED");
+		return false;
 	}
 
 	/*
@@ -132,9 +127,10 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	 * @see com.indra.iquality.dao.ExecutionDAO#deleteById(int)
 	 */
 	@Override
-	public void deleteById(int id_ejecucion) {
+	public boolean deleteById(int id_ejecucion, String sistema, int software) {
 		// TODO Auto-generated method stub
 		logger.debug("[deleteById] : UNIMPLEMENTED");
+		return false;
 	}
 
 	/*
@@ -143,9 +139,9 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	 * @see com.indra.iquality.dao.PaseDAO#getAll()
 	 */
 	@Override
-	public List<Execution> getAllExecutions(String sistema, int software) {
+	public List<Execution> getAll(String sistema, int software) throws ParseException {
 		// TODO usar el sistema y software
-		logger.info("[getAllExecutions] : INIT");
+		logger.info("[getAll] : INIT");
 
 		// TODO hay muchos atributos que realmente sobran
 		String query = "select " + "PASE.ROWID as EJEC_ROWID, " + "PASE.ID_EJECUCION, " + "PASE.ID_SISTEMA, "
@@ -173,14 +169,7 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Execution> executionList = new ArrayList<Execution>();
-		List<Map<String, Object>> executionsRows;
-		try {
-			executionsRows = jdbcTemplate.queryForList(query);
-		} catch (Exception e) {
-			logger.error("[getCertifications] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
-			e.printStackTrace();
-			return new ArrayList<Execution>();
-		}
+		List<Map<String, Object>> executionsRows = jdbcTemplate.queryForList(query);
 
 		// Mapeo a una lista
 		for (Map<String, Object> paseRow : executionsRows) {
@@ -193,23 +182,20 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 			pase.setFechaDatos(helper.filterString(String.valueOf(paseRow.get("id_anyo")))
 					+ helper.filterString(String.valueOf(paseRow.get("id_mes"))));
 			pase.setEscenario(helper.filterString(String.valueOf(paseRow.get("id_escenario"))));
-			try {
-				pase.setFechaInicio(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
-				pase.setFechaFin(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
-				pase.setFechaPlanificada(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
-			} catch (ParseException e) {
-				logger.error("[getAllEjecuciones] : Error al parsear las fechas <{}> | Ayuda: {}  \n {}", e.getClass(),
-						e.getMessage(), e.getStackTrace());
-				e.printStackTrace();
-			}
+
+			// Es aquí donde puede lanzar ParseException
+			pase.setFechaInicio(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
+			pase.setFechaFin(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
+			pase.setFechaPlanificada(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
+
 			pase.setSoftware(helper.filterString(String.valueOf(paseRow.get("de_software"))));
 			pase.setDuracion(helper.filterString(String.valueOf(paseRow.get("duracion"))));
 
 			executionList.add(pase);
 		}
 
-		logger.debug("[getAllExecutions] : found {} executions", executionList.size());
-		logger.info("[getAllExecutions] : RETURN");
+		logger.debug("[getAll] : found {} executions", executionList.size());
+		logger.info("[getAll] : RETURN");
 		return executionList;
 	}
 

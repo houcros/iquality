@@ -216,7 +216,8 @@ public class CertificatesResultController {
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
-			List<DetailOfValidation> allDetallesDeVali = vtDAO.getDetallesDeValidacion(idMetrica, idMes);
+			List<DetailOfValidation> allDetallesDeVali = vtDAO.getCertificateDetails(idMetrica, idMes,
+					environment.getIdSistema(), environment.getIdSoftware());
 			// ATENCIÓN: Hay que llamar a getDetallesDeValidacion antes de estos
 			// dos métodos o no funcionrá como se espera!
 			List<String> allHeaders = vtDAO.getHeaders();
