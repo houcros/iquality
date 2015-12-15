@@ -74,7 +74,7 @@ public class ExecutionManagementController {
 		// Obtengo todas la ejecuciones
 		List<Execution> allEjecuciones = null;
 		try {
-			allEjecuciones = ejecucionDAO.getAllEjecuciones(environment.getIdSistema(), environment.getIdSoftware());
+			allEjecuciones = ejecucionDAO.getAllExecutions(environment.getIdSistema(), environment.getIdSoftware());
 			logger.debug("[showAllExecutions] : Obtenidos todas las ejecuciones");
 		} catch (Exception e) {
 			logger.error("[showAllExecutions] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),

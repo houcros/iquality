@@ -40,7 +40,7 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	@Override
 	public void save(Execution pase) {
 		// TODO Auto-generated method stub
-
+		logger.debug("[save] : UNIMPLEMENTED");
 	}
 
 	/*
@@ -79,31 +79,39 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		Execution pase = jdbcTemplate.queryForObject(query, new Object[] { idEjecucion }, new RowMapper<Execution>() {
+		Execution execution;
+		try {
+			execution = jdbcTemplate.queryForObject(query, new Object[] { idEjecucion }, new RowMapper<Execution>() {
+				@Override
+				public Execution mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-			@Override
-			public Execution mapRow(ResultSet rs, int rowNum) throws SQLException {
+					Execution exec = new Execution();
 
-				Execution pase = new Execution();
+					exec.setIdEjecucion(rs.getInt("id_ejecucion"));
+					exec.setPase(rs.getString("de_pase"));
+					exec.setEstado(rs.getString("id_estado"));
+					exec.setFechaDatos(rs.getString("id_anyo") + rs.getString("id_mes"));
+					exec.setEscenario(rs.getString("id_escenario"));
+					exec.setFechaInicio(rs.getDate("id_fecha_inicio_real"));
+					exec.setFechaFin(rs.getDate("id_fecha_fin_real"));
+					exec.setFechaPlanificada(rs.getDate("id_fecha_inicio"));
+					exec.setSoftware(rs.getString("de_software"));
+					exec.setDuracion(rs.getString("duracion"));
 
-				pase.setIdEjecucion(rs.getInt("id_ejecucion"));
-				pase.setPase(rs.getString("de_pase"));
-				pase.setEstado(rs.getString("id_estado"));
-				pase.setFechaDatos(rs.getString("id_anyo") + rs.getString("id_mes"));
-				pase.setEscenario(rs.getString("id_escenario"));
-				pase.setFechaInicio(rs.getDate("id_fecha_inicio_real"));
-				pase.setFechaFin(rs.getDate("id_fecha_fin_real"));
-				pase.setFechaPlanificada(rs.getDate("id_fecha_inicio"));
-				pase.setSoftware(rs.getString("de_software"));
-				pase.setDuracion(rs.getString("duracion"));
+					return exec;
+				}
 
-				return pase;
-			}
+			});
 
-		});
+		} catch (Exception e) {
+			logger.error("[getCertifications] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new Execution();
+		}
 
+		logger.debug("[getById] : found flow {}", execution.toString());
 		logger.info("[getById] : RETURN");
-		return pase;
+		return execution;
 	}
 
 	/*
@@ -115,7 +123,7 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	@Override
 	public void update(Execution pase) {
 		// TODO Auto-generated method stub
-
+		logger.debug("[update] : UNIMPLEMENTED");
 	}
 
 	/*
@@ -126,7 +134,7 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	@Override
 	public void deleteById(int id_ejecucion) {
 		// TODO Auto-generated method stub
-
+		logger.debug("[deleteById] : UNIMPLEMENTED");
 	}
 
 	/*
@@ -135,9 +143,9 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 	 * @see com.indra.iquality.dao.PaseDAO#getAll()
 	 */
 	@Override
-	public List<Execution> getAllEjecuciones(String sistema, int software) {
+	public List<Execution> getAllExecutions(String sistema, int software) {
 		// TODO usar el sistema y software
-		logger.info("[getAllEjecuciones] : INIT");
+		logger.info("[getAllExecutions] : INIT");
 
 		// TODO hay muchos atributos que realmente sobran
 		String query = "select " + "PASE.ROWID as EJEC_ROWID, " + "PASE.ID_EJECUCION, " + "PASE.ID_SISTEMA, "
@@ -164,11 +172,18 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<Execution> paseList = new ArrayList<Execution>();
-		List<Map<String, Object>> paseRows = jdbcTemplate.queryForList(query);
+		List<Execution> executionList = new ArrayList<Execution>();
+		List<Map<String, Object>> executionsRows;
+		try {
+			executionsRows = jdbcTemplate.queryForList(query);
+		} catch (Exception e) {
+			logger.error("[getCertifications] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new ArrayList<Execution>();
+		}
 
 		// Mapeo a una lista
-		for (Map<String, Object> paseRow : paseRows) {
+		for (Map<String, Object> paseRow : executionsRows) {
 
 			Execution pase = new Execution();
 
@@ -190,11 +205,12 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 			pase.setSoftware(helper.filterString(String.valueOf(paseRow.get("de_software"))));
 			pase.setDuracion(helper.filterString(String.valueOf(paseRow.get("duracion"))));
 
-			paseList.add(pase);
+			executionList.add(pase);
 		}
 
-		logger.info("[getAllEjecuciones] : RETURN");
-		return paseList;
+		logger.debug("[getAllExecutions] : found {} executions", executionList.size());
+		logger.info("[getAllExecutions] : RETURN");
+		return executionList;
 	}
 
 }

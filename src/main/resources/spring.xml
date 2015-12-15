@@ -5,51 +5,43 @@
 
 	<!-- JDBCTemplateImpl DAOs -->
 	
-	<bean id="employeeDAO" class="com.indra.iquality.dao.EmployeeDAOImpl">
+	<bean id="flowDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.FlowDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="employeeDAOJDBCTemplate" class="com.indra.iquality.dao.EmployeeDAOJDBCTemplateImpl">
+	<bean id="executionDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.ExecutionDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="flowDAOJDBCTemplate" class="com.indra.iquality.dao.impl.FlowDAOJDBCTemplateImpl">
+	<bean id="jobDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.JobDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="executionDAOJDBCTemplate" class="com.indra.iquality.dao.impl.ExecutionDAOJDBCTemplateImpl">
+	<bean id="dependencyDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.DependencyDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="jobDAOJDBCTemplate" class="com.indra.iquality.dao.impl.JobDAOJDBCTemplateImpl">
+	<bean id="dictionaryOfConceptsDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.DictionaryOfConceptsDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="dependencyDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DependencyDAOJDBCTemplateImpl">
+	<bean id="registerOfOperationsDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.RegisterOfOperationsDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="dictionaryOfConceptsDAOJDBCTemplate" class="com.indra.iquality.dao.impl.DictionaryOfConceptsDAOJDBCTemplateImpl">
+	<bean id="traceOfRegisterDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.TraceOfRegisterDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="registerOfOperationsDAOJDBCTemplate" class="com.indra.iquality.dao.impl.RegisterOfOperationsDAOJDBCTemplateImpl">
+	<bean id="businessCertificateDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.BusinessCertificateDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="traceOfRegisterDAOJDBCTemplate" class="com.indra.iquality.dao.impl.TraceOfRegisterDAOJDBCTemplateImpl">
+	<bean id="technicalCertificateDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.TechnicalCertificateDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="businessCertificateDAOJDBCTemplate" class="com.indra.iquality.dao.impl.BusinessCertificateDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="technicalCertificateDAOJDBCTemplate" class="com.indra.iquality.dao.impl.TechnicalCertificateDAOJDBCTemplateImpl">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<bean id="environmentDAOJDBCTemplate" class="com.indra.iquality.dao.impl.EnvironmentDAOJDBCTemplateImpl">
+	<bean id="environmentDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.EnvironmentDAOJDBCTemplateImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	

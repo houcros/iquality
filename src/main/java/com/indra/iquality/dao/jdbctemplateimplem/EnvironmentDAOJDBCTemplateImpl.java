@@ -1,47 +1,66 @@
+/*
+ * 
+ */
 package com.indra.iquality.dao.jdbctemplateimplem;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
-import javax.sql.DataSource;
 
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.indra.iquality.controller.APIController;
 import com.indra.iquality.dao.EnvironmentDAO;
 
-public class EnvironmentDAOJDBCTemplateImpl implements EnvironmentDAO {
+/**
+ * The Class EnvironmentDAOJDBCTemplateImpl.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 15-dic-2015
+ * 
+ *          The Class EnvironmentDAOJDBCTemplateImpl.
+ */
+public class EnvironmentDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl implements EnvironmentDAO {
 
-	private DataSource dataSource;
-	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-	
+	/** The Constant logger. */
+	private final static org.slf4j.Logger logger = LoggerFactory.getLogger(APIController.class);
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.indra.iquality.dao.EnvironmentDAO#getCurrentSoftware(java.lang.
+	 * String)
+	 */
 	@Override
-	public List<Pair<String, String>> getSistemas() {
-		
-		String query = "select id_sistema, de_sistema" 
-				+ " from   LK_MET_IQ_SISTEMA"
-				+ " where id_sistema != 'PLA'"
-				+ " order by 1";
-		
+	public Pair<Integer, String> getCurrentSoftware(String sistema) {
+
+		logger.info("[getCurrentSoftware] : INIT");
+
+		String query = "select ID_SOFTWARE, DE_SOFTWARE from lk_met_iq_software"
+				+ " where ID_SISTEMA = ? and ID_SN_SOFTWARE_ACTUAL = 'S'";
+
+		Map<String, Object> currentSoftwareRow = null;
+
+		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<Pair<String, String>> nombresSistemasList = new ArrayList<Pair<String, String>>();
-		
-		List<Map<String,Object>> nombresSistemasRows = jdbcTemplate.queryForList(query);
-		for (Map<String,Object> nombresSistemasRow : nombresSistemasRows){
-			Pair<String, String> p = new MutablePair<String, String>(
-					String.valueOf(nombresSistemasRow.get("id_sistema")),
-					String.valueOf(nombresSistemasRow.get("de_sistema"))
-			);
-			nombresSistemasList.add(p);
+		try {
+			currentSoftwareRow = jdbcTemplate.queryForMap(query, new Object[] { sistema });
+		} catch (Exception e) {
+			// Espero sólo una fila de la versión actual
+			logger.error("[getCurrentEnvironment] : Excepción <{}> | Ayuda: {} (¿hay más de una versión actual?)",
+					e.getClass(), e.getMessage());
+			e.printStackTrace();
 		}
-		
-		return nombresSistemasList;
-		
+
+		// Mapeo al resultado
+		Pair<Integer, String> currentSoftware = new MutablePair<Integer, String>(
+				Integer.valueOf(String.valueOf(currentSoftwareRow.get("ID_SOFTWARE"))),
+				String.valueOf(currentSoftwareRow.get("DE_SOFTWARE")));
+
+		logger.info("[getCurrentSoftware] : RETURN");
+		return currentSoftware;
+
 	}
 
 }

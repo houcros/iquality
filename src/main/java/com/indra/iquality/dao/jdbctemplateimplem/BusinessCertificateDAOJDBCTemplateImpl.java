@@ -23,7 +23,8 @@ import com.indra.iquality.model.DetailOfCertificate;
  * 
  *          The Class BusinessCertificateDAOJDBCTemplateImpl.
  */
-public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl implements BusinessCertificateDAO {
+public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl
+		implements BusinessCertificateDAO {
 
 	/** The Constant logger. */
 	private final static org.slf4j.Logger logger = LoggerFactory
@@ -85,8 +86,15 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<BusinessCertificate> certDeNegocioList = new ArrayList<BusinessCertificate>();
-		List<Map<String, Object>> certDeNegocioRows = jdbcTemplate.queryForList(query,
-				new Object[] { sistema, software, sistema, sistema, software });
+		List<Map<String, Object>> certDeNegocioRows;
+		try {
+			certDeNegocioRows = jdbcTemplate.queryForList(query,
+					new Object[] { sistema, software, sistema, sistema, software });
+		} catch (Exception e) {
+			logger.error("[getAll] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new ArrayList<BusinessCertificate>();
+		}
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> certDeNegocioRow : certDeNegocioRows) {
@@ -111,6 +119,7 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 			certDeNegocioList.add(certDeNegocio);
 		}
 
+		logger.debug("[getAll] : found {} business certificates", certDeNegocioList.size());
 		logger.info("[getAll] : RETURN");
 		return certDeNegocioList;
 	}
@@ -138,13 +147,21 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<String> headersList = new ArrayList<String>();
+		List<Map<String, Object>> headerRows;
+		try {
+			headerRows = jdbcTemplate.queryForList(query, new Object[] { idMetrica });
+		} catch (Exception e) {
+			logger.error("[getDetailHeaders] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new ArrayList<String>();
+		}
 
 		// Mapeo los resultados a una lista
-		List<Map<String, Object>> headerRows = jdbcTemplate.queryForList(query, new Object[] { idMetrica });
 		for (Map<String, Object> headerRow : headerRows) {
 			headersList.add(String.valueOf(headerRow.get("header")));
 		}
 
+		logger.debug("[getDetailHeaders] : found {} business certificates detail headers", headersList.size());
 		logger.info("[getDetailHeaders] : RETURN");
 		return headersList;
 	}
@@ -179,7 +196,14 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<DetailOfCertificate> detallesList = new ArrayList<DetailOfCertificate>();
-		List<Map<String, Object>> detallesRows = jdbcTemplate.queryForList(query, new Object[] { idMes, idMetrica });
+		List<Map<String, Object>> detallesRows;
+		try {
+			detallesRows = jdbcTemplate.queryForList(query, new Object[] { idMes, idMetrica });
+		} catch (Exception e) {
+			logger.error("[getCertificateDetails] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new ArrayList<DetailOfCertificate>();
+		}
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> detallesRow : detallesRows) {
@@ -211,6 +235,7 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 			detallesList.add(detalle);
 		}
 
+		logger.debug("[getCertificateDetails] : found {} business certificates details", detallesList.size());
 		logger.info("[getCertificateDetails] : RETURN");
 		return detallesList;
 	}

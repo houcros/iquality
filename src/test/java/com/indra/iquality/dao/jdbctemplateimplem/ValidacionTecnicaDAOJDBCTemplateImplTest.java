@@ -1,4 +1,4 @@
-package com.indra.iquality.dao.impl;
+package com.indra.iquality.dao.jdbctemplateimplem;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,19 +11,22 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.indra.iquality.dao.TechnicalCertificateDAO;
 import com.indra.iquality.model.TechnicalCertificate;
+import com.indra.iquality.singleton.Environment;
 
 public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 
 	private final static org.slf4j.Logger logger = LoggerFactory
 			.getLogger(ValidacionTecnicaDAOJDBCTemplateImplTest.class);
+	private static final Environment environment = Environment.getInstance();
 
 	@Ignore
 	@Test
 	public void testGetAll() {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate", TechnicalCertificateDAO.class);
-		List<TechnicalCertificate> vtList = vtDAO.getAll();
+		TechnicalCertificateDAO vtDAO = ctx.getBean("technicalCertificateDAOJDBCTemplate",
+				TechnicalCertificateDAO.class);
+		List<TechnicalCertificate> vtList = vtDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
 		ctx.close();
 
 		TechnicalCertificate vt = new TechnicalCertificate();

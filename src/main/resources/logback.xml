@@ -44,7 +44,7 @@
 		<appender-ref ref="FILE" />
 	</logger>
 	
-	<logger name="com.indra.iquality.dao.impl" level="debug"
+	<logger name="com.indra.iquality.dao.jdbctemplateimplem" level="debug"
 		additivity="false">
 		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE" />

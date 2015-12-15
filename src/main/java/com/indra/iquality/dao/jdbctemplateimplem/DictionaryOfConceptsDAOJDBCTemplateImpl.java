@@ -77,7 +77,14 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<GenericTreeNode<DictionaryConcept>> dictionaryConceptList = new ArrayList<GenericTreeNode<DictionaryConcept>>();
-		List<Map<String, Object>> dictionaryConceptNodeRows = jdbcTemplate.queryForList(query, new Object[] {});
+		List<Map<String, Object>> dictionaryConceptNodeRows;
+		try {
+			dictionaryConceptNodeRows = jdbcTemplate.queryForList(query, new Object[] {});
+		} catch (Exception e) {
+			logger.error("[getAllConcepts] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new ArrayList<GenericTreeNode<DictionaryConcept>>();
+		}
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> dictionaryConceptNodeRow : dictionaryConceptNodeRows) {
@@ -108,6 +115,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			dictionaryConceptList.add(dictionaryConceptNode);
 		}
 
+		logger.debug("[getAllConcepts] : found {} concepts", dictionaryConceptList.size());
 		logger.info("[getAllConcepts] : RETURN");
 		return dictionaryConceptList;
 	}
@@ -141,29 +149,38 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescriptionOfAttribute da = jdbcTemplate.queryForObject(queryBasicosYEntidad,
-				new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescriptionOfAttribute>() {
+		DescriptionOfAttribute da;
+		try {
+			da = jdbcTemplate.queryForObject(queryBasicosYEntidad,
+					new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescriptionOfAttribute>() {
 
-					@Override
-					public DescriptionOfAttribute mapRow(ResultSet rs, int rowNum) throws SQLException {
+						@Override
+						public DescriptionOfAttribute mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-						DescriptionOfAttribute da = new DescriptionOfAttribute();
+							DescriptionOfAttribute da = new DescriptionOfAttribute();
 
-						da.setId(rs.getInt("id_componente"));
-						da.setNombre(rs.getString("nombre"));
-						da.setResponsable(rs.getString("responsable"));
-						da.setDefinicion(rs.getString("definicion"));
-						da.setComentarios(rs.getString("comentario"));
-						da.setHistorico(rs.getString("historico"));
-						da.setMetodoObtencion(rs.getString("mtd_obtencion"));
-						da.setFormato(rs.getString("formato"));
-						da.setPeriodoActualizacion(rs.getString("periodo_act"));
-						da.setTipoActualizacion(rs.getString("tipo_act"));
+							da.setId(rs.getInt("id_componente"));
+							da.setNombre(rs.getString("nombre"));
+							da.setResponsable(rs.getString("responsable"));
+							da.setDefinicion(rs.getString("definicion"));
+							da.setComentarios(rs.getString("comentario"));
+							da.setHistorico(rs.getString("historico"));
+							da.setMetodoObtencion(rs.getString("mtd_obtencion"));
+							da.setFormato(rs.getString("formato"));
+							da.setPeriodoActualizacion(rs.getString("periodo_act"));
+							da.setTipoActualizacion(rs.getString("tipo_act"));
 
-						return da;
-					}
-				});
+							return da;
+						}
+					});
+		} catch (Exception e) {
+			logger.error("[getDescriptionOfAttribute] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
+					e.getMessage());
+			e.printStackTrace();
+			return new DescriptionOfAttribute();
+		}
 
+		logger.debug("[getDescriptionOfAttribute] : found description {}", da.toString());
 		logger.info("[getDescriptionOfAttribute] : RETURN");
 		return da;
 	}
@@ -201,22 +218,31 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescripcionAtributoMaestro auxdam = jdbcTemplate.queryForObject(queryAtributosDelMaestro,
-				new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescripcionAtributoMaestro>() {
+		DescripcionAtributoMaestro auxdam;
+		try {
+			auxdam = jdbcTemplate.queryForObject(queryAtributosDelMaestro,
+					new Object[] { compRowID, ctRowID, sistema, software },
+					new RowMapper<DescripcionAtributoMaestro>() {
 
-					@Override
-					public DescripcionAtributoMaestro mapRow(ResultSet rs, int rowNum) throws SQLException {
+						@Override
+						public DescripcionAtributoMaestro mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-						DescripcionAtributoMaestro dam = new DescripcionAtributoMaestro();
+							DescripcionAtributoMaestro dam = new DescripcionAtributoMaestro();
 
-						dam.setHistoricoMaestro(rs.getString("historico_maestro"));
-						dam.setPeriodoActualizacionMaestro(rs.getString("periodo_act_maestro"));
-						dam.setTipoActualizacionMaestro(rs.getString("tipo_act_maestro"));
-						dam.setMetodoObtencionMaestro(rs.getString("mtd_obtencion_maestro"));
+							dam.setHistoricoMaestro(rs.getString("historico_maestro"));
+							dam.setPeriodoActualizacionMaestro(rs.getString("periodo_act_maestro"));
+							dam.setTipoActualizacionMaestro(rs.getString("tipo_act_maestro"));
+							dam.setMetodoObtencionMaestro(rs.getString("mtd_obtencion_maestro"));
 
-						return dam;
-					}
-				});
+							return dam;
+						}
+					});
+		} catch (Exception e) {
+			logger.error("[getDescriptionOfMasterAttribute] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
+					e.getMessage());
+			e.printStackTrace();
+			return new DescripcionAtributoMaestro();
+		}
 
 		// Agrego los campos obtenidos al atributo maestro que me había
 		// preparado
@@ -225,6 +251,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		dam.setTipoActualizacionMaestro(auxdam.getTipoActualizacionMaestro());
 		dam.setMetodoObtencionMaestro(auxdam.getMetodoObtencionMaestro());
 
+		logger.debug("[getDescriptionOfMasterAttribute] : found description {}", dam.toString());
 		logger.info("[getDescriptionOfMasterAttribute] : RETURN");
 		return dam;
 
@@ -256,27 +283,35 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescripcionIndicador di = jdbcTemplate.queryForObject(queryBasicosYEntidad,
-				new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescripcionIndicador>() {
+		DescripcionIndicador di;
+		try {
+			di = jdbcTemplate.queryForObject(queryBasicosYEntidad,
+					new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescripcionIndicador>() {
 
-					@Override
-					public DescripcionIndicador mapRow(ResultSet rs, int rowNum) throws SQLException {
+						@Override
+						public DescripcionIndicador mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-						DescripcionIndicador di = new DescripcionIndicador();
+							DescripcionIndicador di = new DescripcionIndicador();
 
-						di.setId(rs.getInt("id_componente"));
-						di.setNombre(helper.filterString(rs.getString("nombre")));
-						di.setResponsable(helper.filterString(rs.getString("responsable")));
-						di.setDefinicion(helper.filterString(rs.getString("definicion")));
-						di.setComentarios(helper.filterString(rs.getString("comentario")));
-						di.setHistorico(helper.filterString(rs.getString("historico")));
-						di.setMetodoObtencion(helper.filterString(rs.getString("mtd_obtencion")));
-						di.setUnidadMedida(helper.filterString(rs.getString("unidad_medida")));
-						di.setPeriodoAcumulado(helper.filterString(rs.getString("periodo_acumulado")));
+							di.setId(rs.getInt("id_componente"));
+							di.setNombre(helper.filterString(rs.getString("nombre")));
+							di.setResponsable(helper.filterString(rs.getString("responsable")));
+							di.setDefinicion(helper.filterString(rs.getString("definicion")));
+							di.setComentarios(helper.filterString(rs.getString("comentario")));
+							di.setHistorico(helper.filterString(rs.getString("historico")));
+							di.setMetodoObtencion(helper.filterString(rs.getString("mtd_obtencion")));
+							di.setUnidadMedida(helper.filterString(rs.getString("unidad_medida")));
+							di.setPeriodoAcumulado(helper.filterString(rs.getString("periodo_acumulado")));
 
-						return di;
-					}
-				});
+							return di;
+						}
+					});
+		} catch (Exception e) {
+			logger.error("[getDescriptionOfIndicator] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
+					e.getMessage());
+			e.printStackTrace();
+			return new DescripcionIndicador();
+		}
 
 		// Busco las certificaciones del indicador y se las agrego
 		List<Certification> certificaciones = getCertifications(di.getId(), sistema, software);
@@ -286,6 +321,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		}
 		di.setCertificaciones(descripcionCertificaciones);
 
+		logger.debug("[getDescriptionOfIndicator] : found description {}", di.toString());
 		logger.info("[getDescriptionOfIndicator] : RETURN");
 		return di;
 	}
@@ -315,8 +351,15 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Certification> certList = new ArrayList<Certification>();
-		List<Map<String, Object>> certRows = jdbcTemplate.queryForList(queryBasicosYEntidad,
-				new Object[] { idComponente, sistema, software });
+		List<Map<String, Object>> certRows;
+		try {
+			certRows = jdbcTemplate.queryForList(queryBasicosYEntidad,
+					new Object[] { idComponente, sistema, software });
+		} catch (Exception e) {
+			logger.error("[getCertifications] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage());
+			e.printStackTrace();
+			return new ArrayList<Certification>();
+		}
 
 		// Mapeo a una lista
 		for (Map<String, Object> certRow : certRows) {
@@ -330,6 +373,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			certList.add(cert);
 		}
 
+		logger.debug("[getCertifications] : found {} certificates", certList.size());
 		logger.info("[getCertifications] : RETURN");
 		return certList;
 	}

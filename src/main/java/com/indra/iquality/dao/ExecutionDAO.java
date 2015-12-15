@@ -19,7 +19,7 @@ import com.indra.iquality.model.Execution;
 public interface ExecutionDAO {
 
 	/**
-	 * Save a persistent representation of an execution.
+	 * Saves a persistent representation of an execution.
 	 *
 	 * @param execution
 	 *            the execution to save
@@ -27,8 +27,8 @@ public interface ExecutionDAO {
 	public void save(Execution execution);
 
 	/**
-	 * Gets an execution given its unique identifier for a given system and
-	 * software version.
+	 * Gets an execution given its unique identifier for a system and software
+	 * version.
 	 *
 	 * @param idEjecucion
 	 *            the identifier of the execution
@@ -57,14 +57,14 @@ public interface ExecutionDAO {
 	public void deleteById(int idEjecucion);
 
 	/**
-	 * Gets the all executions of a system with a software version.
+	 * Gets all the executions of a system with a software version.
 	 *
 	 * @param sistema
 	 *            the system
 	 * @param software
 	 *            the software version
-	 * @return the all executions
+	 * @return all the ETL executions
 	 */
-	public List<Execution> getAllEjecuciones(String sistema, int software);
+	public List<Execution> getAllExecutions(String sistema, int software);
 
 }

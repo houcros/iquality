@@ -1,6 +1,7 @@
 package com.indra.iquality.singleton;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Environment {
 
@@ -13,10 +14,13 @@ public class Environment {
 	public final static double DEFAULT_NULL_FLOAT = -1.0;
 	public final static Date DEFAULT_NULL_DATE = new Date(1);
 
+	// Se tiene que harcodear en la creadora, no tienen setters
 	private String idSistema;
+	private String descripcionSistema;
+
 	private int idSoftware;
 	private String descripcionSoftware;
-	private boolean esSoftwareActual;
+	private List<String> versions;
 	private Date fechaCreacion;
 	private Date fechaModificacion;
 
@@ -26,14 +30,12 @@ public class Environment {
 		idSoftware = 1;
 		idSistema = "DMS";
 		descripcionSoftware = "Versión inicial";
-		esSoftwareActual = true;
 	};
 
-	private Environment(int idSoft, String idSist, String descripcion, boolean actual) {
-		idSoftware = idSoft;
-		idSistema = idSist;
-		descripcionSoftware = descripcion;
-		esSoftwareActual = actual;
+	private Environment(int idSoftware, String idSistema, String descripcionSoftware) {
+		this.idSoftware = idSoftware;
+		this.idSistema = idSistema;
+		this.descripcionSoftware = descripcionSoftware;
 	}
 
 	public static Environment getInstance() {
@@ -54,24 +56,12 @@ public class Environment {
 		return idSistema;
 	}
 
-	public void setIdSistema(String idSistema) {
-		this.idSistema = idSistema;
-	}
-
-	public String getDescripcionSoftware() {
+	public String getSoftwareDescription() {
 		return descripcionSoftware;
 	}
 
-	public void setDescripcionSoftware(String descripcionSoftware) {
-		this.descripcionSoftware = descripcionSoftware;
-	}
-
-	public boolean isEsSoftwareActual() {
-		return esSoftwareActual;
-	}
-
-	public void setEsSoftwareActual(boolean esSoftwareActual) {
-		this.esSoftwareActual = esSoftwareActual;
+	public String getDescripcionSistema() {
+		return descripcionSistema;
 	}
 
 	public Date getFechaCreacion() {

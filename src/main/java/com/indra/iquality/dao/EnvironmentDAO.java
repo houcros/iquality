@@ -3,27 +3,23 @@
  */
 package com.indra.iquality.dao;
 
-import java.util.List;
-
 import org.apache.commons.lang3.tuple.Pair;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface SistemaDAO.
+ * The Interface EnvironmentDAO.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 15-dic-2015
  * 
- * La Interface SistemaDAO.
+ *          The Interface EnvironmentDAO.
  */
 public interface EnvironmentDAO {
 
-	// Para no crear una clase nueva con dos campos uso un Pair<String, String>
 	/**
-	 * Obtiene el sistemas.
+	 * Gets the current software version of the environment system.
 	 *
-	 * @return el sistemas
+	 * @return a pair where the first value is the identifier of the software
+	 *         version and the second value is its description
 	 */
-	// donde first = id_sistema y second = de_sistema
-	public List<Pair<String, String>> getSistemas();
+	public Pair<Integer, String> getCurrentSoftware(String sistema);
 }

@@ -73,7 +73,7 @@ public class FlowManagementController {
 		// Obtengo todos los pases
 		List<Flow> allPases = null;
 		try {
-			allPases = paseDAO.getAllPases();
+			allPases = paseDAO.getAllFlows();
 			logger.debug("[showAllFlows] : Obtenidos todos los pases");
 		} catch (Exception e) {
 			logger.error("[showAllFlows] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
