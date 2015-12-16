@@ -26,7 +26,7 @@ public class ValidacionTecnicaDAOJDBCTemplateImplTest {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		TechnicalCertificateDAO vtDAO = ctx.getBean("technicalCertificateDAOJDBCTemplate",
 				TechnicalCertificateDAO.class);
-		List<TechnicalCertificate> vtList = vtDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
+		List<TechnicalCertificate> vtList = vtDAO.getAll(environment.getSystem(), environment.getCurrentSoftware());
 		ctx.close();
 
 		TechnicalCertificate vt = new TechnicalCertificate();

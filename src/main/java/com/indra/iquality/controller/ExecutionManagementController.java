@@ -74,7 +74,7 @@ public class ExecutionManagementController {
 		// Obtengo todas la ejecuciones
 		List<Execution> allEjecuciones = null;
 		try {
-			allEjecuciones = ejecucionDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
+			allEjecuciones = ejecucionDAO.getAll(environment.getSystem(), environment.getCurrentSoftware());
 			logger.debug("[showAllExecutions] : Obtenidos todas las ejecuciones");
 		} catch (Exception e) {
 			logger.error("[showAllExecutions] : Excepción <{}> | Ayuda: {} ", e.getClass(), e.getMessage());
@@ -114,7 +114,7 @@ public class ExecutionManagementController {
 		List<Execution> unaEjecucion = new ArrayList<Execution>();
 		try {
 			unaEjecucion
-					.add(ejecucionDAO.getById(idEjecucion, environment.getIdSistema(), environment.getIdSoftware()));
+					.add(ejecucionDAO.getById(idEjecucion, environment.getSystem(), environment.getCurrentSoftware()));
 			logger.debug("[showExecution] : Obtenida la ejecución con id {}", idEjecucion);
 		} catch (Exception e) {
 			logger.error("[showExecution] : Excepción <{}> | Ayuda: {} ", e.getClass(), e.getMessage());
@@ -153,7 +153,7 @@ public class ExecutionManagementController {
 		// Obtengo todos los jobs de la ejecución
 		List<Job> allJobs = null;
 		try {
-			allJobs = jobDAO.getAllOfExecution(idEjecucion, environment.getIdSistema(), environment.getIdSoftware());
+			allJobs = jobDAO.getAllOfExecution(idEjecucion, environment.getSystem(), environment.getCurrentSoftware());
 			logger.debug("[getJobsOfExecution] : Obtenidos los jobs de la ejecución con id {}", idEjecucion);
 		} catch (Exception e) {
 			logger.error("[getJobsOfExecution] : Excepción <{}> | Ayuda: {}  ", e.getClass(), e.getMessage());
@@ -198,8 +198,8 @@ public class ExecutionManagementController {
 		// Obtengo todos los registros de operaciones del job
 		List<RegisterOfOperation> registroDeOperaciones = null;
 		try {
-			registroDeOperaciones = registroDeOperacionDAO.getAll(idEjecucion, idJob, environment.getIdSistema(),
-					environment.getIdSoftware());
+			registroDeOperaciones = registroDeOperacionDAO.getAll(idEjecucion, idJob, environment.getSystem(),
+					environment.getCurrentSoftware());
 			logger.debug(
 					"[getRegopsOfJob] : Obtenidos los registros de operaciones del job con id {} de la ejecuciçon {}",
 					idJob, idEjecucion);

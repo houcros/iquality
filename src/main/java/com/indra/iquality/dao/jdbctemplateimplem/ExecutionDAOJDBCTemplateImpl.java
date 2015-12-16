@@ -184,9 +184,9 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 			pase.setEscenario(helper.filterNullString(String.valueOf(paseRow.get("id_escenario"))));
 
 			// Es aquí donde puede lanzar ParseException
-			pase.setFechaInicio(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
-			pase.setFechaFin(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
-			pase.setFechaPlanificada(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
+			pase.setFechaInicio(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
+			pase.setFechaFin(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
+			pase.setFechaPlanificada(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
 
 			pase.setSoftware(helper.filterNullString(String.valueOf(paseRow.get("de_software"))));
 			pase.setDuracion(helper.filterNullString(String.valueOf(paseRow.get("duracion"))));

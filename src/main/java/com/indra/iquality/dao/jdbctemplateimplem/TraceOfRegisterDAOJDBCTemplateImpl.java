@@ -57,7 +57,7 @@ public class TraceOfRegisterDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateI
 			RegisterTrace traza = new RegisterTrace();
 
 			traza.setIdTraza(helper.filterStringToInt(String.valueOf(trazaRow.get("id_traza"))));
-			traza.setIdFecha((helper.auxStringToSqlDate(String.valueOf(trazaRow.get("id_fecha")))));
+			traza.setIdFecha((helper.filterStringToSqlDate(String.valueOf(trazaRow.get("id_fecha")))));
 			traza.setFecha(helper.filterNullString((String.valueOf(trazaRow.get("fecha")))));
 			traza.setCategoria(helper.filterNullString((String.valueOf(trazaRow.get("id_categoria")))));
 			traza.setMensaje(helper.filterNullString((String.valueOf(trazaRow.get("de_mensaje")))));

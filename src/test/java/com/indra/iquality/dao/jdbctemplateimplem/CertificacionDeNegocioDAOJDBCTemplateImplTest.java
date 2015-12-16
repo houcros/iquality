@@ -24,7 +24,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		BusinessCertificateDAO cdnDAO = ctx.getBean("businessCertificateDAOJDBCTemplate", BusinessCertificateDAO.class);
-		List<BusinessCertificate> cdnList = cdnDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
+		List<BusinessCertificate> cdnList = cdnDAO.getAll(environment.getSystem(), environment.getCurrentSoftware());
 		ctx.close();
 
 		BusinessCertificate cdn = new BusinessCertificate();
@@ -59,8 +59,8 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		BusinessCertificateDAO cdnDAO = ctx.getBean("businessCertificateDAOJDBCTemplate", BusinessCertificateDAO.class);
-		List<String> headerList = cdnDAO.getDetailHeaders("METR_CERT_CNT_SALDO_ACTUAL", environment.getIdSistema(),
-				environment.getIdSoftware());
+		List<String> headerList = cdnDAO.getDetailHeaders("METR_CERT_CNT_SALDO_ACTUAL", environment.getSystem(),
+				environment.getCurrentSoftware());
 		ctx.close();
 
 		assertEquals(headerList.size(), 2);
@@ -79,7 +79,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		BusinessCertificateDAO cdnDAO = ctx.getBean("businessCertificateDAOJDBCTemplate", BusinessCertificateDAO.class);
 		List<DetailOfCertificate> detallesList = cdnDAO.getCertificateDetails("201306", "METR_CERT_CNT_SALDO_ACTUAL", 2,
-				environment.getIdSistema(), environment.getIdSoftware());
+				environment.getSystem(), environment.getCurrentSoftware());
 		ctx.close();
 
 		assertEquals(detallesList.size(), 6);

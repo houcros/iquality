@@ -82,8 +82,8 @@ public class RegisterOfOperationsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			registro.setDescripcionEscenario(
 					helper.filterNullString((String.valueOf(registroRow.get("de_escenario")))));
 			registro.setIdEjecucion(helper.filterStringToInt(String.valueOf(registroRow.get("id_ejecucion"))));
-			registro.setFechaInicio(helper.auxStringToSqlDate(String.valueOf(registroRow.get("id_fecha_inicio"))));
-			registro.setFechaFin((helper.auxStringToSqlDate(String.valueOf(registroRow.get("id_fecha_fin")))));
+			registro.setFechaInicio(helper.filterStringToSqlDate(String.valueOf(registroRow.get("id_fecha_inicio"))));
+			registro.setFechaFin((helper.filterStringToSqlDate(String.valueOf(registroRow.get("id_fecha_fin")))));
 			registro.setFcDuracion(helper.filterStringToDouble(String.valueOf(registroRow.get("fc_duracion"))));
 			registro.setTipoDeOperacion(
 					helper.filterNullString((String.valueOf(registroRow.get("id_tipo_operacion")))));

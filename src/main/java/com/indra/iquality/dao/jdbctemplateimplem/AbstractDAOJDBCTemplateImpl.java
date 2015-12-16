@@ -5,7 +5,7 @@ package com.indra.iquality.dao.jdbctemplateimplem;
 
 import javax.sql.DataSource;
 
-import com.indra.iquality.helper.CustomHelper;
+import com.indra.iquality.helper.DataHelper;
 
 /**
  * The Abstract Class AbstractDAOJDBCTemplateImpl. Encapsulates the common parts
@@ -22,7 +22,7 @@ public abstract class AbstractDAOJDBCTemplateImpl {
 	protected DataSource dataSource;
 
 	/** The helper with common utilities. */
-	protected CustomHelper helper = new CustomHelper();
+	protected DataHelper helper = new DataHelper();
 
 	/**
 	 * Sets the data source of the DAO.

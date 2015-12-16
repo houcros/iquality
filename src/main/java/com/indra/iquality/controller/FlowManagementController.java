@@ -77,7 +77,7 @@ public class FlowManagementController {
 		// Obtengo todos los pases
 		List<Flow> allPases = null;
 		try {
-			allPases = paseDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
+			allPases = paseDAO.getAll(environment.getSystem(), environment.getCurrentSoftware());
 			logger.debug("[showAllFlows] : Obtenidos todos los pases");
 		} catch (Exception e) {
 			logger.error("[showAllFlows] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
@@ -112,7 +112,7 @@ public class FlowManagementController {
 		// Obtengo todos los jobs
 		List<Job> allJobs;
 		try {
-			allJobs = jobDAO.getAll(environment.getIdSistema(), environment.getIdSoftware());
+			allJobs = jobDAO.getAll(environment.getSystem(), environment.getCurrentSoftware());
 			logger.debug("[wizardNewFlow] : Obtenidos todos los jobs");
 		} catch (Exception e) {
 			allJobs = new ArrayList<Job>();
@@ -208,7 +208,7 @@ public class FlowManagementController {
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 			FlowDAO paseDAO = ctx.getBean("flowDAOJDBCTemplate", FlowDAO.class);
 			ctx.close();
-			paseDAO.save(pase, environment.getIdSistema(), environment.getIdSoftware());
+			paseDAO.save(pase, environment.getSystem(), environment.getCurrentSoftware());
 
 		} catch (ParseException e) {
 			logger.error("[handleNewFlowPost] : Parseando JSON string");

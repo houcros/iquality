@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.*;
-import com.indra.iquality.helper.CustomHelper;
+import com.indra.iquality.helper.DataHelper;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.tree.GenericTreeNode;
 
 public class ConceptsToTreeTranslator {
 
-	final private static CustomHelper helper = new CustomHelper();
+	final private static DataHelper helper = new DataHelper();
 	
 	public GenericTreeNode<DictionaryConcept> createTreeFromList(List<ParIntNodo> list){
 		

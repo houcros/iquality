@@ -20,7 +20,7 @@ public class EnvironmentDAOJDBCTemplateImplTest {
 		EnvironmentDAO envDAO = ctx.getBean("environmentDAOJDBCTemplate", EnvironmentDAO.class);
 		ctx.close();
 
-		Pair<Integer, String> currentSoftware = envDAO.getCurrentSoftware(environment.getIdSistema());
+		Pair<Integer, String> currentSoftware = envDAO.getCurrentSoftware(environment.getSystem());
 		assertEquals(1, (int) currentSoftware.getLeft());
 		assertEquals("Versión inicial", currentSoftware.getRight());
 	}

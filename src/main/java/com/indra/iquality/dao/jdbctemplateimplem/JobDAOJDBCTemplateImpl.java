@@ -141,11 +141,11 @@ public class JobDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl implemen
 			job.setIdJob(helper.filterNullString((String.valueOf(jobRow.get("id_job")))));
 			job.setIdEjecucion(helper.filterNullString((String.valueOf(jobRow.get("id_ejecucion")))));
 			job.setEstado(helper.filterNullString((String.valueOf(jobRow.get("id_estado")))));
-			job.setFechaInicio((helper.auxStringToSqlDate(String.valueOf(jobRow.get("id_fecha_inicio")))));
-			job.setFechaFin((helper.auxStringToSqlDate(String.valueOf(jobRow.get("id_fecha_fin")))));
+			job.setFechaInicio((helper.filterStringToSqlDate(String.valueOf(jobRow.get("id_fecha_inicio")))));
+			job.setFechaFin((helper.filterStringToSqlDate(String.valueOf(jobRow.get("id_fecha_fin")))));
 			job.setPuntoDeControl(helper.filterNullString((String.valueOf(jobRow.get("id_sn_punto_control")))));
 			job.setFechaOKPuntoDeControl(
-					(helper.auxStringToSqlDate(String.valueOf(jobRow.get("id_fecha_ok_punto_control")))));
+					(helper.filterStringToSqlDate(String.valueOf(jobRow.get("id_fecha_ok_punto_control")))));
 			job.setDuracion(helper.filterNullString((String.valueOf(jobRow.get("duracion")))));
 			job.setSoftware(helper.filterStringToInt(String.valueOf(jobRow.get("id_software"))));
 			job.setSistema(helper.filterNullString((String.valueOf(jobRow.get("id_sistema")))));

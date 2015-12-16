@@ -79,8 +79,8 @@ public class Flow {
 		this.esAtipico = esAtipico;
 		this.jobs = jobs;
 		this.dependencias = dependencias;
-		this.sistema = Environment.getInstance().getIdSistema();
-		this.software = Environment.getInstance().getSoftwareDescription();
+		this.sistema = Environment.getInstance().getSystem();
+		this.software = Environment.getInstance().getCurrentSoftwareDescription();
 	}
 
 	// Getters

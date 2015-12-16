@@ -102,8 +102,8 @@ public class CertificatesResultController {
 					BusinessCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las certificaciones y las paso a la vista
-			List<BusinessCertificate> allCertificaciones = cdnDAO.getAll(environment.getIdSistema(),
-					environment.getIdSoftware());
+			List<BusinessCertificate> allCertificaciones = cdnDAO.getAll(environment.getSystem(),
+					environment.getCurrentSoftware());
 			model.addAttribute("allTableItems", allCertificaciones);
 
 			logger.info("[getCertificates] : RETURN (from tab {})", tab);
@@ -116,8 +116,8 @@ public class CertificatesResultController {
 					TechnicalCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las validaciones y las paso a la vista
-			List<TechnicalCertificate> allValidaciones = vtDAO.getAll(environment.getIdSistema(),
-					environment.getIdSoftware());
+			List<TechnicalCertificate> allValidaciones = vtDAO.getAll(environment.getSystem(),
+					environment.getCurrentSoftware());
 			model.addAttribute("allTableItems", allValidaciones);
 
 			logger.info("[getCertificates] : RETURN (from tab {})", tab);
@@ -178,8 +178,8 @@ public class CertificatesResultController {
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
-			List<String> allHeaders = cdnDAO.getDetailHeaders(idMetrica, environment.getIdSistema(),
-					environment.getIdSoftware());
+			List<String> allHeaders = cdnDAO.getDetailHeaders(idMetrica, environment.getSystem(),
+					environment.getCurrentSoftware());
 			int numDims = allHeaders.size();
 			// Por completitud, agrego headers STUB para rellenar hasta el
 			// número máximo, aunque es prescindible
@@ -195,7 +195,7 @@ public class CertificatesResultController {
 			// Obtengo todos valores de cada columna de la tabla de detalle y
 			// los pongo en la vista
 			List<DetailOfCertificate> allDetallesDeCert = cdnDAO.getCertificateDetails(idMes, idMetrica, numDims,
-					environment.getIdSistema(), environment.getIdSoftware());
+					environment.getSystem(), environment.getCurrentSoftware());
 			model.addAttribute("allTableItems", allDetallesDeCert);
 			// Suelto una cookie con el número de dimensiones para que el
 			// frontend sepa qué dimensiones (columnas de la tabla) mostrar: las
@@ -217,7 +217,7 @@ public class CertificatesResultController {
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
 			List<DetailOfValidation> allDetallesDeVali = vtDAO.getCertificateDetails(idMetrica, idMes,
-					environment.getIdSistema(), environment.getIdSoftware());
+					environment.getSystem(), environment.getCurrentSoftware());
 			// ATENCIÓN: Hay que llamar a getDetallesDeValidacion antes de estos
 			// dos métodos o no funcionrá como se espera!
 			List<String> allHeaders = vtDAO.getHeaders();

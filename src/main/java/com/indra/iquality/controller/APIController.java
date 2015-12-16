@@ -147,8 +147,8 @@ public class APIController {
 		// Obtengo todas las trazas
 		List<RegisterTrace> allTrazaDeRegistro = null;
 		try {
-			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion, environment.getIdSistema(),
-					environment.getIdSoftware());
+			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion, environment.getSystem(),
+					environment.getCurrentSoftware());
 			logger.debug("[getOperationTrace] : Obtenidas todas las trazas");
 		} catch (Exception e) {
 			logger.error("[getOperationTrace] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
@@ -188,8 +188,8 @@ public class APIController {
 		// Obtengo todas las dependencias
 		List<Dependency> allDependencias = null;
 		try {
-			allDependencias = dependenciaDeJobDAO.getAll(idEjecucion, idJob, environment.getIdSistema(),
-					environment.getIdSoftware());
+			allDependencias = dependenciaDeJobDAO.getAll(idEjecucion, idJob, environment.getSystem(),
+					environment.getCurrentSoftware());
 			logger.debug("[getJobDependencies] : Obtenidas todas las dependencias del job {} para la ejecuión {}",
 					idJob, idEjecucion);
 		} catch (Exception e) {
@@ -254,8 +254,8 @@ public class APIController {
 		// Leo todos los nodos del diccionario
 		List<GenericTreeNode<DictionaryConcept>> allDictionaryConceptNodes = new ArrayList<GenericTreeNode<DictionaryConcept>>();
 		try {
-			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAllConcepts(environment.getIdSistema(),
-					environment.getIdSoftware());
+			allDictionaryConceptNodes = dictionaryOfConceptsDAO.getAllConcepts(environment.getSystem(),
+					environment.getCurrentSoftware());
 			logger.debug("[auxiliaryUpdateDictionaryCache] : Obtenidos todos los nodos del diccionario.");
 		} catch (Exception e) {
 			logger.error("[auxiliaryUpdateDictionaryCache] : Excepción <{}> | Ayuda: {} | Stacktrace: ", e.getClass(),
@@ -406,7 +406,7 @@ public class APIController {
 					DictionaryOfConceptsDAO.class);
 			ctx.close();
 			DescriptionOfAttribute da = dictionaryOfConceptsDAO.getDescriptionOfAttribute(compRowID, ctRowID,
-					environment.getIdSistema(), environment.getIdSoftware());
+					environment.getSystem(), environment.getCurrentSoftware());
 
 			// Parseo (redundante?)
 			String jsonString = new Gson().toJson(da);
@@ -435,7 +435,7 @@ public class APIController {
 					DictionaryOfConceptsDAO.class);
 			ctx.close();
 			DescriptionOfAttribute da = dictionaryOfConceptsDAO.getDescriptionOfMasterAttribute(compRowID, ctRowID,
-					environment.getIdSistema(), environment.getIdSoftware());
+					environment.getSystem(), environment.getCurrentSoftware());
 
 			// Parseo (redundante?)
 			String jsonString = new Gson().toJson(da);
@@ -464,7 +464,7 @@ public class APIController {
 					DictionaryOfConceptsDAO.class);
 			ctx.close();
 			DescripcionIndicador di = dictionaryOfConceptsDAO.getDescriptionOfIndicator(compRowID, ctRowID,
-					environment.getIdSistema(), environment.getIdSoftware());
+					environment.getSystem(), environment.getCurrentSoftware());
 
 			// Parseo (redundante?)
 			String jsonString = new Gson().toJson(di);
