@@ -141,7 +141,7 @@ public class APIController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		TraceOfRegisterDAO trazaDeRegistroDAO = ctx.getBean("trazaDeRegistroDAOJDBCTemplate", TraceOfRegisterDAO.class);
+		TraceOfRegisterDAO trazaDeRegistroDAO = ctx.getBean("traceOfRegisterDAOJDBCTemplate", TraceOfRegisterDAO.class);
 		ctx.close();
 
 		// Obtengo todas las trazas

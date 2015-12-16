@@ -11,28 +11,6 @@ import com.indra.iquality.singleton.Environment;
 
 public class CustomHelper {
 
-	/*
-	 * Pasa un string que representa un timestamp a una SQLDate
-	 */
-	public Date auxStringToSqlDate(String tmstmp) throws ParseException {
-
-		if (tmstmp == null)
-			return Environment.DEFAULT_NULL_DATE;
-
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-		Timestamp timestamp;
-		try {
-			timestamp = Timestamp.valueOf(tmstmp);
-		} catch (IllegalArgumentException e) {
-			return Environment.DEFAULT_NULL_DATE;
-		}
-
-		java.util.Date util_date = dateFormat.parse(dateFormat.format(timestamp));
-		Date sql_date = new Date(util_date.getTime());
-
-		return sql_date;
-	}
-
 	public ConceptTypeEnum conceptTypeStringToEnum(String type) {
 
 		switch (type) {
@@ -68,10 +46,27 @@ public class CustomHelper {
 		}
 	}
 
-	public String filterString(String s) {
-		if (s != null)
-			return s;
-		return "Sin especificar";
+	/*
+	 * Pasa un string que representa un timestamp a una SQLDate
+	 */
+	public Date auxStringToSqlDate(String tmstmp) throws ParseException {
+
+		// Acá filtro los nulls
+		if (tmstmp == null)
+			return Environment.DEFAULT_NULL_DATE;
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Timestamp timestamp;
+		try {
+			timestamp = Timestamp.valueOf(tmstmp);
+		} catch (IllegalArgumentException e) {
+			return Environment.DEFAULT_NULL_DATE;
+		}
+
+		java.util.Date util_date = dateFormat.parse(dateFormat.format(timestamp));
+		Date sql_date = new Date(util_date.getTime());
+
+		return sql_date;
 	}
 
 	public String filterNullString(String s) {
@@ -80,16 +75,18 @@ public class CustomHelper {
 		return Environment.DEFAULT_NULL_STRING;
 	}
 
-	public int filterNullInt(Integer x) {
-		if (x != null)
-			return x;
-		return Environment.DEFAULT_NULL_INT;
+	public int filterStringToInt(String s) {
+		if (s == null || s == "null")
+			return Environment.DEFAULT_NULL_INT;
+		else
+			return Integer.valueOf(s);
 	}
 
-	public double filterNullDouble(Double x) {
-		if (x != null)
-			return x;
-		return Environment.DEFAULT_NULL_DOUBLE;
+	public double filterStringToDouble(String s) {
+		if (s == null || s == "null")
+			return Environment.DEFAULT_NULL_DOUBLE;
+		else
+			return Double.valueOf(s);
 	}
 
 }

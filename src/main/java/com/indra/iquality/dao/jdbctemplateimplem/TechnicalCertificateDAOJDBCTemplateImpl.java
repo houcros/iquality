@@ -95,8 +95,7 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			validacion.setSubseccion(helper.filterNullString(String.valueOf(validacionRow.get("subseccion"))));
 			validacion.setEntidad(helper.filterNullString(String.valueOf(validacionRow.get("entidad"))));
 			validacion.setCertificacion(helper.filterNullString(String.valueOf(validacionRow.get("certificacion"))));
-			validacion.setNumRegistros(
-					helper.filterNullInt(Integer.valueOf(String.valueOf(validacionRow.get("num_registros")))));
+			validacion.setNumRegistros(helper.filterStringToInt(String.valueOf(validacionRow.get("num_registros"))));
 			validacion.setEstado(helper.filterNullString(String.valueOf(validacionRow.get("okko"))));
 
 			validacionList.add(validacion);

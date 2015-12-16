@@ -98,7 +98,7 @@ public class CertificatesResultController {
 		if (tab == TAB_VAL_BUSSINESS_CERTIFICATE) {
 
 			// En esta pestaña muestro las certificaciones de negocio
-			BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate",
+			BusinessCertificateDAO cdnDAO = ctx.getBean("businessCertificateDAOJDBCTemplate",
 					BusinessCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las certificaciones y las paso a la vista
@@ -112,7 +112,7 @@ public class CertificatesResultController {
 		} else if (tab == TAB_VAL_TECHNICAL_CERTIFICATE) {
 
 			// En esta pestaña muestro las validaciones técnicas
-			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate",
+			TechnicalCertificateDAO vtDAO = ctx.getBean("technicalCertificateDAOJDBCTemplate",
 					TechnicalCertificateDAO.class);
 			ctx.close();
 			// Obtengo todas las validaciones y las paso a la vista
@@ -172,7 +172,7 @@ public class CertificatesResultController {
 
 			// En esta pestaña muestro los detalles de una certificación de
 			// negocio
-			BusinessCertificateDAO cdnDAO = ctx.getBean("certificacionDeNegocioDAOJDBCTemplate",
+			BusinessCertificateDAO cdnDAO = ctx.getBean("businessCertificateDAOJDBCTemplate",
 					BusinessCertificateDAO.class);
 			ctx.close();
 
@@ -210,7 +210,7 @@ public class CertificatesResultController {
 			// En esta pestaña muestro los detalles de una validación técnica
 			// ATENCIÓN: el orden de los métodos es inverso al de la pestaña
 			// anterior
-			TechnicalCertificateDAO vtDAO = ctx.getBean("validacionTecnicaDAOJDBCTemplate",
+			TechnicalCertificateDAO vtDAO = ctx.getBean("technicalCertificateDAOJDBCTemplate",
 					TechnicalCertificateDAO.class);
 			ctx.close();
 

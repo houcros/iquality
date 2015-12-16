@@ -147,7 +147,7 @@ public class JobDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl implemen
 			job.setFechaOKPuntoDeControl(
 					(helper.auxStringToSqlDate(String.valueOf(jobRow.get("id_fecha_ok_punto_control")))));
 			job.setDuracion(helper.filterNullString((String.valueOf(jobRow.get("duracion")))));
-			job.setSoftware(helper.filterNullInt((Integer.valueOf(String.valueOf(jobRow.get("id_software"))))));
+			job.setSoftware(helper.filterStringToInt(String.valueOf(jobRow.get("id_software"))));
 			job.setSistema(helper.filterNullString((String.valueOf(jobRow.get("id_sistema")))));
 
 			jobList.add(job);

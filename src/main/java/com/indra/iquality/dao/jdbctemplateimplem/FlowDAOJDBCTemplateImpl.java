@@ -53,7 +53,7 @@ public class FlowDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl impleme
 
 			Flow pase = new Flow();
 
-			pase.setId(helper.filterNullInt(Integer.parseInt(String.valueOf(paseDefRow.get("ID_PASE")))));
+			pase.setId(helper.filterStringToInt(String.valueOf(paseDefRow.get("ID_PASE"))));
 			pase.setNombre(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
 			pase.setEsAtipico(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SN_PASE_ATIPICO"))));
 			pase.setSistema(system);

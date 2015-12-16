@@ -91,10 +91,9 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 			DictionaryConcept dictionaryConcept = new DictionaryConcept();
 
-			dictionaryConcept.setStatus(
-					helper.filterNullInt(Integer.valueOf(String.valueOf(dictionaryConceptNodeRow.get("status")))));
-			dictionaryConcept.setLevel(
-					helper.filterNullInt(Integer.valueOf(String.valueOf(dictionaryConceptNodeRow.get("level")))));
+			dictionaryConcept
+					.setStatus(helper.filterStringToInt(String.valueOf(dictionaryConceptNodeRow.get("status"))));
+			dictionaryConcept.setLevel(helper.filterStringToInt(String.valueOf(dictionaryConceptNodeRow.get("level"))));
 			dictionaryConcept
 					.setConcept(helper.filterNullString(String.valueOf(dictionaryConceptNodeRow.get("title"))));
 			dictionaryConcept
@@ -294,14 +293,14 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 							DescripcionIndicador di = new DescripcionIndicador();
 
 							di.setId(rs.getInt("id_componente"));
-							di.setNombre(helper.filterString(rs.getString("nombre")));
-							di.setResponsable(helper.filterString(rs.getString("responsable")));
-							di.setDefinicion(helper.filterString(rs.getString("definicion")));
-							di.setComentarios(helper.filterString(rs.getString("comentario")));
-							di.setHistorico(helper.filterString(rs.getString("historico")));
-							di.setMetodoObtencion(helper.filterString(rs.getString("mtd_obtencion")));
-							di.setUnidadMedida(helper.filterString(rs.getString("unidad_medida")));
-							di.setPeriodoAcumulado(helper.filterString(rs.getString("periodo_acumulado")));
+							di.setNombre(helper.filterNullString(rs.getString("nombre")));
+							di.setResponsable(helper.filterNullString(rs.getString("responsable")));
+							di.setDefinicion(helper.filterNullString(rs.getString("definicion")));
+							di.setComentarios(helper.filterNullString(rs.getString("comentario")));
+							di.setHistorico(helper.filterNullString(rs.getString("historico")));
+							di.setMetodoObtencion(helper.filterNullString(rs.getString("mtd_obtencion")));
+							di.setUnidadMedida(helper.filterNullString(rs.getString("unidad_medida")));
+							di.setPeriodoAcumulado(helper.filterNullString(rs.getString("periodo_acumulado")));
 
 							return di;
 						}
@@ -366,7 +365,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 			Certification cert = new Certification();
 
-			cert.setIdComponente(helper.filterNullInt(Integer.valueOf((String.valueOf(certRow.get("id_componente"))))));
+			cert.setIdComponente(helper.filterStringToInt((String.valueOf(certRow.get("id_componente")))));
 			cert.setNombre(helper.filterNullString(String.valueOf(certRow.get("de_nombre"))));
 			cert.setDescripcion(helper.filterNullString(String.valueOf(certRow.get("de_certificacion"))));
 

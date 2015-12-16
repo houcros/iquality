@@ -71,7 +71,7 @@ public class FlowManagementController {
 
 		// Abro el contexto para crear un DAO
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-		FlowDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", FlowDAO.class);
+		FlowDAO paseDAO = ctx.getBean("flowDAOJDBCTemplate", FlowDAO.class);
 		ctx.close();
 
 		// Obtengo todos los pases
@@ -206,7 +206,7 @@ public class FlowManagementController {
 			Flow pase = new Flow((String) json.get("nombrePase"), (String) json.get("esAtipico"), jobs, dependencias);
 			// Inserto el pase mediante el DAO
 			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
-			FlowDAO paseDAO = ctx.getBean("paseDAOJDBCTemplate", FlowDAO.class);
+			FlowDAO paseDAO = ctx.getBean("flowDAOJDBCTemplate", FlowDAO.class);
 			ctx.close();
 			paseDAO.save(pase, environment.getIdSistema(), environment.getIdSoftware());
 

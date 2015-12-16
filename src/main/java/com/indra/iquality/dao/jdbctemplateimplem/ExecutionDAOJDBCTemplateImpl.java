@@ -176,20 +176,20 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 
 			Execution pase = new Execution();
 
-			pase.setIdEjecucion(helper.filterNullInt(Integer.parseInt(String.valueOf(paseRow.get("id_ejecucion")))));
-			pase.setPase(helper.filterString(String.valueOf(paseRow.get("de_pase"))));
-			pase.setEstado(helper.filterString(String.valueOf(paseRow.get("id_estado"))));
-			pase.setFechaDatos(helper.filterString(String.valueOf(paseRow.get("id_anyo")))
-					+ helper.filterString(String.valueOf(paseRow.get("id_mes"))));
-			pase.setEscenario(helper.filterString(String.valueOf(paseRow.get("id_escenario"))));
+			pase.setIdEjecucion(helper.filterStringToInt(String.valueOf(paseRow.get("id_ejecucion"))));
+			pase.setPase(helper.filterNullString(String.valueOf(paseRow.get("de_pase"))));
+			pase.setEstado(helper.filterNullString(String.valueOf(paseRow.get("id_estado"))));
+			pase.setFechaDatos(helper.filterNullString(String.valueOf(paseRow.get("id_anyo")))
+					+ helper.filterNullString(String.valueOf(paseRow.get("id_mes"))));
+			pase.setEscenario(helper.filterNullString(String.valueOf(paseRow.get("id_escenario"))));
 
 			// Es aquí donde puede lanzar ParseException
 			pase.setFechaInicio(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
 			pase.setFechaFin(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
 			pase.setFechaPlanificada(helper.auxStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
 
-			pase.setSoftware(helper.filterString(String.valueOf(paseRow.get("de_software"))));
-			pase.setDuracion(helper.filterString(String.valueOf(paseRow.get("duracion"))));
+			pase.setSoftware(helper.filterNullString(String.valueOf(paseRow.get("de_software"))));
+			pase.setDuracion(helper.filterNullString(String.valueOf(paseRow.get("duracion"))));
 
 			executionList.add(pase);
 		}
