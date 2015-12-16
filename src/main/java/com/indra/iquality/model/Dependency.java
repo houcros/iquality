@@ -1,66 +1,192 @@
+/*
+ * 
+ */
 package com.indra.iquality.model;
 
+/**
+ * The Class Dependency. Represents a dependency among two jobs.
+ * 
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 16-dic-2015
+ * 
+ *          The Class Dependency.
+ */
 public class Dependency {
 
-	// TODO Nuevamente creo que muchos de estos atributos sobran
-	// aunque estén en la query original
-	// Al fin y al cabo sólo muestro idJobHijo y estado
-	private int idEjecucion;
-	private String sistema;
+	/** The execution id. */
+	private int executionID;
+
+	/** The system. */
+	private String system;
+
+	/** The software. */
 	private int software;
-	private int idPase;
-	private String idJobPadre;
-	private String idJobHijo;
-	private String snHabilitada;
-	private String estado;
-	
+
+	/** The flow id. */
+	private int flowID;
+
+	/** The father job id. */
+	private String fatherJobID;
+
+	/** The son job id. */
+	private String sonJobID;
+
+	/** The habilitatted sn. */
+	private String habilitattedSN;
+
+	/** The status. */
+	private String status;
+
+	/**
+	 * Gets the id ejecucion.
+	 *
+	 * @return the id ejecucion
+	 */
 	public int getIdEjecucion() {
-		return idEjecucion;
+		return executionID;
 	}
-	public void setIdEjecucion(int idEjecucion) {
-		this.idEjecucion = idEjecucion;
+
+	/**
+	 * Sets the execution id.
+	 *
+	 * @param executionID
+	 *            the new execution id
+	 */
+	public void setExecutionID(int executionID) {
+		this.executionID = executionID;
 	}
-	public String getSistema() {
-		return sistema;
+
+	/**
+	 * Gets the system.
+	 *
+	 * @return the system
+	 */
+	public String getSystem() {
+		return system;
 	}
-	public void setSistema(String sistema) {
-		this.sistema = sistema;
+
+	/**
+	 * Sets the system.
+	 *
+	 * @param system
+	 *            the new system
+	 */
+	public void setSystem(String system) {
+		this.system = system;
 	}
+
+	/**
+	 * Gets the software.
+	 *
+	 * @return the software
+	 */
 	public int getSoftware() {
 		return software;
 	}
+
+	/**
+	 * Sets the software.
+	 *
+	 * @param software
+	 *            the new software
+	 */
 	public void setSoftware(int software) {
 		this.software = software;
 	}
-	public int getIdPase() {
-		return idPase;
+
+	/**
+	 * Gets the flow id.
+	 *
+	 * @return the flow id
+	 */
+	public int getFlowID() {
+		return flowID;
 	}
-	public void setIdPase(int idPase) {
-		this.idPase = idPase;
+
+	/**
+	 * Sets the flow id.
+	 *
+	 * @param flowID
+	 *            the new flow id
+	 */
+	public void setFlowID(int flowID) {
+		this.flowID = flowID;
 	}
-	public String getIdJobPadre() {
-		return idJobPadre;
+
+	/**
+	 * Gets the father job id.
+	 *
+	 * @return the father job id
+	 */
+	public String getFatherJobID() {
+		return fatherJobID;
 	}
-	public void setIdJobPadre(String idJobPadre) {
-		this.idJobPadre = idJobPadre;
+
+	/**
+	 * Sets the father job id.
+	 *
+	 * @param fatherJobID
+	 *            the new father job id
+	 */
+	public void setFatherJobID(String fatherJobID) {
+		this.fatherJobID = fatherJobID;
 	}
-	public String getIdJobHijo() {
-		return idJobHijo;
+
+	/**
+	 * Gets the son job id.
+	 *
+	 * @return the son job id
+	 */
+	public String getSonJobID() {
+		return sonJobID;
 	}
-	public void setIdJobHijo(String idJobHijo) {
-		this.idJobHijo = idJobHijo;
+
+	/**
+	 * Sets the son job id.
+	 *
+	 * @param sonJobID
+	 *            the new son job id
+	 */
+	public void setSonJobID(String sonJobID) {
+		this.sonJobID = sonJobID;
 	}
-	public String getSnHabilitada() {
-		return snHabilitada;
+
+	/**
+	 * Gets the if it is habilitatted.
+	 *
+	 * @return the habilitatted sn
+	 */
+	public String getHabilitattedSN() {
+		return habilitattedSN;
 	}
-	public void setSnHabilitada(String snHabilitada) {
-		this.snHabilitada = snHabilitada;
+
+	/**
+	 * Sets the habilitatted state.
+	 *
+	 * @param habilitattedSN
+	 *            the new habilitatted sn
+	 */
+	public void setHabilitattedSN(String habilitattedSN) {
+		this.habilitattedSN = habilitattedSN;
 	}
-	public String getEstado() {
-		return estado;
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+
+	/**
+	 * Sets the status.
+	 *
+	 * @param status
+	 *            the new status
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
+
 }

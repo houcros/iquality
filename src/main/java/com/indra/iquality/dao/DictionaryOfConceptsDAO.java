@@ -5,10 +5,10 @@ package com.indra.iquality.dao;
 
 import java.util.List;
 
-import com.indra.iquality.model.DescriptionOfAttribute;
+import com.indra.iquality.model.AttributeDescription;
 import com.indra.iquality.helper.GenericTreeNode;
-import com.indra.iquality.model.DescripcionAtributoMaestro;
-import com.indra.iquality.model.DescripcionIndicador;
+import com.indra.iquality.model.MasterAttributeDescription;
+import com.indra.iquality.model.IndicatorDescription;
 import com.indra.iquality.model.DictionaryConcept;
 
 /**
@@ -49,7 +49,7 @@ public interface DictionaryOfConceptsDAO {
 	 *            the software version
 	 * @return the description of the attribute
 	 */
-	public DescriptionOfAttribute getDescriptionOfAttribute(String compRowID, String ctRowID, String sistema,
+	public AttributeDescription getDescriptionOfAttribute(String compRowID, String ctRowID, String sistema,
 			int software);
 
 	/**
@@ -66,7 +66,7 @@ public interface DictionaryOfConceptsDAO {
 	 *            the software version
 	 * @return the description of the master attribute
 	 */
-	public DescripcionAtributoMaestro getDescriptionOfMasterAttribute(String compRowID, String ctRowID, String sistema,
+	public MasterAttributeDescription getDescriptionOfMasterAttribute(String compRowID, String ctRowID, String sistema,
 			int software);
 
 	/**
@@ -83,6 +83,6 @@ public interface DictionaryOfConceptsDAO {
 	 *            the software version
 	 * @return the description of the indicator
 	 */
-	public DescripcionIndicador getDescriptionOfIndicator(String compRowID, String ctRowID, String sistema,
+	public IndicatorDescription getDescriptionOfIndicator(String compRowID, String ctRowID, String sistema,
 			int software);
 }

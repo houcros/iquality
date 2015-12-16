@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.indra.iquality.dao.TechnicalCertificateDAO;
-import com.indra.iquality.model.DetailOfValidation;
+import com.indra.iquality.model.TechnicalCertificateDetail;
 import com.indra.iquality.model.TechnicalCertificate;
 import com.indra.iquality.singleton.Environment;
 
@@ -89,14 +89,14 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			TechnicalCertificate validacion = new TechnicalCertificate();
 
 			validacion.setIdMetrica(helper.filterNullString(String.valueOf(validacionRow.get("id_metrica"))));
-			validacion.setIdMes(helper.filterNullString(String.valueOf(validacionRow.get("id_mes"))));
-			validacion.setFecha(helper.filterNullString(String.valueOf(validacionRow.get("fecha"))));
-			validacion.setSeccion(helper.filterNullString(String.valueOf(validacionRow.get("seccion"))));
-			validacion.setSubseccion(helper.filterNullString(String.valueOf(validacionRow.get("subseccion"))));
-			validacion.setEntidad(helper.filterNullString(String.valueOf(validacionRow.get("entidad"))));
-			validacion.setCertificacion(helper.filterNullString(String.valueOf(validacionRow.get("certificacion"))));
-			validacion.setNumRegistros(helper.filterStringToInt(String.valueOf(validacionRow.get("num_registros"))));
-			validacion.setEstado(helper.filterNullString(String.valueOf(validacionRow.get("okko"))));
+			validacion.setMonth(helper.filterNullString(String.valueOf(validacionRow.get("id_mes"))));
+			validacion.setDate(helper.filterNullString(String.valueOf(validacionRow.get("fecha"))));
+			validacion.setSection(helper.filterNullString(String.valueOf(validacionRow.get("seccion"))));
+			validacion.setSubsection(helper.filterNullString(String.valueOf(validacionRow.get("subseccion"))));
+			validacion.setEntity(helper.filterNullString(String.valueOf(validacionRow.get("entidad"))));
+			validacion.setCertificate(helper.filterNullString(String.valueOf(validacionRow.get("certificacion"))));
+			validacion.setNumberOfRegisters(helper.filterStringToInt(String.valueOf(validacionRow.get("num_registros"))));
+			validacion.setStatus(helper.filterNullString(String.valueOf(validacionRow.get("okko"))));
 
 			validacionList.add(validacion);
 		}
@@ -113,7 +113,7 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 	 * .lang.String, java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public List<DetailOfValidation> getCertificateDetails(String idMetrica, String idMes, String sistema,
+	public List<TechnicalCertificateDetail> getCertificateDetails(String idMetrica, String idMes, String sistema,
 			int software) {
 		// TODO usar sistema y software?
 
@@ -123,11 +123,11 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		String query = getQuery(idMetrica, idMes, sistema, software);
 		if (query == null || query.equals("")) {
 			logger.error("[getDetallesDeValidacion] : Has intentado ejecutar una query nula o vacía");
-			return new ArrayList<DetailOfValidation>();
+			return new ArrayList<TechnicalCertificateDetail>();
 		}
 
 		// Hago la query
-		List<DetailOfValidation> ddvList = new ArrayList<DetailOfValidation>();
+		List<TechnicalCertificateDetail> ddvList = new ArrayList<TechnicalCertificateDetail>();
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Map<String, Object>> anonymousRows = jdbcTemplate.queryForList(query);
 
@@ -140,7 +140,7 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 				headers.add(entry.getKey());
 		}
 		// Agrego stubs a los headers que sobran (aunque no hace falta)
-		while (headers.size() < DetailOfValidation.MAX_DIMENSIONES)
+		while (headers.size() < TechnicalCertificateDetail.MAX_DIMENSIONES)
 			headers.add("_STUB");
 
 		logger.debug("[getDetallesDeValidacion] : Obtenidos headers.");
@@ -152,11 +152,11 @@ public class TechnicalCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			for (Map.Entry<String, Object> entry : anonymousRow.entrySet()) {
 				strs.add(String.valueOf(entry.getValue()));
 			}
-			while (strs.size() < DetailOfValidation.MAX_DIMENSIONES) {
+			while (strs.size() < TechnicalCertificateDetail.MAX_DIMENSIONES) {
 				strs.add(Environment.DEFAULT_NULL_STRING);
 			}
 
-			ddvList.add(new DetailOfValidation(strs));
+			ddvList.add(new TechnicalCertificateDetail(strs));
 		}
 
 		logger.info("[getDetallesDeValidacion] : RETURN");

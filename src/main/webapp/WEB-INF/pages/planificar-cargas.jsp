@@ -73,15 +73,6 @@
                                     </button>
                                     </a>
                                 </div>
-<!--                                 <div class="btn-group pull-right"> -->
-<!--                                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i> -->
-<!--                                     </button> -->
-<!--                                     <ul class="dropdown-menu pull-right"> -->
-<!--                                         <li><a href="#">Print</a></li> -->
-<!--                                         <li><a href="#">Save as PDF</a></li> -->
-<!--                                         <li><a href="#">Export to Excel</a></li> -->
-<!--                                     </ul> -->
-<!--                                 </div> -->
                             </div>
                             <div class="space15"></div>
 									<table cellpadding="0" cellspacing="0" border="0"
@@ -108,11 +99,11 @@
 															<img src="/iQuality/resources/images/details_open.png">
 														</a>
 													</td>
-													<td class="center hidden-phone">${item.sistema}</td>
+													<td class="center hidden-phone">${item.system}</td>
 													<td class="center hidden-phone">${item.software}</td>
 													<td class="center hidden-phone">${item.id}</td>
-													<td class="center hidden-phone">${item.nombre}</td>
-													<td class="center hidden-phone">${item.esAtipico}</td>
+													<td class="center hidden-phone">${item.name}</td>
+													<td class="center hidden-phone">${item.isAtypical}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

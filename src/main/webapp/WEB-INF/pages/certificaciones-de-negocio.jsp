@@ -107,31 +107,31 @@
 													<!-- 					    <tr class="gradeC">       -->
 													<!-- 					    <tr class="gradeU">       -->
 													<td class="center">
-														<a href=${requestScope['javax.servlet.forward.request_uri']}${"/detalle?idMet="}${item.idMetrica}${"&idMes="}${item.idMes}>
+														<a href=${requestScope['javax.servlet.forward.request_uri']}${"/detalle?idMet="}${item.metric}${"&idMes="}${item.month}>
 															<img src="/iQuality/resources/images/details_open.png">
 														</a>
 													</td>
-													<td class="center hidden-phone">${item.idMetrica}</td>
-													<td class="center hidden-phone">${item.idMes}</td>
-													<td class="center hidden-phone">${item.certificacion}</td>
-													<td class="center hidden-phone">${item.fecha}</td>
-													<td class="center hidden-phone">${item.seccion}</td>
-													<td class="center hidden-phone">${item.subseccion}</td>
-													<td class="center hidden-phone">${item.entidad}</td>
-													<td class="center hidden-phone">${item.deCertificacion}</td>
-													<td class="center hidden-phone">${item.indicador}</td>
+													<td class="center hidden-phone">${item.metric}</td>
+													<td class="center hidden-phone">${item.month}</td>
+													<td class="center hidden-phone">${item.certificate}</td>
+													<td class="center hidden-phone">${item.date}</td>
+													<td class="center hidden-phone">${item.section}</td>
+													<td class="center hidden-phone">${item.subsection}</td>
+													<td class="center hidden-phone">${item.entity}</td>
+													<td class="center hidden-phone">${item.certificateDescription}</td>
+													<td class="center hidden-phone">${item.indicator}</td>
 													<td class="center hidden-phone"><c:choose>
-															<c:when test="${item.estado=='OK'}">
-																<span class="label label-success label-mini">${item.estado}</span>
+															<c:when test="${item.status=='OK'}">
+																<span class="label label-success label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='KO'}">
-																<span class="label label-danger label-mini">${item.estado}</span>
+															<c:when test="${item.status=='KO'}">
+																<span class="label label-danger label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='PDTE'}">
-																<span class="label label-warning label-mini">${item.estado}</span>
+															<c:when test="${item.status=='PDTE'}">
+																<span class="label label-warning label-mini">${item.status}</span>
 															</c:when>
 															<c:otherwise>
-																<span class="label label-inverse label-mini">${item.estado}</span>
+																<span class="label label-inverse label-mini">${item.status}</span>
 															</c:otherwise>
 														</c:choose></td>
 												</tr>

@@ -91,33 +91,33 @@
 												<!-- <tr class="gradeC"> -->
 												<!-- <tr class="gradeU"> -->
 													<td class="center">
-														<a href=${requestScope['javax.servlet.forward.request_uri']}${'/'}${item.idEjecucion}${"/jobs"}>
+														<a href=${requestScope['javax.servlet.forward.request_uri']}${'/'}${item.id}${"/jobs"}>
 															<img src="/iQuality/resources/images/details_open.png">
 														</a>
 													</td>
-													<td class="center hidden-phone">${item.idEjecucion}</td>
-													<td class="center hidden-phone">${item.pase}</td>
+													<td class="center hidden-phone">${item.id}</td>
+													<td class="center hidden-phone">${item.flow}</td>
 													<td class="center hidden-phone"><c:choose>
-															<c:when test="${item.estado=='OK'}">
-																<span class="label label-success label-mini">${item.estado}</span>
+															<c:when test="${item.status=='OK'}">
+																<span class="label label-success label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='KO'}">
-																<span class="label label-danger label-mini">${item.estado}</span>
+															<c:when test="${item.status=='KO'}">
+																<span class="label label-danger label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='PDTE'}">
-																<span class="label label-warning label-mini">${item.estado}</span>
+															<c:when test="${item.status=='PDTE'}">
+																<span class="label label-warning label-mini">${item.status}</span>
 															</c:when>
 															<c:otherwise>
-																<span class="label label-inverse label-mini">${item.estado}</span>
+																<span class="label label-inverse label-mini">${item.status}</span>
 															</c:otherwise>
 														</c:choose></td>
-													<td class="center hidden-phone">${item.fechaDatos}</td>
+													<td class="center hidden-phone">${item.dataDate}</td>
 													<%-- 					        <td class="center hidden-phone">${item.escenario}</td> --%>
-													<td class="center hidden-phone">${item.fechaInicio}</td>
-													<td class="center hidden-phone">${item.fechaFin}</td>
-													<td class="center hidden-phone">${item.fechaPlanificada}</td>
+													<td class="center hidden-phone">${item.startDate}</td>
+													<td class="center hidden-phone">${item.startDate}</td>
+													<td class="center hidden-phone">${item.plannedDate}</td>
 													<%-- 					        <td class="center hidden-phone">${item.software}</td>   --%>
-													<td class="center hidden-phone">${item.duracion}</td>
+													<td class="center hidden-phone">${item.duration}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

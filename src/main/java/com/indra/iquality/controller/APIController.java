@@ -32,8 +32,8 @@ import com.indra.iquality.helper.GenericTreeNode;
 import com.indra.iquality.helper.TreeTranslatorHelper;
 import com.indra.iquality.model.ConceptTypeEnum;
 import com.indra.iquality.model.Dependency;
-import com.indra.iquality.model.DescripcionIndicador;
-import com.indra.iquality.model.DescriptionOfAttribute;
+import com.indra.iquality.model.IndicatorDescription;
+import com.indra.iquality.model.AttributeDescription;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.RegisterTrace;
 import com.indra.iquality.singleton.Environment;
@@ -335,7 +335,7 @@ public class APIController {
 			conceptsForFile += dictionaryConceptNode.getData().getCompRowID() + "&"
 					+ dictionaryConceptNode.getData().getCtRowID() + "&" + dictionaryConceptNode.getData().getLevel()
 					+ "&" + dictionaryConceptNode.getData().getStatus() + "&"
-					+ dictionaryConceptNode.getData().getTipo() + "&" + dictionaryConceptNode.getData().getConcept()
+					+ dictionaryConceptNode.getData().getType() + "&" + dictionaryConceptNode.getData().getConcept()
 					+ "\n";
 		}
 
@@ -403,7 +403,7 @@ public class APIController {
 			DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate",
 					DictionaryOfConceptsDAO.class);
 			ctx.close();
-			DescriptionOfAttribute da = dictionaryOfConceptsDAO.getDescriptionOfAttribute(compRowID, ctRowID,
+			AttributeDescription da = dictionaryOfConceptsDAO.getDescriptionOfAttribute(compRowID, ctRowID,
 					environment.getSystem(), environment.getCurrentSoftware());
 
 			// Parseo (redundante?)
@@ -432,7 +432,7 @@ public class APIController {
 			DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate",
 					DictionaryOfConceptsDAO.class);
 			ctx.close();
-			DescriptionOfAttribute da = dictionaryOfConceptsDAO.getDescriptionOfMasterAttribute(compRowID, ctRowID,
+			AttributeDescription da = dictionaryOfConceptsDAO.getDescriptionOfMasterAttribute(compRowID, ctRowID,
 					environment.getSystem(), environment.getCurrentSoftware());
 
 			// Parseo (redundante?)
@@ -461,7 +461,7 @@ public class APIController {
 			DictionaryOfConceptsDAO dictionaryOfConceptsDAO = ctx.getBean("dictionaryOfConceptsDAOJDBCTemplate",
 					DictionaryOfConceptsDAO.class);
 			ctx.close();
-			DescripcionIndicador di = dictionaryOfConceptsDAO.getDescriptionOfIndicator(compRowID, ctRowID,
+			IndicatorDescription di = dictionaryOfConceptsDAO.getDescriptionOfIndicator(compRowID, ctRowID,
 					environment.getSystem(), environment.getCurrentSoftware());
 
 			// Parseo (redundante?)

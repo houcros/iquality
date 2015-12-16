@@ -72,34 +72,24 @@ public class RegisterOfOperationsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 			RegisterOfOperation registro = new RegisterOfOperation();
 
-			registro.setOpRowId(helper.filterNullString((String.valueOf(registroRow.get("op_rowid")))));
-			registro.setFinalRowId(helper.filterNullString((String.valueOf(registroRow.get("final_rowid")))));
-			registro.setIdOperacion(helper.filterStringToInt(String.valueOf(registroRow.get("id_operacion"))));
-			registro.setSistema(helper.filterNullString((String.valueOf(registroRow.get("id_sistema")))));
-			registro.setSoftware(helper.filterStringToInt(String.valueOf(registroRow.get("id_software"))));
-			registro.setDescripcionBloque(helper.filterNullString((String.valueOf(registroRow.get("de_bloque")))));
-			registro.setIdJob(helper.filterNullString((String.valueOf(registroRow.get("id_job")))));
-			registro.setDescripcionEscenario(
-					helper.filterNullString((String.valueOf(registroRow.get("de_escenario")))));
-			registro.setIdEjecucion(helper.filterStringToInt(String.valueOf(registroRow.get("id_ejecucion"))));
-			registro.setFechaInicio(helper.filterStringToSqlDate(String.valueOf(registroRow.get("id_fecha_inicio"))));
-			registro.setFechaFin((helper.filterStringToSqlDate(String.valueOf(registroRow.get("id_fecha_fin")))));
-			registro.setFcDuracion(helper.filterStringToDouble(String.valueOf(registroRow.get("fc_duracion"))));
-			registro.setTipoDeOperacion(
-					helper.filterNullString((String.valueOf(registroRow.get("id_tipo_operacion")))));
-			registro.setFcFilasCargadas(helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_cargadas"))));
-			registro.setFcFilasActualizadas(
+			registro.setOperationRowID(helper.filterNullString((String.valueOf(registroRow.get("op_rowid")))));
+			registro.setFinalRowID(helper.filterNullString((String.valueOf(registroRow.get("final_rowid")))));
+			registro.setOperationID(helper.filterStringToInt(String.valueOf(registroRow.get("id_operacion"))));
+			helper.filterNullString((String.valueOf(registroRow.get("de_escenario"))));
+			registro.setStartDate(helper.filterStringToSqlDate(String.valueOf(registroRow.get("id_fecha_inicio"))));
+			registro.setDataDate((helper.filterStringToSqlDate(String.valueOf(registroRow.get("id_fecha")))));
+			registro.setDurationFC(helper.filterStringToDouble(String.valueOf(registroRow.get("fc_duracion"))));
+			registro.setOperationType(helper.filterNullString((String.valueOf(registroRow.get("id_tipo_operacion")))));
+			registro.setFcRowsLoaded(helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_cargadas"))));
+			registro.setFcRowsUpdated(
 					helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_actualizadas"))));
-			registro.setFcFilasLeidas(helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_leidas"))));
-			registro.setFcFilasRechazadas(
+			registro.setFcRowsRead(helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_leidas"))));
+			registro.setFcRowsRejected(
 					helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_rechazadas"))));
-			registro.setFcFilasDescartadas(
+			registro.setFcRowsDismissed(
 					helper.filterStringToInt(String.valueOf(registroRow.get("fc_filas_descartadas"))));
-			registro.setDescripcionSoftware(helper.filterNullString((String.valueOf(registroRow.get("de_software")))));
-			registro.setDescripcionOperacion(
-					helper.filterNullString((String.valueOf(registroRow.get("de_operacion")))));
-			registro.setEstado(helper.filterNullString((String.valueOf(registroRow.get("id_estado")))));
-			registro.setFechaDatos(helper.filterNullString((String.valueOf(registroRow.get("fecha")))));
+			helper.filterNullString((String.valueOf(registroRow.get("de_operacion"))));
+			registro.setStatus(helper.filterNullString((String.valueOf(registroRow.get("id_estado")))));
 
 			registroList.add(registro);
 		}

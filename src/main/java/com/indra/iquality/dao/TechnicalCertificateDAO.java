@@ -5,7 +5,7 @@ package com.indra.iquality.dao;
 
 import java.util.List;
 
-import com.indra.iquality.model.DetailOfValidation;
+import com.indra.iquality.model.TechnicalCertificateDetail;
 import com.indra.iquality.model.TechnicalCertificate;
 
 /**
@@ -45,7 +45,7 @@ public interface TechnicalCertificateDAO {
 	 *            the software version
 	 * @return the details of a technical certification
 	 */
-	public List<DetailOfValidation> getCertificateDetails(String idMetrica, String idMes, String sistema, int software);
+	public List<TechnicalCertificateDetail> getCertificateDetails(String idMetrica, String idMes, String sistema, int software);
 
 	/**
 	 * Gets the number of dimensions of the detailed view of the last

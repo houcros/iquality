@@ -1,182 +1,341 @@
+/*
+ * 
+ */
 package com.indra.iquality.model;
 
 import java.sql.Date;
 
+/**
+ * The Class RegisterOfOperation. Represents the register of operation of a
+ * {@link Job}.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 16-dic-2015
+ * 
+ *          The Class RegisterOfOperation.
+ */
 public class RegisterOfOperation {
 
-//	private Date duracion;
-	private String opRowId;
-	private String finalRowId;
-	private int idOperacion;
-	private String sistema;
-	private int software;
-	private String descripcionBloque;
-	private String idJob;
-	private String descripcionEscenario;
-	private int idEjecucion;
-	private Date fechaInicio;
-	private Date fechaFin;
-	private double fcDuracion;
-	private String tipoDeOperacion;
-	private int fcFilasCargadas;
-	private int fcFilasActualizadas;
-	private int fcFilasLeidas;
-	private int fcFilasRechazadas;
-	private int fcFilasDescartadas;
-	private String descripcionSoftware;
-	private String descripcionOperacion;
-	private String estado;
-	private String fechaDatos;
-	
-//	public Date getDuracion() {
-//		return duracion;
-//	}
-//	public void setDuracion(Date duracion) {
-//		this.duracion = duracion;
-//	}
-	public String getOpRowId() {
-		return opRowId;
+	/** The operation row id. */
+	private String operationRowID;
+
+	/** The final row id. */
+	private String finalRowID;
+
+	/** The operation id. */
+	private int operationID;
+
+	/** The start date. */
+	private Date startDate;
+
+	/** The end date. */
+	private Date endDate;
+
+	/** The data date. */
+	private Date dataDate;
+
+	/** The duration fc. */
+	private double durationFC;
+
+	/** The operation type. */
+	private String operationType;
+
+	/** The fc rows loaded. */
+	private int fcRowsLoaded;
+
+	/** The fc rows updated. */
+	private int fcRowsUpdated;
+
+	/** The fc rows read. */
+	private int fcRowsRead;
+
+	/** The fc rows rejected. */
+	private int fcRowsRejected;
+
+	/** The fc rows dismissed. */
+	private int fcRowsDismissed;
+
+	/** The status. */
+	private String status;
+
+	/**
+	 * Gets the operation row id.
+	 *
+	 * @return the operation row id
+	 */
+	public String getOperationRowID() {
+		return operationRowID;
 	}
-	public void setOpRowId(String opRowId) {
-		this.opRowId = opRowId;
+
+	/**
+	 * Gets the final row id.
+	 *
+	 * @return the final row id
+	 */
+	public String getFinalRowID() {
+		return finalRowID;
 	}
-	public String getFinalRowId() {
-		return finalRowId;
+
+	/**
+	 * Gets the operation id.
+	 *
+	 * @return the operation id
+	 */
+	public int getOperationID() {
+		return operationID;
 	}
-	public void setFinalRowId(String finalRowId) {
-		this.finalRowId = finalRowId;
+
+	/**
+	 * Gets the start date.
+	 *
+	 * @return the start date
+	 */
+	public Date getStartDate() {
+		return startDate;
 	}
-	public int getIdOperacion() {
-		return idOperacion;
+
+	/**
+	 * Gets the end date.
+	 *
+	 * @return the end date
+	 */
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setIdOperacion(int idOperacion) {
-		this.idOperacion = idOperacion;
+
+	/**
+	 * Gets the data date.
+	 *
+	 * @return the end date
+	 */
+	public Date getDataDate() {
+		return dataDate;
 	}
-	public String getSistema() {
-		return sistema;
+
+	/**
+	 * Gets the duration fc.
+	 *
+	 * @return the duration fc
+	 */
+	public double getDurationFC() {
+		return durationFC;
 	}
-	public void setSistema(String sistema) {
-		this.sistema = sistema;
+
+	/**
+	 * Gets the operation type.
+	 *
+	 * @return the operation type
+	 */
+	public String getOperationType() {
+		return operationType;
 	}
-	public int getSoftware() {
-		return software;
+
+	/**
+	 * Gets the fc rows loaded.
+	 *
+	 * @return the fc rows loaded
+	 */
+	public int getFcRowsLoaded() {
+		return fcRowsLoaded;
 	}
-	public void setSoftware(int software) {
-		this.software = software;
+
+	/**
+	 * Gets the fc rows updated.
+	 *
+	 * @return the fc rows updated
+	 */
+	public int getFcRowsUpdated() {
+		return fcRowsUpdated;
 	}
-	public String getDescripcionBloque() {
-		return descripcionBloque;
+
+	/**
+	 * Gets the fc rows read.
+	 *
+	 * @return the fc rows read
+	 */
+	public int getFcRowsRead() {
+		return fcRowsRead;
 	}
-	public void setDescripcionBloque(String descripcionBloque) {
-		this.descripcionBloque = descripcionBloque;
+
+	/**
+	 * Gets the fc rows rejected.
+	 *
+	 * @return the fc rows rejected
+	 */
+	public int getFcRowsRejected() {
+		return fcRowsRejected;
 	}
-	public String getIdJob() {
-		return idJob;
+
+	/**
+	 * Gets the fc rows dismissed.
+	 *
+	 * @return the fc rows dismissed
+	 */
+	public int getFcRowsDismissed() {
+		return fcRowsDismissed;
 	}
-	public void setIdJob(String idJob) {
-		this.idJob = idJob;
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
 	}
-	public String getDescripcionEscenario() {
-		return descripcionEscenario;
+
+	/**
+	 * Sets the operation row id.
+	 *
+	 * @param operationRowID
+	 *            the new operation row id
+	 */
+	public void setOperationRowID(String operationRowID) {
+		this.operationRowID = operationRowID;
 	}
-	public void setDescripcionEscenario(String descripcionEscenario) {
-		this.descripcionEscenario = descripcionEscenario;
+
+	/**
+	 * Sets the final row id.
+	 *
+	 * @param finalRowID
+	 *            the new final row id
+	 */
+	public void setFinalRowID(String finalRowID) {
+		this.finalRowID = finalRowID;
 	}
-	public int getIdEjecucion() {
-		return idEjecucion;
+
+	/**
+	 * Sets the operation id.
+	 *
+	 * @param operationID
+	 *            the new operation id
+	 */
+	public void setOperationID(int operationID) {
+		this.operationID = operationID;
 	}
-	public void setIdEjecucion(int idEjecucion) {
-		this.idEjecucion = idEjecucion;
+
+	/**
+	 * Sets the start date.
+	 *
+	 * @param startDate
+	 *            the new start date
+	 */
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getFechaInicio() {
-		return fechaInicio;
+
+	/**
+	 * Sets the end date.
+	 *
+	 * @param endDate
+	 *            the new end date
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+
+	/**
+	 * Sets the data date.
+	 *
+	 * @param dataDate
+	 *            the new data date
+	 */
+	public void setDataDate(Date dataDate) {
+		this.dataDate = dataDate;
 	}
-	public Date getFechaFin() {
-		return fechaFin;
+
+	/**
+	 * Sets the duration fc.
+	 *
+	 * @param durationFC
+	 *            the new duration fc
+	 */
+	public void setDurationFC(double durationFC) {
+		this.durationFC = durationFC;
 	}
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+
+	/**
+	 * Sets the operation type.
+	 *
+	 * @param operationType
+	 *            the new operation type
+	 */
+	public void setOperationType(String operationType) {
+		this.operationType = operationType;
 	}
-	public double getFcDuracion() {
-		return fcDuracion;
+
+	/**
+	 * Sets the fc rows loaded.
+	 *
+	 * @param fcRowsLoaded
+	 *            the new fc rows loaded
+	 */
+	public void setFcRowsLoaded(int fcRowsLoaded) {
+		this.fcRowsLoaded = fcRowsLoaded;
 	}
-	public void setFcDuracion(double fcDuracion) {
-		this.fcDuracion = fcDuracion;
+
+	/**
+	 * Sets the fc rows updated.
+	 *
+	 * @param fcRowsUpdated
+	 *            the new fc rows updated
+	 */
+	public void setFcRowsUpdated(int fcRowsUpdated) {
+		this.fcRowsUpdated = fcRowsUpdated;
 	}
-	public String getTipoDeOperacion() {
-		return tipoDeOperacion;
+
+	/**
+	 * Sets the fc rows read.
+	 *
+	 * @param fcRowsRead
+	 *            the new fc rows read
+	 */
+	public void setFcRowsRead(int fcRowsRead) {
+		this.fcRowsRead = fcRowsRead;
 	}
-	public void setTipoDeOperacion(String tipoDeOperacion) {
-		this.tipoDeOperacion = tipoDeOperacion;
+
+	/**
+	 * Sets the fc rows rejected.
+	 *
+	 * @param fcRowsRejected
+	 *            the new fc rows rejected
+	 */
+	public void setFcRowsRejected(int fcRowsRejected) {
+		this.fcRowsRejected = fcRowsRejected;
 	}
-	public int getFcFilasCargadas() {
-		return fcFilasCargadas;
+
+	/**
+	 * Sets the fc rows dismissed.
+	 *
+	 * @param fcRowsDismissed
+	 *            the new fc rows dismissed
+	 */
+	public void setFcRowsDismissed(int fcRowsDismissed) {
+		this.fcRowsDismissed = fcRowsDismissed;
 	}
-	public void setFcFilasCargadas(int fcFilasCargadas) {
-		this.fcFilasCargadas = fcFilasCargadas;
+
+	/**
+	 * Sets the status.
+	 *
+	 * @param status
+	 *            the new status
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	public int getFcFilasActualizadas() {
-		return fcFilasActualizadas;
-	}
-	public void setFcFilasActualizadas(int fcFilasActualizadas) {
-		this.fcFilasActualizadas = fcFilasActualizadas;
-	}
-	public int getFcFilasLeidas() {
-		return fcFilasLeidas;
-	}
-	public void setFcFilasLeidas(int fcFilasLeidas) {
-		this.fcFilasLeidas = fcFilasLeidas;
-	}
-	public int getFcFilasRechazadas() {
-		return fcFilasRechazadas;
-	}
-	public void setFcFilasRechazadas(int fcFilasRechazadas) {
-		this.fcFilasRechazadas = fcFilasRechazadas;
-	}
-	public int getFcFilasDescartadas() {
-		return fcFilasDescartadas;
-	}
-	public void setFcFilasDescartadas(int fcFilasDescartadas) {
-		this.fcFilasDescartadas = fcFilasDescartadas;
-	}
-	public String getDescripcionSoftware() {
-		return descripcionSoftware;
-	}
-	public void setDescripcionSoftware(String descripcionSoftware) {
-		this.descripcionSoftware = descripcionSoftware;
-	}
-	public String getDescripcionOperacion() {
-		return descripcionOperacion;
-	}
-	public void setDescripcionOperacion(String descripcionOperacion) {
-		this.descripcionOperacion = descripcionOperacion;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	public String getFechaDatos() {
-		return fechaDatos;
-	}
-	public void setFechaDatos(String fechaDatos) {
-		this.fechaDatos = fechaDatos;
-	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "RegistroDeOperacion [rowID=" + opRowId + ", finalRowID=" + finalRowId
-				+ ", idOperacion=" + idOperacion + ", sistema=" + sistema + ", software=" + software
-				+ ", descripcionBloque=" + descripcionBloque + ", idJob=" + idJob + ", descripcionEscenario="
-				+ descripcionEscenario + ", idEjecucion=" + idEjecucion + ", fechaInicio=" + fechaInicio + ", fechaFin="
-				+ fechaFin + ", fcDuracion=" + fcDuracion + ", tipoDeOperacion=" + tipoDeOperacion
-				+ ", fcFilasCargadas=" + fcFilasCargadas + ", fcFilasActualizadas=" + fcFilasActualizadas
-				+ ", fcFilasLeidas=" + fcFilasLeidas + ", fcFilasRechazadas=" + fcFilasRechazadas
-				+ ", fcFilasDescartadas=" + fcFilasDescartadas + ", descripcionSoftware=" + descripcionSoftware
-				+ ", descripcionOperacion=" + descripcionOperacion + ", estado=" + estado + ", fecha=" + fechaDatos + "]";
+		return "RegisterOfOperation [operationRowID=" + operationRowID + ", finalRowID=" + finalRowID + ", operationID="
+				+ operationID + ", startDate=" + startDate + ", durationFC=" + durationFC + ", operationType="
+				+ operationType + ", fcRowsLoaded=" + fcRowsLoaded + ", fcRowsUpdated=" + fcRowsUpdated
+				+ ", fcRowsRead=" + fcRowsRead + ", fcRowsRejected=" + fcRowsRejected + ", fcRowsDismissed="
+				+ fcRowsDismissed + ", status=" + status + "]";
 	}
-	
+
 }

@@ -54,9 +54,9 @@ public class FlowDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl impleme
 			Flow pase = new Flow();
 
 			pase.setId(helper.filterStringToInt(String.valueOf(paseDefRow.get("ID_PASE"))));
-			pase.setNombre(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
-			pase.setEsAtipico(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SN_PASE_ATIPICO"))));
-			pase.setSistema(system);
+			pase.setName(helper.filterNullString(String.valueOf(paseDefRow.get("DE_PASE"))));
+			pase.setIsAtypical(helper.filterNullString(String.valueOf(paseDefRow.get("ID_SN_PASE_ATIPICO"))));
+			pase.setSystem(system);
 			pase.setSoftware(Environment.getInstance().getCurrentSoftwareDescription());
 
 			paseList.add(pase);
@@ -98,7 +98,7 @@ public class FlowDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl impleme
 
 		// Query 1: inserto datos básicos del pase
 		try {
-			params = new Object[] { system, software, pase.getNombre(), pase.getEsAtipico() };
+			params = new Object[] { system, software, pase.getName(), pase.getIsAtypical() };
 			out = jdbcTemplate.update(queryInsertDatosBasicos, params);
 			if (out == 0) {
 				logger.warn("No se insertó el pase");
@@ -140,15 +140,15 @@ public class FlowDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl impleme
 		params = new Object[] { system, software, idPase, "_STUB_id_job_padre", "__STUB_id_job_hijo" };
 		for (int i = 0; i < pase.getJobs().length; ++i) {
 			params[3] = pase.getJobs()[i];
-			for (int j = 0; j < pase.getDependencias().get(pase.getJobs()[i]).length; ++j) {
-				params[4] = pase.getDependencias().get(pase.getJobs()[i])[j];
+			for (int j = 0; j < pase.getDependencies().get(pase.getJobs()[i]).length; ++j) {
+				params[4] = pase.getDependencies().get(pase.getJobs()[i])[j];
 				out = jdbcTemplate.update(queryInsertDependencias, params);
 				if (out == 0) {
 					logger.warn("No se insertó una dependencia de un job");
 				}
 			}
 			logger.debug("[save] : insertados {} dependencias del job {} ",
-					pase.getDependencias().get(pase.getJobs()[i]).length, pase.getJobs()[i]);
+					pase.getDependencies().get(pase.getJobs()[i]).length, pase.getJobs()[i]);
 
 		}
 

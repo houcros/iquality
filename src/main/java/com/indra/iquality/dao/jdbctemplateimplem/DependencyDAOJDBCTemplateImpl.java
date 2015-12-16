@@ -59,15 +59,15 @@ public class DependencyDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl i
 
 			Dependency dependencia = new Dependency();
 
-			dependencia.setIdEjecucion(helper.filterStringToInt(String.valueOf(dependenciaRow.get("id_ejecucion"))));
-			dependencia.setSistema(helper.filterNullString(String.valueOf(dependenciaRow.get("id_sistema"))));
+			dependencia.setExecutionID(helper.filterStringToInt(String.valueOf(dependenciaRow.get("id_ejecucion"))));
+			dependencia.setSystem(helper.filterNullString(String.valueOf(dependenciaRow.get("id_sistema"))));
 			dependencia.setSoftware(helper.filterStringToInt(String.valueOf(dependenciaRow.get("id_software"))));
-			dependencia.setIdPase(helper.filterStringToInt(String.valueOf(dependenciaRow.get("id_pase"))));
-			dependencia.setIdJobPadre(helper.filterNullString(String.valueOf(dependenciaRow.get("id_job_padre"))));
-			dependencia.setIdJobHijo(helper.filterNullString(String.valueOf(dependenciaRow.get("id_job_hijo"))));
+			dependencia.setFlowID(helper.filterStringToInt(String.valueOf(dependenciaRow.get("id_pase"))));
+			dependencia.setFatherJobID(helper.filterNullString(String.valueOf(dependenciaRow.get("id_job_padre"))));
+			dependencia.setSonJobID(helper.filterNullString(String.valueOf(dependenciaRow.get("id_job_hijo"))));
 			dependencia
-					.setSnHabilitada(helper.filterNullString(String.valueOf(dependenciaRow.get("id_sn_habilitada"))));
-			dependencia.setEstado(helper.filterNullString(String.valueOf(dependenciaRow.get("id_estado"))));
+					.setHabilitattedSN(helper.filterNullString(String.valueOf(dependenciaRow.get("id_sn_habilitada"))));
+			dependencia.setStatus(helper.filterNullString(String.valueOf(dependenciaRow.get("id_estado"))));
 
 			dependenciaList.add(dependencia);
 		}

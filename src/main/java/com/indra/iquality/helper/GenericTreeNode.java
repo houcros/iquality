@@ -273,7 +273,7 @@ public class GenericTreeNode<T> {
 			System.out.print("## ");
 		}
 
-		System.out.println("level " + level + " -> [" + ((DictionaryConcept) getData()).getTipo() + "] "
+		System.out.println("level " + level + " -> [" + ((DictionaryConcept) getData()).getType() + "] "
 				+ ((DictionaryConcept) getData()).getConcept());
 
 		for (GenericTreeNode<T> node : getChildren()) {

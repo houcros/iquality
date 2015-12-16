@@ -98,32 +98,32 @@
 													<!-- 					    <tr class="gradeX">       -->
 													<!-- 					    <tr class="gradeC">       -->
 													<!-- 					    <tr class="gradeU">       -->
-													<td class="center hidden-phone">${item.idOperacion}</td>
-													<td class="center hidden-phone">${item.fechaInicio}</td>
-													<td class="center hidden-phone">${item.fcDuracion}</td>
-													<td class="center hidden-phone">${item.fechaDatos}</td>
-													<td class="center hidden-phone">${item.idOperacion}</td>
-													<td class="center hidden-phone">${item.tipoDeOperacion}</td>
+													<td class="center hidden-phone">${item.operationID}</td>
+													<td class="center hidden-phone">${item.startDate}</td>
+													<td class="center hidden-phone">${item.durationFC}</td>
+													<td class="center hidden-phone">${item.dataDate}</td>
+													<td class="center hidden-phone">${item.operationID}</td>
+													<td class="center hidden-phone">${item.operationType}</td>
 													<td class="center hidden-phone"><c:choose>
-															<c:when test="${item.estado=='OK'}">
-																<span class="label label-success label-mini">${item.estado}</span>
+															<c:when test="${item.status=='OK'}">
+																<span class="label label-success label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='KO'}">
-																<span class="label label-danger label-mini">${item.estado}</span>
+															<c:when test="${item.status=='KO'}">
+																<span class="label label-danger label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='PDTE'}">
-																<span class="label label-warning label-mini">${item.estado}</span>
+															<c:when test="${item.status=='PDTE'}">
+																<span class="label label-warning label-mini">${item.status}</span>
 															</c:when>
 															<c:otherwise>
-																<span class="label label-inverse label-mini">${item.estado}</span>
+																<span class="label label-inverse label-mini">${item.status}</span>
 															</c:otherwise>
 														</c:choose></td>
 													<%-- 					        <td class="center hidden-phone">${item.descripcionEscenario}</td>    --%>
-													<td class="center hidden-phone">${item.fcFilasCargadas}</td>
-													<td class="center hidden-phone">${item.fcFilasActualizadas}</td>
-													<td class="center hidden-phone">${item.fcFilasLeidas}</td>
-													<td class="center hidden-phone">${item.fcFilasRechazadas}</td>
-													<td class="center hidden-phone">${item.fcFilasDescartadas}</td>
+													<td class="center hidden-phone">${item.fcRowsLoaded}</td>
+													<td class="center hidden-phone">${item.fcRowsUpdated}</td>
+													<td class="center hidden-phone">${item.fcRowsRead}</td>
+													<td class="center hidden-phone">${item.fcRowsRejected}</td>
+													<td class="center hidden-phone">${item.fcRowsDismissed}</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -194,10 +194,6 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
-
-<!--dynamic table initialization -->
-<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dynamic_table_init.js"></script> --%>
-
 
 
 </body>

@@ -5,10 +5,9 @@ package com.indra.iquality.model;
 
 import com.google.common.base.Objects;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CertificacionDeNegocio. Represents a business certification that
- * must be satisfied for the system to be in a valid status.
+ * The Class CertificacionDeNegocio. Represents a business certificate that must
+ * be satisfied for the system to be in a valid state.
  *
  * @author Ignacio N. Lucero Ascencio
  * @version 0.1, 09/12/15
@@ -16,26 +15,26 @@ import com.google.common.base.Objects;
  */
 public class BusinessCertificate extends Certificate {
 
-	/** The name of the certification. */
-	private String indicador;
+	/** The name of the certificate. */
+	private String indicator;
 
 	/**
-	 * Gets the name of the certification.
+	 * Gets the name of the certificate.
 	 *
-	 * @return the name of the certification
+	 * @return the name of the certificate
 	 */
-	public String getIndicador() {
-		return indicador;
+	public String getIndicator() {
+		return indicator;
 	}
 
 	/**
-	 * Sets the name of the certification.
+	 * Sets the name of the certificate.
 	 *
-	 * @param indicador
-	 *            the new name of the certification
+	 * @param indicator
+	 *            the new name of the certificate
 	 */
-	public void setIndicador(String indicador) {
-		this.indicador = indicador;
+	public void setIndicator(String indicator) {
+		this.indicator = indicator;
 	}
 
 	/*
@@ -45,8 +44,8 @@ public class BusinessCertificate extends Certificate {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(fecha, seccion, subseccion, entidad, certificacion, deCertificacion, indicador, estado,
-				idMetrica, idMes);
+		return Objects.hashCode(date, section, subsection, entity, certificate, certificateDescription, indicator,
+				status, metric, month);
 	}
 
 	/*
@@ -62,12 +61,12 @@ public class BusinessCertificate extends Certificate {
 			return false;
 		if (obj.getClass() == getClass()) {
 			final BusinessCertificate other = (BusinessCertificate) obj;
-			return Objects.equal(fecha, other.fecha) && Objects.equal(seccion, other.seccion)
-					&& Objects.equal(subseccion, other.subseccion) && Objects.equal(entidad, other.entidad)
-					&& Objects.equal(deCertificacion, other.deCertificacion)
-					&& Objects.equal(certificacion, other.certificacion) && Objects.equal(indicador, other.indicador)
-					&& Objects.equal(estado, other.estado) && Objects.equal(idMetrica, other.idMetrica)
-					&& Objects.equal(idMes, other.idMes);
+			return Objects.equal(date, other.date) && Objects.equal(section, other.section)
+					&& Objects.equal(subsection, other.subsection) && Objects.equal(entity, other.entity)
+					&& Objects.equal(certificateDescription, other.certificateDescription)
+					&& Objects.equal(certificate, other.certificate) && Objects.equal(indicator, other.indicator)
+					&& Objects.equal(status, other.status) && Objects.equal(metric, other.metric)
+					&& Objects.equal(month, other.month);
 		} else
 			return false;
 	}
@@ -79,9 +78,9 @@ public class BusinessCertificate extends Certificate {
 	 */
 	@Override
 	public String toString() {
-		return "ValidacionTecnica [fecha=" + fecha + ", seccion=" + seccion + ", subseccion=" + subseccion
-				+ ", entidad=" + entidad + ", certificacion=" + deCertificacion + ", indicador=" + indicador
-				+ ", estado=" + estado + "]";
+		return "ValidacionTecnica [fecha=" + date + ", seccion=" + section + ", subseccion=" + subsection + ", entidad="
+				+ entity + ", certificacion=" + certificateDescription + ", indicador=" + indicator + ", estado="
+				+ status + "]";
 	}
 
 }

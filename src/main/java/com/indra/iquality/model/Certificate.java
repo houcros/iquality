@@ -1,71 +1,214 @@
+/*
+ * 
+ */
 package com.indra.iquality.model;
 
+/**
+ * The Class Certificate. Abstract representation with the fields that a
+ * certificate must have.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 16-dic-2015
+ * 
+ *          The Class Certificate.
+ */
 public abstract class Certificate {
 
-	protected String idMetrica;
-	protected String idMes;
-	
-	protected String fecha;
-	protected String seccion;
-	protected String subseccion;
-	protected String entidad;
-	protected String certificacion;
-	protected String deCertificacion;
-	// ID_ERROR hace falta? Para validacion quizas?
-	protected String estado;
-	
-	public String getIdMetrica() {
-		return idMetrica;
+	/** The metric. */
+	protected String metric;
+
+	/** The month. */
+	protected String month;
+
+	/** The date. */
+	protected String date;
+
+	/** The section. */
+	protected String section;
+
+	/** The subsection. */
+	protected String subsection;
+
+	/** The entity. */
+	protected String entity;
+
+	/** The certificate. */
+	protected String certificate;
+
+	/** The certificate description. */
+	protected String certificateDescription;
+
+	/** The status. */
+	protected String status;
+
+	/**
+	 * Gets the metric.
+	 *
+	 * @return the metric
+	 */
+	public String getMetric() {
+		return metric;
 	}
-	public void setIdMetrica(String idMetrica) {
-		this.idMetrica = idMetrica;
+
+	/**
+	 * Sets the id metrica.
+	 *
+	 * @param metric
+	 *            the new id metrica
+	 */
+	public void setIdMetrica(String metric) {
+		this.metric = metric;
 	}
-	public String getIdMes() {
-		return idMes;
+
+	/**
+	 * Gets the month.
+	 *
+	 * @return the month
+	 */
+	public String getMonth() {
+		return month;
 	}
-	public void setIdMes(String idMes) {
-		this.idMes = idMes;
+
+	/**
+	 * Sets the month.
+	 *
+	 * @param month
+	 *            the new month
+	 */
+	public void setMonth(String month) {
+		this.month = month;
 	}
-	public String getFecha() {
-		return fecha;
+
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
+	public String getDate() {
+		return date;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+
+	/**
+	 * Sets the date.
+	 *
+	 * @param date
+	 *            the new date
+	 */
+	public void setDate(String date) {
+		this.date = date;
 	}
-	public String getSeccion() {
-		return seccion;
+
+	/**
+	 * Gets the section.
+	 *
+	 * @return the section
+	 */
+	public String getSection() {
+		return section;
 	}
-	public void setSeccion(String seccion) {
-		this.seccion = seccion;
+
+	/**
+	 * Sets the section.
+	 *
+	 * @param section
+	 *            the new section
+	 */
+	public void setSection(String section) {
+		this.section = section;
 	}
-	public String getSubseccion() {
-		return subseccion;
+
+	/**
+	 * Gets the subsection.
+	 *
+	 * @return the subsection
+	 */
+	public String getSubsection() {
+		return subsection;
 	}
-	public void setSubseccion(String subseccion) {
-		this.subseccion = subseccion;
+
+	/**
+	 * Sets the subsection.
+	 *
+	 * @param subsection
+	 *            the new subsection
+	 */
+	public void setSubsection(String subsection) {
+		this.subsection = subsection;
 	}
-	public String getEntidad() {
-		return entidad;
+
+	/**
+	 * Gets the entity.
+	 *
+	 * @return the entity
+	 */
+	public String getEntity() {
+		return entity;
 	}
-	public void setEntidad(String entidad) {
-		this.entidad = entidad;
+
+	/**
+	 * Sets the entity.
+	 *
+	 * @param entity
+	 *            the new entity
+	 */
+	public void setEntity(String entity) {
+		this.entity = entity;
 	}
-	public String getCertificacion() {
-		return certificacion;
+
+	/**
+	 * Gets the certificate.
+	 *
+	 * @return the certificate
+	 */
+	public String getCertificate() {
+		return certificate;
 	}
-	public void setCertificacion(String certificacion) {
-		this.certificacion = certificacion;
+
+	/**
+	 * Sets the certificate.
+	 *
+	 * @param certificate
+	 *            the new certificate
+	 */
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
 	}
-	public String getDeCertificacion() {
-		return deCertificacion;
+
+	/**
+	 * Gets the certificate description.
+	 *
+	 * @return the certificate description
+	 */
+	public String getCertificateDescription() {
+		return certificateDescription;
 	}
-	public void setDeCertificacion(String deCertificacion) {
-		this.deCertificacion = deCertificacion;
+
+	/**
+	 * Sets the certificate description.
+	 *
+	 * @param certificateDescription
+	 *            the new certificate description
+	 */
+	public void setCertificateDescription(String certificateDescription) {
+		this.certificateDescription = certificateDescription;
 	}
-	public String getEstado() {
-		return estado;
+
+	/**
+	 * Gets the status.
+	 *
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+
+	/**
+	 * Sets the status.
+	 *
+	 * @param status
+	 *            the new status
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

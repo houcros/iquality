@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.BusinessCertificateDAO;
 import com.indra.iquality.model.BusinessCertificate;
-import com.indra.iquality.model.DetailOfCertificate;
+import com.indra.iquality.model.BusinessCertificateDetail;
 
 /**
  * Implementation of {@link com.indra.iquality.dao.BusinessCertificateDAO} using
@@ -96,18 +96,18 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 
 			// Lo necesito para obtener los headers con getHeadersDetalles()
 			certDeNegocio.setIdMetrica(String.valueOf(certDeNegocioRow.get("ID_METRICA")));
-			certDeNegocio.setIdMes(helper.filterNullString(String.valueOf(certDeNegocioRow.get("ID_MES"))));
+			certDeNegocio.setMonth(helper.filterNullString(String.valueOf(certDeNegocioRow.get("ID_MES"))));
 
-			certDeNegocio.setFecha(helper.filterNullString(String.valueOf(certDeNegocioRow.get("fecha"))));
-			certDeNegocio.setSeccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("seccion"))));
-			certDeNegocio.setSubseccion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("subseccion"))));
-			certDeNegocio.setEntidad(helper.filterNullString(String.valueOf(certDeNegocioRow.get("entidad"))));
+			certDeNegocio.setDate(helper.filterNullString(String.valueOf(certDeNegocioRow.get("fecha"))));
+			certDeNegocio.setSection(helper.filterNullString(String.valueOf(certDeNegocioRow.get("seccion"))));
+			certDeNegocio.setSubsection(helper.filterNullString(String.valueOf(certDeNegocioRow.get("subseccion"))));
+			certDeNegocio.setEntity(helper.filterNullString(String.valueOf(certDeNegocioRow.get("entidad"))));
 			certDeNegocio
-					.setCertificacion(helper.filterNullString(String.valueOf(certDeNegocioRow.get("certificacion"))));
-			certDeNegocio.setDeCertificacion(
+					.setCertificate(helper.filterNullString(String.valueOf(certDeNegocioRow.get("certificacion"))));
+			certDeNegocio.setCertificateDescription(
 					helper.filterNullString(String.valueOf(certDeNegocioRow.get("de_certificacion"))));
-			certDeNegocio.setEstado(helper.filterNullString(String.valueOf(certDeNegocioRow.get("okko"))));
-			certDeNegocio.setIndicador(helper.filterNullString(String.valueOf(certDeNegocioRow.get("metrica"))));
+			certDeNegocio.setStatus(helper.filterNullString(String.valueOf(certDeNegocioRow.get("okko"))));
+			certDeNegocio.setIndicator(helper.filterNullString(String.valueOf(certDeNegocioRow.get("metrica"))));
 
 			certDeNegocioList.add(certDeNegocio);
 		}
@@ -160,7 +160,7 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 	 * lang.String, java.lang.String, int, java.lang.String, int)
 	 */
 	@Override
-	public List<DetailOfCertificate> getCertificateDetails(String idMes, String idMetrica, int qttHeaders,
+	public List<BusinessCertificateDetail> getCertificateDetails(String idMes, String idMetrica, int qttHeaders,
 			String sistema, int software) {
 
 		// TODO usar sistema y software
@@ -181,18 +181,18 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<DetailOfCertificate> detallesList = new ArrayList<DetailOfCertificate>();
+		List<BusinessCertificateDetail> detallesList = new ArrayList<BusinessCertificateDetail>();
 		List<Map<String, Object>> detallesRows = jdbcTemplate.queryForList(query, new Object[] { idMes, idMetrica });
 
 		// Mapeo los resultados a una lista
 		for (Map<String, Object> detallesRow : detallesRows) {
 
-			DetailOfCertificate detalle = new DetailOfCertificate();
+			BusinessCertificateDetail detalle = new BusinessCertificateDetail();
 
 			// Campos siempre necesarios
-			detalle.setFecha(String.valueOf(detallesRow.get("fecha")));
+			detalle.setDate(String.valueOf(detallesRow.get("fecha")));
 			detalle.setHcValMetricaAct(String.valueOf(detallesRow.get("HC_VALOR_METRICA_ACT")));
-			detalle.setEstado(String.valueOf(detallesRow.get("okko")));
+			detalle.setStatus(String.valueOf(detallesRow.get("okko")));
 
 			// Esto depende de cuántas dimensiones (i.e., headers) voy a mostrar
 			// TODO es necesario filtrar strings aquí?

@@ -52,7 +52,7 @@ $(document).ready(function() {
     			  if (data.length === 0) sOut += '<span><p>Job sin dependencias</p></span>';
     				  
     			  $.each(data, function( index, value){
-    				  sOut += '<span>Padre: '+value.idJobPadre+', con Estado: '+value.estado+'</span>';
+    				  sOut += '<span>Padre: '+value['fatherJobID']+', con Estado: '+value['status']+'</span>';
 //    				  sOut += '<tr><td>Job Padre:</td><td>'+value.idJobPadre+'</td></tr>';
 //        			  sOut += '<tr><td>Estado:</td><td>'+value.estado+'</td></tr>';
     			  })

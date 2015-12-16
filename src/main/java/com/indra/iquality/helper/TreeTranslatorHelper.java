@@ -71,12 +71,12 @@ public class TreeTranslatorHelper {
 		}
 
 		jsonTree.put("children", children);
-		jsonTree.put("type", root.getData().getTipo());
+		jsonTree.put("type", root.getData().getType());
 
-		if (root.getData().getTipo() == ConceptTypeEnum.ATRIBUTO
-				|| root.getData().getTipo() == ConceptTypeEnum.ATRIBUTO_MAESTRO
-				|| root.getData().getTipo() == ConceptTypeEnum.INDICADOR
-				|| root.getData().getTipo() == ConceptTypeEnum.LITERAL) {
+		if (root.getData().getType() == ConceptTypeEnum.ATRIBUTO
+				|| root.getData().getType() == ConceptTypeEnum.ATRIBUTO_MAESTRO
+				|| root.getData().getType() == ConceptTypeEnum.INDICADOR
+				|| root.getData().getType() == ConceptTypeEnum.LITERAL) {
 
 			jsonTree.put("id",
 					"compRowID:" + root.getData().getCompRowID() + "&" + "ctRowID:" + root.getData().getCtRowID());

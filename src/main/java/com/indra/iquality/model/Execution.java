@@ -5,198 +5,197 @@ package com.indra.iquality.model;
 
 import java.sql.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Ejecucion. Represents an execution of an ETL flow for a given
- * system and software version on a date. See {@link Flow}.
+ * The Class Execution. Represent an instance of an ETL {@link Flow} for a given
+ * date.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.1, 09/12/15
+ * @version 0.5, 16-dic-2015
  * 
- *          The Class Ejecucion.
+ *          The Class Execution.
  */
 public class Execution {
 
-	/** The identifier of the execution. */
-	private int idEjecucion;
+	/** The id. */
+	private int id;
 
-	/** The pase. */
-	private String pase;
+	/** The flow. */
+	private String flow;
 
-	/** The estado. */
-	private String estado;
+	/** The status. */
+	private String status;
 
-	/** The fecha datos. */
-	private String fechaDatos;
+	/** The date of data. */
+	private String dataDate;
 
-	/** The escenario. */
-	private String escenario;
+	/** The scenario. */
+	private String scenario;
 
-	/** The fecha inicio. */
-	private Date fechaInicio;
+	/** The start date. */
+	private Date startDate;
 
-	/** The fecha fin. */
-	private Date fechaFin;
+	/** The end date. */
+	private Date endDate;
 
-	/** The fecha planificada. */
-	private Date fechaPlanificada;
+	/** The planned date. */
+	private Date plannedDate;
 
 	/** The software. */
 	private String software;
 
-	/** The duracion. */
-	private String duracion;
+	/** The duration. */
+	private String duration;
 
 	/**
-	 * Gets the id ejecucion.
+	 * Gets the id.
 	 *
-	 * @return the id ejecucion
+	 * @return the id
 	 */
-	public int getIdEjecucion() {
-		return idEjecucion;
+	public int getId() {
+		return id;
 	}
 
 	/**
-	 * Sets the id ejecucion.
+	 * Sets the id.
 	 *
-	 * @param idEjecucion
-	 *            the new id ejecucion
+	 * @param id
+	 *            the new id
 	 */
-	public void setIdEjecucion(int idEjecucion) {
-		this.idEjecucion = idEjecucion;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
-	 * Gets the pase.
+	 * Gets the flow.
 	 *
-	 * @return the pase
+	 * @return the flow
 	 */
-	public String getPase() {
-		return pase;
+	public String getFlow() {
+		return flow;
 	}
 
 	/**
-	 * Sets the pase.
+	 * Sets the flow.
 	 *
-	 * @param pase
-	 *            the new pase
+	 * @param flow
+	 *            the new flow
 	 */
-	public void setPase(String pase) {
-		this.pase = pase;
+	public void setFlow(String flow) {
+		this.flow = flow;
 	}
 
 	/**
-	 * Gets the estado.
+	 * Gets the status.
 	 *
-	 * @return the estado
+	 * @return the status
 	 */
-	public String getEstado() {
-		return estado;
+	public String getStatus() {
+		return status;
 	}
 
 	/**
-	 * Sets the estado.
+	 * Sets the status.
 	 *
-	 * @param estado
-	 *            the new estado
+	 * @param status
+	 *            the new status
 	 */
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	/**
-	 * Gets the fecha datos.
+	 * Gets the date of data.
 	 *
-	 * @return the fecha datos
+	 * @return the date of data
 	 */
-	public String getFechaDatos() {
-		return fechaDatos;
+	public String getDataDate() {
+		return dataDate;
 	}
 
 	/**
-	 * Sets the fecha datos.
+	 * Sets the date of data.
 	 *
-	 * @param fechaDatos
-	 *            the new fecha datos
+	 * @param dataDate
+	 *            the new date of data
 	 */
-	public void setFechaDatos(String fechaDatos) {
-		this.fechaDatos = fechaDatos;
+	public void setDataDate(String dataDate) {
+		this.dataDate = dataDate;
 	}
 
 	/**
-	 * Gets the escenario.
+	 * Gets the scenario.
 	 *
-	 * @return the escenario
+	 * @return the scenario
 	 */
-	public String getEscenario() {
-		return escenario;
+	public String getScenario() {
+		return scenario;
 	}
 
 	/**
-	 * Sets the escenario.
+	 * Sets the scenario.
 	 *
-	 * @param escenario
-	 *            the new escenario
+	 * @param scenario
+	 *            the new scenario
 	 */
-	public void setEscenario(String escenario) {
-		this.escenario = escenario;
+	public void setScenario(String scenario) {
+		this.scenario = scenario;
 	}
 
 	/**
-	 * Gets the fecha inicio.
+	 * Gets the start date.
 	 *
-	 * @return the fecha inicio
+	 * @return the start date
 	 */
-	public Date getFechaInicio() {
-		return fechaInicio;
+	public Date getStartDate() {
+		return startDate;
 	}
 
 	/**
-	 * Sets the fecha inicio.
+	 * Sets the start date.
 	 *
-	 * @param fechaInicio
-	 *            the new fecha inicio
+	 * @param startDate
+	 *            the new start date
 	 */
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	/**
-	 * Gets the fecha fin.
+	 * Gets the end date.
 	 *
-	 * @return the fecha fin
+	 * @return the end date
 	 */
-	public Date getFechaFin() {
-		return fechaFin;
+	public Date getEndDate() {
+		return endDate;
 	}
 
 	/**
-	 * Sets the fecha fin.
+	 * Sets the end date.
 	 *
-	 * @param fechaFin
-	 *            the new fecha fin
+	 * @param endDate
+	 *            the new end date
 	 */
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	/**
-	 * Gets the fecha planificada.
+	 * Gets the planned date.
 	 *
-	 * @return the fecha planificada
+	 * @return the planned date
 	 */
-	public Date getFechaPlanificada() {
-		return fechaPlanificada;
+	public Date getPlannedDate() {
+		return plannedDate;
 	}
 
 	/**
-	 * Sets the fecha planificada.
+	 * Sets the planned date.
 	 *
-	 * @param fechaPlanificada
-	 *            the new fecha planificada
+	 * @param plannedDate
+	 *            the new planned date
 	 */
-	public void setFechaPlanificada(Date fechaPlanificada) {
-		this.fechaPlanificada = fechaPlanificada;
+	public void setPlannedDate(Date plannedDate) {
+		this.plannedDate = plannedDate;
 	}
 
 	/**
@@ -219,22 +218,22 @@ public class Execution {
 	}
 
 	/**
-	 * Gets the duracion.
+	 * Gets the duration.
 	 *
-	 * @return the duracion
+	 * @return the duration
 	 */
-	public String getDuracion() {
-		return duracion;
+	public String getDuration() {
+		return duration;
 	}
 
 	/**
-	 * Sets the duracion.
+	 * Sets the duration.
 	 *
-	 * @param duracion
-	 *            the new duracion
+	 * @param duration
+	 *            the new duration
 	 */
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
 
 	/*
@@ -244,9 +243,9 @@ public class Execution {
 	 */
 	@Override
 	public String toString() {
-		return "Pase [idEjecucion=" + idEjecucion + ", pase=" + pase + ", estado=" + estado + ", fechaDatos="
-				+ fechaDatos + ", escenario=" + escenario + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin
-				+ ", fechaPlanificada=" + fechaPlanificada + ", software=" + software + ", duracion=" + duracion + "]";
+		return "Pase [idEjecucion=" + id + ", pase=" + flow + ", estado=" + status + ", fechaDatos=" + dataDate
+				+ ", escenario=" + scenario + ", fechaInicio=" + startDate + ", fechaFin=" + endDate
+				+ ", fechaPlanificada=" + plannedDate + ", software=" + software + ", duracion=" + duration + "]";
 	}
 
 }

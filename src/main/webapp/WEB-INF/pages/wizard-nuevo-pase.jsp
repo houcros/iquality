@@ -215,7 +215,7 @@
 														<select multiple name="jobs" class="multi-select"
 															id="multi_select_jobs">
 															<c:forEach items="${allJobs}" var="job">
-																<option value="${job.idJob}">${job.idJob}</option>
+																<option value="${job.jobID}">${job.jobID}</option>
 															</c:forEach>
 														</select>
 													</div>

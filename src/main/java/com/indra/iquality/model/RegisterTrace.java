@@ -1,50 +1,139 @@
+/*
+ * 
+ */
 package com.indra.iquality.model;
 
 import java.sql.Date;
 
+/**
+ * The Class RegisterTrace. Represents the trace or log of a run job.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 16-dic-2015
+ * 
+ *          The Class RegisterTrace.
+ */
 public class RegisterTrace {
 
-	// No entiendo por qué hay dos fechas, y si ambas son necesarias
-	private int idTraza;
-	private Date idFecha;
-	private String fecha;
-	private String categoria;
-	private String mensaje;
-	
-	public int getIdTraza() {
-		return idTraza;
+	/** The id. */
+	private int id;
+
+	/** The date id. */
+	private Date dateID;
+
+	/** The date. */
+	private String date;
+
+	/** The category. */
+	private String category;
+
+	/** The message. */
+	private String message;
+
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
 	}
-	public void setIdTraza(int idTraza) {
-		this.idTraza = idTraza;
+
+	/**
+	 * Sets the id.
+	 *
+	 * @param id
+	 *            the new id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
-	public Date getIdFecha() {
-		return idFecha;
+
+	/**
+	 * Gets the date id.
+	 *
+	 * @return the date id
+	 */
+	public Date getDateID() {
+		return dateID;
 	}
-	public void setIdFecha(Date idFecha) {
-		this.idFecha = idFecha;
+
+	/**
+	 * Sets the date id.
+	 *
+	 * @param dateID
+	 *            the new date id
+	 */
+	public void setDateID(Date dateID) {
+		this.dateID = dateID;
 	}
-	public String getFecha() {
-		return fecha;
+
+	/**
+	 * Gets the date.
+	 *
+	 * @return the date
+	 */
+	public String getDate() {
+		return date;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+
+	/**
+	 * Sets the date.
+	 *
+	 * @param date
+	 *            the new date
+	 */
+	public void setDate(String date) {
+		this.date = date;
 	}
-	public String getCategoria() {
-		return categoria;
+
+	/**
+	 * Gets the category.
+	 *
+	 * @return the category
+	 */
+	public String getCategory() {
+		return category;
 	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+
+	/**
+	 * Sets the category.
+	 *
+	 * @param category
+	 *            the new category
+	 */
+	public void setCategory(String category) {
+		this.category = category;
 	}
-	public String getMensaje() {
-		return mensaje;
+
+	/**
+	 * Gets the message.
+	 *
+	 * @return the message
+	 */
+	public String getMessage() {
+		return message;
 	}
-	public void setMensaje(String mensaje) {
-		this.mensaje = mensaje;
+
+	/**
+	 * Sets the message.
+	 *
+	 * @param message
+	 *            the new message
+	 */
+	public void setMessage(String message) {
+		this.message = message;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "TrazaDeRegistro [idTraza=" + idTraza + ", idFecha=" + idFecha + ", fecha=" + fecha + ", categoria="
-				+ categoria + ", mensaje=" + mensaje + "]";
+		return "TrazaDeRegistro [idTraza=" + id + ", idFecha=" + dateID + ", fecha=" + date + ", categoria=" + category
+				+ ", mensaje=" + message + "]";
 	}
-	
+
 }

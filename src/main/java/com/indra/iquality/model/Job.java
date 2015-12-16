@@ -5,144 +5,151 @@ package com.indra.iquality.model;
 
 import java.sql.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Job. Represents an atomic step in an ETL process flow.
+ * The Class Job. Represents an atomic operation of an ETL {@link Execution}.
  *
  * @author Ignacio N. Lucero Ascencio
- * @version 0.5, 11-dic-2015
+ * @version 0.5, 16-dic-2015
  * 
  *          The Class Job.
  */
 public class Job {
 
-	// Instance variables
-	// PK = id_job + id_ejecucion
-	/** The id job. */
-	private String idJob;
+	// PK = jobID + executionID
+	/** The job id. */
+	private String jobID;
 
-	/** The id ejecucion. */
-	private String idEjecucion;
+	/** The execution id. */
+	private String executionID;
 
-	/** The estado. */
-	private String estado;
+	/** The status. */
+	private String status;
 
-	/** The fecha inicio. */
-	private Date fechaInicio;
+	/** The start date. */
+	private Date startDate;
 
-	/** The fecha fin. */
-	private Date fechaFin;
+	/** The end date. */
+	private Date endDate;
 
-	/** The punto de control. */
-	private String puntoDeControl;
+	/** The checkpoint. */
+	private String checkpoint;
 
-	/** The fecha ok punto de control. */
-	private Date fechaOKPuntoDeControl;
+	/** The checkpoint last ok date. */
+	private Date checkpointLastOKDate;
 
-	/** The duracion. */
-	private String duracion;
+	/** The duration. */
+	private String duration;
 
-	/** The id bloque. */
-	private String idBloque;
+	/** The block id. */
+	private String blockID;
 
-	/** The bloque. */
-	private String bloque;
+	/** The block. */
+	private String block;
+
+	/** The system. */
+	private String system;
 
 	/** The software. */
 	private int software;
 
-	/** The sistema. */
-	private String sistema;
-
 	/**
-	 * Gets the id job.
+	 * Gets the job id.
 	 *
-	 * @return the id job
+	 * @return the job id
 	 */
 	// Getters
-	public String getIdJob() {
-		return idJob;
+	public String getJobID() {
+		return jobID;
 	}
 
 	/**
-	 * Gets the id ejecucion.
+	 * Gets the execution id.
 	 *
-	 * @return the id ejecucion
+	 * @return the execution id
 	 */
-	public String getIdEjecucion() {
-		return idEjecucion;
+	public String getExecutionID() {
+		return executionID;
 	}
 
 	/**
-	 * Gets the estado.
+	 * Gets the status.
 	 *
-	 * @return the estado
+	 * @return the status
 	 */
-	public String getEstado() {
-		return estado;
+	public String getStatus() {
+		return status;
 	}
 
 	/**
-	 * Gets the fecha inicio.
+	 * Gets the start date.
 	 *
-	 * @return the fecha inicio
+	 * @return the start date
 	 */
-	public Date getFechaInicio() {
-		return fechaInicio;
+	public Date getStartDate() {
+		return startDate;
 	}
 
 	/**
-	 * Gets the fecha fin.
+	 * Gets the end date.
 	 *
-	 * @return the fecha fin
+	 * @return the end date
 	 */
-	public Date getFechaFin() {
-		return fechaFin;
+	public Date getEndDate() {
+		return endDate;
 	}
 
 	/**
-	 * Gets the punto de control.
+	 * Gets the checkpoint.
 	 *
-	 * @return the punto de control
+	 * @return the checkpoint
 	 */
-	public String getPuntoDeControl() {
-		return puntoDeControl;
+	public String getCheckpoint() {
+		return checkpoint;
 	}
 
 	/**
-	 * Gets the fecha ok punto de control.
+	 * Gets the checkpoint last ok date.
 	 *
-	 * @return the fecha ok punto de control
+	 * @return the checkpoint last ok date
 	 */
-	public Date getFechaOKPuntoDeControl() {
-		return fechaOKPuntoDeControl;
+	public Date getCheckpointLastOKDate() {
+		return checkpointLastOKDate;
 	}
 
 	/**
-	 * Gets the duracion.
+	 * Gets the duration.
 	 *
-	 * @return the duracion
+	 * @return the duration
 	 */
-	public String getDuracion() {
-		return duracion;
+	public String getDuration() {
+		return duration;
 	}
 
 	/**
-	 * Gets the id bloque.
+	 * Gets the block id.
 	 *
-	 * @return the id bloque
+	 * @return the block id
 	 */
-	public String getIdBloque() {
-		return idBloque;
+	public String getBlockID() {
+		return blockID;
 	}
 
 	/**
-	 * Gets the bloque.
+	 * Gets the block.
 	 *
-	 * @return the bloque
+	 * @return the block
 	 */
-	public String getBloque() {
-		return bloque;
+	public String getBlock() {
+		return block;
+	}
+
+	/**
+	 * Gets the sistema.
+	 *
+	 * @return the sistema
+	 */
+	public String getSistema() {
+		return system;
 	}
 
 	/**
@@ -155,113 +162,104 @@ public class Job {
 	}
 
 	/**
-	 * Gets the sistema.
+	 * Sets the job id.
 	 *
-	 * @return the sistema
-	 */
-	public String getSistema() {
-		return sistema;
-	}
-
-	/**
-	 * Sets the id job.
-	 *
-	 * @param idJob
-	 *            the new id job
+	 * @param jobID
+	 *            the new job id
 	 */
 	// Setters
-	public void setIdJob(String idJob) {
-		this.idJob = idJob;
+	public void setJobID(String jobID) {
+		this.jobID = jobID;
 	}
 
 	/**
-	 * Sets the id ejecucion.
+	 * Sets the execution id.
 	 *
-	 * @param idEjecucion
-	 *            the new id ejecucion
+	 * @param executionID
+	 *            the new execution id
 	 */
-	public void setIdEjecucion(String idEjecucion) {
-		this.idEjecucion = idEjecucion;
+	public void setExecutionID(String executionID) {
+		this.executionID = executionID;
 	}
 
 	/**
-	 * Sets the estado.
+	 * Sets the status.
 	 *
-	 * @param estado
-	 *            the new estado
+	 * @param status
+	 *            the new status
 	 */
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	/**
-	 * Sets the fecha inicio.
+	 * Sets the start date.
 	 *
-	 * @param fechaInicio
-	 *            the new fecha inicio
+	 * @param startDate
+	 *            the new start date
 	 */
-	public void setFechaInicio(Date fechaInicio) {
-		this.fechaInicio = fechaInicio;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 
 	/**
-	 * Sets the fecha fin.
+	 * Sets the end date.
 	 *
-	 * @param fechaFin
-	 *            the new fecha fin
+	 * @param endDate
+	 *            the new end date
 	 */
-	public void setFechaFin(Date fechaFin) {
-		this.fechaFin = fechaFin;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	/**
-	 * Sets the punto de control.
+	 * Sets the checkpoint.
 	 *
-	 * @param puntoDeControl
-	 *            the new punto de control
+	 * @param checkpoint
+	 *            the new checkpoint
 	 */
-	public void setPuntoDeControl(String puntoDeControl) {
-		this.puntoDeControl = puntoDeControl;
+	public void setCheckpoint(String checkpoint) {
+		this.checkpoint = checkpoint;
 	}
 
 	/**
-	 * Sets the fecha ok punto de control.
+	 * Sets the checkpoint last ok date.
 	 *
-	 * @param fechaOKPuntoDeControl
-	 *            the new fecha ok punto de control
+	 * @param checkpointLastOKDate
+	 *            the new checkpoint last ok date
 	 */
-	public void setFechaOKPuntoDeControl(Date fechaOKPuntoDeControl) {
-		this.fechaOKPuntoDeControl = fechaOKPuntoDeControl;
+	public void setCheckpointLastOKDate(Date checkpointLastOKDate) {
+		this.checkpointLastOKDate = checkpointLastOKDate;
 	}
 
 	/**
-	 * Sets the duracion.
+	 * Sets the duration.
 	 *
-	 * @param duracion
-	 *            the new duracion
+	 * @param duration
+	 *            the new duration
 	 */
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
+	public void setDuration(String duration) {
+		this.duration = duration;
 	}
 
 	/**
-	 * Sets the id bloque.
+	 * Sets the block id.
 	 *
-	 * @param idBloque
-	 *            the new id bloque
+	 * @param blockID
+	 *            the new block id
 	 */
-	public void setIdBloque(String idBloque) {
-		this.idBloque = idBloque;
+	public void setBlockID(String blockID) {
+		this.blockID = blockID;
 	}
 
 	/**
-	 * Sets the bloque.
+	 * Sets the block.
 	 *
-	 * @param bloque
-	 *            the new bloque
+	 * @param block
+	 *            the new block
 	 */
-	public void setBloque(String bloque) {
-		this.bloque = bloque;
+	public void setBlock(String block) {
+		this.block = block;
 	}
 
 	/**
@@ -275,25 +273,25 @@ public class Job {
 	}
 
 	/**
-	 * Sets the sistema.
+	 * Sets the system.
 	 *
-	 * @param sistema
-	 *            the new sistema
+	 * @param system
+	 *            the new system
 	 */
-	public void setSistema(String sistema) {
-		this.sistema = sistema;
+	public void setSystem(String system) {
+		this.system = system;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
+	/**
+	 * To string.
+	 *
+	 * @return the string
 	 */
 	@Override
 	public String toString() {
-		return "Job [id=" + idJob + ", estado=" + estado + ", FechaInicio=" + fechaInicio + ", FechaFin=" + fechaFin
-				+ ", puntoDeControl=" + puntoDeControl + ", fechaOKPuntoDeControl=" + fechaOKPuntoDeControl
-				+ ", duracion=" + duracion + "]";
+		return "Job [id=" + jobID + ", estado=" + status + ", FechaInicio=" + startDate + ", FechaFin=" + endDate
+				+ ", puntoDeControl=" + checkpoint + ", fechaOKPuntoDeControl=" + checkpointLastOKDate + ", duracion="
+				+ duration + "]";
 	}
 
 }

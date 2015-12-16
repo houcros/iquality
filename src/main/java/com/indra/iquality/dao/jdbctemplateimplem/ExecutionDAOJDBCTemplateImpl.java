@@ -87,16 +87,16 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 
 						Execution exec = new Execution();
 
-						exec.setIdEjecucion(rs.getInt("id_ejecucion"));
-						exec.setPase(rs.getString("de_pase"));
-						exec.setEstado(rs.getString("id_estado"));
-						exec.setFechaDatos(rs.getString("id_anyo") + rs.getString("id_mes"));
-						exec.setEscenario(rs.getString("id_escenario"));
-						exec.setFechaInicio(rs.getDate("id_fecha_inicio_real"));
-						exec.setFechaFin(rs.getDate("id_fecha_fin_real"));
-						exec.setFechaPlanificada(rs.getDate("id_fecha_inicio"));
+						exec.setId(rs.getInt("id_ejecucion"));
+						exec.setFlow(rs.getString("de_pase"));
+						exec.setStatus(rs.getString("id_estado"));
+						exec.setDataDate(rs.getString("id_anyo") + rs.getString("id_mes"));
+						exec.setScenario(rs.getString("id_escenario"));
+						exec.setStartDate(rs.getDate("id_fecha_inicio_real"));
+						exec.setEndDate(rs.getDate("id_fecha_fin_real"));
+						exec.setPlannedDate(rs.getDate("id_fecha_inicio"));
 						exec.setSoftware(rs.getString("de_software"));
-						exec.setDuracion(rs.getString("duracion"));
+						exec.setDuration(rs.getString("duracion"));
 
 						return exec;
 					}
@@ -176,20 +176,20 @@ public class ExecutionDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateImpl im
 
 			Execution pase = new Execution();
 
-			pase.setIdEjecucion(helper.filterStringToInt(String.valueOf(paseRow.get("id_ejecucion"))));
-			pase.setPase(helper.filterNullString(String.valueOf(paseRow.get("de_pase"))));
-			pase.setEstado(helper.filterNullString(String.valueOf(paseRow.get("id_estado"))));
-			pase.setFechaDatos(helper.filterNullString(String.valueOf(paseRow.get("id_anyo")))
+			pase.setId(helper.filterStringToInt(String.valueOf(paseRow.get("id_ejecucion"))));
+			pase.setFlow(helper.filterNullString(String.valueOf(paseRow.get("de_pase"))));
+			pase.setStatus(helper.filterNullString(String.valueOf(paseRow.get("id_estado"))));
+			pase.setDataDate(helper.filterNullString(String.valueOf(paseRow.get("id_anyo")))
 					+ helper.filterNullString(String.valueOf(paseRow.get("id_mes"))));
-			pase.setEscenario(helper.filterNullString(String.valueOf(paseRow.get("id_escenario"))));
+			pase.setScenario(helper.filterNullString(String.valueOf(paseRow.get("id_escenario"))));
 
 			// Es aquí donde puede lanzar ParseException
-			pase.setFechaInicio(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
-			pase.setFechaFin(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
-			pase.setFechaPlanificada(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
+			pase.setStartDate(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio_real"))));
+			pase.setEndDate(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_fin_real"))));
+			pase.setPlannedDate(helper.filterStringToSqlDate(String.valueOf(paseRow.get("id_fecha_inicio"))));
 
 			pase.setSoftware(helper.filterNullString(String.valueOf(paseRow.get("de_software"))));
-			pase.setDuracion(helper.filterNullString(String.valueOf(paseRow.get("duracion"))));
+			pase.setDuration(helper.filterNullString(String.valueOf(paseRow.get("duracion"))));
 
 			executionList.add(pase);
 		}

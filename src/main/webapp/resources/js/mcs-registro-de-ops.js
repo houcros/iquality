@@ -44,9 +44,9 @@ $(document).ready(function() {
     		async: false,
     		success : function(data){
     			$.each( data, function( index, value ){
-    				sOut += "<p><b>[" + value['fecha'] + " | " 
-    				+ value['idTraza'] + "] " + value['categoria'] + ":</b> "
-    				+ value['mensaje'] + "</p>";
+    				sOut += "<p><b>[" + value['date'] + " | " 
+    				+ value['id'] + "] " + value['category'] + ":</b> "
+    				+ value['message'] + "</p>";
     			});
     		}
     	});

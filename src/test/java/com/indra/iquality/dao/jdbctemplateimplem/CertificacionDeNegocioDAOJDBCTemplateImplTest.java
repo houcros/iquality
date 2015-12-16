@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.indra.iquality.dao.BusinessCertificateDAO;
 import com.indra.iquality.model.BusinessCertificate;
-import com.indra.iquality.model.DetailOfCertificate;
+import com.indra.iquality.model.BusinessCertificateDetail;
 import com.indra.iquality.singleton.Environment;
 
 public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
@@ -31,25 +31,25 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
 		assertEquals(cdnList.size(), 7);
 
-		cdn.setFecha("2013-12");
-		cdn.setSeccion("Sección de Motores de Cálculo");
-		cdn.setSubseccion("Motor Balance y Fondos Propios");
-		cdn.setEntidad("Entidad Balance de Solvencia I y II formato QRT");
-		cdn.setDeCertificacion("Other technical provisions");
-		cdn.setEstado("OK");
-		cdn.setIndicador("Importe Solvencia II");
+		cdn.setDate("2013-12");
+		cdn.setSection("Sección de Motores de Cálculo");
+		cdn.setSubsection("Motor Balance y Fondos Propios");
+		cdn.setEntity("Entidad Balance de Solvencia I y II formato QRT");
+		cdn.setCertificateDescription("Other technical provisions");
+		cdn.setStatus("OK");
+		cdn.setIndicator("Importe Solvencia II");
 		cdn.setIdMetrica("METR_CERT_RBA_OTH_TECH_PROV");
-		cdn.setIdMes("201312");
+		cdn.setMonth("201312");
 		assertEquals(cdnList.get(0), cdn);
 
-		cdn.setFecha("2014-11");
-		cdn.setSeccion("Sección Base");
-		cdn.setSubseccion("Modelo Contable");
-		cdn.setEntidad("Entidad contable");
-		cdn.setDeCertificacion("Validación para saldo final de mes por empresa y periodo");
-		cdn.setIndicador("Saldo final mes");
+		cdn.setDate("2014-11");
+		cdn.setSection("Sección Base");
+		cdn.setSubsection("Modelo Contable");
+		cdn.setEntity("Entidad contable");
+		cdn.setCertificateDescription("Validación para saldo final de mes por empresa y periodo");
+		cdn.setIndicator("Saldo final mes");
 		cdn.setIdMetrica("METR_CERT_CNT_SALDO_ACTUAL");
-		cdn.setIdMes("201411");
+		cdn.setMonth("201411");
 		assertEquals(cdnList.get(3), cdn);
 	}
 
@@ -78,7 +78,7 @@ public class CertificacionDeNegocioDAOJDBCTemplateImplTest {
 
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		BusinessCertificateDAO cdnDAO = ctx.getBean("businessCertificateDAOJDBCTemplate", BusinessCertificateDAO.class);
-		List<DetailOfCertificate> detallesList = cdnDAO.getCertificateDetails("201306", "METR_CERT_CNT_SALDO_ACTUAL", 2,
+		List<BusinessCertificateDetail> detallesList = cdnDAO.getCertificateDetails("201306", "METR_CERT_CNT_SALDO_ACTUAL", 2,
 				environment.getSystem(), environment.getCurrentSoftware());
 		ctx.close();
 

@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.indra.iquality.dao.BusinessCertificateDAO;
 import com.indra.iquality.dao.TechnicalCertificateDAO;
 import com.indra.iquality.model.BusinessCertificate;
-import com.indra.iquality.model.DetailOfCertificate;
-import com.indra.iquality.model.DetailOfValidation;
+import com.indra.iquality.model.BusinessCertificateDetail;
+import com.indra.iquality.model.TechnicalCertificateDetail;
 import com.indra.iquality.model.TechnicalCertificate;
 import com.indra.iquality.singleton.Environment;
 
@@ -183,7 +183,7 @@ public class CertificatesResultController {
 			int numDims = allHeaders.size();
 			// Por completitud, agrego headers STUB para rellenar hasta el
 			// número máximo, aunque es prescindible
-			while (allHeaders.size() < DetailOfCertificate.MAX_DIMENSIONES)
+			while (allHeaders.size() < BusinessCertificateDetail.MAX_DIMENSIONES)
 				allHeaders.add("_STUB");
 			// Pongo todos los headers en la vista
 			int aux_count = 0;
@@ -194,7 +194,7 @@ public class CertificatesResultController {
 
 			// Obtengo todos valores de cada columna de la tabla de detalle y
 			// los pongo en la vista
-			List<DetailOfCertificate> allDetallesDeCert = cdnDAO.getCertificateDetails(idMes, idMetrica, numDims,
+			List<BusinessCertificateDetail> allDetallesDeCert = cdnDAO.getCertificateDetails(idMes, idMetrica, numDims,
 					environment.getSystem(), environment.getCurrentSoftware());
 			model.addAttribute("allTableItems", allDetallesDeCert);
 			// Suelto una cookie con el número de dimensiones para que el
@@ -216,7 +216,7 @@ public class CertificatesResultController {
 
 			// Obtengo las cabeceras que tiene la tabla de detalle de este
 			// certificado. Son variables y dependen del certificado
-			List<DetailOfValidation> allDetallesDeVali = vtDAO.getCertificateDetails(idMetrica, idMes,
+			List<TechnicalCertificateDetail> allDetallesDeVali = vtDAO.getCertificateDetails(idMetrica, idMes,
 					environment.getSystem(), environment.getCurrentSoftware());
 			// ATENCIÓN: Hay que llamar a getDetallesDeValidacion antes de estos
 			// dos métodos o no funcionrá como se espera!

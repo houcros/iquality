@@ -15,9 +15,9 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.helper.GenericTreeNode;
-import com.indra.iquality.model.DescripcionAtributoMaestro;
-import com.indra.iquality.model.DescripcionIndicador;
-import com.indra.iquality.model.DescriptionOfAttribute;
+import com.indra.iquality.model.MasterAttributeDescription;
+import com.indra.iquality.model.IndicatorDescription;
+import com.indra.iquality.model.AttributeDescription;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.singleton.Environment;
 
@@ -97,7 +97,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			dictionaryConcept
 					.setConcept(helper.filterNullString(String.valueOf(dictionaryConceptNodeRow.get("title"))));
 			dictionaryConcept
-					.setTipo((helper.conceptTypeStringToEnum(String.valueOf(dictionaryConceptNodeRow.get("tipo")))));
+					.setType((helper.conceptTypeStringToEnum(String.valueOf(dictionaryConceptNodeRow.get("tipo")))));
 			// Son ROWIDs the Oracle. Hay que filtrarlos de otra manera
 			if (dictionaryConceptNodeRow.get("comp_rowid") != null) {
 				dictionaryConcept.setCompRowID((((ROWID) (dictionaryConceptNodeRow.get("comp_rowid"))).stringValue()));
@@ -127,7 +127,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 	 * java.lang.String, java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public DescriptionOfAttribute getDescriptionOfAttribute(String compRowID, String ctRowID, String sistema,
+	public AttributeDescription getDescriptionOfAttribute(String compRowID, String ctRowID, String sistema,
 			int software) {
 
 		logger.info("[getDescriptionOfAttribute] : INIT");
@@ -148,26 +148,26 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescriptionOfAttribute da;
+		AttributeDescription da;
 		try {
 			da = jdbcTemplate.queryForObject(queryBasicosYEntidad,
-					new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescriptionOfAttribute>() {
+					new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<AttributeDescription>() {
 
 						@Override
-						public DescriptionOfAttribute mapRow(ResultSet rs, int rowNum) throws SQLException {
+						public AttributeDescription mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-							DescriptionOfAttribute da = new DescriptionOfAttribute();
+							AttributeDescription da = new AttributeDescription();
 
 							da.setId(rs.getInt("id_componente"));
-							da.setNombre(rs.getString("nombre"));
-							da.setResponsable(rs.getString("responsable"));
-							da.setDefinicion(rs.getString("definicion"));
-							da.setComentarios(rs.getString("comentario"));
-							da.setHistorico(rs.getString("historico"));
-							da.setMetodoObtencion(rs.getString("mtd_obtencion"));
-							da.setFormato(rs.getString("formato"));
-							da.setPeriodoActualizacion(rs.getString("periodo_act"));
-							da.setTipoActualizacion(rs.getString("tipo_act"));
+							da.setName(rs.getString("nombre"));
+							da.setResponsible(rs.getString("responsable"));
+							da.setDefinition(rs.getString("definicion"));
+							da.setComments(rs.getString("comentario"));
+							da.setHistory(rs.getString("historico"));
+							da.setObtentionMethod(rs.getString("mtd_obtencion"));
+							da.setFormat(rs.getString("formato"));
+							da.setUodatePeriod(rs.getString("periodo_act"));
+							da.setUpdateType(rs.getString("tipo_act"));
 
 							return da;
 						}
@@ -176,7 +176,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			logger.error("[getDescriptionOfAttribute] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
 					e.getMessage());
 			e.printStackTrace();
-			return new DescriptionOfAttribute();
+			return new AttributeDescription();
 		}
 
 		logger.debug("[getDescriptionOfAttribute] : found description {}", da.toString());
@@ -192,7 +192,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 	 * java.lang.String, int)
 	 */
 	@Override
-	public DescripcionAtributoMaestro getDescriptionOfMasterAttribute(String compRowID, String ctRowID, String sistema,
+	public MasterAttributeDescription getDescriptionOfMasterAttribute(String compRowID, String ctRowID, String sistema,
 			int software) {
 
 		logger.info("[getDescriptionOfMasterAttribute] : INIT");
@@ -200,7 +200,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		// Preparo un maestro para retornar
 		// Lo creo con los campos que tiene de un atributo normal con
 		// getDescriptionOfAttribute
-		DescripcionAtributoMaestro dam = new DescripcionAtributoMaestro(
+		MasterAttributeDescription dam = new MasterAttributeDescription(
 				getDescriptionOfAttribute(compRowID, ctRowID, sistema, software));
 
 		// Obtengo los campos propios del maestro, que un atributo normal no
@@ -217,21 +217,21 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescripcionAtributoMaestro auxdam;
+		MasterAttributeDescription auxdam;
 		try {
 			auxdam = jdbcTemplate.queryForObject(queryAtributosDelMaestro,
 					new Object[] { compRowID, ctRowID, sistema, software },
-					new RowMapper<DescripcionAtributoMaestro>() {
+					new RowMapper<MasterAttributeDescription>() {
 
 						@Override
-						public DescripcionAtributoMaestro mapRow(ResultSet rs, int rowNum) throws SQLException {
+						public MasterAttributeDescription mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-							DescripcionAtributoMaestro dam = new DescripcionAtributoMaestro();
+							MasterAttributeDescription dam = new MasterAttributeDescription();
 
-							dam.setHistoricoMaestro(rs.getString("historico_maestro"));
-							dam.setPeriodoActualizacionMaestro(rs.getString("periodo_act_maestro"));
-							dam.setTipoActualizacionMaestro(rs.getString("tipo_act_maestro"));
-							dam.setMetodoObtencionMaestro(rs.getString("mtd_obtencion_maestro"));
+							dam.setHistoryMaster(rs.getString("historico_maestro"));
+							dam.setUpdatePeriodMaster(rs.getString("periodo_act_maestro"));
+							dam.setUpdateTypeMaster(rs.getString("tipo_act_maestro"));
+							dam.setObtentionMethodMaster(rs.getString("mtd_obtencion_maestro"));
 
 							return dam;
 						}
@@ -240,15 +240,15 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			logger.error("[getDescriptionOfMasterAttribute] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
 					e.getMessage());
 			e.printStackTrace();
-			return new DescripcionAtributoMaestro();
+			return new MasterAttributeDescription();
 		}
 
 		// Agrego los campos obtenidos al atributo maestro que me había
 		// preparado
-		dam.setHistoricoMaestro(auxdam.getHistoricoMaestro());
-		dam.setPeriodoActualizacionMaestro(auxdam.getPeriodoActualizacionMaestro());
-		dam.setTipoActualizacionMaestro(auxdam.getTipoActualizacionMaestro());
-		dam.setMetodoObtencionMaestro(auxdam.getMetodoObtencionMaestro());
+		dam.setHistoryMaster(auxdam.getHistoryMaster());
+		dam.setUpdatePeriodMaster(auxdam.getUpdatePeriodMaster());
+		dam.setUpdateTypeMaster(auxdam.getUpdateTypeMaster());
+		dam.setObtentionMethodMaster(auxdam.getObtentionMethodMaster());
 
 		logger.debug("[getDescriptionOfMasterAttribute] : found description {}", dam.toString());
 		logger.info("[getDescriptionOfMasterAttribute] : RETURN");
@@ -264,7 +264,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 	 * java.lang.String, java.lang.String, java.lang.String, int)
 	 */
 	@Override
-	public DescripcionIndicador getDescriptionOfIndicator(String compRowID, String ctRowID, String sistema,
+	public IndicatorDescription getDescriptionOfIndicator(String compRowID, String ctRowID, String sistema,
 			int software) {
 
 		logger.info("[getDescriptionOfIndicator] : INIT");
@@ -282,25 +282,25 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 
 		// Hago la query y mapeo a un objeto directamente
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		DescripcionIndicador di;
+		IndicatorDescription di;
 		try {
 			di = jdbcTemplate.queryForObject(queryBasicosYEntidad,
-					new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<DescripcionIndicador>() {
+					new Object[] { compRowID, ctRowID, sistema, software }, new RowMapper<IndicatorDescription>() {
 
 						@Override
-						public DescripcionIndicador mapRow(ResultSet rs, int rowNum) throws SQLException {
+						public IndicatorDescription mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-							DescripcionIndicador di = new DescripcionIndicador();
+							IndicatorDescription di = new IndicatorDescription();
 
 							di.setId(rs.getInt("id_componente"));
-							di.setNombre(helper.filterNullString(rs.getString("nombre")));
-							di.setResponsable(helper.filterNullString(rs.getString("responsable")));
-							di.setDefinicion(helper.filterNullString(rs.getString("definicion")));
-							di.setComentarios(helper.filterNullString(rs.getString("comentario")));
-							di.setHistorico(helper.filterNullString(rs.getString("historico")));
-							di.setMetodoObtencion(helper.filterNullString(rs.getString("mtd_obtencion")));
-							di.setUnidadMedida(helper.filterNullString(rs.getString("unidad_medida")));
-							di.setPeriodoAcumulado(helper.filterNullString(rs.getString("periodo_acumulado")));
+							di.setName(helper.filterNullString(rs.getString("nombre")));
+							di.setResponsible(helper.filterNullString(rs.getString("responsable")));
+							di.setDefinition(helper.filterNullString(rs.getString("definicion")));
+							di.setComments(helper.filterNullString(rs.getString("comentario")));
+							di.setHistory(helper.filterNullString(rs.getString("historico")));
+							di.setObtentionMethod(helper.filterNullString(rs.getString("mtd_obtencion")));
+							di.setMeasureUnit(helper.filterNullString(rs.getString("unidad_medida")));
+							di.setAcummulatedPeriod(helper.filterNullString(rs.getString("periodo_acumulado")));
 
 							return di;
 						}
@@ -309,7 +309,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 			logger.error("[getDescriptionOfIndicator] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(),
 					e.getMessage());
 			e.printStackTrace();
-			return new DescripcionIndicador();
+			return new IndicatorDescription();
 		}
 
 		// Busco las certificaciones del indicador y se las agrego
@@ -318,7 +318,7 @@ public class DictionaryOfConceptsDAOJDBCTemplateImpl extends AbstractDAOJDBCTemp
 		for (Certification c : certificaciones) {
 			descripcionCertificaciones.add(c.getDescripcion());
 		}
-		di.setCertificaciones(descripcionCertificaciones);
+		di.setCertificates(descripcionCertificaciones);
 
 		logger.debug("[getDescriptionOfIndicator] : found description {}", di.toString());
 		logger.info("[getDescriptionOfIndicator] : RETURN");

@@ -6,7 +6,7 @@ package com.indra.iquality.dao;
 import java.util.List;
 
 import com.indra.iquality.model.BusinessCertificate;
-import com.indra.iquality.model.DetailOfCertificate;
+import com.indra.iquality.model.BusinessCertificateDetail;
 
 /**
  * The Interface to interact with the persistent representations of business
@@ -69,6 +69,6 @@ public interface BusinessCertificateDAO {
 	 *            the current software version
 	 * @return a list of all the details of a business certification
 	 */
-	public List<DetailOfCertificate> getCertificateDetails(String idMes, String idMetrica, int qttHeaders,
+	public List<BusinessCertificateDetail> getCertificateDetails(String idMes, String idMetrica, int qttHeaders,
 			String sistema, int software);
 }

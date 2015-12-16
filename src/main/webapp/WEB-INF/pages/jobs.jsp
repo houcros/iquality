@@ -91,29 +91,26 @@
 										<tbody>
 											<c:forEach items="${allTableItems}" var="item">
 												<tr class="gradeA">
-													<!-- 					    <tr class="gradeX">       -->
-													<!-- 					    <tr class="gradeC">       -->
-													<!-- 					    <tr class="gradeU">       -->
-													<td class="center hidden-phone">${item.idJob}</td>
+													<td class="center hidden-phone">${item.jobID}</td>
 													<td class="center hidden-phone"><c:choose>
-															<c:when test="${item.estado=='OK'}">
-																<span class="label label-success label-mini">${item.estado}</span>
+															<c:when test="${item.status=='OK'}">
+																<span class="label label-success label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='KO'}">
-																<span class="label label-danger label-mini">${item.estado}</span>
+															<c:when test="${item.status=='KO'}">
+																<span class="label label-danger label-mini">${item.status}</span>
 															</c:when>
-															<c:when test="${item.estado=='PDTE'}">
-																<span class="label label-warning label-mini">${item.estado}</span>
+															<c:when test="${item.status=='PDTE'}">
+																<span class="label label-warning label-mini">${item.status}</span>
 															</c:when>
 															<c:otherwise>
-																<span class="label label-inverse label-mini">${item.estado}</span>
+																<span class="label label-inverse label-mini">${item.status}</span>
 															</c:otherwise>
 														</c:choose></td>
-													<td class="center hidden-phone">${item.fechaInicio}</td>
-													<td class="center hidden-phone">${item.fechaFin}</td>
-													<td class="center hidden-phone">${item.puntoDeControl}</td>
-													<td class="center hidden-phone">${item.fechaOKPuntoDeControl}</td>
-													<td class="center hidden-phone">${item.duracion}</td>
+													<td class="center hidden-phone">${item.startDate}</td>
+													<td class="center hidden-phone">${item.endDate}</td>
+													<td class="center hidden-phone">${item.checkpoint}</td>
+													<td class="center hidden-phone">${item.checkpointLastOKDate}</td>
+													<td class="center hidden-phone">${item.duration}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

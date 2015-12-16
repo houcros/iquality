@@ -70,13 +70,13 @@ $(document).ready(function () {
 								// Muestro siempre la primera tab de un componente
 								$('#myTabs a[href="#tab-datos-basicos"]').tab('show');
 								
-								$('#dict-ficha-definicion').children().first().text(data.nombre);
-								$('#tarj-responsable').text(data.responsable);
-								$('#tarj-definicion').text(data.definicion);
-								$('#tarj-comentarios').text(data.comentarios);
+								$('#dict-ficha-definicion').children().first().text(data.name);
+								$('#tarj-responsable').text(data.responsible);
+								$('#tarj-definicion').text(data.definition);
+								$('#tarj-comentarios').text(data.comments);
 								
-								$('#tarj-historico-ent').text(data.historico);
-								$('#tarj-metodo-obtencion-ent').text(data.metodoObtencion);
+								$('#tarj-historico-ent').text(data.history);
+								$('#tarj-metodo-obtencion-ent').text(data.obtentionMethod);
 								
 								switch(type){
 								case "INDICADOR":
@@ -87,13 +87,13 @@ $(document).ready(function () {
 									$('.show-on-master').hide();
 									$('.show-on-indic').show();
 									
-									$('#tarj-unidad-medida').text(data.unidadMedida);
-									$('#tarj-periodo-acumulado').text(data.periodoAcumulado);
+									$('#tarj-unidad-medida').text(data.measureUnits);
+									$('#tarj-periodo-acumulado').text(data.acummulatedPeriod);
 									
 									var s = "";
 									var icon = "<a class=\"fa fa-book\" href=\"#\"></a>&nbsp;&nbsp;";
-									for(var i = 0; i < data.certificaciones.length; ++i){
-										s += icon + data.certificaciones[i] + "<br>";
+									for(var i = 0; i < data.certificates.length; ++i){
+										s += icon + data.certificates[i] + "<br>";
 									}
 									if (s == "") s = "<i>Indicador sin certificaciones</i>";
 									$('#div-certificaciones').html(s);
@@ -109,8 +109,8 @@ $(document).ready(function () {
 									$('.show-on-atr').show();
 									$('.show-on-ent').show();
 									
-									$('#tarj-formato').text(data.formato);
-									$('#tarj-caracteristicas-act-ent').text(data.periodoActualizacion + " " + data.tipoActualizacion);
+									$('#tarj-formato').text(data.format);
+									$('#tarj-caracteristicas-act-ent').text(data.updatePeriod + " " + data.updateType);
 									
 									break;
 									
@@ -123,12 +123,12 @@ $(document).ready(function () {
 									$('.show-on-ent').hide();
 									$('.show-on-master').show();
 									
-									$('#tarj-formato').text(data.formato);
-									$('#tarj-caracteristicas-act-ent').text(data.periodoActualizacion + " " + data.tipoActualizacion);
+									$('#tarj-formato').text(data.format);
+									$('#tarj-caracteristicas-act-ent').text(data.updatePeriod + " " + data.updateType);
 									
-									$('#tarj-historico-master').text(data.historicoMaestro);
-									$('#tarj-metodo-obtencion-master').text(data.metodoObtencionMaestro);
-									$('#tarj-caracteristicas-act-master').text(data.periodoActualizacionMaestro + " " + data.tipoActualizacionMaestro);
+									$('#tarj-historico-master').text(data.historyMaster);
+									$('#tarj-metodo-obtencion-master').text(data.obtentionMethodMaster);
+									$('#tarj-caracteristicas-act-master').text(data.updatePeriodMaster + " " + data.updateTypeMaster);
 
 									break;
 								}

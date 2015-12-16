@@ -3,7 +3,4 @@ com.indra.iquality.dao
 com.indra.iquality.dao.jdbctemplateimplem
 com.indra.iquality.helper
 com.indra.iquality.model
-com.indra.iquality.model.form
 com.indra.iquality.singleton
-com.indra.iquality.translator
-com.indra.iquality.tree

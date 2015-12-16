@@ -24,16 +24,16 @@ public class Flow {
 	private int id;
 
 	/** The descriptive name of the flow. */
-	private String nombre;
+	private String name;
 
 	/**
 	 * Indicates if the flow is typical or atypical. Can me either 'S' or 'N',
 	 * corresponding to typical and atypical.
 	 */
-	private String esAtipico;
+	private String isAtypical;
 
 	/** The system on which the flow will be executed. */
-	private String sistema;
+	private String system;
 
 	/** The software version of the system. */
 	// TODO refactor: mejor si esto es un int id
@@ -49,7 +49,7 @@ public class Flow {
 	 * of a job j, the values are the identifiers of the jobs that must finish
 	 * successfully before j can be executed. See {@link Dependency}
 	 */
-	private Map<String, String[]> dependencias;
+	private Map<String, String[]> dependencies;
 
 	// Constructors
 	/**
@@ -65,21 +65,21 @@ public class Flow {
 	 * the current environment. See
 	 * {@link com.indra.iquality.singleton.Environment} .
 	 *
-	 * @param nombre
+	 * @param name
 	 *            the name of the flow
-	 * @param esAtipico
+	 * @param isAtypical
 	 *            the typicality
 	 * @param jobs
 	 *            the list of jobs
-	 * @param dependencias
+	 * @param dependencies
 	 *            the dependencies of the jobs
 	 */
-	public Flow(String nombre, String esAtipico, String[] jobs, Map<String, String[]> dependencias) {
-		this.nombre = nombre;
-		this.esAtipico = esAtipico;
+	public Flow(String name, String isAtypical, String[] jobs, Map<String, String[]> dependencies) {
+		this.name = name;
+		this.isAtypical = isAtypical;
 		this.jobs = jobs;
-		this.dependencias = dependencias;
-		this.sistema = Environment.getInstance().getSystem();
+		this.dependencies = dependencies;
+		this.system = Environment.getInstance().getSystem();
 		this.software = Environment.getInstance().getCurrentSoftwareDescription();
 	}
 
@@ -98,8 +98,8 @@ public class Flow {
 	 *
 	 * @return the name of the flow
 	 */
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -107,8 +107,8 @@ public class Flow {
 	 *
 	 * @return the typicality
 	 */
-	public String getEsAtipico() {
-		return esAtipico;
+	public String getIsAtypical() {
+		return isAtypical;
 	}
 
 	/**
@@ -116,8 +116,8 @@ public class Flow {
 	 *
 	 * @return the system
 	 */
-	public String getSistema() {
-		return sistema;
+	public String getSystem() {
+		return system;
 	}
 
 	/**
@@ -143,8 +143,8 @@ public class Flow {
 	 *
 	 * @return a map with the dependencies
 	 */
-	public Map<String, String[]> getDependencias() {
-		return dependencias;
+	public Map<String, String[]> getDependencies() {
+		return dependencies;
 	}
 
 	// Setters
@@ -161,31 +161,31 @@ public class Flow {
 	/**
 	 * Sets the name of the flow.
 	 *
-	 * @param nombre
-	 *            the name of the flow
+	 * @param name
+	 *            the new name
 	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
 	 * Sets the typicality of the flow.
 	 *
-	 * @param esAtipico
-	 *            the typicality
+	 * @param isAtypical
+	 *            the new es atipico
 	 */
-	public void setEsAtipico(String esAtipico) {
-		this.esAtipico = esAtipico;
+	public void setIsAtypical(String isAtypical) {
+		this.isAtypical = isAtypical;
 	}
 
 	/**
 	 * Sets the system on which the flow will run.
 	 *
-	 * @param sistema
+	 * @param system
 	 *            the system
 	 */
-	public void setSistema(String sistema) {
-		this.sistema = sistema;
+	public void setSystem(String system) {
+		this.system = system;
 	}
 
 	/**
@@ -211,12 +211,12 @@ public class Flow {
 	/**
 	 * Sets the dependencies of the jobs associated to this flow.
 	 *
-	 * @param dependencias
+	 * @param dependencies
 	 *            a map whose key is the identifier of a job and the value is an
 	 *            array with the identifiers of the jobs on which that depends
 	 */
-	public void setDependencias(Map<String, String[]> dependencias) {
-		this.dependencias = dependencias;
+	public void setDependencies(Map<String, String[]> dependencies) {
+		this.dependencies = dependencies;
 	}
 
 }
