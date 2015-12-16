@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package com.indra.iquality.helper;
 
 import java.util.List;
@@ -14,8 +17,27 @@ import com.google.gson.JsonParser;
 import com.indra.iquality.model.ConceptTypeEnum;
 import com.indra.iquality.model.DictionaryConcept;
 
+/**
+ * The Class TreeTranslatorHelper. Offers utilities to transform lists to trees,
+ * and trees to JSON.
+ *
+ * @author Ignacio N. Lucero Ascencio
+ * @version 0.5, 16-dic-2015
+ * 
+ *          The Class TreeTranslatorHelper.
+ */
 public class TreeTranslatorHelper {
 
+	/**
+	 * Translates a tree of {@link com.indra.iquality.model.DictionaryConcept}
+	 * to its pretty JSON String. That is, a friendly and natural formatted
+	 * JSON. The format of the JSON tree is the one expected by the
+	 * <a href="https://www.jstree.com/">jsTree plug-in for jQuery</a>.
+	 *
+	 * @param root
+	 *            the root node of the tree
+	 * @return the pretty JSON representation of the tree
+	 */
 	public String treeToPrettyJSONStringForjsTree(GenericTreeNode<DictionaryConcept> root) {
 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -27,6 +49,15 @@ public class TreeTranslatorHelper {
 
 	}
 
+	/**
+	 * Translates a tree of {@link com.indra.iquality.model.DictionaryConcept}
+	 * to a JSONObject. The format of the JSON tree is the one expected by the
+	 * <a href="https://www.jstree.com/">jsTree plug-in for jQuery</a>.
+	 *
+	 * @param root
+	 *            the root node of the tree
+	 * @return the JSONObject representation of the tree
+	 */
 	public JSONObject treeToJSONForjsTree(GenericTreeNode<DictionaryConcept> root) {
 
 		JSONObject jsonTree = new JSONObject();
@@ -54,6 +85,14 @@ public class TreeTranslatorHelper {
 		return jsonTree;
 	}
 
+	/**
+	 * Translates a list of nodes with
+	 * {@link com.indra.iquality.model.DictionaryConcept} as its data to a tree.
+	 *
+	 * @param list
+	 *            the list of nodes
+	 * @return the root node of the equivalent tree
+	 */
 	public GenericTreeNode<DictionaryConcept> conceptListToTree(List<GenericTreeNode<DictionaryConcept>> list) {
 
 		// Añado elemento ficticio con altura 0 al inicio de la lista
