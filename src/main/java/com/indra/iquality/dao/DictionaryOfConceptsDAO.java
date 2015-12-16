@@ -6,10 +6,10 @@ package com.indra.iquality.dao;
 import java.util.List;
 
 import com.indra.iquality.model.DescriptionOfAttribute;
+import com.indra.iquality.helper.GenericTreeNode;
 import com.indra.iquality.model.DescripcionAtributoMaestro;
 import com.indra.iquality.model.DescripcionIndicador;
 import com.indra.iquality.model.DictionaryConcept;
-import com.indra.iquality.tree.GenericTreeNode;
 
 /**
  * The Interface to interact with the persistent representations of the

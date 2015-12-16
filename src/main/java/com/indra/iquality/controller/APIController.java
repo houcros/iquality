@@ -28,6 +28,8 @@ import com.google.gson.Gson;
 import com.indra.iquality.dao.DependencyDAO;
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.TraceOfRegisterDAO;
+import com.indra.iquality.helper.GenericTreeNode;
+import com.indra.iquality.helper.TreeTranslatorHelper;
 import com.indra.iquality.model.ConceptTypeEnum;
 import com.indra.iquality.model.Dependency;
 import com.indra.iquality.model.DescripcionIndicador;
@@ -35,9 +37,6 @@ import com.indra.iquality.model.DescriptionOfAttribute;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.model.RegisterTrace;
 import com.indra.iquality.singleton.Environment;
-import com.indra.iquality.translator.ConceptsToTreeTranslator;
-import com.indra.iquality.translator.TreeToJSONTranslator;
-import com.indra.iquality.tree.GenericTreeNode;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -278,10 +277,10 @@ public class APIController {
 			auxiliaryWriteQueryResultToTextFile(allDictionaryConceptNodes, DICTIONARY_CACHE_FILE);
 
 		// Traduzco las filas de la query a un tree a partir de los nodos
-		ConceptsToTreeTranslator translator = new ConceptsToTreeTranslator();
+		TreeTranslatorHelper translatorHelper = new TreeTranslatorHelper();
 		GenericTreeNode<DictionaryConcept> dictionaryTree = new GenericTreeNode<DictionaryConcept>();
 		try {
-			dictionaryTree = translator.createTreeFromConceptList(allDictionaryConceptNodes);
+			dictionaryTree = translatorHelper.conceptListToTree(allDictionaryConceptNodes);
 			logger.debug("[auxiliaryUpdateDictionaryCache] : Generado tree a partir de fichero de los nodos.");
 		} catch (Exception e) {
 			logger.error("[auxiliaryUpdateDictionaryCache] : Error al intentar crear el árbol <{}> | Ayuda: {}  \n {}",
@@ -291,8 +290,7 @@ public class APIController {
 
 		// Ahora traduzco el tree a un JSON
 		// ATENCIÓN: Por alguna razón esto no funciona si el JSON no es "pretty"
-		TreeToJSONTranslator jsonTranslator = new TreeToJSONTranslator();
-		String jsonTree = jsonTranslator.createPrettyJSONStringFromTreeForjsTree(dictionaryTree);
+		String jsonTree = translatorHelper.treeToPrettyJSONStringForjsTree(dictionaryTree);
 
 		// Y guardo el JSON en un fichero caché
 		try {

@@ -6,7 +6,6 @@ package com.indra.iquality.singleton;
 import java.sql.Date;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Singleton Environment. Defines the shared environment settings for all
  * the modules of the application. Provides consistency across the application.

@@ -1,4 +1,4 @@
-package com.indra.iquality.tree;
+package com.indra.iquality.helper;
 
 import java.util.ArrayList;
 import java.util.List;

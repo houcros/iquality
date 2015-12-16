@@ -14,12 +14,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.indra.iquality.dao.DictionaryOfConceptsDAO;
+import com.indra.iquality.helper.GenericTreeNode;
 import com.indra.iquality.model.DescripcionAtributoMaestro;
 import com.indra.iquality.model.DescripcionIndicador;
 import com.indra.iquality.model.DescriptionOfAttribute;
 import com.indra.iquality.model.DictionaryConcept;
 import com.indra.iquality.singleton.Environment;
-import com.indra.iquality.tree.GenericTreeNode;
 
 import oracle.sql.ROWID;
 
