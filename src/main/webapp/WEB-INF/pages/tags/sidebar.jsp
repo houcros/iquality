@@ -28,7 +28,7 @@
                         <span>Control de procesos</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="general.html">Cargar ficheros</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/carga">Cargar ficheros</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/resultado-certificaciones/1">Resultado certificaciones</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/pases">Control de ejecución</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/planificar-cargas">Gesti&oacute;n de pases</a></li>
