@@ -1,17 +1,21 @@
 package com.indra.iquality.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.indra.iquality.dao.BusinessCertificateDAO;
+import com.indra.iquality.dao.JobDAO;
 import com.indra.iquality.dao.TechnicalCertificateDAO;
+import com.indra.iquality.model.Job;
 import com.indra.iquality.model.certificate.CertificateCondition;
 import com.indra.iquality.singleton.Environment;
 
@@ -36,6 +40,12 @@ public class ParametrizeCertificatesController {
 	 * certificates.
 	 */
 	private static final String VIEW_PARAM_TECHNICAL_CERTIFICATES = "param-validaciones-tecnicas";
+
+	/**
+	 * The Constant pointing to the view to parametrize the technical
+	 * certificates.
+	 */
+	private static final String VIEW_WIZARD = "wizard-nueva-certificacion";
 
 	/**
 	 * The Constant to represent the first tab.
@@ -95,5 +105,34 @@ public class ParametrizeCertificatesController {
 			return "redirect:/not-found";
 		}
 
+	}
+
+	@RequestMapping(value = "/wizard-nueva-certificacion", method = RequestMethod.GET)
+	private String wizardNewCertificate(Model model) {
+
+		logger.info("[wizardNewCertificate] : INIT");
+
+		// Abro el contexto para crear un DAO
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+		JobDAO jobDAO = ctx.getBean("jobDAOJDBCTemplate", JobDAO.class);
+		ctx.close();
+
+		// Obtengo todos los jobs
+		List<Job> allJobs;
+		try {
+			allJobs = jobDAO.getAll(environment.getSystem(), environment.getCurrentSoftware());
+			logger.debug("[wizardNewFlow] : Obtenidos todos los jobs");
+		} catch (Exception e) {
+			allJobs = new ArrayList<Job>();
+			logger.error("[wizardNewFlow] : Excepción <{}> | Ayuda: {}  \n {}", e.getClass(), e.getMessage(),
+					e.getStackTrace());
+			return "redirect:/server-error";
+		}
+
+		// Paso todos los jobs a la vista
+		model.addAttribute("allJobs", allJobs);
+
+		logger.info("[wizardNewCertificate] : RETURN");
+		return VIEW_WIZARD;
 	}
 }
