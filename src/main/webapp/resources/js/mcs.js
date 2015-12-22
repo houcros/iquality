@@ -10,6 +10,9 @@
 			case 'diccionario':
 				$('#nav-accordion > li > ul > li > a:eq(0)').parent().addClass('active');
 				break;
+			case 'carga':
+				$('#nav-accordion > li > ul > li > a:eq(4)').parent().addClass('active');
+				break;
 			case 'resultado-certificaciones':
 				$('#nav-accordion > li > ul > li > a:eq(5)').parent().addClass('active');
 				break;

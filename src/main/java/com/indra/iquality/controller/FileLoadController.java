@@ -1,17 +1,20 @@
 package com.indra.iquality.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.indra.iquality.singleton.Environment;
 
@@ -24,6 +27,8 @@ public class FileLoadController {
 
 	/** The Constant reference to the environment. */
 	private final static Environment environment = Environment.getInstance();
+
+	private final static String ACCEPTED_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
 	/** The Constant pointing to the view of all the executions. */
 	private static final String VIEW_LOAD = "cargar-ficheros";
@@ -38,31 +43,45 @@ public class FileLoadController {
 	}
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public @ResponseBody String handleFileUpload(@RequestParam("files[]") String name,
-			@RequestParam("file") MultipartFile file) {
+	public @ResponseBody JSONObject handleFileUpload(MultipartHttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 
+		// Sólo debería aceptar tipos xlsx:
+		// application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+		// See
+		// http://blogs.msdn.com/b/vsofficedeveloper/archive/2008/05/08/office-2007-open-xml-mime-types.aspx
 		logger.info("[handleFileUpload] : INIT");
 
-		String ret = null;
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(name)));
-				stream.write(bytes);
-				stream.close();
-				ret = "You successfully uploaded " + name + "!";
-				logger.info("[handleFileUpload] : " + ret);
-				return ret;
-			} catch (Exception e) {
-				ret = "You failed to upload " + name + " => " + e.getMessage();
-				logger.info("[handleFileUpload] : " + ret);
-				return ret;
+		Iterator<String> iterator = request.getFileNames();
+		MultipartFile mpf = null;
+		while (iterator.hasNext()) {
+			mpf = request.getFile(iterator.next());
+			// do something with the file.....
+			if (!mpf.getContentType().equals(ACCEPTED_TYPE)) {
+				logger.info("[handleFileUpload] : RETURN (Error)");
+				JSONObject item = new JSONObject();
+				item.put("name", mpf.getOriginalFilename());
+				JSONArray jsonArray = new JSONArray();
+				jsonArray.add(item);
+				item.clear();
+				item.put("error", "Content-type not supported");
+				jsonArray.add(item);
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("files", jsonArray);
+				return jsonObject;
 			}
-		} else {
-			ret = "You failed to upload " + name + " because the file was empty.";
-			logger.info("[handleFileUpload] : " + ret);
-			return ret;
+
+			logger.info("[handleFileUpload] : " + mpf.getOriginalFilename());
+			logger.info("[handleFileUpload] : " + mpf.getSize());
 		}
+		logger.info("[handleFileUpload] : RETURN");
+		JSONObject item = new JSONObject();
+		item.put("name", mpf.getOriginalFilename());
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.add(item);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("files", jsonArray);
+		return jsonObject;
 	}
 
 }

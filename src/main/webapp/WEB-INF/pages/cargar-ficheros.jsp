@@ -74,12 +74,12 @@
 								<h3 class="panel-title">Carga de ficheros Excel</h3>
 							</div>
 							<div class="panel-body">
-								<h2 class="lead">Basic Plus UI version</h2>
 								<!-- The fileinput-button span is used to style the file input field as button -->
 								<span class="btn btn-success fileinput-button"> <i
 									class="glyphicon glyphicon-plus"></i> <span>Select
-										files...</span> <!-- The file input field used as target for the file upload widget -->
-									<input id="fileupload" type="file" name="files[]" multiple>
+										files...</span>
+									<!-- The file input field used as target for the file upload widget -->
+									<input id="fileupload" type="file" name="files[]" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>
 								</span> <br> <br>
 								<!-- The global progress bar -->
 								<div id="progress" class="progress">
@@ -129,6 +129,13 @@
 	<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
 	<script
 		src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<!-- My custom script -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
+	<!-- Cookies -->
+	<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
+	<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
+
 	<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
 	<!--[if (gte IE 8)&(lt IE 10)]>
 <script src="${pageContext.servletContext.contextPath}/resources/js/file-uploader/js/cors/jquery.xdr-transport.js"></script>
