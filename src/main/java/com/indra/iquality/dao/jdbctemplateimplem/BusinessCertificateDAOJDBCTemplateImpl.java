@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.indra.iquality.dao.BusinessCertificateDAO;
 import com.indra.iquality.model.BusinessCertificate;
 import com.indra.iquality.model.BusinessCertificateDetail;
+import com.indra.iquality.model.certificate.CertificateCondition;
 
 /**
  * Implementation of {@link com.indra.iquality.dao.BusinessCertificateDAO} using
@@ -218,4 +219,43 @@ public class BusinessCertificateDAOJDBCTemplateImpl extends AbstractDAOJDBCTempl
 		logger.info("[getCertificateDetails] : RETURN");
 		return detallesList;
 	}
+
+	@Override
+	public List<CertificateCondition> getCertificateConditions(String sistema, int software) {
+
+		// TODO usar sistema y software
+		logger.info("[getCertificateConditions] : INIT");
+
+		String query = "select ID_CONDICION, ID_CONDICION AS DETALLE, DE_CONDICION, cond.ID_ERROR, de_error,"
+				+ " ID_TABLA, ID_CAMPO, decode(ID_SN_VALIDAR_CONDICION,'S','Sí','No') as validar,"
+				+ " decode(ID_SN_CONDICION_ERROR,'S','Sí','No') as condicion_error from LK_MET_IQ_CONDICION cond,"
+				+ " lk_met_iq_error err, lk_met_iq_metrica met WHERE cond.id_error = err.id_error"
+				+ " and cond.de_condicion like '%' || met.id_metrica ||'%'"
+				+ " and met.id_sn_certificacion_valid = 'N'";
+
+		// Hago la query
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		List<CertificateCondition> conditionsList = new ArrayList<CertificateCondition>();
+		List<Map<String, Object>> conditionRows = jdbcTemplate.queryForList(query);
+
+		// Mapeo los resultados a una lista
+		for (Map<String, Object> conditionRow : conditionRows) {
+			CertificateCondition condition = new CertificateCondition();
+
+			condition.setErrorCode(helper.filterNullString(String.valueOf(conditionRow.get("ID_ERROR"))));
+			condition.setErrorDescription(helper.filterNullString(String.valueOf(conditionRow.get("DE_ERROR"))));
+			condition.setCondition(helper.filterNullString(String.valueOf(conditionRow.get("DE_CONDICION"))));
+			condition.setTable(helper.filterNullString(String.valueOf(conditionRow.get("ID_TABLA"))));
+			condition.setField(helper.filterNullString(String.valueOf(conditionRow.get("ID_CAMPO"))));
+			condition.setBoolValidate(helper.filterNullString(String.valueOf(conditionRow.get("validar"))));
+			condition.setBoolErrorCondition(
+					helper.filterNullString(String.valueOf(conditionRow.get("condicion_error"))));
+
+			conditionsList.add(condition);
+		}
+
+		logger.info("[getCertificateConditions] : RETURN");
+		return conditionsList;
+	}
+
 }

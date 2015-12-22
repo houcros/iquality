@@ -5,8 +5,9 @@ package com.indra.iquality.dao;
 
 import java.util.List;
 
-import com.indra.iquality.model.TechnicalCertificateDetail;
 import com.indra.iquality.model.TechnicalCertificate;
+import com.indra.iquality.model.TechnicalCertificateDetail;
+import com.indra.iquality.model.certificate.CertificateCondition;
 
 /**
  * The Interface to interact with the persistent representations of technical
@@ -45,7 +46,8 @@ public interface TechnicalCertificateDAO {
 	 *            the software version
 	 * @return the details of a technical certification
 	 */
-	public List<TechnicalCertificateDetail> getCertificateDetails(String idMetrica, String idMes, String sistema, int software);
+	public List<TechnicalCertificateDetail> getCertificateDetails(String idMetrica, String idMes, String sistema,
+			int software);
 
 	/**
 	 * Gets the number of dimensions of the detailed view of the last
@@ -68,4 +70,6 @@ public interface TechnicalCertificateDAO {
 	 * @return the headers of the columns of the detailed view
 	 */
 	public List<String> getHeaders();
+
+	List<CertificateCondition> getValidationConditions(String sistema, int software);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.indra.iquality.model.BusinessCertificate;
 import com.indra.iquality.model.BusinessCertificateDetail;
+import com.indra.iquality.model.certificate.CertificateCondition;
 
 /**
  * The Interface to interact with the persistent representations of business
@@ -71,4 +72,6 @@ public interface BusinessCertificateDAO {
 	 */
 	public List<BusinessCertificateDetail> getCertificateDetails(String idMes, String idMetrica, int qttHeaders,
 			String sistema, int software);
+
+	public List<CertificateCondition> getCertificateConditions(String sistema, int software);
 }

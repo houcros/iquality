@@ -32,7 +32,7 @@
                         <li><a href="${pageContext.servletContext.contextPath}/resultado-certificaciones/1">Resultado certificaciones</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/pases">Control de ejecución</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/planificar-cargas">Gesti&oacute;n de pases</a></li>
-                        <li><a href="tree_view.html">Parametrizar certificaciones</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/parametrizar-certificaciones/1">Parametrizar certificaciones</a></li>
                     </ul>
                 </li>
                 <li>
