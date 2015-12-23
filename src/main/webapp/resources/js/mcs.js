@@ -22,6 +22,9 @@
 			case 'planificar-cargas':
 				$('#nav-accordion > li > ul > li > a:eq(7)').parent().addClass('active');
 				break;
+			case 'parametrizar-certificaciones':
+				$('#nav-accordion > li > ul > li > a:eq(8)').parent().addClass('active');
+				break;
 			}
 		}
 

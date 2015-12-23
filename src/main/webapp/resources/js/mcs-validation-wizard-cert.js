@@ -1,20 +1,3 @@
-var validateFirstStep = function(){
-	console.log("validateFirstStep");
-    return $("#wizard-form").valid();
-};
-
-var validateSecondStep = function(){
-	console.log("validateSecondStep");
-//	$("#multi_select_jobs").rules("add", {
-//		required: true,
-//		messages:{
-//			required: "Un pase debe constar de al menos 1 job."
-//		}
-//	});
-//	console.log($("#multi_select_jobs").rules());
-    return $("#wizard-form-2").valid();
-};
-
 var Script = function () {
 
 //    $.validator.setDefaults({
@@ -28,94 +11,63 @@ var Script = function () {
 
     $().ready(function() {
 
-        // validate signup form on keyup and submit
-        $("#wizard-form").validate({
+        // validate forms on keyup and submit
+        $("#wizard-form-cert-1").validate({
             rules: {
-            	codigoError: "required",
-            	descripcionError: "required",
-            	sistema: "required",
-            	esAtipico: "required",
-            	job: "required",
-                /*
-                username: {
-                    required: true,
-                    minlength: 2
-                },
-                password: {
-                    required: true,
-                    minlength: 5
-                },
-                confirm_password: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#password"
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                topic: {
-                    required: "#newsletter:checked",
-                    minlength: 2
-                },
-                agree: "required"
-                */
+            	codigoError: {
+            		required : true,
+            		minlength : 2
+            	},
+            	descripcionError: "required"
             },
-            
             messages: {
-            	codigoError: "Introduzca un c&oacute;digo de error.",
-            	descripcionError: "Introduzca una descripci&oacute;n del error.",
-                /*
-                lastname: "Please enter your lastname",
-                username: {
-                    required: "Please enter a username",
-                    minlength: "Your username must consist of at least 2 characters"
-                },
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
-                },
-                confirm_password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long",
-                    equalTo: "Please enter the same password as above"
-                },
-                email: "Please enter a valid email address",
-                agree: "Please accept our policy"
-                */
+            	codigoError: {
+            		required : "Introduzca un c&oacute;digo de error.",
+            		minlength : "El c&oacute;digo de error debe constar de al menos dos caracteres."
+            	},
+            	descripcionError: "Introduzca una descripci&oacute;n del error."
             }
         });
 
-        $("#wizard-form-2").validate({
+        $("#wizard-form-cert-2").validate({
         	rules: {
-        		jobs: "required",
+        		metrica: "required",
+        		formula: {
+        			required : true,
+        			minlength : 10
+        		},
+        		descripcionMetrica: {
+        			required : true,
+        			minlength : 10
+        		}
         	},
         	messages: {
-        			jobs: "Un pase debe constar de al menos 1 job",
+        		metrica: "Se necesita una m&eacute;trica para la certificaci&oacute;n",
+        		formula: {
+        			required : "Introduzca una f&oacute;rmula.",
+        			minlength : "La f&oacute;rmula debe constar de al menos 10 caracteres."
+        		},
+        		descripcionMetrica: {
+        			required : "Introduzca un c&oacute;digo de error.",
+        			minlength : "La descripci&oacute;n de la m&eacute;trica debe constar de al menos 10 caracteres."
+        		}
         	}
         });
-        /*
-        // propose username by combining first- and lastname
-        $("#username").focus(function() {
-            var firstname = $("#firstname").val();
-            var lastname = $("#lastname").val();
-            if(firstname && lastname && !this.value) {
-                this.value = firstname + "." + lastname;
-            }
+        
+        $("#wizard-form-cert-4").validate({
+        	rules: {
+        		condicion: {
+        			required : true,
+        			minlength : 10
+        		}
+        	},
+        	messages: {
+        		condicion: {
+        			required : "Introduzca una condici&oacute;n.",
+        			minlength : "La condici&oacute;n debe constar de al menos 10 caracteres."
+        		},
+        	}
         });
-
-        //code to hide topic selection, disable for demo
-        var newsletter = $("#newsletter");
-        // newsletter topics are optional, hide at first
-        var inital = newsletter.is(":checked");
-        var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-        var topicInputs = topics.find("input").attr("disabled", !inital);
-        // show when newsletter is checked
-        newsletter.click(function() {
-            topics[this.checked ? "removeClass" : "addClass"]("gray");
-            topicInputs.attr("disabled", !this.checked);
-        });
-        */
     });
 
 

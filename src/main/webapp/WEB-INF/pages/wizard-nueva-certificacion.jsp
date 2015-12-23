@@ -104,11 +104,15 @@
 	rel="stylesheet" />
 
 <!-- Wizard -->
-<link href="${pageContext.servletContext.contextPath}/resources/css/prettify.css"	rel="stylesheet">
-	
-	<!-- Select2 -->
-<link href="${pageContext.servletContext.contextPath}/resources/css/select2.min.css" rel="stylesheet">
-	
+<link
+	href="${pageContext.servletContext.contextPath}/resources/css/prettify.css"
+	rel="stylesheet">
+
+<!-- Select2 -->
+<link
+	href="${pageContext.servletContext.contextPath}/resources/css/select2.min.css"
+	rel="stylesheet">
+
 <!-- Custom -->
 <%-- <link href="${pageContext.servletContext.contextPath}/resources/css/mcs-wizard.css" rel="stylesheet"> --%>
 
@@ -151,77 +155,159 @@
 										<div class="navbar-inner">
 											<div class="container">
 												<ul>
-													<li><a href="#tab1" data-toggle="tab">Mensaje de error</a></li>
+													<li><a href="#tab1" data-toggle="tab">Mensaje de
+															error</a></li>
 													<li><a href="#tab2" data-toggle="tab">M&eacute;trica</a></li>
-													<li><a href="#tab3" data-toggle="tab">Dimensiones de la m&eacute;trica</a></li>
-													<li><a href="#tab3" data-toggle="tab">Condici&oacute;n de la certificaci&oacute;m</a></li>
+													<li><a href="#tab3" data-toggle="tab">Dimensiones
+															de la m&eacute;trica</a></li>
+													<li><a href="#tab4" data-toggle="tab">Condici&oacute;n
+															de la certificaci&oacute;m</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
 									<div class="row">
-									<div class="col-md-8 col-md-offset-2">
-									<div id="bar" class="progress progress-xs progress-striped active">
-										<div class="progress-bar" role="progressbar" aria-valuenow="0"
-											aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-									</div>
-									</div>
+										<div class="col-md-8 col-md-offset-2">
+											<div id="bar"
+												class="progress progress-xs progress-striped active">
+												<div class="progress-bar" role="progressbar"
+													aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+													style="width: 0%;"></div>
+											</div>
+										</div>
 									</div>
 									<div class="tab-content">
 										<div class="tab-pane" id="tab1">
-											<form class="cmxform form-horizontal" id="wizard-form"
+											<form class="cmxform form-horizontal" id="wizard-form-cert-1"
 												method="post" action="#">
 												<div class="form-group">
-													<label for="codigoError" class="col-lg-2 control-label">C&oacute;digo de error</label>
+													<label for="codigoError" class="col-lg-2 control-label">C&oacute;digo
+														de error</label>
 													<div class="col-lg-8">
 														<input type="text" class="form-control"
-															placeholder="C&oacute;digo" id="codigo-error" name="codigoError">
+															placeholder="C&oacute;digo" id="input-codigo-error"
+															name="codigoError">
 													</div>
 												</div>
 												<div class="form-group">
-													<label for="descripcionError" class="col-lg-2 control-label">Descripci&oacute;n de error</label>
+													<label for="descripcionError"
+														class="col-lg-2 control-label">Descripci&oacute;n
+														de error</label>
 													<div class="col-lg-8">
 														<input type="text" class="form-control"
-															placeholder="Descripci&oacute;n" id="descripcion-error" name="descripcionError">
-													</div>
-												</div>
-												<div class="form-group">
-													<label for="esAtipico" class="col-sm-3 control-label">Es
-														atípico</label>
-
-													<div class="col-sm-9 icheck ">
-
-														<div class="square-green">
-															<div class="radio ">
-																<input tabindex="3" type="radio" name="esAtipico"
-																	value="S"> <label>Sí</label>
-															</div>
-														</div>
-
-														<div class="square-red">
-															<div class="radio ">
-																<input tabindex="3" type="radio" name="esAtipico"
-																	value="N" checked> <label>No</label>
-															</div>
-														</div>
-
+															placeholder="Descripci&oacute;n"
+															id="input-descripcion-error" name="descripcionError">
 													</div>
 												</div>
 											</form>
 										</div>
 										<div class="tab-pane" id="tab2">
 											<form class="cmxform form-horizontal" method="post" action=""
-												id="wizard-form-2">
-
+												id="wizard-form-cert-2">
 												<div class="form-group">
-													<label for="jobs" class="control-label col-md-3">Jobs
-														disponibles</label>
-													<div class="col-md-9">
-														<select multiple name="jobs" class="multi-select"
-															id="multi_select_jobs">
-															<c:forEach items="${allJobs}" var="job">
-																<option value="${job.jobID}">${job.jobID}</option>
+													<label for="metrica" class="col-lg-2 control-label">M&eacute;trica</label>
+													<div class="col-lg-8">
+														<input type="text" class="form-control"
+															placeholder="M&eacute;trica" id="input-metrica"
+															name="metrica">
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="tabla" class="col-lg-2 control-label">Tabla</label>
+													<div class="col-lg-8">
+														<select class="form-control m-bot15" id="select-tabla"
+															name="tabla" style="width: 100%">
+															<c:forEach items="${allTables}" var="table">
+																<option value="${table.left}">${table.right}</option>
 															</c:forEach>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="campoTemporal" class="col-lg-2 control-label">Campo
+														temporal de la tabla</label>
+													<div class="col-lg-8">
+														<select class="form-control m-bot15"
+															id="select-campo-temporal" name="campoTemporal">
+															<!-- Rellenar con JS -->
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="formula" class="col-lg-2 control-label">F&oacute;rmula</label>
+													<div class="col-lg-8">
+														<textarea class="form-control" rows="6" name="formula"
+															id="textarea-formula"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="descripcionMetrica"
+														class="col-lg-2 control-label">Descripci&oacute;n
+														de la m&eacute;trica</label>
+													<div class="col-lg-8">
+														<textarea class="form-control" rows="6"
+															name="descripcionMetrica"
+															id="textarea-descripcion-metrica"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="filtroFormula" class="col-lg-2 control-label">Filtro
+														f&oacute;rmula</label>
+													<div class="col-lg-8">
+														<textarea class="form-control" rows="6"
+															name="filtroFormula" id="textarea-filtro-formula"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="tipoMetrica" class="col-lg-2 control-label">Tipo
+														de m&eacute;trica</label>
+													<div class="col-lg-8">
+														<select class="form-control m-bot15"
+															id="select-tipo-metrica" name="tipoMetrica">
+															<!-- Rellenar con JS -->
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="tipoCertificacion"
+														class="col-lg-2 control-label">Tipo de
+														certificaci&oacute;n</label>
+													<div class="col-lg-8">
+														<select class="form-control m-bot15"
+															id="select-tipo-certificacion" name="tipoCertificacion">
+															<!-- Rellenar con JS -->
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="tipoCertificacionHistorica"
+														class="col-lg-2 control-label">Tipo de
+														certificaci&oacute;n hist&oacute;rica</label>
+													<div class="col-lg-8">
+														<select class="form-control m-bot15"
+															id="select-tipo-certificacion-historica"
+															name="tipoCertificacionHistorica">
+															<!-- Rellenar con JS -->
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
 														</select>
 													</div>
 												</div>
@@ -229,29 +315,205 @@
 										</div>
 										<div class="tab-pane" id="tab3">
 											<form class="cmxform form-horizontal" method="post" action=""
-												id="wizard-form-3">
-												<div class="form-group">
-													<label class="col-lg-2 control-label">Jobs de este
-														pase</label>
-													<div class="col-lg-8">
-														<select class="form-control m-bot15" id="desplegable-jobs">
-															<!-- Rellenar con JS -->
-														</select>
+												id="wizard-form-cert-3">
+												<div class="row">
+													<div class="col-md-4">
+														<div class="form-group">
+															<label for="tablaDimension"
+																class="col-md-12 control-label" style="text-align: left">Tabla de
+																dimensi&oacute;n </label>
+															<div class="col-md-12">
+																<select id="select-tabla-dimension" style="width: 100%"
+																	class="populate placeholder"
+																	name="tablaDimension">
+																	<optgroup label="Alaskan/Hawaiian Time Zone">
+																		<option value="AK">Alaska</option>
+																		<option value="HI">Hawaii</option>
+																	</optgroup>
+																	<optgroup label="Pacific Time Zone">
+																		<option value="CA">California</option>
+																		<option value="NV">Nevada</option>
+																		<option value="OR">Oregon</option>
+																		<option value="WA">Washington</option>
+																	</optgroup>
+																	<optgroup label="Mountain Time Zone">
+																		<option value="AZ">Arizona</option>
+																		<option value="CO">Colorado</option>
+																		<option value="ID">Idaho</option>
+																		<option value="MT">Montana</option>
+																		<option value="NE">Nebraska</option>
+																		<option value="NM">New Mexico</option>
+																		<option value="ND">North Dakota</option>
+																		<option value="UT">Utah</option>
+																		<option value="WY">Wyoming</option>
+																	</optgroup>
+																	<optgroup label="Central Time Zone">
+																		<option value="AL">Alabama</option>
+																		<option value="AR">Arkansas</option>
+																		<option value="IL">Illinois</option>
+																		<option value="IA">Iowa</option>
+																		<option value="KS">Kansas</option>
+																		<option value="KY">Kentucky</option>
+																		<option value="LA">Louisiana</option>
+																		<option value="MN">Minnesota</option>
+																		<option value="MS">Mississippi</option>
+																		<option value="MO">Missouri</option>
+																		<option value="OK">Oklahoma</option>
+																		<option value="SD">South Dakota</option>
+																		<option value="TX">Texas</option>
+																		<option value="TN">Tennessee</option>
+																		<option value="WI">Wisconsin</option>
+																	</optgroup>
+																	<optgroup label="Eastern Time Zone">
+																		<option value="CT">Connecticut</option>
+																		<option value="DE">Delaware</option>
+																		<option value="FL">Florida</option>
+																		<option value="GA">Georgia</option>
+																		<option value="IN">Indiana</option>
+																		<option value="ME">Maine</option>
+																		<option value="MD">Maryland</option>
+																		<option value="MA">Massachusetts</option>
+																		<option value="MI">Michigan</option>
+																		<option value="NH">New Hampshire</option>
+																		<option value="NJ">New Jersey</option>
+																		<option value="NY">New York</option>
+																		<option value="NC">North Carolina</option>
+																		<option value="OH">Ohio</option>
+																		<option value="PA">Pennsylvania</option>
+																		<option value="RI">Rhode Island</option>
+																		<option value="SC">South Carolina</option>
+																		<option value="VT">Vermont</option>
+																		<option value="VA">Virginia</option>
+																		<option value="WV">West Virginia</option>
+																	</optgroup>
+																</select>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label for="campoDimension"
+																class="col-md-12 control-label" style="text-align: left">Campo
+																dimensi&oacute;n</label>
+															<div class="col-md-12">
+																<select class="form-control m-bot15" style="width: 100%"
+																	id="select-campo-dimension" name="campoDimension">
+																	<!-- Rellenar con JS -->
+																	<option>11</option>
+																	<option>12</option>
+																	<option>13</option>
+																	<option>14</option>
+																	<option>15</option>
+																</select>
+															</div>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label for="relacionDimension"
+																class="col-md-12 control-label" style="text-align: left">Relaci&oacute;n
+																dimensi&oacute;n</label>
+															<div class="col-md-12">
+																<select class="form-control m-bot15" style="width: 100%"
+																	id="select-relacion-dimension" name="relacionDimension">
+																	<!-- Rellenar con JS -->
+																	<option>11</option>
+																	<option>12</option>
+																	<option>13</option>
+																	<option>14</option>
+																	<option>15</option>
+																</select>
+															</div>
+														</div>
 													</div>
 												</div>
-												<div class="form-group last"></div>
 											</form>
 										</div>
 										<div class="tab-pane" id="tab4">
-											<form class="cmxform form-horizontal" id="wizard-form"
-												method="post" action="#">
+											<form class="cmxform form-horizontal" method="post" action=""
+												id="wizard-form-cert-4">
 												<div class="form-group">
-													<label for="nombrePase" class="col-lg-2 control-label">Nombre
-														del pase</label>
+													<label for="condicion" class="col-lg-2 control-label">Condici&oacute;n</label>
 													<div class="col-lg-8">
-														<input type="text" class="form-control"
-															placeholder="Nombre" id="nompase" name="nombrePase"
-															th:field="*{nombrePase}">
+														<textarea class="form-control" rows="6" name="condicion"
+															id="textarea-condicion"></textarea>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="tablaResultados"
+														class="col-md-12 control-label" style="text-align: left">Tabla
+														de resultados</label>
+													<div class="col-md-12">
+														<select class="form-control m-bot15"
+															id="select-tabla-resultados" name="tablaResultados">
+															<!-- Rellenar con JS -->
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="campoResultados"
+														class="col-md-12 control-label" style="text-align: left">Campo
+														de resultados</label>
+													<div class="col-md-12">
+														<select class="form-control m-bot15"
+															id="select-campo-resultados" name="campoResultados">
+															<!-- Rellenar con JS -->
+															<option>11</option>
+															<option>12</option>
+															<option>13</option>
+															<option>14</option>
+															<option>15</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="validarCondicion"
+														class="col-sm-3 control-label">Validar
+														condici&oacute;n</label>
+
+													<div class="col-sm-9 icheck " id="radio-validar-condicion">
+
+														<div class="square-green">
+															<div class="radio ">
+																<input tabindex="3" type="radio" name="validarCondicion"
+																	value="y"> <label>Sí</label>
+															</div>
+														</div>
+
+														<div class="square-red">
+															<div class="radio ">
+																<input tabindex="3" type="radio" name="validarCondicion"
+																	value="n" checked> <label>No</label>
+															</div>
+														</div>
+
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="condicionError" class="col-sm-3 control-label">Condici&oacute;n
+														error</label>
+
+													<div class="col-sm-9 icheck" id="radio-condicion-error">
+
+														<div class="square-green">
+															<div class="radio ">
+																<input tabindex="3" type="radio" name="condicionError"
+																	value="y"> <label>Sí</label>
+															</div>
+														</div>
+
+														<div class="square-red">
+															<div class="radio ">
+																<input tabindex="3" type="radio" name="condicionError"
+																	value="n" checked> <label>No</label>
+															</div>
+														</div>
+
 													</div>
 												</div>
 											</form>
@@ -267,18 +529,6 @@
 								</div>
 
 							</div>
-						</section>
-						<section class="panel">
-														<form class="cmxform form-horizontal" method="post" action="" id="wizard-form-4">
-							<div class="form-group">
-							<label class="control-label col-md-3">Dependencias
-														disponibles</label>
-							<div class="col-md-6">
-							<select multiple style="width:100%" class="" id="desplegable-dependencias">
-							</select>
-							</div>
-							</div>
-							</form>
 						</section>
 					</div>
 				</div>
@@ -350,8 +600,7 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery-tags-input/jquery.tagsinput.js"></script>
 
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/select-init.js"></script>
+	<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/select-init.js"></script> --%>
 
 
 	<!--common script init for all pages-->
@@ -360,8 +609,7 @@
 
 	<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/toggle-init.js"></script> --%>
 
-	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/advanced-form.js"></script>
+	<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/advanced-form.js"></script> --%>
 
 	<!-- Wizard -->
 	<script
@@ -388,7 +636,7 @@
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/js/mcs-wizard.js"></script>
+		src="${pageContext.servletContext.contextPath}/resources/js/mcs-wizard-cert.js"></script>
 
 	<!-- Cookies -->
 	<script
@@ -405,14 +653,18 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/URI.js-gh-pages/src/URI.min.js"></script>
 
 	<!-- Select2 -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/select2.min.js"></script>
-	
-	<!-- 	Form Validation -->
-	<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.min.js"></script>
-	<script src="${pageContext.servletContext.contextPath}/resources/js/mcs-validation-wizard-cert.js"></script>
-	
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/select2.min.js"></script>
+
+	<!-- Form Validation -->
+	<script type="text/javascript"
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery.validate.min.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/mcs-validation-wizard-cert.js"></script>
+
 	<!-- Convert to JSON -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/jquery.serialize-object.min.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery.serialize-object.min.js"></script>
 
 </body>
 </html>
