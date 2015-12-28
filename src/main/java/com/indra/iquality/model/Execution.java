@@ -22,8 +22,11 @@ public class Execution {
 	/** The flow. */
 	private String flow;
 
+	/** The proper object flow of which the execution is an instance. */
+	private Flow oFlow;
+
 	/** The status. */
-	private String status;
+	private StatusEnum status;
 
 	/** The date of data. */
 	private String dataDate;
@@ -90,7 +93,7 @@ public class Execution {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return status;
+		return status.toString();
 	}
 
 	/**
@@ -100,7 +103,7 @@ public class Execution {
 	 *            the new status
 	 */
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = StatusEnum.valueOf(status);
 	}
 
 	/**

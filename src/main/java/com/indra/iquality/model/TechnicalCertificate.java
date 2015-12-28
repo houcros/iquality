@@ -18,6 +18,9 @@ public class TechnicalCertificate extends Certificate {
 	/** The number of registers. */
 	private int numberOfRegisters;
 
+	/** The details of the certificate. */
+	private TechnicalCertificateDetail details;
+
 	/**
 	 * Gets the number of registers.
 	 *
@@ -35,6 +38,25 @@ public class TechnicalCertificate extends Certificate {
 	 */
 	public void setNumberOfRegisters(int numRegistros) {
 		this.numberOfRegisters = numRegistros;
+	}
+
+	/**
+	 * Gets the details of the certificate.
+	 *
+	 * @return the details
+	 */
+	public TechnicalCertificateDetail getDetails() {
+		return details;
+	}
+
+	/**
+	 * Sets the details of the certificate.
+	 *
+	 * @param details
+	 *            the new details
+	 */
+	public void setDetails(TechnicalCertificateDetail details) {
+		this.details = details;
 	}
 
 	/*

@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.indra.iquality.dao.BusinessCertificateDAO;
 import com.indra.iquality.model.BusinessCertificate;
 import com.indra.iquality.model.BusinessCertificateDetail;
-import com.indra.iquality.model.certificate.CertificateCondition;
+import com.indra.iquality.model.CertificateCondition;
 
 /**
  * Implementation of {@link com.indra.iquality.dao.BusinessCertificateDAO} using

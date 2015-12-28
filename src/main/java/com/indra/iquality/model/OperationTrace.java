@@ -13,7 +13,7 @@ import java.sql.Date;
  * 
  *          The Class RegisterTrace.
  */
-public class RegisterTrace {
+public class OperationTrace {
 
 	/** The id. */
 	private int id;

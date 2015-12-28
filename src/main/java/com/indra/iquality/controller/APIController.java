@@ -30,12 +30,12 @@ import com.indra.iquality.dao.DictionaryOfConceptsDAO;
 import com.indra.iquality.dao.TraceOfRegisterDAO;
 import com.indra.iquality.helper.GenericTreeNode;
 import com.indra.iquality.helper.TreeTranslatorHelper;
+import com.indra.iquality.model.AttributeDescription;
 import com.indra.iquality.model.ConceptTypeEnum;
 import com.indra.iquality.model.Dependency;
-import com.indra.iquality.model.IndicatorDescription;
-import com.indra.iquality.model.AttributeDescription;
 import com.indra.iquality.model.DictionaryConcept;
-import com.indra.iquality.model.RegisterTrace;
+import com.indra.iquality.model.IndicatorDescription;
+import com.indra.iquality.model.OperationTrace;
 import com.indra.iquality.singleton.Environment;
 
 // TODO: Auto-generated Javadoc
@@ -127,7 +127,7 @@ public class APIController {
 	}
 
 	/**
-	 * Gets the JSONArray representation of the operation trace of an operation.
+	 * Gets the JSONArray representation of the trace of an operation.
 	 *
 	 * @param idOperacion
 	 *            the identifier of the operation
@@ -144,7 +144,7 @@ public class APIController {
 		ctx.close();
 
 		// Obtengo todas las trazas
-		List<RegisterTrace> allTrazaDeRegistro = null;
+		List<OperationTrace> allTrazaDeRegistro = null;
 		try {
 			allTrazaDeRegistro = trazaDeRegistroDAO.getAll(idOperacion, environment.getSystem(),
 					environment.getCurrentSoftware());
@@ -156,7 +156,7 @@ public class APIController {
 
 		// Parseo las trazas a un JSONArray
 		JSONArray jsonArray = new JSONArray();
-		for (RegisterTrace trazaDeRegistro : allTrazaDeRegistro) {
+		for (OperationTrace trazaDeRegistro : allTrazaDeRegistro) {
 			logger.debug("[getOperationTrace] : Parseando traza " + trazaDeRegistro.toString());
 			jsonArray.add(trazaDeRegistro);
 		}

@@ -4,7 +4,9 @@
 package com.indra.iquality.model;
 
 import java.sql.Date;
+import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Job. Represents an atomic operation of an ETL {@link Execution}.
  *
@@ -23,7 +25,7 @@ public class Job {
 	private String executionID;
 
 	/** The status. */
-	private String status;
+	private StatusEnum status;
 
 	/** The start date. */
 	private Date startDate;
@@ -52,6 +54,12 @@ public class Job {
 	/** The software. */
 	private int software;
 
+	/** The register of operations of the job. */
+	private List<RegisterOfOperation> regops;
+
+	/** The dependencies of the job. */
+	private List<Dependency> dependencies;
+
 	/**
 	 * Gets the job id.
 	 *
@@ -77,7 +85,7 @@ public class Job {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return status;
+		return status.toString();
 	}
 
 	/**
@@ -189,7 +197,7 @@ public class Job {
 	 *            the new status
 	 */
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = StatusEnum.valueOf(status);
 	}
 
 	/**

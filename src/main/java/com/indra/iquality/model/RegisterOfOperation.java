@@ -4,6 +4,7 @@
 package com.indra.iquality.model;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  * The Class RegisterOfOperation. Represents the register of operation of a
@@ -56,7 +57,10 @@ public class RegisterOfOperation {
 	private int fcRowsDismissed;
 
 	/** The status. */
-	private String status;
+	private StatusEnum status;
+
+	/** The trace of actions done by the operation. */
+	private List<OperationTrace> opTrace;
 
 	/**
 	 * Gets the operation row id.
@@ -181,7 +185,7 @@ public class RegisterOfOperation {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return status;
+		return status.toString();
 	}
 
 	/**
@@ -321,7 +325,7 @@ public class RegisterOfOperation {
 	 *            the new status
 	 */
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = StatusEnum.valueOf(status);
 	}
 
 	/*

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.indra.iquality.dao.BusinessCertificateDAO;
 import com.indra.iquality.dao.EnvironmentDAO;
 import com.indra.iquality.dao.TechnicalCertificateDAO;
-import com.indra.iquality.model.certificate.CertificateCondition;
+import com.indra.iquality.model.CertificateCondition;
 import com.indra.iquality.singleton.Environment;
 
 @Controller

@@ -1,4 +1,4 @@
-package com.indra.iquality.model.certificate;
+package com.indra.iquality.model;
 
 public class CertificateCondition {
 

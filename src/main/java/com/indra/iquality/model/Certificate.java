@@ -39,7 +39,7 @@ public abstract class Certificate {
 	protected String certificateDescription;
 
 	/** The status. */
-	protected String status;
+	protected StatusEnum status;
 
 	/**
 	 * Gets the metric.
@@ -199,7 +199,7 @@ public abstract class Certificate {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return status;
+		return status.toString();
 	}
 
 	/**
@@ -209,6 +209,6 @@ public abstract class Certificate {
 	 *            the new status
 	 */
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = StatusEnum.valueOf(status);
 	}
 }

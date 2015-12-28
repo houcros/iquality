@@ -28,4 +28,5 @@ public enum StatusEnum {
 
 	/** If the execution was canceled. */
 	CANCEL
+
 }

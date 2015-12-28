@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.indra.iquality.dao.TraceOfRegisterDAO;
-import com.indra.iquality.model.RegisterTrace;
+import com.indra.iquality.model.OperationTrace;
 
 /**
  * Implementation of {@link com.indra.iquality.dao.TraceOfRegisterDAO} using
@@ -34,7 +34,7 @@ public class TraceOfRegisterDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateI
 	 * java.lang.String, int)
 	 */
 	@Override
-	public List<RegisterTrace> getAll(int idOperacion, String sistema, int software) throws Exception {
+	public List<OperationTrace> getAll(int idOperacion, String sistema, int software) throws Exception {
 
 		logger.info("[getAll] : INIT");
 
@@ -47,14 +47,14 @@ public class TraceOfRegisterDAOJDBCTemplateImpl extends AbstractDAOJDBCTemplateI
 
 		// Hago la query
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		List<RegisterTrace> trazaList = new ArrayList<RegisterTrace>();
+		List<OperationTrace> trazaList = new ArrayList<OperationTrace>();
 		List<Map<String, Object>> trazaRows = jdbcTemplate.queryForList(query,
 				new Object[] { idOperacion, sistema, software });
 
 		// Mapeo
 		for (Map<String, Object> trazaRow : trazaRows) {
 
-			RegisterTrace traza = new RegisterTrace();
+			OperationTrace traza = new OperationTrace();
 
 			traza.setId(helper.filterStringToInt(String.valueOf(trazaRow.get("id_traza"))));
 			traza.setDateID((helper.filterStringToSqlDate(String.valueOf(trazaRow.get("id_fecha")))));

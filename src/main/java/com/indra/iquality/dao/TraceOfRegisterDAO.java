@@ -5,7 +5,7 @@ package com.indra.iquality.dao;
 
 import java.util.List;
 
-import com.indra.iquality.model.RegisterTrace;
+import com.indra.iquality.model.OperationTrace;
 
 /**
  * The Interface to interact with the persistent representations of register
@@ -32,5 +32,5 @@ public interface TraceOfRegisterDAO {
 	 * @throws Exception
 	 *             all the register traces of the operation
 	 */
-	public List<RegisterTrace> getAll(int idOperacion, String sistema, int software) throws Exception;
+	public List<OperationTrace> getAll(int idOperacion, String sistema, int software) throws Exception;
 }

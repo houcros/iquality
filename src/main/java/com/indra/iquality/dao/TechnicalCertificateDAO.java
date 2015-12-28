@@ -5,9 +5,9 @@ package com.indra.iquality.dao;
 
 import java.util.List;
 
+import com.indra.iquality.model.CertificateCondition;
 import com.indra.iquality.model.TechnicalCertificate;
 import com.indra.iquality.model.TechnicalCertificateDetail;
-import com.indra.iquality.model.certificate.CertificateCondition;
 
 /**
  * The Interface to interact with the persistent representations of technical

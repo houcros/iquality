@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.indra.iquality.model.BusinessCertificate;
 import com.indra.iquality.model.BusinessCertificateDetail;
-import com.indra.iquality.model.certificate.CertificateCondition;
+import com.indra.iquality.model.CertificateCondition;
 
 /**
  * The Interface to interact with the persistent representations of business

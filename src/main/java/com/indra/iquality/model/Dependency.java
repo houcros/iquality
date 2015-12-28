@@ -35,7 +35,7 @@ public class Dependency {
 	private String habilitattedSN;
 
 	/** The status. */
-	private String status;
+	private StatusEnum status;
 
 	/**
 	 * Gets the id ejecucion.
@@ -176,7 +176,7 @@ public class Dependency {
 	 * @return the status
 	 */
 	public String getStatus() {
-		return status;
+		return status.toString();
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class Dependency {
 	 *            the new status
 	 */
 	public void setStatus(String status) {
-		this.status = status;
+		this.status = StatusEnum.valueOf(status);
 	}
 
 }

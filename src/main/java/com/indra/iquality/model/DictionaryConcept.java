@@ -32,6 +32,11 @@ public class DictionaryConcept {
 	private String ctRowID;
 
 	/**
+	 * The description of the concept, if it is an attribute or an indicator.
+	 */
+	private ComponentDescription description;
+
+	/**
 	 * Instantiates a new dictionary concept.
 	 */
 	public DictionaryConcept() {

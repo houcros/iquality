@@ -15,9 +15,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.indra.iquality.dao.TechnicalCertificateDAO;
+import com.indra.iquality.model.CertificateCondition;
 import com.indra.iquality.model.TechnicalCertificate;
 import com.indra.iquality.model.TechnicalCertificateDetail;
-import com.indra.iquality.model.certificate.CertificateCondition;
 import com.indra.iquality.singleton.Environment;
 
 /**

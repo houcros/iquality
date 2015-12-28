@@ -3,19 +3,20 @@
  */
 package com.indra.iquality.model;
 
+import java.util.List;
 import java.util.Map;
 
 import com.indra.iquality.singleton.Environment;
 
 /**
- * The Class Pase. Represents an ETL flow for a system and software version. A
+ * The Class Flow. Represents an ETL flow for a system and software version. A
  * flow can't (shouldn't) get any of its fields modified after it's been
  * executed as an {@link Execution}.
  *
  * @author Ignacio N. Lucero Ascencio
  * @version 0.5, 10-dic-2015
  * 
- *          The Class Pase.
+ *          The Class Flow.
  */
 public class Flow {
 
@@ -44,6 +45,8 @@ public class Flow {
 	 */
 	private String[] jobs;
 
+	/** The proper object jobs of the flow. */
+	private List<Job> oJobs;
 	/**
 	 * The dependencies among the jobs of this flow. The key is the identifier
 	 * of a job j, the values are the identifiers of the jobs that must finish

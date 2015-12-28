@@ -18,6 +18,9 @@ public class BusinessCertificate extends Certificate {
 	/** The name of the certificate. */
 	private String indicator;
 
+	/** The details of the certificate. */
+	private BusinessCertificateDetail details;
+
 	/**
 	 * Gets the name of the certificate.
 	 *
@@ -35,6 +38,25 @@ public class BusinessCertificate extends Certificate {
 	 */
 	public void setIndicator(String indicator) {
 		this.indicator = indicator;
+	}
+
+	/**
+	 * Gets the details of the certificate.
+	 *
+	 * @return the details
+	 */
+	public BusinessCertificateDetail getDetails() {
+		return details;
+	}
+
+	/**
+	 * Sets the details of the certificate.
+	 *
+	 * @param details
+	 *            the new details
+	 */
+	public void setDetails(BusinessCertificateDetail details) {
+		this.details = details;
 	}
 
 	/*
