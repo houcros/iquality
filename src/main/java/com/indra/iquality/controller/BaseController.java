@@ -26,6 +26,9 @@ public class BaseController {
 	/** The Constant pointing to the login view. */
 	private static final String VIEW_LOGIN = "login";
 
+	/** The Constant pointing to the registration view. */
+	private static final String VIEW_REGISTRATION = "registration";
+
 	/** The Constant pointing to the default view when a page was not found. */
 	private static final String VIEW_NOT_FOUND = "404";
 
@@ -61,6 +64,20 @@ public class BaseController {
 		logger.info("[showLogin] : INIT");
 		logger.info("[showLogin] : RETURN");
 		return VIEW_LOGIN;
+	}
+
+	/**
+	 * Handles a GET request to display the registration view.
+	 *
+	 * @param model
+	 *            the model to pass data to the view
+	 * @return the view to display
+	 */
+	@RequestMapping(value = "/registration", method = RequestMethod.GET)
+	private String showRegistration(ModelMap model) {
+		logger.info("[showRegistration] : INIT");
+		logger.info("[showRegistration] : RETURN");
+		return VIEW_REGISTRATION;
 	}
 
 	/**
