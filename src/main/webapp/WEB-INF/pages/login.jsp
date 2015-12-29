@@ -52,7 +52,7 @@
 
             <div class="registration">
                 ¿A&uacute;n no tienes cuenta?
-                <a class="" href="registration.html">
+                <a class="" href="registration">
                     Crea una cuenta
                 </a>
             </div>
