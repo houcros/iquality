@@ -4,57 +4,61 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
-<!--                 <li> -->
-<%--                     <a href="${pageContext.servletContext.contextPath}"> --%>
-<!--                         <i class="fa fa-terminal"></i> -->
-<!--                         <span>Inicio</span> -->
-<!--                     </a> -->
-<!--                 </li> -->
-                <li class="sub-menu">
-                    <a href="javascript:;">
+                <li>
+                    <a href="${pageContext.servletContext.contextPath}">
+                        <i class="fa fa-tachometer"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.servletContext.contextPath}/diccionario">
                         <i class="fa fa-book"></i>
                         <span>Diccionario de conceptos</span>
                     </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-tasks"></i>
+                        <span>Reglas de calidad</span>
+                    </a>
                     <ul class="sub">
-                        <li><a href="${pageContext.servletContext.contextPath}/diccionario">Diccionario</a></li>
-                        <li><a href="horizontal_menu.html">Gestionar certificaciones</a></li>
-                        <li><a href="language_switch.html">Gestionar dimensiones</a></li>
-                        <li><a href="${pageContext.servletContext.contextPath}/api/updateDictionaryCache">Recargar</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/resultado-certificaciones/1">Consultar reglas</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/parametrizar-certificaciones/1">Parametrizar reglas</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-tachometer"></i>
+                        <i class="fa fa-rocket"></i>
                         <span>Control de procesos</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="${pageContext.servletContext.contextPath}/carga">Cargar ficheros</a></li>
-                        <li><a href="${pageContext.servletContext.contextPath}/resultado-certificaciones/1">Resultado certificaciones</a></li>
-                        <li><a href="${pageContext.servletContext.contextPath}/pases">Control de ejecución</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/pases">Control de ejecuci&oacute;n</a></li>
                         <li><a href="${pageContext.servletContext.contextPath}/planificar-cargas">Gesti&oacute;n de pases</a></li>
-                        <li><a href="${pageContext.servletContext.contextPath}/parametrizar-certificaciones/1">Parametrizar certificaciones</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/carga">Cargar ficheros</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="fontawesome.html">
-                        <i class="fa fa-road"></i>
-                        <span>Gestión de escenarios</span>
-                    </a>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-users"></i>
-                        <span>Gestión de usuarios</span>
+                        <i class="fa fa-cog"></i>
+                        <span>Administraci&oacute;n</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="basic_table.html">Gestionar usuarios</a></li>
-                        <li><a href="responsive_table.html">Gestionar perfiles</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}">Gesti&oacute;n de escenarios</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}">Gesti&oacute;n de usuarios</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}">Gesti&oacute;n de perfiles</a></li>
+                        <li><a href="${pageContext.servletContext.contextPath}/api/updateDictionaryCache"><i class="fa fa-refresh"></i>Recargar diccionario</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href="${pageContext.servletContext.contextPath}/login">
                         <i class="fa fa-user"></i>
-                        <span>Login Page</span>
+                        <span>Iniciar sesi&oacute;n</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.servletContext.contextPath}">
+                        <i class="fa fa-question-circle"></i>
+                        <span>Ayuda</span>
                     </a>
                 </li>
             </ul>            </div>

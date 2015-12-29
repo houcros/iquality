@@ -7,23 +7,20 @@
 		if(pathnameParts.length > 2){
 //			console.log(pathnameParts[2]);
 			switch(pathnameParts[2]){
-			case 'diccionario':
+			case 'resultado-certificaciones':
 				$('#nav-accordion > li > ul > li > a:eq(0)').parent().addClass('active');
+				break;
+			case 'parametrizar-certificaciones':
+				$('#nav-accordion > li > ul > li > a:eq(1)').parent().addClass('active');
+				break;
+			case 'pases':
+				$('#nav-accordion > li > ul > li > a:eq(2)').parent().addClass('active');
+				break;
+			case 'planificar-cargas':
+				$('#nav-accordion > li > ul > li > a:eq(3)').parent().addClass('active');
 				break;
 			case 'carga':
 				$('#nav-accordion > li > ul > li > a:eq(4)').parent().addClass('active');
-				break;
-			case 'resultado-certificaciones':
-				$('#nav-accordion > li > ul > li > a:eq(5)').parent().addClass('active');
-				break;
-			case 'pases':
-				$('#nav-accordion > li > ul > li > a:eq(6)').parent().addClass('active');
-				break;
-			case 'planificar-cargas':
-				$('#nav-accordion > li > ul > li > a:eq(7)').parent().addClass('active');
-				break;
-			case 'parametrizar-certificaciones':
-				$('#nav-accordion > li > ul > li > a:eq(8)').parent().addClass('active');
 				break;
 			}
 		}
