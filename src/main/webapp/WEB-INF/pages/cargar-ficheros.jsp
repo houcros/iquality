@@ -116,7 +116,7 @@
 		src="${pageContext.servletContext.contextPath}/resources/js/jQuery-slimScroll-1.3.0/jquery.slimscroll.js"></script>
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/jquery.nicescroll.js"></script>
-	<!--Multiuple File Uploader-->
+	<!--Multiple File Uploader-->
 	<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/file-uploader/js/vendor/jquery.ui.widget.js"></script>
