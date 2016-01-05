@@ -270,22 +270,6 @@
                 el.slideDown(200); }
         });
 
-        
-        // Custom mía para retraer los paneles dentro de las tabs
-        // en la pantalla de diccionario
-        // NO FUNCIONA
-        /////////////////////////////////////////////////////////
-        $('.tarjeta .tools .fa').click(function () {
-            var el = $(this).parent(".panel").children(".panel-body");
-            if ($(this).hasClass("fa-chevron-down")) {
-                $(this).removeClass("fa-chevron-down").addClass("fa-chevron-up");
-                el.slideUp(200);
-            } else {
-                $(this).removeClass("fa-chevron-up").addClass("fa-chevron-down");
-                el.slideDown(200); }
-        });
-        /////////////////////////////////////////////////////////
-        
         $('.panel .tools .fa-times').click(function () {
             $(this).parents(".panel").parent().remove();
         });

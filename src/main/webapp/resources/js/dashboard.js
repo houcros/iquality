@@ -109,14 +109,14 @@
 
             // DONUT
             var dataPie = [{
-                label: "Samsung",
+                label: "Wait",
+                data: 24
+            }, {
+                label: "OK",
                 data: 50
             }, {
-                label: "Nokia",
-                data: 50
-            }, {
-                label: "Syphony",
-                data: 100
+                label: "KO",
+                data: 12
             }];
 
             $.plot($(".sm-pie"), dataPie, {
@@ -197,52 +197,52 @@
                 axes: true,
                 fillOpacity: .7,
                 data: [{
-                    period: '2010 Q1',
-                    iphone: 10,
+                    period: '2012-02-24',
+                    iphone: 1000,
                     ipad: 10,
                     itouch: 10
                 }, {
-                    period: '2010 Q2',
+                    period: '2012-02-25',
                     iphone: 1778,
                     ipad: 7294,
                     itouch: 18441
                 }, {
-                    period: '2010 Q3',
+                    period: '2012-02-26',
                     iphone: 4912,
                     ipad: 12969,
                     itouch: 3501
                 }, {
-                    period: '2010 Q4',
+                    period: '2012-02-27',
                     iphone: 3767,
                     ipad: 3597,
                     itouch: 5689
                 }, {
-                    period: '2011 Q1',
+                    period: '2012-02-28',
                     iphone: 6810,
                     ipad: 1914,
                     itouch: 2293
                 }, {
-                    period: '2011 Q2',
+                    period: '2012-03-01',
                     iphone: 5670,
                     ipad: 4293,
                     itouch: 1881
                 }, {
-                    period: '2011 Q3',
+                    period: '2012-03-02',
                     iphone: 4820,
                     ipad: 3795,
                     itouch: 1588
                 }, {
-                    period: '2011 Q4',
-                    iphone: 25073,
+                    period: '2012-03-03',
+                    iphone: 10073,
                     ipad: 5967,
                     itouch: 5175
                 }, {
-                    period: '2012 Q1',
+                    period: '2012-03-04',
                     iphone: 10687,
                     ipad: 34460,
                     itouch: 22028
                 }, {
-                    period: '2012 Q2',
+                    period: '2012-03-05',
                     iphone: 1000,
                     ipad: 5713,
                     itouch: 1791
@@ -253,7 +253,7 @@
                 lineColors: ['#ED5D5D', '#D6D23A', '#32D2C9'],
                 xkey: 'period',
                 ykeys: ['iphone', 'ipad', 'itouch'],
-                labels: ['iPhone', 'iPad', 'iPod Touch'],
+                labels: ['Cert. 1', 'Cert. 2', 'Cert. 3'],
                 pointSize: 0,
                 lineWidth: 0,
                 hideHover: 'auto'
