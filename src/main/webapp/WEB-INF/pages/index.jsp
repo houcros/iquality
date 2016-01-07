@@ -88,12 +88,12 @@
     <div class="col-md-12">
         <!--earning graph start-->
         <section class="panel">
-            <header class="panel-heading">
-                Evoluci&oacute;n de la calidad de las reglas
-            </header>
+<!--             <header class="panel-heading">Evoluci&oacute;n de la calidad de las reglas</header> -->
             <div class="panel-body">
-
-                <div id="graph-area" class="main-chart">
+				<div class="top-stats-panel">
+                    <h4 class="widget-h">Evoluci&oacute;n de la calidad de las reglas</h4>
+                	<div id="graph-area" class="main-chart">
+                	</div>
                 </div>
             </div>
         </section>
@@ -108,23 +108,51 @@
                 Entidades
             </header>
             <div class="panel-body">
+            	<div class="row">
+	                    <div class="col-md-4">
+		                    <!--widget start-->
+	                        <aside class="profile-nav alt">
+	                            <section class="panel">
+	                                <ul class="nav nav-pills nav-stacked">
+	                                    <li>
+	                                    	<a href="tabla-entidad">Tabla 1<span class="badge label-success pull-left r-activity m-x-1">80%</span></a>
+	                                    	<span style="background-color:yellow" class="sparkline"></span>
+	                                    </li>
+	                                    <li><a href="tabla-entidad">Tabla 2<span class="badge label-danger pull-left r-activity m-x-1">15%</span></a></li>
+	                                    <li><a href="tabla-entidad">Tabla 3<span class="badge label-success pull-left r-activity m-x-1">89%</span></a></li>
+	                                    <li><a href="tabla-entidad">Tabla 4<span class="badge label-warning pull-left r-activity m-x-1">62%</span></a></li>
+	                                </ul>
+	
+	                            </section>
+	                        </aside>
+	                        <!--widget end-->
+	                    </div>
+	                    <div class="col-md-8" style="background-color:green">
+	                    <div class="row">
+		                    <div class="col-md-9" style="background-color:red"><div style="background-color:yellow" class="sparkline" data-type="line" data-resize="true" data-height="100%" data-width="80%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="1" data-data="[100,200,459,234,600,800,345,987,675,457,765]"></div></div>
+	                    	<div class="col-md-3" style="background-color:red"><p>dfjd</p><p>djfdjf</p></div>
+	                    </div>
+	                    </div>
+                    </div>
+            
+            
+            
+            <!-- 
 				<div class="col-md-4">
 					<div class="row">
-    					<div class="col-md-6">
+    					<div class="col-md-6 tabla-enditad">
        						<div class="mini-stat clearfix" style="background-color:#ffdf7c;">
             					<div class="mini-stat-info">
-               						<span>88%</span>
-                					Tabla 1
+               						<a href="tabla-entidad"><span>88%</span> Tabla 1</a>
                 					<div class="sparkline" data-type="line" data-resize="true" data-height="35%" data-width="90%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="1" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
                 					</div>
             					</div>
         					</div>
     					</div>
-    					<div class="col-md-6">
+    					<div class="col-md-6 tabla-enditad">
         					<div class="mini-stat clearfix" style="background-color:#ffdf7c;">
             					<div class="mini-stat-info">
-                					<span>75%</span>
-                					Tabla 2
+                					<a href="tabla-entidad"><span>75%</span> Tabla 2</a>
                 					<div class="sparkline" data-type="line" data-resize="true" data-height="35%" data-width="90%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="1" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
                 					</div>
             					</div>
@@ -132,21 +160,19 @@
     					</div>
 					</div>
 					<div class="row">
-    					<div class="col-md-6">
+    					<div class="col-md-6 tabla-enditad">
        						<div class="mini-stat clearfix" style="background-color:#ffdf7c;">
             					<div class="mini-stat-info">
-               						<span>55%</span>
-                					Tabla 3
+               						<a href="tabla-entidad"><span>55%</span> Tabla 3</a>
                 					<div class="sparkline" data-type="line" data-resize="true" data-height="35%" data-width="90%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="1" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
                 					</div>
             					</div>
         					</div>
     					</div>
-    					<div class="col-md-6">
+    					<div class="col-md-6 tabla-enditad">
         					<div class="mini-stat clearfix" style="background-color:#ffdf7c;">
             					<div class="mini-stat-info">
-                					<span>100%</span>
-                					Tabla 4
+                					<a href="tabla-entidad"><span>100%</span> Tabla 4</a>
                 					<div class="sparkline" data-type="line" data-resize="true" data-height="35%" data-width="90%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="1" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
                 					</div>
             					</div>
@@ -158,6 +184,7 @@
                 	<div class="sparkline" data-type="line" data-resize="true" data-height="70%" data-width="90%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="3" data-data="[100,200,459,234,600,800,345,987,675,457,765]">
                 	</div>
             	</div>
+            	 -->
             </div>
         </section>
    </div>
@@ -308,7 +335,7 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.pie.resize.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.animator.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/flot-chart/jquery.flot.growraf.js"></script>
-<script src="${pageContext.servletContext.contextPath}/resources/js/dashboard.js"></script>
+<%-- <script src="${pageContext.servletContext.contextPath}/resources/js/dashboard.js"></script> --%>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.customSelect.min.js" ></script>
 <!--common script init for all pages-->
 <script src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
@@ -316,6 +343,7 @@
 
 <!-- Mi script personal -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
+<script src="${pageContext.servletContext.contextPath}/resources/js/mcs-index.js"></script>
 
 <!-- Cookies -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/cookie-master/js.cookie.js"></script>

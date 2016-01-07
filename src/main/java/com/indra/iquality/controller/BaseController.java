@@ -21,7 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BaseController {
 
 	/** The Constant pointing to the main page of the application. */
-	private static final String VIEW_INDEX = "index";
+	private static final String VIEW_DASHBOARD = "index";
+
+	/** The Constant pointing to the main page of the application. */
+	private static final String VIEW_DASHBOARD_2 = "index2";
+
+	/** The Constant pointing to the main page of the application. */
+	private static final String VIEW_DASHBOARD_3 = "index3";
 
 	/** The Constant pointing to the login view. */
 	private static final String VIEW_LOGIN = "login";
@@ -49,7 +55,21 @@ public class BaseController {
 	private String showMain(ModelMap model) {
 		logger.info("[showMain] : INIT");
 		logger.info("[showMain] : RETURN");
-		return VIEW_INDEX;
+		return VIEW_DASHBOARD;
+	}
+
+	@RequestMapping(value = "/tabla-entidad", method = RequestMethod.GET)
+	private String showMain2(ModelMap model) {
+		logger.info("[showMain2] : INIT");
+		logger.info("[showMain2] : RETURN");
+		return VIEW_DASHBOARD_2;
+	}
+
+	@RequestMapping(value = "/dashboard-settings", method = RequestMethod.GET)
+	private String showMain3(ModelMap model) {
+		logger.info("[showMain3] : INIT");
+		logger.info("[showMain3] : RETURN");
+		return VIEW_DASHBOARD_3;
 	}
 
 	/**
