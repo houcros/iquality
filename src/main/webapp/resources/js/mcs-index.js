@@ -1,6 +1,26 @@
+var morrisLine;
 (function ($) {
     "use strict";
     $(document).ready(function () {
+    	
+    	var morrisLineDataArray = [
+    	                           { y: '2006', a: 100, b: 90 },
+    	                           { y: '2007', a: 75,  b: 65 },
+    	                           { y: '2008', a: 50,  b: 40 },
+    	                           { y: '2009', a: 75,  b: 65 },
+    	                           { y: '2010', a: 50,  b: 40 },
+    	                           { y: '2011', a: 75,  b: 65 },
+    	                           { y: '2012', a: 100, b: 90 }
+    	                           ];
+    	
+    	var morrisLineOptions = {
+    			element: 'morris-line',
+    			data: morrisLineDataArray,
+    			xkey: 'y',
+    			ykeys: ['a', 'b'],
+    			labels: ['Series A', 'Series B']
+    	}
+    	
         if ($.fn.plot) {
 
             var d1 = [
@@ -198,6 +218,7 @@
                     itouch: 5175
                 }, {
                     period: '2012-03-04',
+                    
                     iphone: 10687,
                     ipad: 34460,
                     itouch: 22028
@@ -220,24 +241,34 @@
 
             });
             
-            Morris.Line({
-            	  element: 'morris-line',
-            	  data: [
-            	    { y: '2006', a: 100, b: 90 },
-            	    { y: '2007', a: 75,  b: 65 },
-            	    { y: '2008', a: 50,  b: 40 },
-            	    { y: '2009', a: 75,  b: 65 },
-            	    { y: '2010', a: 50,  b: 40 },
-            	    { y: '2011', a: 75,  b: 65 },
-            	    { y: '2012', a: 100, b: 90 }
-            	  ],
-            	  xkey: 'y',
-            	  ykeys: ['a', 'b'],
-            	  labels: ['Series A', 'Series B']
-            	});
+            morrisLine = Morris.Line(morrisLineOptions);
 
         }
 
+        $(function() {
+    		$('#toggle-2').change(function() {
+    			if($(this).prop('checked')){
+    			}
+    			else{
+    				console.log('eliminando un graph');
+    				console.log(morrisLine);
+    				// Nuevos datos
+    				var data = morrisLineDataArray;
+    				data.forEach(function(entry){
+    					delete entry.b;
+    				});
+    				// Nuevas opciones
+    				var indexYKeys = morrisLine.options.ykeys.indexOf('b');
+    				if (indexYKeys > -1) morrisLine.options.ykeys.splice(indexYKeys, 1);
+    				var indexLabels = morrisLine.options.labels.indexOf('Series B');
+    				if (indexLabels > -1) morrisLine.options.labels.splice(indexYKeys, 1);
+    				// Actualizo
+    				morrisLine.setData(data);
+    			}
+    		})
+    	});
+        
+        // Sparkline
         var myvalues = [250,200,459,234,600,800,345,987,675,457,765,100,50,0,49,-100,399,1000,250,200,459,234,600,800,345,987,675,457,765,100,50,0,49,-100,399,1000];
         $('.sparkline').sparkline(myvalues, {
         	type: 'line', 

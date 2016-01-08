@@ -25,6 +25,11 @@
     <link href="${pageContext.servletContext.contextPath}/resources/js/css3clock/css/style.css" rel="stylesheet">
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/resources/js/morris-chart/morris.css">
+    <!-- switch -->
+	<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-switch.css" />
+	<!-- toggle -->
+	<link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="${pageContext.servletContext.contextPath}/resources/css/style.css" rel="stylesheet">
     <link href="${pageContext.servletContext.contextPath}/resources/css/style-responsive.css" rel="stylesheet"/>
@@ -198,7 +203,16 @@
 		                    <div class="col-md-9">
 		                    	<div id="morris-line"></div>
 		                    </div>
-	                    	<div class="col-md-3" style="background-color:red"><p>dfjd</p><p>djfdjf</p></div>
+	                    	<div class="col-md-3">
+	                    		<label>Regla 1<input type="checkbox" id="toggle-1" data-toggle="toggle"
+																		data-on="on" data-off="off"
+																		data-size="normal" data-width="110"
+																		data-onstyle="success"></label>
+	                    		<label>Regla 2<input type="checkbox" id="toggle-2" data-toggle="toggle"
+																		data-on="on" data-off="off"
+																		data-size="normal" data-width="110"
+																		data-onstyle="success"></label>
+	                    	</div>
 	                    </div>
 	                    </div>
                     </div>
@@ -419,7 +433,8 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
 
-
+<!-- toggle -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 
 </body>
 </html>
