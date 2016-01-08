@@ -110,26 +110,94 @@
             <div class="panel-body">
             	<div class="row">
 	                    <div class="col-md-4">
-		                    <!--widget start-->
+	                    	
+	                    	<table class="table  table-hover general-table">
+						                            <tbody>
+						                            <tr>
+	                                    				<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td><a href="#">Tabla 1</a></td>
+						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
+						                            </tr>
+						                            <tr>
+						                                <td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
+						                            </tr>
+						                            <tr>
+						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
+						                            </tr>
+						                            <tr>
+						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
+						                            </tr>
+						                            <tr>
+						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
+						                            </tr>
+						                          </tbody>
+						                       	</table>
+	                    	
+	                    <!-- 
+		                    widget start
 	                        <aside class="profile-nav alt">
 	                            <section class="panel">
 	                                <ul class="nav nav-pills nav-stacked">
 	                                    <li>
-	                                    	<a href="tabla-entidad">Tabla 1<span class="badge label-success pull-left r-activity m-x-1">80%</span></a>
-	                                    	<span style="background-color:yellow" class="sparkline"></span>
+	                                    	<div class="row">
+	                                    		<div class="col-md-8">
+	                                    			<a href="tabla-entidad">Tabla 1<span class="badge label-success pull-left r-activity m-x-1">80%</span></a>
+	                                    		</div>
+	                                    		<div class="col-md-4">
+	                                    			<span class="sparkline pull-left"></span>
+	                                    		</div>
+	                                    	</div>
 	                                    </li>
-	                                    <li><a href="tabla-entidad">Tabla 2<span class="badge label-danger pull-left r-activity m-x-1">15%</span></a></li>
-	                                    <li><a href="tabla-entidad">Tabla 3<span class="badge label-success pull-left r-activity m-x-1">89%</span></a></li>
-	                                    <li><a href="tabla-entidad">Tabla 4<span class="badge label-warning pull-left r-activity m-x-1">62%</span></a></li>
+	                                    <li>
+		                                    <div class="row">
+		                                    	<div class="col-md-8">
+		                                    		<a href="tabla-entidad">Tabla 2<span class="badge label-danger pull-left r-activity m-x-1">15%</span></a>
+		                                    	</div>
+		                                    	<div class="col-md-4">
+		                                    		<span class="sparkline pull-left"></span>
+		                                    	</div>
+		                                    </div>
+	                                    </li>
+	                                    <li>
+	                                    	<div class="row">
+		                                    	<div class="col-md-8">
+		                                    		<a href="tabla-entidad">Tabla 3<span class="badge label-success pull-left r-activity m-x-1">89%</span></a>
+		                                    	</div>
+		                                    	<div class="col-md-4">
+		                                    		<span class="sparkline pull-left"></span>
+		                                    	</div>
+		                                    </div>
+	                                    </li>
+	                                    <li>
+	                                    	<div class="row">
+		                                    	<div class="col-md-8">
+		                                    		<a href="tabla-entidad">Tabla 4<span class="badge label-warning pull-left r-activity m-x-1">62%</span></a></a>
+		                                    	</div>
+		                                    	<div class="col-md-4">
+		                                    		<span class="sparkline pull-left"></span>
+		                                    	</div>
+		                                    </div>
+	                                    </li>
 	                                </ul>
 	
 	                            </section>
 	                        </aside>
-	                        <!--widget end-->
+	                        widget end
+	                         -->
 	                    </div>
-	                    <div class="col-md-8" style="background-color:green">
+	                    <div class="col-md-8">
 	                    <div class="row">
-		                    <div class="col-md-9" style="background-color:red"><div style="background-color:yellow" class="sparkline" data-type="line" data-resize="true" data-height="100%" data-width="80%" data-line-width="1" data-min-spot-color="false" data-max-spot-color="false" data-line-color="#C390D4" data-spot-color="#C390D4" data-fill-color="" data-highlight-line-color="#4694E8" data-highlight-spot-color="#e1b8ff" data-spot-radius="1" data-data="[100,200,459,234,600,800,345,987,675,457,765]"></div></div>
+		                    <div class="col-md-9">
+		                    	<div id="morris-line"></div>
+		                    </div>
 	                    	<div class="col-md-3" style="background-color:red"><p>dfjd</p><p>djfdjf</p></div>
 	                    </div>
 	                    </div>

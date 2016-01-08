@@ -219,15 +219,31 @@
                 hideHover: 'auto'
 
             });
+            
+            Morris.Line({
+            	  element: 'morris-line',
+            	  data: [
+            	    { y: '2006', a: 100, b: 90 },
+            	    { y: '2007', a: 75,  b: 65 },
+            	    { y: '2008', a: 50,  b: 40 },
+            	    { y: '2009', a: 75,  b: 65 },
+            	    { y: '2010', a: 50,  b: 40 },
+            	    { y: '2011', a: 75,  b: 65 },
+            	    { y: '2012', a: 100, b: 90 }
+            	  ],
+            	  xkey: 'y',
+            	  ykeys: ['a', 'b'],
+            	  labels: ['Series A', 'Series B']
+            	});
 
         }
 
-        var myvalues = [100,200,459,234,600,800,345,987,675,457,765];
+        var myvalues = [250,200,459,234,600,800,345,987,675,457,765,100,50,0,49,-100,399,1000,250,200,459,234,600,800,345,987,675,457,765,100,50,0,49,-100,399,1000];
         $('.sparkline').sparkline(myvalues, {
         	type: 'line', 
         	resize: 'true', 
-        	height: 'auto', 
-        	width: 'auto', 
+        	height: '100%', 
+        	width: '100%', 
         	lineWidth: 1, 
         	minSpotColor: 'false',
         	maxSpotColor: 'false',
@@ -236,7 +252,7 @@
         	fillColor: '',
         	highlightLineColor: '#4694E8',
         	highlightSpotColor: '#e1b8ff',
-        	spotRadius: 1
+        	spotRadius: 1,
         });
         
     });

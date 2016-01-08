@@ -17,6 +17,7 @@
     <!--Core CSS -->
     <link href="${pageContext.servletContext.contextPath}/resources/bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.servletContext.contextPath}/resources/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
+<%--     <link href="${pageContext.servletContext.contextPath}/resources/js/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet"> --%>
     <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-reset.css" rel="stylesheet">
     <link href="${pageContext.servletContext.contextPath}/resources/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="${pageContext.servletContext.contextPath}/resources/js/jvector-map/jquery-jvectormap-1.2.2.css" rel="stylesheet">
@@ -90,7 +91,7 @@
 						                            <tbody>
 						                            <tr>
 						                                <td><a href="#">Atributo 1</a></td>
-						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
+						                                <td style="width:40%"><div class="defaultSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><c:out value="${init}" /></div></td>
 <%-- 						                                <td><span class="label label-info label-mini"><c:out value="${init}" /></span></td> --%>
 						                              	<td><span><c:out value="${init}" /></span></td>
 						                            </tr>

@@ -5958,3 +5958,17 @@ ul.breadcrumb.mi-breadcrumb{
 .slider-box {
     padding: 1.3em;
 }
+
+/* Slider */
+.ui-slider{
+	background-color:red;
+}
+
+/* .vcenter { */
+/*     position: absolute; */
+/*     top: 50%; */
+/*     left: 50%; */
+/*     -moz-transform: translateX(-50%) translateY(-50%); */
+/*     -webkit-transform: translateX(-50%) translateY(-50%); */
+/*     transform: translateX(-50%) translateY(-50%); */
+/* } */
