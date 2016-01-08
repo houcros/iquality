@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
 
-    <meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE9”>
-    <meta http-equiv=”X-UA-Compatible” content=”IE=9”>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
 
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" type="image/x-icon">
     <title>iQuality</title>
@@ -82,49 +82,49 @@
 		                	<section class="panel">
                     			<div class="panel-body">
                     				<div class="row">
-                    					<div class="col-md-4" style="background-color:red">
-                    					<aside class="profile-nav alt">
-                    						<section class="panel">
-	                                			<ul class="nav nav-pills nav-stacked">
-				                                    <li><a href="javascript:;">Atributo 1</a></li>
-				                                    <li><a href="javascript:;">Atributo 2</a></li>
-				                                    <li><a href="javascript:;">Atributo 3</a></li>
-				                                    <li><a href="javascript:;">Atributo 4</a></li>
-				                                    <li><a href="javascript:;">Atributo 5</a></li>
-				                                    <li><a href="javascript:;">Atributo 6</a></li>
-				                                    <li><a href="javascript:;">Atributo 7</a></li>
-				                                    <li><a href="javascript:;">Atributo 8</a></li>
-				                                </ul>
-	                           				</section>
-	                           			</aside>
-	                            		</div>
-                    					<div class="col-md-8" style="background-color:green">
+                    					<div class="col-md-8">
                     						<div class="row">
-                    							<div class="col-sm-12 slider-box">
-                    								<input id="ex1" class="mySlider" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex2" class="mySlider" data-slider-id='ex2Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex3" class="mySlider" data-slider-id='ex3Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex4" class="mySlider" data-slider-id='ex4Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex5" class="mySlider" data-slider-id='ex5Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex6" class="mySlider" data-slider-id='ex6Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex7" class="mySlider" data-slider-id='ex7Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
-                    					    	<div class="col-sm-12 slider-box">
-                    					    		<input id="ex8" class="mySlider" data-slider-id='ex8Slider' type="text" data-slider-min="0" data-slider-max="11.25" data-slider-step="1" data-slider-value="6" data-slider-precision="2"/>
-                    					    	</div>
+                    							<c:set var="init" scope="session" value="${100.0/5} %"/>
+                    							<c:set var="initNum" scope="session" value="${100.0/5}"/>
+                    							<table class="table  table-hover general-table">
+						                            <tbody>
+						                            <tr>
+						                                <td><a href="#">Atributo 1</a></td>
+						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
+<%-- 						                                <td><span class="label label-info label-mini"><c:out value="${init}" /></span></td> --%>
+						                              	<td><span><c:out value="${init}" /></span></td>
+						                            </tr>
+						                            <tr>
+						                                <td><a href="#">Atributo 2</a></td>
+						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
+						                                <td><span><c:out value="${init}" /></span></td>
+						                            </tr>
+						                            <tr>
+						                                <td><a href="#">Atributo 3</a></td>
+						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
+						                                <td><input type="number" value="${initNum}" max=100 min=0 maxlength=4 step=0.1 style="width:4.5em"></td>
+						                            </tr>
+						                            <tr>
+						                                <td><a href="#">Atributo 4</a></td>
+						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
+						                                <td><span class="label label-min label-info"><c:out value="${init}" /></span></td>
+						                            </tr>
+						                            <tr>
+						                                <td><a href="#">Atributo 5</a></td>
+						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
+						                                <td><span class="label label-min label-info"><c:out value="${init}" /></span></td>
+						                            </tr>
+						                          </tbody>
+						                       	</table>
                     					    </div>
+                    					    <div class="btn-group pull-right">
+												<a
+													href="dashboard-settings">
+													<button id="btn-nuevo-pase-def" class="btn btn-success">
+														Actualizar <i class="fa fa-check"></i>
+													</button>
+												</a>
+											</div>
                     					</div>
                     				</div>
                     			</div>

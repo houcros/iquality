@@ -5,7 +5,7 @@
 
 			// No funciona dentro de tabla; pq?!
 			var myvalues = [100,200,459,234,600,800,345,987,675,457,765];
-			$('.sparkline').sparkline('html', {
+			$('.mysparkline').sparkline('html', {
 				type: 'line', 
 				resize: 'true', 
 				height: '100%', 

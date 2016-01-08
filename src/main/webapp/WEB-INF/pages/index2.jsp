@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
 
-    <meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE9”>
-    <meta http-equiv=”X-UA-Compatible” content=”IE=9”>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
 
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico" type="image/x-icon">
     <title>iQuality</title>
@@ -92,6 +92,7 @@
 	                    <div class="col-md-8 vcenter">
 		                                    <section class="panel">
                     <div class="panel-body">
+<!--                     	<div class="mysparkline" style="background-color:yellow">100,200,459,234,200,210,145,187,175,257,165</div> -->
                         <table class="table  table-hover general-table">
                             <thead>
                             <tr>
