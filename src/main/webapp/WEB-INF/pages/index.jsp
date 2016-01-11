@@ -61,18 +61,38 @@
     <div class="col-md-12">
         <section class="panel">
             <div class="panel-body">
-                <div class="top-stats-panel">
                     <div class="daily-visit">
                         <h4 class="widget-h">Calidad de datos</h4>
-                        <ul class="chart-meta clearfix">
-<!--                             <li class="pull-left visit-chart-value">3233</li> -->
-                            <li class="pull-right visit-chart-title"><i class="fa fa-arrow-up"></i>15%</li>
-                        </ul>
-                        <div id="daily-visit-chart" style="width:100%; height: 100px; display: block">
-
+<!--                    <li class="pull-left visit-chart-value">3233</li> -->
+						<div>
+                        	<h2 class="text-primary center"><i class="fa fa-arrow-up"></i>1.2%</h2>
+<!--                    	<div id="daily-visit-chart" style="width:100%; height: 100px; display: block"></div> -->
+                        	<p>Respecto al mes anterior</p>
+                        </div>
+                        <span class="pull-right"><a href="#myModal" data-toggle="modal"><i class="fa fa-info-circle"></i></a></span>
+                        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">M&eacute;todo de c&aacute;lculo</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stoici scilicet. Quis Aristidem non mortuum diligit?
+										In schola desinis. Stoicos roga. Quo igitur, inquit, modo? Quam ob rem tandem, inquit, non satisfacit? Quaerimus enim finem bonorum.
+										Quid Zeno? Quid iudicant sensus? Conferam tecum, quam cuique verso rem subicias; Ille incendat? Sint ista Graecorum;</p>
+										<span class="p-y-1"><img src="https://latex.codecogs.com/gif.latex?\frac{n!}{k!(n-k)!}&space;=&space;\binom{n}{k}" title="\frac{n!}{k!(n-k)!} = \binom{n}{k}" /></span>
+										<p>Si enim ad populum me vocas, eum. Iam in altera philosophiae parte. Istam voluptatem, inquit, Epicurus ignorat? Duo Reges: constructio interrete. Is es profecto tu. Quo tandem modo?
+										Nescio quo modo praetervolavit oratio. Quid enim? Haeret in salebra. Videsne quam sit magna dissensio? Non laboro, inquit, de nomine. Cur id non ita fit? Hoc est non dividere, sed frangere.</p>
+                                    </div>
+                                    <div class="modal-footer">
+<!--                                     	<span>iQuality</span> -->
+                                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
     </div>
@@ -96,8 +116,9 @@
 <!--             <header class="panel-heading">Evoluci&oacute;n de la calidad de las reglas</header> -->
             <div class="panel-body">
 				<div class="top-stats-panel">
-                    <h4 class="widget-h">Evoluci&oacute;n de la calidad de las reglas</h4>
-                	<div id="graph-area" class="main-chart">
+                    <h4 class="widget-h">Evoluci&oacute;n de la calidad</h4>
+<!--                 	<div id="graph-area" class="main-chart"> -->
+                	<div id="morris-line" class="main-chart">
                 	</div>
                 </div>
             </div>
@@ -119,28 +140,28 @@
 	                    	<table class="table  table-hover general-table">
 						                            <tbody>
 						                            <tr>
-	                                    				<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
-						                                <td><a href="#">Tabla 1</a></td>
+	                                    				<td style="width:1em"><a href="tabla-entidad"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="tabla-entidad">Tabla 1</a></td>
 						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
 						                            </tr>
 						                            <tr>
-						                                <td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
-						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                                <td style="width:1em"><a href="tabla-entidad"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="tabla-entidad">Tabla 2</a></td>
 						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
 						                            </tr>
 						                            <tr>
-						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
-						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
-						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
-						                            </tr>
-						                            <tr>
-						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
-						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                            	<td style="width:1em"><a href="tabla-entidad"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="tabla-entidad">Tabla 3</a></td>
 						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
 						                            </tr>
 						                            <tr>
 						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
-						                                <td style="width:6em"><a href="#">Tabla 1</a></td>
+						                                <td style="width:6em"><a href="#">Tabla 4</a></td>
+						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
+						                            </tr>
+						                            <tr>
+						                            	<td style="width:1em"><a href="#"><span class="badge label-success pull-left r-activity m-x-1">80%</span></a></td>
+						                                <td style="width:6em"><a href="#">Tabla 5</a></td>
 						                              	<td style="width:8em"><span class="sparkline pull-left"></span></td>
 						                            </tr>
 						                          </tbody>
@@ -201,17 +222,17 @@
 	                    <div class="col-md-8">
 	                    <div class="row">
 		                    <div class="col-md-9">
-		                    	<div id="morris-line"></div>
+<!-- 		                    	<div id="morris-line"></div> -->
 		                    </div>
 	                    	<div class="col-md-3">
-	                    		<label>Regla 1<input type="checkbox" id="toggle-1" data-toggle="toggle"
+	                    		<label>Regla 1</label><input type="checkbox" checked id="toggle-1" data-toggle="toggle"
 																		data-on="on" data-off="off"
 																		data-size="normal" data-width="110"
-																		data-onstyle="success"></label>
-	                    		<label>Regla 2<input type="checkbox" id="toggle-2" data-toggle="toggle"
+																		data-onstyle="success">
+	                    		<label>Regla 2</label><input type="checkbox" checked id="toggle-2" data-toggle="toggle"
 																		data-on="on" data-off="off"
 																		data-size="normal" data-width="110"
-																		data-onstyle="success"></label>
+																		data-onstyle="success">
 	                    	</div>
 	                    </div>
 	                    </div>

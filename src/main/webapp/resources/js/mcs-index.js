@@ -3,22 +3,44 @@ var morrisLine;
     "use strict";
     $(document).ready(function () {
     	
-    	var morrisLineDataArray = [
-    	                           { y: '2006', a: 100, b: 90 },
-    	                           { y: '2007', a: 75,  b: 65 },
-    	                           { y: '2008', a: 50,  b: 40 },
-    	                           { y: '2009', a: 75,  b: 65 },
-    	                           { y: '2010', a: 50,  b: 40 },
-    	                           { y: '2011', a: 75,  b: 65 },
-    	                           { y: '2012', a: 100, b: 90 }
-    	                           ];
-    	
+    	var dataArrayY = ['2015-05', '2015-06', '2015-07', '2015-08', '2015-09', '2015-10', '2015-11'];
+    	var dataArrayDimA = [45, 33, 67, 58, 68, 78, 89];
+    	var dataArrayDimB = [90, 65, 40, 65, 40, 65, 90];
+    	var dataArrayDimC = [45, 78, 23, 66, 84, 94, 89];
+    	var dataArrayDimD = [78, 90, 80, 56, 65, 87, 98];
+    	var dataArrayDimE = [34, 56, 54, 45, 76, 64, 77];
+    	// Init array de datos
+    	var morrisLineDataArray = new Array(dataArrayY.length);
+    	console.log(morrisLineDataArray.length);
+    	for (var i = 0; i < dataArrayY.length; ++i){
+    		var item = {};
+    		item.y = dataArrayY[i];
+    		item.dimA = dataArrayDimA[i];
+    		item.dimB = dataArrayDimB[i];
+    		item.dimC = dataArrayDimC[i];
+    		item.dimD = dataArrayDimD[i];
+    		item.dimE = dataArrayDimE[i];
+    		morrisLineDataArray[i] = item;
+    	}
+    	// Init array de opciones
     	var morrisLineOptions = {
     			element: 'morris-line',
     			data: morrisLineDataArray,
+    			xLabelFormat: function(x){
+    				var indexToMonth = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    				var month = indexToMonth[x.getMonth()];
+    				var year = x.getFullYear();
+    				return month + ' ' + year;
+    			},
+    			dateFormat: function(x){
+    				var indexToMonth = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    				var month = indexToMonth[new Date(x).getMonth()];
+    				var year = new Date(x).getFullYear();
+    				return month + ' ' + year;
+    			},
     			xkey: 'y',
-    			ykeys: ['a', 'b'],
-    			labels: ['Series A', 'Series B']
+    			ykeys: ['dimA', 'dimB', 'dimC', 'dimD', 'dimE'],
+    			labels: ['Integridad', 'Completitud', 'Duplicidad', 'Conformidad', 'Precisi&oacute;n']
     	}
     	
         if ($.fn.plot) {
@@ -123,7 +145,7 @@ var morrisLine;
                 },
                 colors: ["#87cfcb", "#48a9a7"]
             };
-            var plot = $.plot($("#daily-visit-chart"), data, options);
+//            var plot = $.plot($("#daily-visit-chart"), data, options);
 
 
 
@@ -167,6 +189,7 @@ var morrisLine;
 
 
         if (Morris.EventEmitter) {
+        	/*
             // Use Morris.Area instead of Morris.Line
             Morris.Area({
                 element: 'graph-area',
@@ -238,48 +261,67 @@ var morrisLine;
                 pointSize: 0,
                 lineWidth: 0,
                 hideHover: 'auto'
-
+        	
             });
-            
+            */
+        	
             morrisLine = Morris.Line(morrisLineOptions);
 
         }
 
-        $(function() {
-    		$('#toggle-2').change(function() {
-    			if($(this).prop('checked')){
-    			}
-    			else{
-    				console.log('eliminando un graph');
-    				console.log(morrisLine);
-    				// Nuevos datos
-    				var data = morrisLineDataArray;
-    				data.forEach(function(entry){
-    					delete entry.b;
-    				});
-    				// Nuevas opciones
-    				var indexYKeys = morrisLine.options.ykeys.indexOf('b');
-    				if (indexYKeys > -1) morrisLine.options.ykeys.splice(indexYKeys, 1);
-    				var indexLabels = morrisLine.options.labels.indexOf('Series B');
-    				if (indexLabels > -1) morrisLine.options.labels.splice(indexYKeys, 1);
-    				// Actualizo
-    				morrisLine.setData(data);
-    			}
-    		})
-    	});
+        // Los toggles que sacan y ponen una tabla del plot
+        $('#toggle-2').change(function() {
+        	if($(this).prop('checked')){
+        		console.log('reinsertando un graph');
+        		// Añado las b's de los datos
+        		// OJO: pueden sobrar b's que no inserto!
+        		// OJO: estoy pusheando, last puede no ser la posición correcta
+        		var data = morrisLineDataArray;
+        		for (var i = 0; i < morrisLineDataArray.length; ++i){
+        			data[i].dimD = dataArrayDimB[i];
+        		}
+        		console.log(data);
+        		// Añado ykey
+        		morrisLine.options.ykeys.push('dimB');
+        		console.log(morrisLine.options.ykeys);
+        		// Añado label
+        		morrisLine.options.labels.push('Completitud');
+        		console.log(morrisLine.options.labels);
+        		// Actualizo datos
+        		morrisLine.setData(data);
+        	}
+        	else{
+        		console.log('eliminando un graph');
+        		// Saco las b's de los datos
+        		var data = morrisLineDataArray;
+        		data.forEach(function(entry){
+        			delete entry.b;
+        		});
+        		// Saco ykey
+        		var indexYKeys = morrisLine.options.ykeys.indexOf('dimB');
+        		if (indexYKeys > -1) morrisLine.options.ykeys.splice(indexYKeys, 1);
+        		// Saco label
+        		var indexLabels = morrisLine.options.labels.indexOf('Completitud');
+        		if (indexLabels > -1) morrisLine.options.labels.splice(indexYKeys, 1);
+        		// Actualizo datos
+        		morrisLine.setData(data);
+        	}
+        });
+        
         
         // Sparkline
-        var myvalues = [250,200,459,234,600,800,345,987,675,457,765,100,50,0,49,-100,399,1000,250,200,459,234,600,800,345,987,675,457,765,100,50,0,49,-100,399,1000];
+        var myvalues = [50,70,54,234,600,234,345,789,576,754,567];
         $('.sparkline').sparkline(myvalues, {
         	type: 'line', 
         	resize: 'true', 
-        	height: '100%', 
+        	height: 'auto', 
         	width: '100%', 
-        	lineWidth: 1, 
+        	lineWidth: 1,
         	minSpotColor: 'false',
         	maxSpotColor: 'false',
-        	lineColor: '#C390D4',
-        	spotColor: '#C390D4',
+        	lineColor: 'blue',
+        	spotColor: 'blue',
+        	spotRadius: 2,
         	fillColor: '',
         	highlightLineColor: '#4694E8',
         	highlightSpotColor: '#e1b8ff',

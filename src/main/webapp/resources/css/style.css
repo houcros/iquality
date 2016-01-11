@@ -5923,6 +5923,10 @@ ul.breadcrumb.mi-breadcrumb{
   margin-right: 1rem !important;
 }
 
+.m-a-1 {
+  margin: 1rem !important;
+}
+
 .m-x-2 {
   margin-left: ($spacer-x * 1.5) !important;
   margin-right: ($spacer-x * 1.5) !important;

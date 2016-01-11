@@ -7,7 +7,7 @@
                 <li>
                     <a href="${pageContext.servletContext.contextPath}">
                         <i class="fa fa-tachometer"></i>
-                        <span>Dashboard</span>
+                        <span>Command center</span>
                     </a>
                 </li>
                 <li>

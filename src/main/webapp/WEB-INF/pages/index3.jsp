@@ -31,6 +31,8 @@
     <link href="${pageContext.servletContext.contextPath}/resources/css/style-responsive.css" rel="stylesheet"/>
     <!-- Bootstrap slider -->
     <link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-slider.min.css" rel="stylesheet"/>
+	<!-- Toggle -->
+	<link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-toggle.min.css" rel="stylesheet">
 	
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
@@ -93,35 +95,40 @@
 						                                <td><a href="#">Atributo 1</a></td>
 						                                <td style="width:40%"><div class="defaultSlider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><c:out value="${init}" /></div></td>
 <%-- 						                                <td><span class="label label-info label-mini"><c:out value="${init}" /></span></td> --%>
-						                              	<td><span><c:out value="${init}" /></span></td>
+						                              	<td><span class="label label-min label-primary"><c:out value="${init}" /></span></td>
 						                            </tr>
 						                            <tr>
 						                                <td><a href="#">Atributo 2</a></td>
 						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
-						                                <td><span><c:out value="${init}" /></span></td>
+						                                <td><span class="label label-min label-primary"><c:out value="${init}" /></span></td>
 						                            </tr>
 						                            <tr>
 						                                <td><a href="#">Atributo 3</a></td>
 						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
-						                                <td><input type="number" value="${initNum}" max=100 min=0 maxlength=4 step=0.1 style="width:4.5em"></td>
+						                                <td><span class="label label-min label-primary"><c:out value="${init}" /></span></td>
+<%-- 						                                <td><input type="number" value="${initNum}" max=100 min=0 maxlength=4 step=0.1 style="width:4.5em"></td> --%>
 						                            </tr>
 						                            <tr>
 						                                <td><a href="#">Atributo 4</a></td>
 						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
-						                                <td><span class="label label-min label-info"><c:out value="${init}" /></span></td>
+						                                <td><span class="label label-min label-primary"><c:out value="${init}" /></span></td>
 						                            </tr>
 						                            <tr>
 						                                <td><a href="#">Atributo 5</a></td>
 						                                <td style="width:40%"><div class="defaultSlider"><c:out value="${init}" /></div></td>
-						                                <td><span class="label label-min label-info"><c:out value="${init}" /></span></td>
+						                                <td><span class="label label-min label-primary"><c:out value="${init}" /></span></td>
 						                            </tr>
 						                          </tbody>
 						                       	</table>
                     					    </div>
                     					    <div class="btn-group pull-right">
+													<input type="checkbox" checked id="toggle-manual" data-toggle="toggle"
+																		data-on="Guiado" data-off="Manual"
+																		data-size="normal" data-width="110"
+																		data-onstyle="warning">
 												<a
 													href="dashboard-settings">
-													<button id="btn-nuevo-pase-def" class="btn btn-success">
+													<button type="button" id="btn-nuevo-pase-def" class="btn btn-success m-x-1">
 														Actualizar <i class="fa fa-check"></i>
 													</button>
 												</a>
@@ -205,6 +212,8 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery.linkedsliders.js"></script>
 <!-- Bootstrap slider -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-slider.min.js"></script>
+<!-- Toggle -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 
 </body>
 </html>
