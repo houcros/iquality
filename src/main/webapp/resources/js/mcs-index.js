@@ -384,7 +384,55 @@ var morrisLine;
         	spotRadius: 1,
         });
         
+        // Init knobs
+        $("#dial-dimA").knob({
+        	'width': 90,
+        	'fgColor': '#FEA352',
+        	'skin': 'tron',
+        	'thickness': '.3',
+        	'readOnly': true,
+        	'height': '90'
+        });
+        $("#dial-dimB").knob({
+        	'width': 90,
+        	'fgColor': '#FE0600',
+        	'skin': 'tron',
+        	'thickness': '.3',
+        	'readOnly': true,
+        	'height': '90'
+        });
+        $("#dial-dimC").knob({
+        	'width': 90,
+        	'fgColor': '#4A0BAD',
+        	'skin': 'tron',
+        	'thickness': '.3',
+        	'readOnly': true,
+        	'height': '90'
+        });
+        $("#dial-dimD").knob({
+        	'width': 90,
+        	'fgColor': '#34D700',
+        	'skin': 'tron',
+        	'thickness': '.3',
+        	'readOnly': true,
+        	'height': '90'
+        });
+        $("#dial-dimE").knob({
+        	'width': 90,
+        	'fgColor': '#FEF400',
+        	'skin': 'tron',
+        	'thickness': '.3',
+        	'readOnly': true,
+        	'height': '90'
+        });
+        
+        
+        
+        $('.random-change').click(function(){
+        	$(".dial").each(function(index, element){
+        		$(element).val(Math.floor(Math.random() * 50) + 50).trigger('change');
+        	});
+        });
+        
     });
-
-
 })(jQuery);
