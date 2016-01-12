@@ -3,44 +3,87 @@ var morrisLine;
     "use strict";
     $(document).ready(function () {
     	
-    	var dataArrayY = ['2015-05', '2015-06', '2015-07', '2015-08', '2015-09', '2015-10', '2015-11'];
-    	var dataArrayDimA = [45, 33, 67, 58, 68, 78, 89];
-    	var dataArrayDimB = [90, 65, 40, 65, 40, 65, 90];
-    	var dataArrayDimC = [45, 78, 23, 66, 84, 94, 89];
-    	var dataArrayDimD = [78, 90, 80, 56, 65, 87, 98];
-    	var dataArrayDimE = [34, 56, 54, 45, 76, 64, 77];
+    	/* ###### Morris Line ###### */
+    	
+    	// Hipótesis: dataArrayX.length == ejesYDict.dim_k.data.length, para todo k
+    	// Eje x
+    	var dataArrayX = ['2015-05', '2015-06', '2015-07', '2015-08', '2015-09', '2015-10', '2015-11'];
+    	// Diccionario con los datos de los ejes y
+    	var ejesYDict = {
+    			'dimA': {
+    				'data': [45, 33, 67, 58, 68, 78, 89],
+    				'label': 'Integridad',
+    				'color': '#FEA352'
+    			},
+    			'dimB': {
+    				'data': [90, 65, 40, 65, 40, 65, 54],
+    				'label': 'Completitud',
+    				'color': '#FE0600'
+    			},
+    			'dimC': {
+    				'data': [45, 78, 23, 66, 84, 94, 80],
+    				'label': 'Duplicidad',
+    				'color': '#4A0BAD'
+    			},
+    			'dimD': {
+    				'data': [78, 90, 80, 56, 65, 87, 98],
+    				'label': 'Conformidad',
+    				'color': '#34D700'
+    			},
+    			'dimE': {
+    				'data': [34, 56, 54, 45, 76, 64, 77],
+    				'label': 'Precisi&oacute;n',
+    				'color': '#FEF400'
+    			}
+    	}
+    	
     	// Init array de datos
-    	var morrisLineDataArray = new Array(dataArrayY.length);
-    	console.log(morrisLineDataArray.length);
-    	for (var i = 0; i < dataArrayY.length; ++i){
+    	var morrisLineDataArray = new Array(dataArrayX.length);
+    	for (var i = 0; i < dataArrayX.length; ++i){
     		var item = {};
-    		item.y = dataArrayY[i];
-    		item.dimA = dataArrayDimA[i];
-    		item.dimB = dataArrayDimB[i];
-    		item.dimC = dataArrayDimC[i];
-    		item.dimD = dataArrayDimD[i];
-    		item.dimE = dataArrayDimE[i];
+    		item.mes = dataArrayX[i];
+    		for (var key in ejesYDict){
+    			item[key] = ejesYDict[key].data[i];
+    		}
     		morrisLineDataArray[i] = item;
     	}
+    	// Init array de yKeys
+    	var yKeysArray = [];
+    	for (var key in ejesYDict){
+    		yKeysArray.push(key);
+		}
+    	// Init array de labels
+    	var labelsArray = [];
+    	for (var key in ejesYDict){
+    		labelsArray.push(ejesYDict[key].label);
+		}
+    	// Init array de colores
+    	var colorsArray = [];
+    	for (var key in ejesYDict){
+    		colorsArray.push(ejesYDict[key].color);
+		}
+    	
     	// Init array de opciones
     	var morrisLineOptions = {
     			element: 'morris-line',
     			data: morrisLineDataArray,
+    			resize: true,
     			xLabelFormat: function(x){
-    				var indexToMonth = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    				var indexToMonth = ['Enero', 'Febr.', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Sept.', 'Oct.', 'Nov.', 'Dic.'];;
     				var month = indexToMonth[x.getMonth()];
     				var year = x.getFullYear();
     				return month + ' ' + year;
     			},
     			dateFormat: function(x){
-    				var indexToMonth = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    				var indexToMonth = ['Enero', 'Febr.', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Sept.', 'Oct.', 'Nov.', 'Dic.'];
     				var month = indexToMonth[new Date(x).getMonth()];
     				var year = new Date(x).getFullYear();
     				return month + ' ' + year;
     			},
-    			xkey: 'y',
-    			ykeys: ['dimA', 'dimB', 'dimC', 'dimD', 'dimE'],
-    			labels: ['Integridad', 'Completitud', 'Duplicidad', 'Conformidad', 'Precisi&oacute;n']
+    			xkey: 'mes',
+    			ykeys: yKeysArray,
+    			labels: labelsArray,
+    			lineColors: colorsArray 
     	}
     	
         if ($.fn.plot) {
@@ -269,43 +312,56 @@ var morrisLine;
 
         }
 
-        // Los toggles que sacan y ponen una tabla del plot
-        $('#toggle-2').change(function() {
-        	if($(this).prop('checked')){
+        // Callback para mostrar un parámetro de calidad
+        $('.my-checkbox-dim').on('ifChecked', function(event) {
         		console.log('reinsertando un graph');
+        		// Obtengo el valor de la dimension
+        		var dim = $(this).attr('id').split('-')[1];
+        		console.log('dim: ' + dim);
         		// Añado las b's de los datos
         		// OJO: pueden sobrar b's que no inserto!
         		// OJO: estoy pusheando, last puede no ser la posición correcta
-        		var data = morrisLineDataArray;
+        		var newData = morrisLineDataArray;
         		for (var i = 0; i < morrisLineDataArray.length; ++i){
-        			data[i].dimD = dataArrayDimB[i];
+        			newData[i][dim] = ejesYDict[dim].data[i];
         		}
-        		console.log(data);
-        		// Añado ykey
-        		morrisLine.options.ykeys.push('dimB');
+        		console.log(newData);
+        		// Nota: arr.splice(index, 0, item); will insert item into arr at the specified index.
+        		// Añado ykey en la posición correspondiente
+        		morrisLine.options.ykeys.splice(1, 0, dim);
         		console.log(morrisLine.options.ykeys);
-        		// Añado label
-        		morrisLine.options.labels.push('Completitud');
+        		// Añado label en la posición correspondiente
+        		morrisLine.options.labels.splice(1, 0, ejesYDict[dim].label);
         		console.log(morrisLine.options.labels);
+        		// Añado color en la posición correspondiente
+        		morrisLine.options.lineColors.splice(1, 0, ejesYDict[dim].color);
+        		console.log(morrisLine.options.lineColors);
         		// Actualizo datos
-        		morrisLine.setData(data);
-        	}
-        	else{
+        		morrisLine.setData(newData);
+        });
+        
+        // Callback para ocultar un parámetro de calidad
+        $('.my-checkbox-dim').on('ifUnchecked', function(event) {
         		console.log('eliminando un graph');
+        		// Obtengo el valor de la dimension
+        		var dim = $(this).attr('id').split('-')[1];
+        		console.log('dim: ' + dim);
         		// Saco las b's de los datos
-        		var data = morrisLineDataArray;
-        		data.forEach(function(entry){
-        			delete entry.b;
+        		var newData = morrisLineDataArray;
+        		newData.forEach(function(entry){
+        			delete entry[dim];
         		});
         		// Saco ykey
-        		var indexYKeys = morrisLine.options.ykeys.indexOf('dimB');
+        		var indexYKeys = morrisLine.options.ykeys.indexOf(dim);
         		if (indexYKeys > -1) morrisLine.options.ykeys.splice(indexYKeys, 1);
         		// Saco label
-        		var indexLabels = morrisLine.options.labels.indexOf('Completitud');
+        		var indexLabels = morrisLine.options.labels.indexOf(ejesYDict[dim].label);
         		if (indexLabels > -1) morrisLine.options.labels.splice(indexYKeys, 1);
+        		// Saco color
+        		var indexColor = morrisLine.options.lineColors.indexOf(ejesYDict[dim].color);
+        		if (indexColor > -1) morrisLine.options.lineColors.splice(indexYKeys, 1);
         		// Actualizo datos
-        		morrisLine.setData(data);
-        	}
+        		morrisLine.setData(newData);
         });
         
         

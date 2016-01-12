@@ -28,8 +28,11 @@
     <!-- switch -->
 	<link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-switch.css" />
-	<!-- toggle -->
+	<!-- Toggle -->
 	<link href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<!--icheck-->
+	<link href="${pageContext.servletContext.contextPath}/resources/js/iCheck/skins/minimal/minimal.css" rel="stylesheet">
+	
     <!-- Custom styles for this template -->
     <link href="${pageContext.servletContext.contextPath}/resources/css/style.css" rel="stylesheet">
     <link href="${pageContext.servletContext.contextPath}/resources/css/style-responsive.css" rel="stylesheet"/>
@@ -81,7 +84,10 @@
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stoici scilicet. Quis Aristidem non mortuum diligit?
 										In schola desinis. Stoicos roga. Quo igitur, inquit, modo? Quam ob rem tandem, inquit, non satisfacit? Quaerimus enim finem bonorum.
 										Quid Zeno? Quid iudicant sensus? Conferam tecum, quam cuique verso rem subicias; Ille incendat? Sint ista Graecorum;</p>
-										<span class="p-y-1"><img src="https://latex.codecogs.com/gif.latex?\frac{n!}{k!(n-k)!}&space;=&space;\binom{n}{k}" title="\frac{n!}{k!(n-k)!} = \binom{n}{k}" /></span>
+										<span class="m-y-1"><img src="https://latex.codecogs.com/gif.latex?\displaystyle\sum_{i=1}^{n}&space;c_i&space;\times&space;p_i" title="\displaystyle\sum_{i=1}^{n} c_i \times p_i" /></span>
+										<p>Si enim ad populum me vocas, eum. Iam in altera philosophiae parte. Istam voluptatem, inquit, Epicurus ignorat? Duo Reges: constructio interrete. Is es profecto tu. Quo tandem modo?
+										Nescio quo modo praetervolavit oratio. Quid enim? Haeret in salebra. Videsne quam sit magna dissensio? Non laboro, inquit, de nomine. Cur id non ita fit? Hoc est non dividere, sed frangere.</p>
+										<span class="m-y-1"><img src="https://latex.codecogs.com/gif.latex?\frac{n!}{k!(n-k)!}&space;=&space;\binom{n}{k}" title="\frac{n!}{k!(n-k)!} = \binom{n}{k}" /></span>
 										<p>Si enim ad populum me vocas, eum. Iam in altera philosophiae parte. Istam voluptatem, inquit, Epicurus ignorat? Duo Reges: constructio interrete. Is es profecto tu. Quo tandem modo?
 										Nescio quo modo praetervolavit oratio. Quid enim? Haeret in salebra. Videsne quam sit magna dissensio? Non laboro, inquit, de nomine. Cur id non ita fit? Hoc est non dividere, sed frangere.</p>
                                     </div>
@@ -115,12 +121,44 @@
         <section class="panel">
 <!--             <header class="panel-heading">Evoluci&oacute;n de la calidad de las reglas</header> -->
             <div class="panel-body">
-				<div class="top-stats-panel">
-                    <h4 class="widget-h">Evoluci&oacute;n de la calidad</h4>
-<!--                 	<div id="graph-area" class="main-chart"> -->
-                	<div id="morris-line" class="main-chart">
-                	</div>
-                </div>
+										<div class="top-stats-panel">
+											<h4 class="widget-h">Evoluci&oacute;n de la calidad</h4>
+											<!--                 	<div id="graph-area" class="main-chart"> -->
+											<div class="col-sm-10 p-r-0">
+												<div id="morris-line" class="main-chart"></div>
+											</div>
+											<div class="col-sm-2 p-l-1">
+												<div class="form-group">
+													<label class="col-sm-12 control-label">Par&aacute;metros</label>
+
+													<div class="col-sm-12 icheck minimal myicheck p-x-0">
+														<div class="checkbox single-row">
+															<input id="check-dimA" type="checkbox" class="my-checkbox-dim m-r-0" checked>
+															<label class="p-l-0">Integridad</label>
+														</div>
+														<div class="checkbox single-row">
+															<input id="check-dimB" type="checkbox" class="my-checkbox-dim m-r-0" checked>
+															<label class="p-l-0 m-l-0">Completitud</label>
+														</div>
+														<div class="checkbox single-row">
+															<input id="check-dimC" type="checkbox" class="my-checkbox-dim m-r-0" checked>
+															<label class="p-l-0">Duplicidad</label>
+														</div>
+														<div class="checkbox single-row">
+															<input id="check-dimD" type="checkbox" class="my-checkbox-dim m-r-0" checked>
+															<label class="p-l-0">Conformidad</label>
+														</div>
+														<div class="checkbox single-row">
+															<input id="check-dimE" type="checkbox" class="my-checkbox-dim m-r-0" checked>
+															<label class="p-l-0">Precisi&oacute;n</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--                 <div class="col-sm-2"> -->
+											
+<!-- 										</div> -->
             </div>
         </section>
         <!--earning graph end-->
@@ -224,16 +262,6 @@
 		                    <div class="col-md-9">
 <!-- 		                    	<div id="morris-line"></div> -->
 		                    </div>
-	                    	<div class="col-md-3">
-	                    		<label>Regla 1</label><input type="checkbox" checked id="toggle-1" data-toggle="toggle"
-																		data-on="on" data-off="off"
-																		data-size="normal" data-width="110"
-																		data-onstyle="success">
-	                    		<label>Regla 2</label><input type="checkbox" checked id="toggle-2" data-toggle="toggle"
-																		data-on="on" data-off="off"
-																		data-size="normal" data-width="110"
-																		data-onstyle="success">
-	                    	</div>
 	                    </div>
 	                    </div>
                     </div>
@@ -454,8 +482,13 @@
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 <script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.hoverIntent.minified.js"></script>
 
-<!-- toggle -->
+<!-- Toggle -->
 <script src="${pageContext.servletContext.contextPath}/resources/js/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<!-- icheck -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/iCheck/jquery.icheck.js"></script>
+<script type="text/javascript" src="${pageContext.servletContext.contextPath}/resources/js/ckeditor/ckeditor.js"></script>
+<!--icheck init -->
+<script src="${pageContext.servletContext.contextPath}/resources/js/icheck-init.js"></script>
 
 </body>
 </html>

@@ -5914,13 +5914,27 @@ ul.breadcrumb.mi-breadcrumb{
   margin-top: 0 !important;
 }
 
+.m-l-0 {
+  margin-left: 0 !important;
+}
+
 .m-l-1 {
   margin-left: $spacer-x !important;
+}
+
+.m-x-0 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .m-x-1 {
   margin-left: 1rem !important;
   margin-right: 1rem !important;
+}
+
+.m-y-1 {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
 }
 
 .m-a-1 {
@@ -5930,6 +5944,27 @@ ul.breadcrumb.mi-breadcrumb{
 .m-x-2 {
   margin-left: ($spacer-x * 1.5) !important;
   margin-right: ($spacer-x * 1.5) !important;
+}
+
+.p-r-0 {
+  padding-right: 0 !important;
+}
+
+.p-l-0 {
+  padding-left: 0 !important;
+}
+
+.p-l-1 {
+  padding-left: 1rem !important;
+}
+
+.p-l-2 {
+  padding-left: 2rem !important;
+}
+
+.p-x-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .p-x-2 {
@@ -5966,6 +6001,14 @@ ul.breadcrumb.mi-breadcrumb{
 /* Slider */
 .ui-slider{
 	background-color:red;
+}
+
+#morris-line > svg {
+	width: 100% !important;
+}
+
+.myicheck div{
+	margin-right: 6px !important;
 }
 
 /* .vcenter { */
