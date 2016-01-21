@@ -74,15 +74,15 @@
 	                        <aside class="profile-nav alt">
 	                            <section class="panel">
 	                                <div class="user-heading alt gray-bg">
-	                                    <h1>Tabla X</h1>
+	                                    <h1>Tabla Empresa</h1>
 	<!--                                     <p>Descripcion</p> -->
 	                                </div>
 	
 	                                <ul class="nav nav-pills nav-stacked">
-	                                    <li><a href="javascript:;">Atributo 1<span class="badge label-success pull-right r-activity">80%</span></a></li>
-	                                    <li><a href="javascript:;">Atributo 2<span class="badge label-danger pull-right r-activity">15%</span></a></li>
-	                                    <li><a href="javascript:;">Atributo 3<span class="badge label-success pull-right r-activity">89%</span></a></li>
-	                                    <li><a href="javascript:;">Atributo 4<span class="badge label-warning pull-right r-activity">62%</span></a></li>
+	                                    <li><a href="javascript:;">Identificador<span class="badge label-success pull-right r-activity">80%</span></a></li>
+	                                    <li><a href="javascript:;">Sede<span class="badge label-danger pull-right r-activity">15%</span></a></li>
+	                                    <li><a href="javascript:;">Categor&iacute;a<span class="badge label-success pull-right r-activity">89%</span></a></li>
+	                                    <li><a href="javascript:;">Tama&ntilde;o<span class="badge label-warning pull-right r-activity">62%</span></a></li>
 	                                </ul>
 	
 	                            </section>

@@ -163,7 +163,7 @@
                     <div class="alert alert-info clearfix">
                         <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                         <div class="noti-info">
-                            <a href="#"> Pase RSC - C055 CANCEL</a>
+                            <a href="#"> Ejecuci&oacute;n RSC-C055: PAUSE</a>
                         </div>
                     </div>
                 </li>
@@ -171,7 +171,7 @@
                     <div class="alert alert-danger clearfix">
                         <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                         <div class="noti-info">
-                            <a href="#"> Server PAS - C000 KO</a>
+                            <a href="#"> Ejecuci&oacute;n PAS-C000: KO</a>
                         </div>
                     </div>
                 </li>
@@ -179,7 +179,7 @@
                     <div class="alert alert-success clearfix">
                         <span class="alert-icon"><i class="fa fa-bolt"></i></span>
                         <div class="noti-info">
-                            <a href="#"> Server CUA - C010  KO</a>
+                            <a href="#"> Ejecuci&oacute;n CUA-C010: OK</a>
                         </div>
                     </div>
                 </li>

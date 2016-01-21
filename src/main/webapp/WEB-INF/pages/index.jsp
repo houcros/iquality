@@ -209,7 +209,7 @@
 														<td style="width: 10px;"><span
 															class="sparkline pull-left"></span></td>
 														<td style="width: 10px;"><span
-																class="badge label-success r-activity m-x-1">80%</span></td>
+																class="badge label-info r-activity m-x-1">72%</span></td>
 													</tr>
 													<tr>
 														<td style="width: 22px;">
@@ -221,7 +221,7 @@
 														<td style="width: 10px;"><span
 															class="sparkline pull-left"></span></td>
 														<td style="width: 10px;"><span
-																class="badge label-success r-activity m-x-1">80%</span></td>
+																class="badge label-warning r-activity m-x-1">67%</span></td>
 													</tr>
 													<tr>
 														<td style="width: 22px;">
@@ -233,7 +233,7 @@
 														<td style="width: 10px;"><span
 															class="sparkline pull-left"></span></td>
 														<td style="width: 10px;"><span
-																class="badge label-success r-activity m-x-1">80%</span></td>
+																class="badge label-danger r-activity m-x-1">34%</span></td>
 													</tr>
 													<tr>
 														<td style="width: 22px;" class="random-change">
@@ -245,7 +245,7 @@
 														<td style="width: 10px;"><span
 															class="sparkline pull-left"></span></td>
 														<td style="width: 10px;"><span
-																class="badge label-success r-activity m-x-1">80%</span></td>
+																class="badge label-success r-activity m-x-1">89%</span></td>
 													</tr>
 													<tr>
 														<td style="width: 22px;">
@@ -257,7 +257,7 @@
 														<td style="width: 10px;"><span
 															class="sparkline pull-left"></span></td>
 														<td style="width: 10px;"><span
-																class="badge label-success r-activity m-x-1">80%</span></td>
+																class="badge label-success r-activity m-x-1">86%</span></td>
 													</tr>
 												</tbody>
 											</table>

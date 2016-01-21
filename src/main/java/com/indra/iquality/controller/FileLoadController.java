@@ -196,14 +196,16 @@ public class FileLoadController {
 			logger.info("[handleFileUpload] : " + mpf.getSize());
 		}
 
-		// Retorno
-		logger.info("[handleFileUpload] : RETURN");
+		// Pongo estos datos para actualizar la vista mediante js
 		JSONObject item = new JSONObject();
 		item.put("name", mpf.getOriginalFilename());
 		JSONArray jsonArray = new JSONArray();
 		jsonArray.add(item);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("files", jsonArray);
+
+		// Retorno
+		logger.info("[handleFileUpload] : RETURN");
 		return jsonObject;
 	}
 
