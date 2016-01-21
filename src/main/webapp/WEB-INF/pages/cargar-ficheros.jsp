@@ -7,7 +7,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
-<meta name="author" content="Ignacio lucero at Indra">
+<meta name="author" content="Ignacio Lucero at Indra">
 <link rel="shortcut icon"
 	href="${pageContext.servletContext.contextPath}/resources/images/favicon.ico">
 <title>Cargar archivos</title>
@@ -37,14 +37,6 @@
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-fileupload/jquery.fileupload-ui.css">
 <!-- CSS adjustments for browsers with JavaScript disabled -->
-<noscript>
-	<link rel="stylesheet"
-		href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-fileupload/jquery.fileupload-noscript.css">
-</noscript>
-<noscript>
-	<link rel="stylesheet"
-		href="${pageContext.servletContext.contextPath}/resources/css/bootstrap-fileupload/jquery.fileupload-ui-noscript.css">
-</noscript>
 <!-- Just for debugging purposes. Don't actually copy this line! -->
 <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -74,12 +66,25 @@
 								<h3 class="panel-title">Carga de ficheros Excel</h3>
 							</div>
 							<div class="panel-body">
+								<div class="form-group">
+									<label for="ambitoDatos" class="col-md-2 control-label"
+										style="text-align: left">&Aacute;mbito de datos</label>
+									<div class="col-md-10">
+										<select class="form-control m-bot15" style="width: 100%"
+											id="select-ambito-datos" name="ambitoDatos">
+											<c:forEach items="${allTables}" var="item">
+												<option>${item}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
 								<!-- The fileinput-button span is used to style the file input field as button -->
 								<span class="btn btn-success fileinput-button"> <i
 									class="glyphicon glyphicon-plus"></i> <span>Select
-										files...</span>
-									<!-- The file input field used as target for the file upload widget -->
-									<input id="fileupload" type="file" name="files[]" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" multiple>
+										files...</span> <!-- The file input field used as target for the file upload widget -->
+									<input id="fileupload" type="file" name="files[]"
+									accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+									multiple>
 								</span> <br> <br>
 								<!-- The global progress bar -->
 								<div id="progress" class="progress">
@@ -126,15 +131,22 @@
 	<!-- The basic File Upload plugin -->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/file-uploader/js/jquery.fileupload.js"></script>
-	<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+
+	<!-- Select2 -->
 	<script
-		src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	
+		src="${pageContext.servletContext.contextPath}/resources/js/select2.min.js"></script>
+
 	<!-- My custom script -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/mcs.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/mcs-cargar-ficheros.js"></script>
+
 	<!-- Cookies -->
-	<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
-	<script src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.cookie.js"></script>
+	<script
+		src="${pageContext.servletContext.contextPath}/resources/js/jquery-vertical-accordion-menu/jquery.dcjqaccordion.2.7.js"></script>
 
 	<!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
 	<!--[if (gte IE 8)&(lt IE 10)]>
@@ -143,34 +155,5 @@
 	<!--common script init for all pages-->
 	<script
 		src="${pageContext.servletContext.contextPath}/resources/js/scripts.js"></script>
-	<!-- The template to display files available for upload -->
-	<script>
-		/*jslint unparam: true */
-		/*global window, $ */
-		$(function() {
-			'use strict';
-			// Change this to the location of your server-side upload handler:
-			var url = 'carga/upload';
-			$('#fileupload').fileupload(
-					{
-						url : url,
-						dataType : 'json',
-						done : function(e, data) {
-							$.each(data.result.files, function(index, file) {
-								$('<p/>').text(file.name).appendTo('#files');
-							});
-						},
-						progressall : function(e, data) {
-							var progress = parseInt(data.loaded / data.total
-									* 100, 10);
-							$('#progress .progress-bar').css('width',
-									progress + '%');
-						}
-					}).prop('disabled', !$.support.fileInput).parent()
-					.addClass($.support.fileInput ? undefined : 'disabled')
-					.bind('fileuploaddone', function (e, data) { console.log("Hecho.")})
-					.bind('fileuploadfail', function (e, data) { console.log(data)});
-		});
-	</script>
 </body>
 </html>

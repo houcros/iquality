@@ -45,6 +45,10 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<bean id="fileLoadDAOJDBCTemplate" class="com.indra.iquality.dao.jdbctemplateimplem.FileLoadDAOJDBCTemplateImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />

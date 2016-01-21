@@ -97,6 +97,10 @@ $(document).ready(function() {
 			}
 			else $("#desplegable-dependencias").closest("section").hide();
 		},
+		// No permitir navegar por las pills
+		onTabClick: function(tab, navigation, index){
+			return false;
+		},
 		// Validar el paso actual cuando click en *next*
 		onNext: function(tab, navigation, index){
 			if(index === 1){
